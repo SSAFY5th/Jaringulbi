@@ -17,10 +17,12 @@
 <style></style>
 
 
-
+<!--
+그리드 틀
 <div class="row">
     <div class="col-xs-6 col-md-2"></div>
     <div class="col-xs-6 col-md-4">로고가 들어올 공간입니당</div>
     <div class="col-xs-6 col-md-4"></div>
     <div class="col-xs-6 col-md-2"></div>
   </div>
+-->
