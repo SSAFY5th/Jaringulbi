@@ -52,6 +52,7 @@
               ref="address"
             /><br />
             <button @click="checkValue" class="btn" id="btn_group">가입</button>
+            <button @click="home" class="btn" id="btn_group">홈으로</button>
           </div>
         </div>
       </b-container>
@@ -59,7 +60,20 @@
     <div class="col-xs-6 col-md-2"></div>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "signup",
+  computed: {},
+  data() {
+    return {};
+  },
+  methods: {
+    home() {
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 <style scoped>
 @keyframes tracking-in-expand {
   0% {

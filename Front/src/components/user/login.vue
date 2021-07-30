@@ -35,6 +35,7 @@
                 <button class="btn">아이디 찾기</button>
                 <button class="btn">비밀번호 찾기</button>
               </div>
+              <div><button class="btn" @click="signup">회원가입</button></div>
             </div>
           </b-row>
         </div>
@@ -43,7 +44,20 @@
     <div class="col-xs-6 col-md-2"></div>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "bottom",
+  computed: {},
+  data() {
+    return {};
+  },
+  methods: {
+    signup() {
+      this.$router.push("/signup");
+    },
+  },
+};
+</script>
 <style scoped>
 @font-face {
   font-family: "CookieRunOTF-Bold";
