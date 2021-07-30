@@ -1,14 +1,32 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import About from "../views/About.vue";
+import Home from "../views/Home.vue";
+import Login from "../components/user/login.vue";
+import Signup from "../components/user/signup.vue";
+import Sora from "../components/sora/sora.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "About",
-    component: About,
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
+  },
+  {
+    path: "/sora",
+    name: "Sora",
+    component: Sora,
   },
 ];
 
