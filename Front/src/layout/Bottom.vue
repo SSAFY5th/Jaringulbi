@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <b-button-group>
+    <b-button-group id="footer_btn">
       <b-button variant="info" title="가계부" @click="account">
         <b-icon icon="vector-pen" aria-hidden="true"></b-icon>
         <div>가계부</div>
@@ -39,6 +39,9 @@ export default {
     home() {
       this.$router.push("/");
     },
+    account() {
+      this.$router.push("/account");
+    },
   },
 };
 </script>
@@ -56,5 +59,8 @@ export default {
   padding: 15px 0;
 
   color: white;
+}
+#footer_btn {
+  width: 420px;
 }
 </style>

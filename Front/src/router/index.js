@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../components/user/login.vue";
 import Signup from "../components/user/signup.vue";
 import Sora from "../components/sora/sora.vue";
+import Account from "../components/account_book/accountbook.vue";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/sora",
     name: "Sora",
     component: Sora,
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: Account,
   },
 ];
 
