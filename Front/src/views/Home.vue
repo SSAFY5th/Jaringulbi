@@ -25,7 +25,7 @@ export default {
   name: "",
   components: { Search, Bottom, Report, Mainsora },
   computed: {},
-  data() {
+  data () {
     return {};
   },
   methods: {},

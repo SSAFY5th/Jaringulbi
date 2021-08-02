@@ -48,7 +48,7 @@
 export default {
   name: "bottom",
   computed: {},
-  data() {
+  data () {
     return {};
   },
   methods: {
