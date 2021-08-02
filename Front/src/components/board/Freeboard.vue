@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div v-bind="FreeboardDetail">
-      <router-link :to="">
+      <!-- <router-link :to=""> -->
     </div>
 
   </div>

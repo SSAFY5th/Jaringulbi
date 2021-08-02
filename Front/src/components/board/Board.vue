@@ -4,10 +4,14 @@
 
 <script>
 export default {
-  name: "Challenge",
+  name: "Board",
   components: {
-    
   },
+  computed: {},
+  data () {
+    return {};
+  },
+  methods: {},
 }
 </script>
 
