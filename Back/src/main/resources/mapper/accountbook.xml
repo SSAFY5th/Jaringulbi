@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.B303.model.mapper.AccountBookMapper">
+
+    <insert id="insertAccountBook" parameterType="AccountBookDto">
+        insert into account_book(date, price, category, used, contents, user_id)
+        values (#{date}, #{price}, #{category}, #{used}, #{contents}, #{user_id})
+    </insert>
+
+    <select id="selectMonth" parameterType="HashMap" resultType="AccountBookDto">
+        select date, price, category, used, contents
+        from account_book
+        where user_id = #{user_id} and month(date) = #{month}
+    </select>
+
+
+</mapper>
