@@ -1,5 +1,10 @@
 <template>
-  <div></div>
+  <div
+    class="d-flex justify-content-between align-self-center px-3"
+    style="width: 100%"
+  >
+    <div><Search /></div>
+  </div>
 </template>
 
 <script>
@@ -8,6 +13,7 @@ export default {
   methods: {},
 };
 </script>
-<style>
+
+<style scoped>
 </style>
 

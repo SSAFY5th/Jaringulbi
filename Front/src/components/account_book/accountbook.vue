@@ -1,63 +1,63 @@
 
 <template>
   <div class="row">
-    <div class="col-xs-6 col-md-2"></div>
-    <div class="col-xs-6 col-md-4">로고가 들어올 공간입니당</div>
-    <div class="col-xs-6 col-md-4">
-      <div><acheader></acheader></div>
-      <div>
-        <div class="row money">
-          <div class="col-xs-12 col-md-4">
-            <div>수입</div>
-            <div>{{ impo }}</div>
-          </div>
-
-          <div class="col-xs-12 col-md-4">
-            <div>지출</div>
-            <div>{{ expo }}</div>
-          </div>
-          <div class="col-xs-12 col-md-4">
-            합계
-            <div>{{ total }}</div>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div><FullCalendar :options="calendarOptions" /></div>
-      <div><bottom></bottom></div>
+    <div><acheader></acheader></div>
+    <hr />
+    <div>
+      <div class="float">수입</div>
+      <div class="float">지출</div>
+      <div class="float">합계</div>
+      <div class="float">자산</div>
+    </div>
+    <div>
+      <div class="float">{{ impo }}원</div>
+      <div class="float">{{ expo }}원</div>
+      <div class="float">{{ total }}원</div>
+      <div class="float">{{ asset }}원</div>
+    </div>
+    <hr />
+    <div>
+      <DatePicker v-model="date" is-expanded mode="date" />
+      <div>{{ date }}</div>
     </div>
   </div>
 </template>
 <script>
 import Acheader from "@/layout/AC_Header.vue";
-import Bottom from "@/layout/Bottom.vue";
-import "@fullcalendar/core/vdom"; // solves problem with Vite
-import FullCalendar from "@fullcalendar/vue";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import Vue from "vue";
+import VCalendar from "v-calendar";
+import { DatePicker } from "v-calendar";
+// Use v-calendar & v-date-picker components
+Vue.use(VCalendar, {
+  componentPrefix: "vc", // Use <vc-calendar /> instead of <v-calendar />
+});
 
 export default {
+  name: "",
   components: {
     Acheader,
-    Bottom,
-    FullCalendar, // make the <FullCalendar> tag available
+    DatePicker,
   },
+  computed: {},
   data() {
     return {
-      impo: "원",
-      expo: "원",
-      total: "원",
-      calendarOptions: {
-        plugins: [dayGridPlugin, interactionPlugin],
-        initialView: "dayGridMonth",
-      },
+      impo: "",
+      expo: "",
+      total: "",
+      asset: "",
+      date: new Date(),
     };
   },
   methods: {},
 };
 </script>
 <style scoped>
-.money {
-  margin-top: 50px;
+.float {
+  display: inline-block;
+  width: 25%;
+}
+
+#calendar {
+  height: 495px;
 }
 </style>
