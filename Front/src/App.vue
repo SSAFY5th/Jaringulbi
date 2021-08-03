@@ -1,23 +1,56 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="app" class="">
+    <div id="home" class="bg-secondary">
+      <router-view />
+      <div id="bottom-menu" class="justify-content-center">
+        <Bottom></Bottom>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Bottom from "@/layout/Bottom.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    Bottom,
+  },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #eee;
+}
+
+#home {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+  #bottom-menu {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;  
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  padding: 15px 0;
+  color: white;
+  background-color: #fff;
 }
 </style>
