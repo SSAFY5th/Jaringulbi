@@ -1,13 +1,6 @@
-package com.ssafy.B303.domain;
+package com.ssafy.B303.model.dto;
 
-import javax.persistence.*;
-
-@Table(name = "USER")
-@Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private int id;
     private String login_id;
     private String password;
@@ -16,6 +9,13 @@ public class User {
     private int budget;
     private String phone;
     private String image;
+
+    public UserDto(String login_id, String password, String nickname, String phone) {
+        this.login_id = login_id;
+        this.password = password;
+        this.nickname = nickname;
+        this.phone = phone;
+    }
 
     public int getId() {
         return id;

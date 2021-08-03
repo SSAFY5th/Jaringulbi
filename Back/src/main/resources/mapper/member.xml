@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.B303.model.mapper.UserMapper">
+
+	<select id="selectUser" parameterType="String" resultType="UserDto">
+		select login_id, password, nickname, fish_count, budget, phone, image
+		from user
+		where login_id = #{login_id}
+	</select>
+
+	<insert id="insertUser" parameterType="UserDto">
+		insert into user (login_id, password, nickname, fish_count, budget, phone, image)
+		values (#{login_id}, #{password}, #{nickname}, #{fish_count}, #{budget}, #{phone}, #{image})
+	</insert>
+	<update id="updateUser" parameterType="UserDto">
+		update user
+		set password = #{password}, nickname = #{nickname}, fish_count = #{fish_count}, budget = #{budget}, phone = #{phone}, image = #{image}
+		where login_id = #{login_id}
+	</update>
+
+	<delete id="deleteUser" parameterType="UserDto">
+		delete from user
+		where login_id = #{login_id}
+	</delete>
+
+	<select id="login" parameterType="map" resultType="UserDto">
+		select login_id, password, nickname, fish_count, budget, phone, image
+		from user
+		where login_id = #{login_id} and password = #{password}
+	</select>
+
+
+</mapper>
