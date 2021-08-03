@@ -48,17 +48,10 @@ export default {
  
 <style scoped>
 .footer {
-  position: absolute;
-
-  left: 0;
-
   bottom: 0;
-
-  width: 100%;
-  margin-left: 270px;
-  padding: 15px 0;
-
-  color: white;
+  margin-left: 40px;
+  position: fixed;
+  width: 420px;
 }
 #footer_btn {
   width: 420px;

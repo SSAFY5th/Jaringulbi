@@ -1,20 +1,16 @@
 <template>
   <div>
+    <router-view />
     <div id="acheader">
-      <b-button-group id="acbutton">
-        <b-button variant="info" block title="가계부" @click="account">
-          <div>가계부</div>
-        </b-button>
-        <b-button variant="info" title="예산" @click="budget">
-          <div>예산</div>
-        </b-button>
-        <b-button variant="info" title="통계" @click="graph">
-          <div>통계</div>
-        </b-button>
-        <b-button variant="info" title="통계" @click="graph">
-          <div>자산</div>
-        </b-button>
-      </b-button-group>
+      <div>
+        <b-nav tabs fill>
+          <b-nav-item
+            ><router-link to="/account">가계부</router-link></b-nav-item
+          >
+          <b-nav-item><router-link to="/budget">예산</router-link></b-nav-item>
+          <b-nav-item><router-link to="graph">통계</router-link></b-nav-item>
+        </b-nav>
+      </div>
     </div>
   </div>
 </template>
@@ -40,10 +36,4 @@ export default {
 };
 </script>
 <style scoped>
-#acheader {
-  width: 420px;
-}
-#acbutton {
-  width: 420px;
-}
 </style>
