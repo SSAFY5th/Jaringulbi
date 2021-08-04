@@ -1,7 +1,7 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
-  <span id="search">
-    <b-icon icon="search" aria-hidden="false"></b-icon>
+  <span>
+    <b-icon icon="search" aria-hidden="false" class="me-3"></b-icon>
     <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
   </span>
 </template>
