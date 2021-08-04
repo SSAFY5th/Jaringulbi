@@ -17,6 +17,12 @@
     <!-- 위에 카테고리 분류(board_category)로 v-if 등으로 카테고리 처리해서 보여주기 -->
     <div class="main-content">
       <!-- 무한 스크롤 구현 -->
+      <!-- 글 작성 버튼 -->
+      <router-link :to="{ name: 'CreateFreePost' }">
+        <div id="write-btn" class="">
+          <span>+</span>
+        </div>
+      </router-link>
       <div>
         <Freeboard />
       </div>
@@ -48,20 +54,34 @@ export default {
 </script>
 
 <style scoped>
-#board-header {
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  width: 100%;
-  max-width: 420px;
-  height: 85px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px #ddd;
-}
+  #board-header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    max-width: 420px;
+    height: 85px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px #ddd;
+  }
 
-.main-content {  
-  margin-top: 85px;
-  
-}
+  .main-content {  
+    margin-top: 85px;
+    position: relative;
+    
+  }
+
+  #write-btn {
+    position: fixed;    
+    bottom: 85px;
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #9be4e4;
+    color: #7a69e6;
+    font-size: 30pt;
+    line-height: 60px;
+  }
 </style>

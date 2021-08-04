@@ -1,5 +1,5 @@
 <template>
-<div>
+<div>  
   <div class="free-post"><!--  v-for="post in freepost" :key="post.id" -->
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
@@ -273,10 +273,10 @@ export default {
 
 
 <style scoped>
-.free-post {
-  padding: 10px 14px 12px 14px;
-  border-bottom: solid 1px #eee;
-  color: #444;
-}
+  .free-post {
+    padding: 10px 14px 12px 14px;
+    border-bottom: solid 1px #eee;
+    color: #444;
+  }
 
 </style>

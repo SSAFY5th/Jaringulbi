@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Accountbook from "../components/account_book/accountbook.vue";
+import CreateFreePost from "../components/board/CreateFreePost.vue";
 import Board from "../components/board/Board.vue";
 import Challenge from "../components/challenge/Challenge.vue";
 import Mypage from "../components/user/Mypage.vue";
@@ -36,6 +37,11 @@ const routes = [
     path: "/board",
     name: "Board",
     component: Board,
+  },
+  {
+    path: "/board/create",
+    name: "CreateFreePost",
+    component: CreateFreePost,
   },
   {
     path: "/challenge",
