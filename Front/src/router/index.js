@@ -1,10 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Accountbook from "../components/account_book/accountbook.vue";
-import Board from "../components/board/Board.vue";
-import Challenge from "../components/challenge/challenge.vue";
-import Mypage from "../components/user/Mypage.vue";
+import Account from "../components/account_book/accountbook.vue";
+import RegistAccount from "../components/account_book/RegistAccount.vue";
 import Login from "../components/user/login.vue";
 import Signup from "../components/user/signup.vue";
 import Sora from "../components/sora/sora.vue";
@@ -18,6 +16,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/registaccount",
+    name: "RegistAccount",
+    component: RegistAccount,
+  },
+  {
+    path: "/accountbook",
+    name: "Account",
+    component: Account,
   },
   {
     path: "/login",

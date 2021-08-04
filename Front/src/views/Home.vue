@@ -3,10 +3,12 @@
   <div>
     <div id="header">
       <Header></Header>
+      <search></search>
     </div>
     <div class="main-content">
-      <Report></Report>
-      <Mainsora></Mainsora>
+      <div><Report></Report></div>
+      <div><Mainsora></Mainsora></div>
+      <bottom></bottom>
     </div>
     <div class="col-xs-6 col-md-2"></div>
   </div>

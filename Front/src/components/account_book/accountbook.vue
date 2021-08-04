@@ -16,27 +16,30 @@
       <div class="float">{{ asset }}원</div>
     </div>
     <hr />
+
     <div>
-      <DatePicker v-model="date" is-expanded mode="date" />
-      <div>{{ date }}</div>
+      <calendar></calendar>
     </div>
+    <div>
+      <router-link :to="`/registaccount`"
+        ><b-button variant="primary" class="rounded-circle px-2 circle"
+          ><b-icon icon="plus" scale="2"></b-icon></b-button
+      ></router-link>
+    </div>
+    <div><bottom></bottom></div>
   </div>
 </template>
 <script>
 import Acheader from "@/layout/AC_Header.vue";
-import Vue from "vue";
-import VCalendar from "v-calendar";
-import { DatePicker } from "v-calendar";
-// Use v-calendar & v-date-picker components
-Vue.use(VCalendar, {
-  componentPrefix: "vc", // Use <vc-calendar /> instead of <v-calendar />
-});
+import Calendar from "@/components/account_book/AccountComponents/Calendar.vue";
+import Bottom from "@/layout/Bottom.vue";
 
 export default {
   name: "",
   components: {
     Acheader,
-    DatePicker,
+    Calendar,
+    Bottom,
   },
   computed: {},
   data() {

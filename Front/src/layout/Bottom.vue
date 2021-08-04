@@ -40,7 +40,7 @@ export default {
       this.$router.push("/");
     },
     account() {
-      this.$router.push("/account");
+      this.$router.push("/accountbook");
     },
   },
 };
@@ -48,10 +48,15 @@ export default {
  
 <style scoped>
 .footer {
-  bottom: 0;
-  margin-left: 40px;
   position: fixed;
-  width: 420px;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  padding: 0;
+  color: white;
 }
 #footer_btn {
   width: 420px;

@@ -88,7 +88,7 @@ export default {
 </script>
 <style scoped>
 .margin {
-  margin: 15px;
+  margin-top: 20px;
 }
 </style>
 

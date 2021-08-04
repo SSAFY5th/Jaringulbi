@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="app" class="">
+    <div id="home" class="bg-secondary">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -20,6 +22,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+
   background-color: #eee;
 }
 
@@ -42,6 +45,5 @@ export default {
   height: 65px;
   padding: 15px 0;
   color: white;
-  background-color: #fff;
 }
 </style>
