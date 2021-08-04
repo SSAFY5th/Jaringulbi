@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardMapper {
 
     List<BoardDto> selectAll();
-    void selectById(int id);
+    BoardDto selectById(int id);
 
     void insert(BoardDto board);
     void update(BoardDto board);

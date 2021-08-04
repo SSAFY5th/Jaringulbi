@@ -7,7 +7,7 @@ import java.util.List;
 public interface BoardService {
     List<BoardDto> selectAllBoards();
 
-    void selectBoardById(int id);
+    BoardDto selectBoardById(int id);
 
     void insertBoard(BoardDto board);
 

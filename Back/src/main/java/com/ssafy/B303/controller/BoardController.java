@@ -18,6 +18,11 @@ public class BoardController {
         return boardService.selectAllBoards();
     }
 
+    @GetMapping("/board/{id}")
+    public BoardDto selectBoardById(@PathVariable int id){
+        return boardService.selectBoardById(id);
+    }
+
     @PostMapping("/board")
     public List<BoardDto> insertBoard(@RequestBody BoardDto board){
         boardService.insertBoard(board);
@@ -25,12 +30,12 @@ public class BoardController {
     }
 
     @PutMapping("/board/{id}")
-    public List<BoardDto> updateBoard(@PathVariable int id, @RequestBody BoardDto board){
+    public BoardDto updateBoard(@PathVariable int id, @RequestBody BoardDto board){
         boardService.updateBoard(id, board);
-        return boardService.selectAllBoards();
+        return boardService.selectBoardById(id);
     }
 
-    @DeleteMapping("/board/{id")
+    @DeleteMapping("/board/{id}")
     public List<BoardDto> deleteBoard(@PathVariable int id) {
         boardService.deleteBoard(id);
         return boardService.selectAllBoards();

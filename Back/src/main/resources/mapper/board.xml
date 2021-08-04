@@ -7,6 +7,7 @@
     <select id="selectAll" resultType="BoardDto">
         SELECT *
         FROM POST
+        WHERE board_category = 1
     </select>
 
     <select id="selectById" parameterType="int" resultType="BoardDto">
@@ -16,21 +17,19 @@
     </select>
 
     <insert id="insert" parameterType="BoardDto">
-        INSERT INTO POST (user_id, created_time, title, contents, price, image, board_category, challenge_id)
-            VALUES (id_seq.nextval, NOW(), #{title}, #{contents}, #{price}, #{image}, #{board_category}, #{challenge_id});
+        INSERT INTO POST (user_id, created_time, title, contents, image, board_category, challenge_id)
+            VALUES (#{user_id}, NOW(), #{title}, #{contents}, #{image}, 1, #{challenge_id});
     </insert>
     <update id="update" parameterType="BoardDto">
         UPDATE POST
         SET title = #{title},
             contents = #{contents},
-            price = #{price},
             image = #{image},
-            board_category = #{board_category},
             challenge_id = #{challenge_id}
         WHERE id = #{id}
     </update>
     <delete id="delete" parameterType="int">
-        DELETE POST
+        DELETE FROM POST
 		WHERE id = #{id}
     </delete>
 </mapper>

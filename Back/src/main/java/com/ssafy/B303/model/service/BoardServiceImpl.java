@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void selectBoardById(int id) {
+    public BoardDto selectBoardById(int id) {
         return boardMapper.selectById(id);
     }
 
