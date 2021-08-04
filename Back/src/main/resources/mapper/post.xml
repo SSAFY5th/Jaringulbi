@@ -2,25 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.B303.model.mapper.BoardMapper">
+<mapper namespace="com.ssafy.B303.model.mapper.PostMapper">
 
-    <select id="selectAll" resultType="BoardDto">
+    <select id="selectAll" parameterType="int" resultType="PostDto">
         SELECT *
         FROM POST
-        WHERE board_category = 1
+        WHERE board_category = #{board_category}
     </select>
 
-    <select id="selectById" parameterType="int" resultType="BoardDto">
+    <select id="selectById" parameterType="int" resultType="PostDto">
         SELECT *
         FROM POST
         WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="BoardDto">
-        INSERT INTO POST (user_id, created_time, title, contents, image, board_category, challenge_id)
-            VALUES (#{user_id}, NOW(), #{title}, #{contents}, #{image}, 1, #{challenge_id});
+    <insert id="insert" parameterType="PostDto">
+        INSERT INTO POST (user_id, created_time, title, contents, price, image, board_category, challenge_id)
+            VALUES (#{user_id}, NOW(), #{title}, #{contents}, #{price}, #{image}, #{board_category}, #{challenge_id});
     </insert>
-    <update id="update" parameterType="BoardDto">
+    <update id="update" parameterType="PostDto">
         UPDATE POST
         SET title = #{title},
             contents = #{contents},
