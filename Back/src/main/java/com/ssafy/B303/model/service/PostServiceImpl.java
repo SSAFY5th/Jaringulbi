@@ -32,8 +32,11 @@ public class PostServiceImpl implements PostService {
     public void updatePost(int id, PostDto updatePost) {
         PostDto post = postMapper.selectById(id);
         if(post!=null){
-            post.setTitle(updatePost.getTitle());
-            post.setContents(updatePost.getContents());
+            post.setTitle(updatePost.getTitle() != null ? updatePost.getTitle() : post.getTitle());
+            post.setContents(updatePost.getContents() != null ? updatePost.getContents() : post.getContents());
+            post.setPrice(updatePost.getPrice() != null ? updatePost.getPrice() : post.getPrice());
+            post.setImage(updatePost.getImage() != null ? updatePost.getImage() : post.getImage());
+            post.setChallenge_id(updatePost.getChallenge_id() != null ? updatePost.getChallenge_id() : post.getChallenge_id());
             postMapper.update(post);
         } else {
             throw new IllegalStateException("게시글이 존재하지 않습니다");
