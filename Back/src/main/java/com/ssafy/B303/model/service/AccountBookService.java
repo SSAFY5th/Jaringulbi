@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface AccountBookService {
 
-    public AccountBookDto insertAccountBook() throws SQLException;
-    public List<AccountBookDto> selectMonth() throws SQLException;
-    public List<AccountBookDto> selectDay() throws SQLException;
+    public void insertAccountBook(AccountBookDto accountBookDto) throws Exception;
+    public List<AccountBookDto> selectMonth(String month, int user_id) throws Exception;
+    public List<AccountBookDto> selectDay(String day, int user_id) throws Exception;
 
 }
