@@ -9,11 +9,37 @@
         values (#{date}, #{price}, #{category}, #{used}, #{contents}, #{user_id})
     </insert>
 
-    <select id="selectMonth" parameterType="HashMap" resultType="AccountBookDto">
-        select date, price, category, used, contents
+    <select id="selectMonth" parameterType="Map" resultType="AccountBookDto">
+        select id, date, price, category, used, contents, user_id
         from account_book
         where user_id = #{user_id} and month(date) = #{month}
     </select>
 
+    <select id="selectDay" parameterType="Map" resultType="AccountBookDto">
+        select id, date, price, category, used, contents, user_id
+        from account_book
+        where user_id = #{user_id} and month(date) = #{month} and day(date) = #{day}
+    </select>
 
+    <delete id="deleteAccountBook" parameterType="Integer">
+        delete from account_book
+        where id = #{id}
+    </delete>
+
+    <update id="modifyAccountBook" parameterType="AccountBookDto">
+        update account_book
+        set date = #{date}, price = #{price}, category = #{category}, used = #{used}, contents = #{contents}
+        where id = #{id}
+    </update>
+
+    <select id="monthIncomes" parameterType="Integer" resultType="Integer">
+        select sum(price)
+        from account_book
+        where month(date) = #{month} and price > 0
+    </select>
+    <select id="monthOutgoings" parameterType="Integer" resultType="Integer">
+        select sum(price)
+        from account_book
+        where month(date) = #{month} and 0 > price
+    </select>
 </mapper>
