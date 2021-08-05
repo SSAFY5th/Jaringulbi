@@ -21,17 +21,14 @@
               <b-card-text>{{ text }}</b-card-text>
             </b-card>
           </div>
-          <div><bottom></bottom></div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Bottom from "@/layout/Bottom.vue";
 // import { mapGetters } from "vuex";
 export default {
-  components: { Bottom },
   name: "",
   computed: {},
   data() {
