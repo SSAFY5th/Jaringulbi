@@ -31,7 +31,7 @@
 </template>
 <script>
 import Acheader from "@/layout/AC_Header.vue";
-import Calendar from "@/components/account_book/AccountComponents/Calendar.vue";
+import Calendar from "@/components/account_book/account_components/Calendar.vue";
 import Bottom from "@/layout/Bottom.vue";
 
 export default {

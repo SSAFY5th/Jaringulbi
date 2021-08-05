@@ -13,8 +13,8 @@
 
 <script>
 import Header from "@/layout/Header.vue";
-import Report from "@/components/main/report.vue";
-import Mainsora from "@/components/main/mainsora.vue";
+import Report from "@/components/main/Report.vue";
+import Mainsora from "@/components/main/Mainsora.vue";
 
 // import { mapGetters } from "vuex";
 export default {
