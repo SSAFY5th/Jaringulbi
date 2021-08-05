@@ -9,7 +9,7 @@ import Challenge from "../components/challenge/Challenge.vue";
 import Mypage from "../components/user/Mypage.vue";
 import Login from "../components/user/Login.vue";
 import Signup from "../components/user/Signup.vue";
-import Sora from "../components/sora/sora.vue";
+import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
 import Graph from "../components/account_book/Graph.vue";
 
