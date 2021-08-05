@@ -1,8 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xs-6 col-md-2"></div>
-    <div class="col-xs-6 col-md-4"></div>
-    <div class="col-xs-6 col-md-4">
+    <div>
       <b-container id="mainImage" class="top-login">
         <div class="login-back">
           <b-row>
@@ -48,7 +46,7 @@
 export default {
   name: "bottom",
   computed: {},
-  data () {
+  data() {
     return {};
   },
   methods: {

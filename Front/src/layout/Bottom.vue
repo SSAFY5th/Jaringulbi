@@ -42,13 +42,35 @@ export default {
     home() {
       this.$router.push("/");
     },
+<<<<<<< HEAD
+=======
+    account() {
+      this.$router.push("/accountbook");
+    },
+>>>>>>> feature/FE/AccountPage-5
   },
 };
 </script>
  
 <style scoped>
+<<<<<<< HEAD
 #nav-icon {
   width: 100%;
   font-size: 16pt;
+=======
+.footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  padding: 0;
+  color: white;
+}
+#footer_btn {
+  width: 420px;
+>>>>>>> feature/FE/AccountPage-5
 }
 </style>
