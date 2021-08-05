@@ -2,6 +2,7 @@ package com.ssafy.B303.controller;
 
 
 import com.ssafy.B303.model.dto.AccountBookDto;
+import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -87,6 +88,9 @@ public class AccountBookController {
 
     @PutMapping(value = "detail")
     public ResponseEntity<AccountBookDto> modifyAccountBook(@RequestParam Map<String, String> map, HttpSession session){
+        UserDto userDto = (UserDto) session.getAttribute("userinfo");
+        int id = userDto.getId();
+        String login_id = userDto.getLogin_id();
         AccountBookDto accountBookDto = new AccountBookDto(
                 Integer.parseInt(map.get("id").toString()),
                 LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(map.get("date")+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),

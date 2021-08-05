@@ -2,6 +2,7 @@ package com.ssafy.B303.controller;
 
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.UserService;
+import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/user/signup")
-    public ResponseEntity<UserDto> regist(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+    @PostMapping(value = "/signup")
+    public ResponseEntity<UserDto> signup(@RequestParam Map<String, String> map, Model model, HttpSession session) {
         UserDto userDto = new UserDto(
                 map.get("login_id"),
                 map.get("password"),
@@ -44,14 +45,37 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/user/userlist")
-    public String userList() {
-        return "userlist";
+    @PostMapping(value = "/login")
+    public ResponseEntity<UserDto> login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+        try {
+            UserDto userDto = userService.login(map);
+            if(userDto != null) { // 성공
+                session.setAttribute("userinfo", userDto);
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/user/userlist")
-    public String userList(Model model) {
-        return "";
+    @DeleteMapping(value = "/account")
+    public ResponseEntity<UserDto> delete(Model model, HttpSession session){
+        UserDto userDto = (UserDto) session.getAttribute("login_id");
+        try {
+            userService.deleteUser(userDto);
+            session.invalidate();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+            model.addAttribute("msg", "회원 정보 삭제 중 문제가 발생했습니다.");
+        }
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/logout")
+    public ResponseEntity<UserDto> logout(HttpSession session) {
+        session.invalidate(); // 세션 다 지움
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }
