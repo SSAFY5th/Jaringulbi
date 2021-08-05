@@ -1,24 +1,12 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
-<<<<<<< HEAD
-  <div>    
+  <div>
     <div id="header">
       <Header></Header>
     </div>
     <div class="main-content">
       <Report></Report>
       <Mainsora></Mainsora>
-=======
-  <div>
-    <div id="header">
-      <Header></Header>
-      <search></search>
-    </div>
-    <div class="main-content">
-      <div><Report></Report></div>
-      <div><Mainsora></Mainsora></div>
-      <bottom></bottom>
->>>>>>> feature/FE/AccountPage-5
     </div>
   </div>
 </template>
@@ -27,7 +15,6 @@
 import Header from "@/layout/Header.vue";
 import Report from "@/components/main/report.vue";
 import Mainsora from "@/components/main/mainsora.vue";
-
 
 // import { mapGetters } from "vuex";
 export default {
@@ -55,11 +42,7 @@ export default {
   width: 100%;
   max-width: 420px;
   height: 85px;
-<<<<<<< HEAD
-  background-color: #fff;  
-=======
   background-color: #fff;
->>>>>>> feature/FE/AccountPage-5
 }
 
 .main-content {
