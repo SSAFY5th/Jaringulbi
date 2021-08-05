@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-xs-6 col-md-2"></div>
-      <div class="col-xs-6 col-md-4"></div>
-      <div class="col-xs-6 col-md-4">
+      <div>
         <div class="margin">
           <h1>마법의 소라고동</h1>
           <b-img
@@ -26,7 +24,6 @@
           <div><bottom></bottom></div>
         </div>
       </div>
-      <div class="col-xs-6 col-md-2"></div>
     </div>
   </div>
 </template>
@@ -91,7 +88,7 @@ export default {
 </script>
 <style scoped>
 .margin {
-  margin: 15px;
+  margin-top: 20px;
 }
 </style>
 

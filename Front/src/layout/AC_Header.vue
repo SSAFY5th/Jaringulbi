@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view />
     <div id="acheader">
       <b-button-group id="acbutton">
         <b-button variant="info" block title="가계부" @click="account">
@@ -10,9 +11,6 @@
         </b-button>
         <b-button variant="info" title="통계" @click="graph">
           <div>통계</div>
-        </b-button>
-        <b-button variant="info" title="통계" @click="graph">
-          <div>자산</div>
         </b-button>
       </b-button-group>
     </div>
@@ -28,7 +26,7 @@ export default {
   },
   methods: {
     account() {
-      this.$router.push("/account");
+      this.$router.push("/accountbook");
     },
     budget() {
       this.$router.push("/budget");
@@ -40,9 +38,6 @@ export default {
 };
 </script>
 <style scoped>
-#acheader {
-  width: 420px;
-}
 #acbutton {
   width: 420px;
 }

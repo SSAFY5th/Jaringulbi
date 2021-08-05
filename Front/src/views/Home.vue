@@ -1,6 +1,6 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
-  <div>    
+  <div>
     <div id="header">
       <Header></Header>
     </div>
@@ -16,7 +16,6 @@ import Header from "@/layout/Header.vue";
 import Report from "@/components/main/report.vue";
 import Mainsora from "@/components/main/mainsora.vue";
 
-
 // import { mapGetters } from "vuex";
 export default {
   name: "Home",
@@ -26,7 +25,7 @@ export default {
     Mainsora,
   },
   computed: {},
-  data () {
+  data() {
     return {};
   },
   methods: {},

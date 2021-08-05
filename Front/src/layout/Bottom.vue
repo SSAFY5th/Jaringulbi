@@ -35,14 +35,7 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    user() {
-      this.$router.push("/login");
-    },
-    home() {
-      this.$router.push("/");
-    },
-  },
+  methods: {},
 };
 </script>
  
