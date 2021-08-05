@@ -43,6 +43,7 @@ export default {
   max-width: 420px;
   height: 85px;
   background-color: #fff;
+  /* box-shadow: 0 2px 8px #ddd; */
 }
 
 .main-content {

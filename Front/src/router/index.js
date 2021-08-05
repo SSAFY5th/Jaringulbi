@@ -3,8 +3,12 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
-import Login from "../components/user/login.vue";
-import Signup from "../components/user/signup.vue";
+import CreateFreePost from "../components/board/CreateFreePost.vue";
+import Board from "../components/board/Board.vue";
+import Challenge from "../components/challenge/Challenge.vue";
+import Mypage from "../components/user/Mypage.vue";
+import Login from "../components/user/Login.vue";
+import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/sora.vue";
 import Budget from "../components/account_book/Budget.vue";
 import Graph from "../components/account_book/Graph.vue";
@@ -46,6 +50,11 @@ const routes = [
     path: "/board",
     name: "Board",
     component: Board,
+  },
+  {
+    path: "/board/create",
+    name: "CreateFreePost",
+    component: CreateFreePost,
   },
   {
     path: "/challenge",

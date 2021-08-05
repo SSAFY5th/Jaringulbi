@@ -2,22 +2,22 @@
   <div class="d-flex justify-content-between px-5" id="nav-icon">
     <div>
       <router-link :to="{ name: 'Accountbook' }" class="text-dark">
-        <b-icon icon="vector-pen" aria-hidden="true"></b-icon>
-      </router-link>
+        <b-icon icon="calculator" aria-hidden="true"></b-icon>
+      </router-link>      
     </div>
     <div>
       <router-link :to="{ name: 'Board' }" class="text-dark">
-        <b-icon icon="facebook" aria-hidden="true"></b-icon>
+        <b-icon icon="chat-square-text" aria-hidden="true"></b-icon>       
       </router-link>
     </div>
     <div>
       <router-link :to="{ name: 'Home' }" class="text-dark">
-        <b-icon icon="house-fill" aria-hidden="true"></b-icon>
+        <b-icon icon="house" aria-hidden="true"></b-icon>
       </router-link>
     </div>
     <div>
       <router-link :to="{ name: 'Challenge' }" class="text-dark">
-        <b-icon icon="flag-fill" aria-hidden="true"></b-icon>
+        <b-icon icon="flag" aria-hidden="true"></b-icon>
       </router-link>
     </div>
     <div>
