@@ -56,10 +56,11 @@ public class UserController {
             e1.printStackTrace();
             model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        System.out.println("로그인성공");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/account")
+    @DeleteMapping
     public ResponseEntity<UserDto> delete(Model model, HttpSession session){
         UserDto userDto = (UserDto) session.getAttribute("login_id");
         try {
@@ -69,13 +70,13 @@ public class UserController {
             e1.printStackTrace();
             model.addAttribute("msg", "회원 정보 삭제 중 문제가 발생했습니다.");
         }
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(value = "/logout")
     public ResponseEntity<UserDto> logout(HttpSession session) {
         session.invalidate(); // 세션 다 지움
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

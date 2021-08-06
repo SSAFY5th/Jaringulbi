@@ -16,4 +16,6 @@ public interface AccountBookService {
     public void modifyAccountBook(AccountBookDto accountBookDto) throws Exception;
     public int monthIncomes(int month) throws Exception;
     public int monthOutgoings(int month) throws Exception;
+    public List<Number> dayIncomes(int month) throws Exception;
+    public List<Number> dayOutgoings(int month) throws Exception;
 }

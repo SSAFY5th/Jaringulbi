@@ -14,4 +14,6 @@ public interface AccountBookMapper {
     void modifyAccountBook(AccountBookDto accountBookDto) throws Exception;
     int monthIncomes(int month) throws Exception;
     int monthOutgoings(int month) throws Exception;
+    Integer dayIncomes(Map<String, Number> map) throws Exception;
+    Integer dayOutgoings(Map<String, Number> map) throws Exception;
 }

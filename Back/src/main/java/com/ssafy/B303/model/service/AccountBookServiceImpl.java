@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,8 @@ public class AccountBookServiceImpl implements AccountBookService{
         Map<String, Integer> map = new HashMap<>();
         map.put("month", month);
         map.put("user_id", user_id);
+
+
         return sqlSession.getMapper(AccountBookMapper.class).selectMonth(map);
     }
 
@@ -63,4 +66,32 @@ public class AccountBookServiceImpl implements AccountBookService{
     public int monthOutgoings(int month) throws Exception {
         return sqlSession.getMapper(AccountBookMapper.class).monthOutgoings(month);
     }
+
+    @Override
+    public List<Number> dayIncomes(int month) throws Exception {
+        List<Number> incomes = new LinkedList<>();
+
+        for(int i = 1; i <= 31; i++){
+            Map<String, Number> map = new HashMap<>();
+            map.put("month", month);
+            map.put("day", i);
+            incomes.add(sqlSession.getMapper(AccountBookMapper.class).dayIncomes(map));
+        }
+
+        return incomes;
+    }
+
+    @Override
+    public List<Number> dayOutgoings(int month) throws Exception {
+        List<Number> outgoings = new LinkedList<>();
+        for(int i = 1; i <= 31; i++){
+            Map<String, Number> map = new HashMap<>();
+            map.put("month", month);
+            map.put("day", i);
+            outgoings.add(sqlSession.getMapper(AccountBookMapper.class).dayOutgoings(map));
+        }
+        return outgoings;
+    }
+
+
 }
