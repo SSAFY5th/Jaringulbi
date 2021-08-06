@@ -1,7 +1,7 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
   <div>
-    <div id="header">
+    <div id="header" class="bg-light">
       <Header></Header>
     </div>
     <div class="main-content">
@@ -41,13 +41,9 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 85px;
+  height: 80px;
   background-color: #fff;
   /* box-shadow: 0 2px 8px #ddd; */
-}
-
-.main-content {
-  margin-top: 85px;
 }
 
 #title {

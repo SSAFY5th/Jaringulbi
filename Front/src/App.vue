@@ -2,7 +2,9 @@
   <div id="app" class="">
     <div id="home">
       <router-view />
-      <div id="bottom-menu" class="justify-content-center">
+      <div
+        id="bottom-menu"
+        class="">
         <Bottom></Bottom>
       </div>
     </div>
@@ -43,6 +45,11 @@ export default {
     background-color: #fff;
   }
 
+  .main-content {
+    margin-top: 80px;
+    position: relative;
+  }
+
   #bottom-menu {
     position: fixed;
     bottom: 0;
@@ -51,8 +58,7 @@ export default {
     width: 100%;
     max-width: 420px;
     height: 65px;
-    padding: 15px 0;
-    color: white;
+    padding: 0;
     background-color: #fff;
   }
 
