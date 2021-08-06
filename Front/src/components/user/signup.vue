@@ -6,31 +6,29 @@
           <div class="underline title">회원 가입</div>
         </div>
         <div class="regist_form">
-          <label for="id">ID</label>
-          <input type="text" id="id" name="id" v-model="id" ref="id" />
-          <label for="pwd">비밀번호</label>
-          <input
-            type="password"
-            id="pwd"
-            name="pwd"
-            v-model="pwd"
-            ref="pwd"
-          /><br />
-          <label for="name">이름</label>
+          <label for="login_id">ID</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            v-model="name"
-            ref="name"
-          /><br />
-          <label for="price">Email</label>
+            id="login_id"
+            name="login_id"
+            v-model="login_id"
+            ref="login_id"
+          />
+          <label for="password">비밀번호</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            v-model="email"
-            ref="email"
+            type="password"
+            id="password"
+            name="password"
+            v-model="password"
+            ref="password"
+          /><br />
+          <label for="nickname">이름</label>
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            v-model="nickname"
+            ref="nickname"
           /><br />
           <label for="phone">Phone</label><br />
           <input
@@ -39,15 +37,8 @@
             name="phone"
             v-model="phone"
             ref="phone"
-          /><br />
-          <label for="address">주소</label><br />
-          <input
-            type="text"
-            id="address"
-            name="address"
-            v-model="address"
-            ref="address"
-          /><br />
+          />
+          <br />
           <button @click="checkValue" class="btn" id="btn_group">가입</button>
           <button @click="home" class="btn" id="btn_group">홈으로</button>
         </div>
@@ -56,13 +47,69 @@
   </div>
 </template>
 <script>
+import http from "@/util/http-common";
+
 export default {
   name: "signup",
   computed: {},
   data() {
-    return {};
+    return {
+      login_id: "",
+      password: "",
+      nickname: "",
+      phone: "",
+    };
   },
   methods: {
+    checkValue() {
+      // 사용자 입력값 체크하기
+      let err = true;
+      let msg = "";
+      !this.login_id &&
+        ((msg = "id를 입력해주세요"),
+        (err = false),
+        this.$refs.login_id.focus());
+      err &&
+        !this.password &&
+        ((msg = "비밀번호를 입력해주세요"),
+        (err = false),
+        this.$refs.password.focus());
+      err &&
+        !this.nickname &&
+        ((msg = "이름을 입력해주세요"),
+        (err = false),
+        this.$refs.nickname.focus());
+      err &&
+        !this.phone &&
+        ((msg = "전화번호를 입력해주세요"),
+        (err = false),
+        this.$refs.phone.focus());
+
+      if (!err) alert(msg);
+      // 만약, 내용이 다 입력되어 있다면 회원 가입
+      else this.insertMember();
+    },
+    insertMember() {
+      http
+        .post("/user/signup", {
+          id: this.login_id,
+          pwd: this.password,
+          nickname: this.nickname,
+          phone: this.phone,
+        })
+        .then(({ data }) => {
+          let msg = "회원가입 실패!!";
+          if (data === "success") {
+            msg = "회원가입 완료";
+            this.home();
+          }
+          alert(msg);
+        })
+        .catch((error) => {
+          alert("회원 가입 실패");
+          console.dir(error);
+        });
+    },
     home() {
       this.$router.push("/");
     },

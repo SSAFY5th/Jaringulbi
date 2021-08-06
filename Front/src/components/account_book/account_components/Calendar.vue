@@ -56,6 +56,6 @@ export default {
 .cal {
   border: 1px solid #b8c2cc;
   width: 100%;
-  height: 100px;
+  height: 105px;
 }
 </style>
