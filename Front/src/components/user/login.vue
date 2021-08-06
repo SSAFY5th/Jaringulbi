@@ -89,14 +89,6 @@ export default {
 };
 </script>
 <style scoped>
-@font-face {
-  font-family: "CookieRunOTF-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .top {
   background-color: white;
 }
@@ -104,10 +96,6 @@ export default {
 button {
   margin: 5px;
   background-color: skyblue;
-}
-
-#font {
-  font-family: CookieRunOTF-Bold;
 }
 
 .regist {
