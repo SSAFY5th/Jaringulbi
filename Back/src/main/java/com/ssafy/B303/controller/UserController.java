@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins= {"*"}, maxAge =6000)
 @RestController
 @RequestMapping(path="/user")
 public class UserController {
