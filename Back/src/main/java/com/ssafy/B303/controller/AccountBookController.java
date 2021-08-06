@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins= {"*"}, maxAge =6000)
 @RestController
 @RequestMapping("/accountbook")
 public class AccountBookController {
