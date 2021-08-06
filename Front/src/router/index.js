@@ -5,6 +5,7 @@ import Accountbook from "../components/account_book/Accountbook.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
 import CreateFreePost from "../components/board/CreateFreePost.vue";
 import Board from "../components/board/Board.vue";
+import FreeboardDetail from "../components/board/FreeboardDetail.vue";
 import Challenge from "../components/challenge/Challenge.vue";
 import Mypage from "../components/user/Mypage.vue";
 import Login from "../components/user/Login.vue";
@@ -55,6 +56,11 @@ const routes = [
     path: "/board/create",
     name: "CreateFreePost",
     component: CreateFreePost,
+  },
+  {
+    path: "/board/:id",
+    name: "FreeboardDetail",
+    component: FreeboardDetail,
   },
   {
     path: "/challenge",

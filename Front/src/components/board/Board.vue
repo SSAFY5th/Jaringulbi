@@ -61,19 +61,14 @@ export default {
     display: flex;
     width: 100%;
     max-width: 420px;
-    height: 85px;
+    height: 80px;
     background-color: #fff;
     box-shadow: 0 2px 8px #ddd;
   }
 
-  .main-content {  
-    margin-top: 85px;
-    position: relative;
-    
-  }
-
   #write-btn {
     position: fixed;    
+    left: calc(50vw + 120px);
     bottom: 85px;
     z-index: 3;
     width: 60px;
