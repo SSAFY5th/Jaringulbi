@@ -14,7 +14,8 @@ public class AccountBookDto {
     private String contents;
     private int user_id;
 
-    public AccountBookDto(LocalDateTime date, int price, int category, String used, String contents, int user_id) {
+    public AccountBookDto(int id, LocalDateTime date, int price, int category, String used, String contents, int user_id) {
+        this.id = id;
         this.date = date;
         this.price = price;
         this.category = category;
