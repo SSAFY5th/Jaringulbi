@@ -2,7 +2,7 @@ package com.ssafy.B303.controller;
 
 import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.service.PostServiceImpl;
-import com.ssafy.B303.model.service.UpServiceImpl;
+import com.ssafy.B303.model.service.UpDownServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +16,13 @@ public class PostController {
     PostServiceImpl postService;
 
     @Autowired
-    UpServiceImpl upService;
+    UpDownServiceImpl upDownService;
 
     @GetMapping("/board")
     public List<PostDto> selectAllPost(){
         return postService.selectAllPost(1).stream().map(postDto -> {
-            postDto.setUp(upService.selectUpById(postDto.getId()));
-            postDto.setUpCount(upService.getUpCount(postDto.getId()));
+            postDto.setUp(upDownService.selectUpById(postDto.getId()));
+            postDto.setUpCount(upDownService.getUpCount(postDto.getId()));
             return postDto;
         }).collect(Collectors.toList());
     }
@@ -30,8 +30,11 @@ public class PostController {
     @GetMapping("/buyornot")
     public List<PostDto> selectAllBuyOrNot(){
         return postService.selectAllPost(0).stream().map(postDto -> {
-            postDto.setUp(upService.selectUpById(postDto.getId()));
-            postDto.setUpCount(upService.getUpCount(postDto.getId()));
+            int id = postDto.getId();
+            postDto.setUp(upDownService.selectUpById(id));
+            postDto.setUpCount(upDownService.getUpCount(id));
+            postDto.setDown(upDownService.selectDownById(id));
+            postDto.setDownCount(upDownService.getDownCount(id));
             return postDto;
         }).collect(Collectors.toList());
     }

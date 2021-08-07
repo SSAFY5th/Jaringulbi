@@ -1,8 +1,5 @@
 package com.ssafy.B303.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +19,9 @@ public class PostDto {
     private int board_category;
     private Integer challenge_id;
     private Integer upCount;
-    private List<UpDto> up;
+    private List<UpDownDto> up;
+    private Integer downCount;
+    private List<UpDownDto> down;
 
     public int getId() {
         return id;
@@ -104,12 +103,27 @@ public class PostDto {
         this.upCount = upCount;
     }
 
-    public List<UpDto> getUp() {
+    public List<UpDownDto> getUp() {
         return up;
     }
 
-    public void setUp(List<UpDto> up) {
+    public void setUp(List<UpDownDto> up) {
         this.up = up;
     }
 
+    public Integer getDownCount() {
+        return downCount;
+    }
+
+    public void setDownCount(Integer downCount) {
+        this.downCount = downCount;
+    }
+
+    public List<UpDownDto> getDown() {
+        return down;
+    }
+
+    public void setDown(List<UpDownDto> down) {
+        this.down = down;
+    }
 }

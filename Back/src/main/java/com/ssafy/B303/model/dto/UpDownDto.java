@@ -1,7 +1,6 @@
 package com.ssafy.B303.model.dto;
 
-public class DownDto {
-
+public class UpDownDto {
     private int id;
     private int post_id;
     private int user_id;
