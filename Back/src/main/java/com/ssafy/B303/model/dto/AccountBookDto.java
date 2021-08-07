@@ -1,15 +1,28 @@
 package com.ssafy.B303.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class AccountBookDto {
     private int id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDateTime date;
     private int price;
     private int category;
     private String used;
     private String contents;
     private int user_id;
+
+    public AccountBookDto(int id, LocalDateTime date, int price, int category, String used, String contents, int user_id) {
+        this.id = id;
+        this.date = date;
+        this.price = price;
+        this.category = category;
+        this.used = used;
+        this.contents = contents;
+        this.user_id = user_id;
+    }
 
     public int getId() {
         return id;

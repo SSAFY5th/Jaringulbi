@@ -1,10 +1,60 @@
 <!DOCTYPE HTML>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
 </head>
 <body>
-
+<div class="container">
+    <form action="/user/signup" method="post">
+        <div class="form-group">
+            <label for="login_id">아이디</label>
+            <input type="text" id="login_id" name="login_id" placeholder="아이디를 입력하세요">
+            <label for="password"></label>
+            <input type="text" id="password" name="password" placeholder="비밀번호를 입력하세요">
+            <label for="nickname"></label>
+            <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력하세요">
+            <label for="phone"></label>
+            <input type="text" id="phone" name="phone" placeholder="휴대전화 번호를 입력하세요">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+    <br>
+    <br>
+    <form action="/accountbook" method="post">
+        <div class="form-group">
+            <label for="login_id">날짜</label>
+            <input type="date" id="date" name="date">
+            <label for="price"></label>
+            <input type="text" id="price" name="price" placeholder="금액을 입력하세요">
+            <label for="category"></label>
+            <input type="text" id="category" name="category" placeholder="카테고리를 입력하세요">
+            <label for="used"></label>
+            <input type="text" id="used" name="used" placeholder="사용처를 입력하세요">
+            <label for="contents"></label>
+            <input type="text" id="contents" name="contents" placeholder="내용을 입력하세요">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+    <br>
+    <br>
+    <form action="/accountbook" method="get">
+        <div class="form-group">
+            <label for="login_id">날짜</label>
+            <input type="date" id="date1" name="date">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+    <hr>
+    <form action="/user/login" method="post">
+        <div class="form-group">
+            <label for="login_id">아이디</label>
+            <input type="text" id="login_id1" name="login_id">
+            <label for="password">비밀번호</label>
+            <input type="text" id="password1" name="password">
+        </div>
+        <button type="submit">로그인</button>
+    </form>
+</div> <!-- /container -->
 </body>
 </html>

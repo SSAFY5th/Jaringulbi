@@ -1,8 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xs-6 col-md-2"></div>
-    <div class="col-xs-6 col-md-4"></div>
-    <div class="col-xs-6 col-md-4">
+    <div>
       <b-container id="mainImage" class="top-login">
         <div class="login-back">
           <b-row>
@@ -11,18 +9,18 @@
                 <label for="id">ID</label><br />
                 <input
                   type="text"
-                  id="id"
-                  name="id"
-                  v-model="id"
-                  ref="id"
+                  id="login_id"
+                  name="login_id"
+                  v-model="login_id"
+                  ref="login_id"
                 /><br />
                 <label for="pwd">비밀번호</label><br />
                 <input
                   type="password"
-                  id="pwd"
-                  name="pwd"
-                  v-model="pwd"
-                  ref="pwd"
+                  id="password"
+                  name="password"
+                  v-model="password"
+                  ref="password"
                   @keyup.enter="checkValue"
                 /><br />
                 <button
@@ -48,25 +46,49 @@
 export default {
   name: "bottom",
   computed: {},
-  data () {
-    return {};
+  data() {
+    return {
+      login_id: "",
+      password: "",
+    };
   },
   methods: {
     signup() {
       this.$router.push("/signup");
     },
+    checkValue() {
+      // 사용자 입력값 체크하기
+      let err = true;
+      let msg = "";
+      !this.login_id &&
+        ((msg = "id를 입력해주세요"),
+        (err = false),
+        this.$refs.login_id.focus());
+      err &&
+        !this.password &&
+        ((msg = "비밀번호를 입력해주세요"),
+        (err = false),
+        this.$refs.password.focus());
+      if (!err) alert(msg);
+      // 만약, 내용이 다 입력되어 있다면 로그인
+      //else this.login();
+      else
+        this.$store.dispatch("login", {
+          login_id: this.login_id,
+          password: this.password,
+        });
+
+      if (this.$store.state.user.email !== null) {
+        console.log(this.$store.state.user.email + " " + "로그인성공");
+        this.$router.push("/");
+      } else {
+        console.log("bye");
+      }
+    },
   },
 };
 </script>
 <style scoped>
-@font-face {
-  font-family: "CookieRunOTF-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .top {
   background-color: white;
 }
@@ -74,10 +96,6 @@ export default {
 button {
   margin: 5px;
   background-color: skyblue;
-}
-
-#font {
-  font-family: CookieRunOTF-Bold;
 }
 
 .regist {
