@@ -2,10 +2,12 @@ package com.ssafy.B303.controller;
 
 import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.service.PostServiceImpl;
+import com.ssafy.B303.model.service.UpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class PostController {
@@ -13,14 +15,25 @@ public class PostController {
     @Autowired
     PostServiceImpl postService;
 
+    @Autowired
+    UpServiceImpl upService;
+
     @GetMapping("/board")
     public List<PostDto> selectAllPost(){
-        return postService.selectAllPost(1);
+        return postService.selectAllPost(1).stream().map(postDto -> {
+            postDto.setUp(upService.selectUpById(postDto.getId()));
+            postDto.setUpCount(upService.getUpCount(postDto.getId()));
+            return postDto;
+        }).collect(Collectors.toList());
     }
 
     @GetMapping("/buyornot")
     public List<PostDto> selectAllBuyOrNot(){
-        return postService.selectAllPost(0);
+        return postService.selectAllPost(0).stream().map(postDto -> {
+            postDto.setUp(upService.selectUpById(postDto.getId()));
+            postDto.setUpCount(upService.getUpCount(postDto.getId()));
+            return postDto;
+        }).collect(Collectors.toList());
     }
 
     @GetMapping(value = {"/board/{id}", "/buyornot/{id}"})
