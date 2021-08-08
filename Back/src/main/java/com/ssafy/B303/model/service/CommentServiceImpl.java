@@ -21,6 +21,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public CommentDto selectCommentById(int id) {
+        return commentMapper.selectById(id);
+    }
+
+    @Override
     public int getCommentCount(int post_id) {
         return commentMapper.getCommentCount(post_id);
     }

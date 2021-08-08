@@ -10,6 +10,8 @@ public interface CommentService {
 
     int getCommentCount(int post_id);
 
+    CommentDto selectCommentById(int id);
+
     void insertComment(CommentDto comment);
 
     void updateComment(int id, CommentDto comment);

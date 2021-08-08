@@ -21,17 +21,22 @@ public class CommentController {
     CommentServiceImpl commentService;
 
     @PostMapping("/comment")
-    public void insertBoard(@RequestBody CommentDto comment){
+    public void insertComment(@RequestBody CommentDto comment){
         commentService.insertComment(comment);
     }
 
     @PutMapping(value = {"/comment/{id}"})
-    public void updatePost(@PathVariable int id, @RequestBody CommentDto comment){
-        commentService.updateComment(id, comment);
+    public void updateComment(@PathVariable int id, @RequestBody CommentDto comment){
+        if (commentService.selectCommentById(id).getUser_id() == comment.getUser_id()) { //댓글 작성자만 수정 가능
+            commentService.updateComment(id, comment);
+        }
     }
 
     @DeleteMapping("/comment/{id}")
-    public void deleteBoard(@PathVariable int id) {
-        commentService.deleteComment(id);
+    public void deleteComment(@PathVariable int id, @RequestBody CommentDto comment) {
+        if (commentService.selectCommentById(id).getUser_id() == comment.getUser_id()) {
+            commentService.deleteComment(id);
+        }
+        
     }
 }
