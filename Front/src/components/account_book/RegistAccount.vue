@@ -264,9 +264,9 @@ input {
   font-size: medium;
 }
 #btn_group {
-  border: 1px solid skyblue;
-  background-color: rgba(0, 0, 0, 0);
-  color: skyblue;
+  background-color: #9be4e4;
+  color: #9175f3;
+  border: 1px solid #9be4e4;
   padding: 5px;
   width: 180px;
   margin: 10px;
