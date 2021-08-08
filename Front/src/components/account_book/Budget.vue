@@ -2,12 +2,7 @@
   <div>
     <div><acheader></acheader></div>
     <div>
-      <b-card class="float2">
-        <b-aspect> 1 </b-aspect>
-      </b-card>
-      <b-card class="float2">
-        <b-aspect> 2 </b-aspect>
-      </b-card>
+      
     </div>
   </div>
 </template>
