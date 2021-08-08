@@ -2,35 +2,39 @@
   <div class="row">
     <b-container id="mainImage">
       <div id="font">
-        <div class="back" id="font">
-          <div class="underline title">회원 가입</div>
+        <div class="top">
+          <b-img
+            :src="require('@/assets/logo.png')"
+            style="width: 100px"
+            class="margin"
+          ></b-img>
+
+          <h5>자린굴비</h5>
         </div>
         <div class="regist_form">
-          <label for="id">ID</label>
-          <input type="text" id="id" name="id" v-model="id" ref="id" />
-          <label for="pwd">비밀번호</label>
-          <input
-            type="password"
-            id="pwd"
-            name="pwd"
-            v-model="pwd"
-            ref="pwd"
-          /><br />
-          <label for="name">이름</label>
+          <label for="login_id">ID</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            v-model="name"
-            ref="name"
-          /><br />
-          <label for="price">Email</label>
+            id="login_id"
+            name="login_id"
+            v-model="login_id"
+            ref="login_id"
+          />
+          <label for="password">비밀번호</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            v-model="email"
-            ref="email"
+            type="password"
+            id="password"
+            name="password"
+            v-model="password"
+            ref="password"
+          /><br />
+          <label for="nickname">이름</label>
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            v-model="nickname"
+            ref="nickname"
           /><br />
           <label for="phone">Phone</label><br />
           <input
@@ -39,15 +43,8 @@
             name="phone"
             v-model="phone"
             ref="phone"
-          /><br />
-          <label for="address">주소</label><br />
-          <input
-            type="text"
-            id="address"
-            name="address"
-            v-model="address"
-            ref="address"
-          /><br />
+          />
+          <br />
           <button @click="checkValue" class="btn" id="btn_group">가입</button>
           <button @click="home" class="btn" id="btn_group">홈으로</button>
         </div>
@@ -56,13 +53,66 @@
   </div>
 </template>
 <script>
+import http from "@/util/http-common";
+
 export default {
   name: "signup",
+  props: {
+    type: { type: String },
+  },
   computed: {},
   data() {
-    return {};
+    return {
+      login_id: "",
+      password: "",
+      nickname: "",
+      phone: "",
+    };
   },
   methods: {
+    check() {
+      console.log("id =" + this.login_id);
+      console.log("pass = " + this.password);
+      console.log("nick = " + this.nickname);
+      console.log("phone = " + this.phone);
+    },
+    checkValue() {
+      // 사용자 입력값 체크하기
+      let err = true;
+      let msg = "";
+      !this.login_id &&
+        ((msg = "id를 입력해주세요"),
+        (err = false),
+        this.$refs.login_id.focus());
+      err &&
+        !this.password &&
+        ((msg = "비밀번호를 입력해주세요"),
+        (err = false),
+        this.$refs.password.focus());
+
+      if (!err) alert(msg);
+      // 만약, 내용이 다 입력되어 있다면 회원 가입
+      else this.insertUser();
+    },
+    insertUser() {
+      http
+        .post("/user/login", {
+          login_id: this.login_id,
+          password: this.password,
+        })
+        .then(({ data }) => {
+          console.log(data);
+          let msg = "로그인 실패!!";
+          if (data === "success") {
+            msg = "로그인 완료";
+          }
+          alert(msg);
+        })
+        .catch((error) => {
+          alert("로그인 실패");
+          console.dir(error);
+        });
+    },
     home() {
       this.$router.push("/");
     },
@@ -70,24 +120,20 @@ export default {
 };
 </script>
 <style scoped>
-@keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @font-face {
   font-family: "CookieRunOTF-Bold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+.top {
+  margin-top: 100px;
+}
+
+.margin {
+  margin-top: 20px;
 }
 
 #font {
@@ -103,8 +149,7 @@ export default {
 .regist_form {
   text-align: left;
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+  padding: 35px;
 }
 input,
 textarea,

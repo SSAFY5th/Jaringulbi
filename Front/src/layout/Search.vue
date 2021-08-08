@@ -1,16 +1,11 @@
 <template>
   <div>
-    <div class="search">
-      <div class="float">
-        <b-img :src="require('@/assets/fish.png')" id="fish"> </b-img>
+    <div class="d-flex search">
+      <div class="me-3">
+        <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
       </div>
-    </div>
-    <div>
-      <div class="float">
-        <b-icon icon="bell-fill" aria-hidden="false" id="bell"></b-icon>
-      </div>
-      <div class="float">
-        <b-icon icon="search" aria-hidden="false" id="search"></b-icon>
+      <div >
+        <b-icon icon="search" aria-hidden="false"></b-icon>
       </div>
     </div>
   </div>
@@ -28,40 +23,8 @@
 // };
 </script>
 <style scoped>
-.float {
-  display: inline-block;
-  width: 25%;
-}
-
 .search {
-  position: absolute;
-  width: 420px;
-  height: 85px;
-
-  top: 0px;
-}
-
-#fish {
-  position: absolute;
-  height: 40px;
-  width: 40px;
-  left: 21px;
-  top: 22px;
-  border-radius: 0px;
-}
-
-#bell {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 344px;
-  top: 38px;
-}
-#search {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 372px;
-  top: 38px;
+  font-size: 16pt;
+  color: #333;
 }
 </style>

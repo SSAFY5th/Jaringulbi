@@ -17,21 +17,23 @@
     </div>
 
     <!-- 글 -->
-    <div class="text-start mt-2">
-      오늘 완전 득템!! 제목제목
-      <!-- {{ post.title }} -->
-    </div>
-    <div class="text-start my-2">
-      <!-- {{ post.contents }} -->
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-      Quod nihil error maiores unde aliquid delectus fugit! Maiores facere,
-      ab voluptatum,vero ut eos optio sit nisi perspiciatis impedit.
-    </div>
-    <div class="mb-2">
-      <!-- 이미지가 있다면 {{ post.image }}-->
-      <img src="https://picsum.photos/392/180" alt="프로필사진">
-    </div>
-    <!-- <router-link :to="{ name: 'FreeboardDetail', params: {id: post.id} }"> 각각 pk -->
+    <a href="http://localhost:8080/board/1" class="text-decoration-none text-dark">
+      <div class="text-start mt-2">
+        오늘 완전 득템!! 제목제목
+        <!-- {{ post.title }} -->
+      </div>
+      <div class="text-start my-2">
+        <!-- {{ post.contents }} -->
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Quod nihil error maiores unde aliquid delectus fugit! Maiores facere,
+        ab voluptatum,vero ut eos optio sit nisi perspiciatis impedit.
+      </div>
+      <div class="mb-2">
+        <!-- 이미지가 있다면 {{ post.image }}-->
+        <img src="https://picsum.photos/392/180" alt="프로필사진">
+      </div>
+    </a>
+    <!-- <router-link :to="{ name: 'FreeboardDetail', params: { id: post.id } }"> 각각 pk -->
 
     <!-- 좋아요, 리플 수 -->
     <div class="text-end text-secondary">
@@ -270,7 +272,6 @@ export default {
   methods: {},
 }
 </script>
-
 
 <style scoped>
   .free-post {

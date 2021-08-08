@@ -1,18 +1,21 @@
 <template>
   <div>
     <Calendar
+      id="font"
       class="calendar"
       :attributes="attributes"
       disable-page-swipe
       is-expanded
     >
       <template v-slot:day-content="{ day, attributes }">
-        <div class="cal">
-          <span>{{ day.day }}</span>
-          <div style="font-size: 2pt">
-            <p v-for="attr in attributes" :key="attr.key">
-              {{ attr.customData.title }}
-            </p>
+        <div id="font">
+          <div class="cal">
+            <span>{{ day.day }}</span>
+            <div style="font-size: 2pt">
+              <p v-for="attr in attributes" :key="attr.key">
+                {{ attr.customData.title }}
+              </p>
+            </div>
           </div>
         </div>
       </template>
@@ -45,6 +48,10 @@ export default {
 };
 </script>
 <style scoped>
+#font {
+  font-family: CookieRunOTF-Bold;
+}
+
 .custom-calendar {
   width: 50px;
 }
@@ -56,6 +63,6 @@ export default {
 .cal {
   border: 1px solid #b8c2cc;
   width: 100%;
-  height: 100px;
+  height: 105px;
 }
 </style>
