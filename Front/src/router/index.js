@@ -43,11 +43,6 @@ const routes = [
     component: Signup,
   },
   {
-    path: "/accountbook",
-    name: "Accountbook",
-    component: Accountbook,
-  },
-  {
     path: "/board",
     name: "Board",
     component: Board,

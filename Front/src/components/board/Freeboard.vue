@@ -260,6 +260,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: "Freeboard",
@@ -267,9 +268,26 @@ export default {
   },
   computed: {},
   data () {
-    return {};
+    return {
+      content: '',
+      freePostList: [],
+    };
   },
-  methods: {},
+  methods: {
+    getFreePostList: function () {
+      const url = "http://localhost:80/board"
+      axios.get(url)
+      .then(response => {
+        console.log(response.data)
+        this.freePostList = response.data
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+  },
+  created: function () {
+    this.getFreePostList()
+  }
 }
 </script>
 

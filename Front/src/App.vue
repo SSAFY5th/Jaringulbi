@@ -63,7 +63,7 @@ export default {
   }
 
   #img-circle {
-    width: 48px;
+    min-width: 48px;
     height: 48px;
     border-radius: 24px;
     overflow: hidden;
