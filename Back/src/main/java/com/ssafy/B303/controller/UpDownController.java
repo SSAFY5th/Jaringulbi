@@ -1,0 +1,59 @@
+package com.ssafy.B303.controller;
+
+import com.ssafy.B303.model.dto.UpDownDto;
+import com.ssafy.B303.model.service.PostServiceImpl;
+import com.ssafy.B303.model.service.UpDownServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+
+@RestController
+public class UpDownController {
+
+    @Autowired
+    PostServiceImpl postService;
+
+    @Autowired
+    UpDownServiceImpl upDownService;
+
+
+    @PostMapping("/up")
+    public void insertUp(@RequestBody UpDownDto up){
+        if (isSelected(up)) return;
+        upDownService.insertUp(up);
+    }
+
+    @PostMapping("/down")
+    public void insertDown(@RequestBody UpDownDto down){
+        if (postService.selectPostById(down.getPost_id()).getBoard_category() == 1) return;
+        else if (isSelected(down)) return;
+        upDownService.insertDown(down);
+    }
+
+    @DeleteMapping("/up")
+    public void deleteUp(@RequestBody UpDownDto up){
+        upDownService.deleteUp(up);
+    }
+
+    @DeleteMapping("/down")
+    public void deleteDown(@RequestBody UpDownDto down){
+        if (postService.selectPostById(down.getPost_id()).getBoard_category() == 1) return;
+        upDownService.deleteDown(down);
+    }
+
+
+    private boolean isSelected(UpDownDto upDownDto) { // Up, Down 둘중에 하나라도 선택되어있으면 true 반환
+        return upDownService.selectUpById(upDownDto.getPost_id())
+                .stream()
+                .anyMatch(upDto -> upDto.getUser_id() == upDownDto.getUser_id())//user_id같은게 있으면 true
+                ||
+                upDownService.selectDownById(upDownDto.getPost_id())
+                        .stream()
+                        .anyMatch(downDto -> downDto.getUser_id() == upDownDto.getUser_id());
+
+    }
+}
