@@ -21,6 +21,8 @@ public class PostDto {
     private List<UpDownDto> up;
     private Integer downCount;
     private List<UpDownDto> down;
+    private Integer commentCount;
+    private List<CommentDto> comment;
 
     public int getId() {
         return id;
@@ -124,5 +126,21 @@ public class PostDto {
 
     public void setDown(List<UpDownDto> down) {
         this.down = down;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
+
+    public List<CommentDto> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<CommentDto> comment) {
+        this.comment = comment;
     }
 }
