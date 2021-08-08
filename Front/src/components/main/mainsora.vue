@@ -2,13 +2,11 @@
 <template>
   <div>
     <div class="row">
-      <b-col lg="4" class="pb-2"></b-col>
-      <b-col lg="4" class="pb-2"
-        ><b-button variant="info" size="lg" @click="go"
-          >소라고동 클릭</b-button
-        ></b-col
-      >
-      <b-col lg="4" class="pb-2"></b-col>
+      <b-button variant="info" size="lg" @click="go"
+        ><b-img :src="require('@/assets/소라고동.jpg')" id="sora"></b-img>선택이
+        고민될 땐 무엇이든 !
+        <div>마-법의 소라고동</div>
+      </b-button>
     </div>
   </div>
 </template>
@@ -28,4 +26,10 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+#sora {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+}
+</style>

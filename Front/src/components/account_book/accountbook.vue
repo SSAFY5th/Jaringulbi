@@ -1,9 +1,9 @@
 
 <template>
-  <div class="row">
+  <div id="font" class="row">
     <div><acheader></acheader></div>
     <hr />
-    <div id="title">
+    <div>
       <div>
         <div class="float">수입</div>
         <div class="float">지출</div>
@@ -34,6 +34,7 @@
 <script>
 import Acheader from "@/layout/AC_Header.vue";
 import Calendar from "@/components/account_book/account_components/Calendar.vue";
+
 // import { mapGetters } from "vuex";
 
 export default {
@@ -68,9 +69,8 @@ export default {
   display: inline-block;
   width: 25%;
 }
-
-#title {
-  margin-bottom: 10px;
+#font {
+  font-family: CookieRunOTF-Bold;
 }
 
 #registbtn {

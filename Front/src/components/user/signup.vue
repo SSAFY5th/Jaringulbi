@@ -2,8 +2,14 @@
   <div class="row">
     <b-container id="mainImage">
       <div id="font">
-        <div class="back" id="font">
-          <div class="underline title">회원 가입</div>
+        <div class="top">
+          <b-img
+            :src="require('@/assets/logo.png')"
+            style="width: 100px"
+            class="margin"
+          ></b-img>
+
+          <h5>자린굴비</h5>
         </div>
         <div class="regist_form">
           <label for="login_id">ID</label>
@@ -51,6 +57,9 @@ import http from "@/util/http-common";
 
 export default {
   name: "signup",
+  props: {
+    type: { type: String },
+  },
   computed: {},
   data() {
     return {
@@ -61,6 +70,12 @@ export default {
     };
   },
   methods: {
+    check() {
+      console.log("id =" + this.login_id);
+      console.log("pass = " + this.password);
+      console.log("nick = " + this.nickname);
+      console.log("phone = " + this.phone);
+    },
     checkValue() {
       // 사용자 입력값 체크하기
       let err = true;
@@ -74,39 +89,27 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
-      err &&
-        !this.nickname &&
-        ((msg = "이름을 입력해주세요"),
-        (err = false),
-        this.$refs.nickname.focus());
-      err &&
-        !this.phone &&
-        ((msg = "전화번호를 입력해주세요"),
-        (err = false),
-        this.$refs.phone.focus());
 
       if (!err) alert(msg);
       // 만약, 내용이 다 입력되어 있다면 회원 가입
-      else this.insertMember();
+      else this.insertUser();
     },
-    insertMember() {
+    insertUser() {
       http
-        .post("/user/signup", {
-          id: this.login_id,
-          pwd: this.password,
-          nickname: this.nickname,
-          phone: this.phone,
+        .post("/user/login", {
+          login_id: this.login_id,
+          password: this.password,
         })
         .then(({ data }) => {
-          let msg = "회원가입 실패!!";
+          console.log(data);
+          let msg = "로그인 실패!!";
           if (data === "success") {
-            msg = "회원가입 완료";
-            this.home();
+            msg = "로그인 완료";
           }
           alert(msg);
         })
         .catch((error) => {
-          alert("회원 가입 실패");
+          alert("로그인 실패");
           console.dir(error);
         });
     },
@@ -117,24 +120,20 @@ export default {
 };
 </script>
 <style scoped>
-@keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @font-face {
   font-family: "CookieRunOTF-Bold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+.top {
+  margin-top: 100px;
+}
+
+.margin {
+  margin-top: 20px;
 }
 
 #font {
@@ -150,8 +149,7 @@ export default {
 .regist_form {
   text-align: left;
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
+  padding: 35px;
 }
 input,
 textarea,

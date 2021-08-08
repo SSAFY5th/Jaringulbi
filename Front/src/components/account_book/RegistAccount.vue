@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div id="font">
       <div class="regist">
         <h1 class="underline top1">지출 등록</h1>
         <hr />
@@ -66,7 +66,9 @@
           </div>
           <hr />
           <div>
-            <b-button v-b-modal.modal-center>카테고리 선택</b-button>
+            <b-button v-b-modal.modal-center id="btn_group"
+              >카테고리 선택</b-button
+            >
             <b-modal
               ref="my-modal"
               id="modal-center"
@@ -160,9 +162,9 @@ export default {
         .post("/accountbook", {
           date: this.date,
           price: this.price,
-          contents: this.contents,
           category: this.category,
           used: this.used,
+          contents: this.contents,
           userid: this.userid,
         })
         .then(({ data }) => {
@@ -242,6 +244,10 @@ export default {
 };
 </script>
 <style>
+#font {
+  font-family: CookieRunOTF-Bold;
+}
+
 .regist {
   padding: 10px;
 }
