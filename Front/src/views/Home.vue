@@ -1,6 +1,6 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
-  <div>
+  <div id="font">
     <div id="header" class="bg-light">
       <Header></Header>
     </div>
@@ -44,6 +44,10 @@ export default {
   height: 80px;
   background-color: #fff;
   /* box-shadow: 0 2px 8px #ddd; */
+}
+
+#font {
+  font-family: CookieRunOTF-Bold;
 }
 
 #title {
