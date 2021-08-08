@@ -1,9 +1,7 @@
 package com.ssafy.B303.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 //@Data // getter, setter 자동으로 만들어줌
 //@NoArgsConstructor // 디폴트 생성자 만들어줌
@@ -19,6 +17,10 @@ public class PostDto {
     private String image;
     private int board_category;
     private Integer challenge_id;
+    private Integer upCount;
+    private List<UpDownDto> up;
+    private Integer downCount;
+    private List<UpDownDto> down;
 
     public int getId() {
         return id;
@@ -90,5 +92,37 @@ public class PostDto {
 
     public void setChallenge_id(Integer challenge_id) {
         this.challenge_id = challenge_id;
+    }
+
+    public Integer getUpCount() {
+        return upCount;
+    }
+
+    public void setUpCount(Integer upCount) {
+        this.upCount = upCount;
+    }
+
+    public List<UpDownDto> getUp() {
+        return up;
+    }
+
+    public void setUp(List<UpDownDto> up) {
+        this.up = up;
+    }
+
+    public Integer getDownCount() {
+        return downCount;
+    }
+
+    public void setDownCount(Integer downCount) {
+        this.downCount = downCount;
+    }
+
+    public List<UpDownDto> getDown() {
+        return down;
+    }
+
+    public void setDown(List<UpDownDto> down) {
+        this.down = down;
     }
 }
