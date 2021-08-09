@@ -3,6 +3,7 @@ package com.ssafy.B303.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.UserService;
+
 import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,6 +78,26 @@ public class UserController {
 		}
 		System.out.println("로그인성공");
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PutMapping("{login_id}")
+	public ResponseEntity<String> update(@RequestBody UserDto userdto, @RequestParam Map<String, String> map,
+			Model model, HttpSession session) {
+		System.out.println("회원 수정");
+		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getPassword(),
+				userdto.getPhone());
+		try {
+			if (userDto != null) {
+				userService.updateUser(userDto);
+				session.setAttribute("userinfo", userDto);
+				return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원 가입 중 문제가 발생했습니다.");
+		}
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("{login_id}")

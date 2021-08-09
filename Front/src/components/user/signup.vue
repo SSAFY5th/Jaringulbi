@@ -74,8 +74,9 @@ export default {
       // 사용자 입력값 체크하기
       let err = true;
       let msg = "";
-      !this.login_id &&
-        ((msg = "id를 입력해주세요"),
+      err &&
+        !this.login_id &&
+        ((msg = "ID를 입력해주세요"),
         (err = false),
         this.$refs.login_id.focus());
       err &&
@@ -83,6 +84,16 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
+      err &&
+        !this.nickname &&
+        ((msg = "이름을 입력해주세요"),
+        (err = false),
+        this.$refs.nickname.focus());
+      err &&
+        !this.phone &&
+        ((msg = "전화번호를 입력해주세요"),
+        (err = false),
+        this.$refs.phone.focus());
 
       if (!err) alert(msg);
       // 만약, 내용이 다 입력되어 있다면 회원 가입
