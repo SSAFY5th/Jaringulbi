@@ -45,7 +45,7 @@
             ref="phone"
           />
           <br />
-          <button @click="check" class="btn" id="btn_group">가입</button>
+          <button @click="checkValue" class="btn" id="btn_group">가입</button>
           <button @click="home" class="btn" id="btn_group">홈으로</button>
         </div>
       </div>
@@ -70,12 +70,6 @@ export default {
     };
   },
   methods: {
-    check() {
-      console.log("id =" + this.login_id);
-      console.log("pass = " + this.password);
-      console.log("nick = " + this.nickname);
-      console.log("phone = " + this.phone);
-    },
     checkValue() {
       // 사용자 입력값 체크하기
       let err = true;
@@ -96,20 +90,23 @@ export default {
     },
     insertUser() {
       http
-        .post("/user/login", {
+        .post("/user/signup", {
           login_id: this.login_id,
           password: this.password,
+          nickname: this.nickname,
+          phone: this.phone,
         })
         .then(({ data }) => {
           console.log(data);
-          let msg = "로그인 실패!!";
+          let msg = "회원가입 실패!!";
           if (data === "success") {
-            msg = "로그인 완료";
+            msg = "회원가입 완료";
+            this.$router.push("/");
           }
           alert(msg);
         })
         .catch((error) => {
-          alert("로그인 실패");
+          alert("회원가입 실패");
           console.dir(error);
         });
     },

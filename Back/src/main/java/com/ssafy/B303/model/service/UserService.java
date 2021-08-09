@@ -13,7 +13,7 @@ public interface UserService {
 
     public void updateUser(UserDto userDto) throws Exception;
 
-    public void deleteUser(UserDto userDto) throws Exception;
+    public void deleteUser(String login_id) throws Exception;
 
     public UserDto login(Map<String, String> map) throws Exception;
 }
