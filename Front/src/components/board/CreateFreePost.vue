@@ -12,7 +12,11 @@
           <span>글쓰기</span>
         </div> 
         <div class="d-flex">
-          <span class="text-secondary">등록</span>
+          <a href="#"
+            class="text-secondary text-decoration-none" 
+            @click="onCreatePost">
+            등록
+          </a>
         </div>
       </div>
     </div>
@@ -23,6 +27,13 @@
         <div class="category">
           자유게시판
         </div>
+        <div>
+          <input 
+            type="text" class="form-control"
+            placeholder="제목"
+          >
+        </div>
+        <br />
         <div>
           <textarea
             name="" id=""
@@ -60,9 +71,37 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
+
 export default {
   name: "CreateFreePost",
+  data: function () {
+    return {
+      category: '',
+      title: '',
+      contents: '',
+      user_id: '',
+    }
+  },
+  methods: {
+    onCreatePost: function () {
+      http.post("/board", {        
+        category: this.category,
+        title: this.title,
+        contents: this.contents,
+        user_id: this.user_id,
+      })
+      .then(response => {
+        console.log(response.data)
+        // this.freePostList = response.data
+        this.$router.push({ name: 'Board' })
+      }).catch(err => {
+        console.log(err)
+      });        
+    }
+  }
 }
+
 </script>
 
 <style>
