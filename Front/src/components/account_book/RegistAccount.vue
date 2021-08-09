@@ -120,9 +120,9 @@ export default {
     return {
       date: "",
       price: "",
-      contents: "",
       category: "",
       used: "",
+      contents: "",
       userid: "",
     };
   },

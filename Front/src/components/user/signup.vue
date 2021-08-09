@@ -45,7 +45,7 @@
             ref="phone"
           />
           <br />
-          <button @click="checkValue" class="btn" id="btn_group">가입</button>
+          <button @click="check" class="btn" id="btn_group">가입</button>
           <button @click="home" class="btn" id="btn_group">홈으로</button>
         </div>
       </div>
