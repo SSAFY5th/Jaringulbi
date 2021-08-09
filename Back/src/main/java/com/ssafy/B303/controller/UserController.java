@@ -1,5 +1,6 @@
 package com.ssafy.B303.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.UserService;
 import org.apache.ibatis.annotations.Delete;
@@ -46,12 +47,22 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/login")
-    public ResponseEntity<UserDto> login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
-        try {
-            UserDto userDto = userService.login(map);
-            if(userDto != null) { // 성공
-                session.setAttribute("userinfo", userDto);
+    @PostMapping("{login_id}")
+    public ResponseEntity<String> login(@RequestBody UserDto userdto,@RequestParam Map<String, String> map, Model model, HttpSession session) {
+        System.out.println("로그인");
+        String login_id = userdto.getLogin_id();
+        String password = userdto.getPassword();
+        map.put("login_id", login_id);
+        map.put("password", password);
+       
+    	try {
+            UserDto result = userService.login(map);
+            if(result != null) { // 성공
+            	ObjectMapper objectMapper = new ObjectMapper();
+				//System.out.println(objectMapper.writeValueAsString(result));
+				String str =objectMapper.writeValueAsString(result);
+				System.out.println(str);
+				return new ResponseEntity<String>(str, HttpStatus.OK);
             }
         } catch (Exception e1) {
             e1.printStackTrace();
