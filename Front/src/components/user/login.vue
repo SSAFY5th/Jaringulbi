@@ -41,11 +41,11 @@
                   >
                     로그인
                   </button>
-                  <button class="btn" id="btn_group">아이디 찾기</button>
-                  <button class="btn" id="btn_group">비밀번호 찾기</button>
                   <button class="btn" @click="signup" id="btn_group">
                     회원가입
                   </button>
+                  <button class="btn" id="btn_group">아이디 찾기</button>
+                  <button class="btn" id="btn_group">비밀번호 찾기</button>
                 </div>
               </div>
             </div>
@@ -57,11 +57,13 @@
   </div>
 </template>
 <script>
-import http from "@/util/http-common";
-
+import { mapGetters } from "vuex";
 export default {
   name: "bottom",
-  computed: {},
+  computed: {
+    //getter에 있는 userInfo 함수를 불러옵니다.
+    ...mapGetters(["userInfo"]),
+  },
   data() {
     return {
       login_id: "",
@@ -85,36 +87,20 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
+
       if (!err) alert(msg);
-      // 만약, 내용이 다 입력되어 있다면 로그인
-      //else this.login();
-      else {
-        http
-          .post("/user/login", {
-            login_id: this.login_id,
-            password: this.password,
-          })
-          .then(({ data }) => {
-            console.log(data);
-            if (data === "success") {
-              this.$router.push("/");
-            }
-            if (data === "fail") {
-              console.log("아이디 비번 확인");
-              alert("아이디와 비밀번호를 확인해주세요");
-            }
-          })
-          .catch((error) => {
-            alert("로그인 실패");
-            console.dir(error);
-          });
+      //dispatch >> store에 있는 action안에 있는 login 함수를 실행시켜줍니다.
+      else
+        this.$store.dispatch("login", {
+          //form에서 받은 값을 action에 있는 login 함수로 들고
+          login_id: this.login_id,
+          password: this.password,
+        });
+      if (this.$store.state.user.login_id !== null) {
+        this.$router.push("/");
+      } else {
+        console.log("bye");
       }
-      // if (this.$store.state.user.email !== null) {
-      //   console.log(this.$store.state.user.email + " " + "로그인성공");
-      //   this.$router.push("/");
-      // } else {
-      //   console.log("bye");
-      // }
     },
   },
 };
