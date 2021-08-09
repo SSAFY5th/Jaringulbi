@@ -21,7 +21,7 @@
 		where login_id = #{login_id}
 	</update>
 
-	<delete id="deleteUser" parameterType="UserDto">
+	<delete id="deleteUser" parameterType="String">
 		delete from USER
 		where login_id = #{login_id}
 	</delete>

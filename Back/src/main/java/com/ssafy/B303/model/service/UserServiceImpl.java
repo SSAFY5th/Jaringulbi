@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(UserDto userDto) throws Exception {
-        sqlSession.getMapper(UserMapper.class).deleteUser(userDto);
+    public void deleteUser(String login_id) throws Exception {
+        sqlSession.getMapper(UserMapper.class).deleteUser(login_id);
     }
 
     @Override
