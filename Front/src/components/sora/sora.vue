@@ -1,9 +1,8 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-xs-6 col-md-2"></div>
-      <div class="col-xs-6 col-md-4"></div>
-      <div class="col-xs-6 col-md-4">
+      <div>
+        <Header></Header>
         <div class="margin">
           <h1>마법의 소라고동</h1>
           <b-img
@@ -19,23 +18,22 @@
             <b-button class="margin" @click="replay()">다시 하기 </b-button>
           </div>
           <div>
-            <b-card class="margin">
+            <b-card class="margin margin_btn">
               <b-card-text>{{ text }}</b-card-text>
             </b-card>
           </div>
-          <div><bottom></bottom></div>
         </div>
       </div>
-      <div class="col-xs-6 col-md-2"></div>
     </div>
   </div>
 </template>
 <script>
-import Bottom from "@/layout/Bottom.vue";
 // import { mapGetters } from "vuex";
+import Header from "@/layout/Header.vue";
+
 export default {
-  components: { Bottom },
   name: "",
+  components: { Header },
   computed: {},
   data() {
     return {
@@ -91,7 +89,38 @@ export default {
 </script>
 <style scoped>
 .margin {
-  margin: 15px;
+  margin-top: 20px;
+}
+
+.margin_btn {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+#board-header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 80px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+#write-btn {
+  position: fixed;
+  left: calc(50vw + 120px);
+  bottom: 85px;
+  z-index: 3;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #9be4e4;
+  color: #7a69e6;
+  font-size: 30pt;
+  line-height: 60px;
 }
 </style>
 

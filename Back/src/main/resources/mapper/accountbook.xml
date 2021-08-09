@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.B303.model.mapper.AccountBookMapper">
+
+    <insert id="insertAccountBook" parameterType="AccountBookDto">
+        insert into ACCOUNT_BOOK(date, price, category, used, contents, user_id)
+        values (#{date}, #{price}, #{category}, #{used}, #{contents}, #{user_id})
+    </insert>
+
+    <select id="selectMonth" parameterType="Map" resultType="AccountBookDto">
+        select id, date, price, category, used, contents, user_id
+        from ACCOUNT_BOOK
+        where user_id = #{user_id} and month(date) = #{month}
+    </select>
+
+    <select id="selectDay" parameterType="Map" resultType="AccountBookDto">
+        select id, date, price, category, used, contents, user_id
+        from ACCOUNT_BOOK
+        where user_id = #{user_id} and month(date) = #{month} and day(date) = #{day}
+    </select>
+
+    <delete id="deleteAccountBook" parameterType="Integer">
+        delete from ACCOUNT_BOOK
+        where id = #{id}
+    </delete>
+
+    <update id="modifyAccountBook" parameterType="AccountBookDto">
+        update ACCOUNT_BOOK
+        set date = #{date}, price = #{price}, category = #{category}, used = #{used}, contents = #{contents}
+        where id = #{id}
+    </update>
+
+    <select id="monthIncomes" parameterType="Integer" resultType="Integer">
+        select sum(price)
+        from ACCOUNT_BOOK
+        where month(date) = #{month} and price > 0
+    </select>
+
+    <select id="monthOutgoings" parameterType="Integer" resultType="Integer">
+        select sum(price)
+        from ACCOUNT_BOOK
+        where month(date) = #{month} and 0 > price
+    </select>
+
+    <select id="dayIncomes" parameterType="Map" resultType="Integer">
+        select sum(price)
+        from ACCOUNT_BOOK
+        where month(date) = #{month} and day(date) = #{day} and price > 0
+    </select>
+    <select id="dayOutgoings" parameterType="Map" resultType="Integer">
+        select sum(price)
+        from ACCOUNT_BOOK
+        where month(date) = #{month} and day(date) = #{day} and 0 > price
+    </select>
+
+</mapper>
