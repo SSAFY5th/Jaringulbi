@@ -25,7 +25,7 @@
               <img src="https://picsum.photos/48/48" alt="프로필사진">
             </div>      
             <span class="d-inline-block ms-2">작성자 이름</span>
-            <!-- {{ post.user_id }} -->
+            <!-- -->
           </div>
             
           <div class="d-inline-block">
@@ -37,13 +37,11 @@
         <div>
           <div class="text-start mt-2">
             오늘 완전 득템!! 제목제목
-            <!-- {{ post.title }} -->
+            {{ title }}
           </div>
           <div class="text-start my-2">
-            <!-- {{ post.contents }} -->
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Quod nihil error maiores unde aliquid delectus fugit! Maiores facere,
-            ab voluptatum,vero ut eos optio sit nisi perspiciatis impedit.
+            {{ contents }}
+             nisi perspiciatis impedit.
           </div>
           <div class="mb-2">
             <!-- 이미지가 있다면 {{ post.image }}-->
@@ -82,6 +80,9 @@ export default {
     return {};
   },
   methods: {},
+  created: function () {
+    // const post.id = this.$route.params.id
+  }
 }
 </script>
 
