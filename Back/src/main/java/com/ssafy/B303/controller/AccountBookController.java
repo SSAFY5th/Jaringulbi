@@ -86,7 +86,7 @@ public class AccountBookController {
         System.out.println(incomes);
         String incomesToJson = new Gson().toJson(incomes);
         String outgoingsToJson = new Gson().toJson(outgoings);
-        String daySumToSjon = new Gson().toJson(daySum);
+        String daySumToJson = new Gson().toJson(daySum);
 
         JsonObject obj = new JsonObject();
         obj.addProperty("monthIncomes", monthIncomes);
@@ -94,7 +94,7 @@ public class AccountBookController {
         obj.addProperty("monthSum", monthIncomes+monthOutgoings);
         obj.addProperty("incomes", incomesToJson);
         obj.addProperty("outgoings", outgoingsToJson);
-        obj.addProperty("daySum", daySumToSjon);
+        obj.addProperty("daySum", daySumToJson);
 
         return new ResponseEntity<JsonObject>(obj, HttpStatus.OK);
     }
