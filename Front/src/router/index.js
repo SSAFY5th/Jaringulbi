@@ -38,6 +38,11 @@ const routes = [
     component: Login,
   },
   {
+    path: "/mypage",
+    name: "Mypage",
+    component: Mypage,
+  },
+  {
     path: "/signup",
     name: "Signup",
     component: Signup,
