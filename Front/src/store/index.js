@@ -44,7 +44,7 @@ export default new Vuex.Store({
   actions: {
     login(context, { login_id, password }) {
       console.log("로그인");
-      console.log(login_id);
+
       //들고간 값을 통해서 post요청을 해줍니다.
       //post요청을 하고 나서 받은 객체를 mutations로 보내줍니다. (payload)
 
@@ -55,7 +55,7 @@ export default new Vuex.Store({
         })
         .then(({ data }) => {
           let msg = "로그인 완료!!";
-          console.log("닉네임" + data.nickname);
+          console.log("닉네임 : " + data.nickname);
           if (data.nickname == null) {
             msg = "로그인 실패";
             context.commit("LOG_OUT");
@@ -68,6 +68,11 @@ export default new Vuex.Store({
           alert("로그인 오류");
           console.dir(error);
         });
+    },
+    deleteUser(context) {
+      console.log("회원 탈퇴");
+      context.commit("LOG_OUT");
+      alert("탈퇴 되었습니다.");
     },
     getAccountBook(context) {
       http
