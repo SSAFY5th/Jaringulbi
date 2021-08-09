@@ -11,9 +11,14 @@
         <div id="font">
           <div class="cal">
             <span>{{ day.day }}</span>
-            <div style="font-size: 2pt">
+            <div style="font-size: 1pt; margin-top: 30px">
               <p v-for="attr in attributes" :key="attr.key">
-                {{ attr.customData.title }}
+                <span style="color: blue">{{ attr.customData.expo }}</span
+                ><br />
+                <span style="color: red">{{ attr.customData.impo }}</span>
+                <br />
+                <span>{{ attr.customData.total }}</span>
+                <br />
               </p>
             </div>
           </div>
@@ -38,7 +43,9 @@ export default {
         {
           key: 1,
           customData: {
-            title: "1,000,000",
+            expo: "1,000,000",
+            impo: "1,000,000",
+            total: "1,000,000",
           },
           dates: new Date(year, month, 1),
         },

@@ -2,6 +2,7 @@
   <div>
     <div class="row">
       <div>
+        <Header></Header>
         <div class="margin">
           <h1>마법의 소라고동</h1>
           <b-img
@@ -29,9 +30,11 @@
 <script>
 // import { mapGetters } from "vuex";
 import Header from "@/layout/Header.vue";
+
 export default {
   name: "",
-  computed: { Header },
+  components: { Header },
+  computed: {},
   data() {
     return {
       text: "",

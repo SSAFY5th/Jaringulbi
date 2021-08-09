@@ -20,6 +20,7 @@
     "v-calendar": "^2.3.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.2",
+    "vue-tiny-slider": "^0.1.39",
     "vuex": "^3.6.2",
     "vuex-persistedstate": "^4.0.0"
   },
