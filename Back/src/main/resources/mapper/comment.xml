@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.B303.model.mapper.CommentMapper">
+
+    <select id="selectAll" parameterType="int" resultType="CommentDto">
+        SELECT *
+        FROM COMMENT
+        WHERE post_id = #{post_id}
+    </select>
+
+    <select id="selectById" parameterType="int" resultType="CommentDto">
+        SELECT *
+        FROM COMMENT
+        WHERE id = #{id}
+    </select>
+
+    <select id="getCommentCount" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM COMMENT
+        WHERE post_id = #{post_id}
+    </select>
+
+    <insert id="insert" parameterType="CommentDto">
+        INSERT INTO COMMENT (post_id, user_id, contents, commented_time)
+            VALUES (#{post_id}, #{user_id}, #{contents}, NOW());
+    </insert>
+    <update id="update" parameterType="CommentDto">
+        UPDATE COMMENT
+        SET contents = #{contents}
+        WHERE id = #{id}
+    </update>
+    <delete id="delete" parameterType="int">
+        DELETE FROM COMMENT
+		WHERE id = #{id}
+    </delete>
+</mapper>

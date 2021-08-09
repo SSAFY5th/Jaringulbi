@@ -1,49 +1,20 @@
 <template>
-  <div class="margin">
-    <div>
-      <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        :interval="4000"
-        controls
-        indicators
-        background="#ababab"
-        img-width="1024"
-        img-height="480"
-        style="text-shadow: 1px 1px 2px #333"
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
-      >
-        <!-- Text slides with image -->
-        <b-carousel-slide
-          caption="메인 소비 리포트"
-          text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-          img-src="https://picsum.photos/1024/480/?image=52"
-        ></b-carousel-slide>
-        <!-- Slides with img slot -->
-        <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-
-        <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-        <b-carousel-slide
-          caption="메인 소비 리포트"
-          img-blank
-          img-alt="Blank image"
-        >
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            eros felis, tincidunt a tincidunt eget, convallis vel est. Ut
-            pellentesque ut lacus vel interdum.
-          </p>
-        </b-carousel-slide>
-      </b-carousel>
-
-      <p class="mt-4"></p>
-    </div>
-  </div>
+  <tiny-slider :mouse-drag="true" :loop="false" items="2" gutter="20">
+    <div>Slider item #1</div>
+    <div>Slider item #2</div>
+    <div>Slider item #3</div>
+    <div>Slider item #4</div>
+    <div>Slider item #5</div>
+    <div>Slider item #6</div>
+  </tiny-slider>
 </template>
 
 <script>
+import VueTinySlider from "vue-tiny-slider";
 export default {
+  components: {
+    "tiny-slider": VueTinySlider,
+  },
   data() {
     return {
       slide: 0,
@@ -60,7 +31,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .margin {
   margin: 15px;
 }

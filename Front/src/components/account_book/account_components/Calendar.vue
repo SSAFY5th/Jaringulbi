@@ -1,0 +1,75 @@
+<template>
+  <div>
+    <Calendar
+      id="font"
+      class="calendar"
+      :attributes="attributes"
+      disable-page-swipe
+      is-expanded
+    >
+      <template v-slot:day-content="{ day, attributes }">
+        <div id="font">
+          <div class="cal">
+            <span>{{ day.day }}</span>
+            <div style="font-size: 1pt; margin-top: 30px">
+              <p v-for="attr in attributes" :key="attr.key">
+                <span style="color: blue">{{ attr.customData.expo }}</span
+                ><br />
+                <span style="color: red">{{ attr.customData.impo }}</span>
+                <br />
+                <span>{{ attr.customData.total }}</span>
+                <br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </Calendar>
+  </div>
+</template>
+
+<script>
+import { Calendar } from "v-calendar";
+
+export default {
+  components: {
+    Calendar,
+  },
+  data() {
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
+    return {
+      attributes: [
+        {
+          key: 1,
+          customData: {
+            expo: "1,000,000",
+            impo: "1,000,000",
+            total: "1,000,000",
+          },
+          dates: new Date(year, month, 1),
+        },
+      ],
+    };
+  },
+};
+</script>
+<style scoped>
+#font {
+  font-family: CookieRunOTF-Bold;
+}
+
+.custom-calendar {
+  width: 50px;
+}
+
+.calendar {
+  width: 100%;
+}
+
+.cal {
+  border: 1px solid #b8c2cc;
+  width: 100%;
+  height: 105px;
+}
+</style>

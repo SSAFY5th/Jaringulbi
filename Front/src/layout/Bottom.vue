@@ -1,66 +1,81 @@
 <template>
-  <div class="footer">
-    <b-button-group id="footer_btn">
-      <b-button variant="info" title="가계부" @click="account">
-        <b-icon icon="vector-pen" aria-hidden="true"></b-icon>
-        <div>가계부</div>
-      </b-button>
-      <b-button variant="info" title="커뮤니티" @click="community">
-        <b-icon icon="facebook" aria-hidden="true"></b-icon>
-        <div>커뮤니티</div>
-      </b-button>
-      <b-button variant="info" title="홈" @click="home">
-        <b-icon icon="house-fill" aria-hidden="true"></b-icon>
-        <div>메인</div>
-      </b-button>
-      <b-button variant="info" title="챌린지" @click="challenge">
-        <b-icon icon="flag-fill" aria-hidden="true"></b-icon>
-        <div>챌린지</div>
-      </b-button>
-      <b-button variant="info" title="프로필" @click="user">
-        <b-icon icon="person" aria-hidden="true"></b-icon>
-        <div>프로필</div>
-      </b-button>
-    </b-button-group>
+  <div id="bottom-nav">
+    <nav>
+      <div class="nav-icon">
+        <router-link :to="{ name: 'Accountbook' }">
+          <b-icon icon="calculator" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">가계부</p>
+        </router-link>      
+      </div>
+      <div class="nav-icon">
+        <router-link :to="{ name: 'Board' }">
+          <b-icon icon="chat-square-text" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">커뮤니티</p>
+        </router-link>
+      </div>
+      <div class="nav-icon">
+        <router-link :to="{ name: 'Home' }">
+          <b-icon icon="house" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">홈</p>
+        </router-link>
+      </div>
+      <div class="nav-icon">
+        <router-link :to="{ name: 'Challenge' }">
+          <b-icon icon="flag" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">챌린지</p>
+        </router-link>
+      </div>
+      <div class="nav-icon">
+        <router-link :to="{ name: 'Login' }">
+          <b-icon icon="person" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">마이페이지</p>
+        </router-link>
+      </div>
+    </nav>
   </div>
 </template>
  
 <script>
 export default {
-  name: "bottom",
+  name: "Bottom",
   computed: {},
   data() {
     return {};
   },
-  methods: {
-    user() {
-      this.$router.push("/login");
-    },
-    home() {
-      this.$router.push("/");
-    },
-    account() {
-      this.$router.push("/account");
-    },
-  },
+  methods: {},
 };
 </script>
  
 <style scoped>
-.footer {
-  position: absolute;
+  #bottom-nav {
+    position: relative;
+    width: 100%;
+    height: 65px;
+  }
 
-  left: 0;
+  .nav-icon {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    font-size: 14pt;
+    padding-top: 5px;
+  }
 
-  bottom: 0;
+  .nav-icon > a {
+    text-decoration: none;
+    color: #222;
+  }
 
-  width: 100%;
-  margin-left: 270px;
-  padding: 15px 0;
+  .nav-icon > a:hover {
+    color: #9be4e4;
+    /* color: #7a69e6; */
+  }
 
-  color: white;
-}
-#footer_btn {
-  width: 420px;
-}
+  .nav-icon > a.router-link-exact-active {
+    color: #9be4e4;
+  }
+
+  .nav-name {
+    font-size: 11px;
+  }
 </style>

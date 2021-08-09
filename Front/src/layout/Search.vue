@@ -1,9 +1,14 @@
-<!--전반적인 틀이 되는 컴포넌트-->
 <template>
-  <span id="search">
-    <b-icon icon="search" aria-hidden="false"></b-icon>
-    <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
-  </span>
+  <div>
+    <div class="d-flex search">
+      <div class="me-3">
+        <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
+      </div>
+      <div >
+        <b-icon icon="search" aria-hidden="false"></b-icon>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 // import { mapGetters } from "vuex";
@@ -17,5 +22,9 @@
 //   methods: {},
 // };
 </script>
-<style>
+<style scoped>
+.search {
+  font-size: 16pt;
+  color: #333;
+}
 </style>

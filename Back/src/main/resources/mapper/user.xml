@@ -4,32 +4,32 @@
 
 <mapper namespace="com.ssafy.B303.model.mapper.UserMapper">
 
+
 	<select id="selectUser" parameterType="String" resultType="UserDto">
 		select login_id, password, nickname, fish_count, budget, phone, image
-		from user
+		from USER
 		where login_id = #{login_id}
 	</select>
 
 	<insert id="insertUser" parameterType="UserDto">
-		insert into user (login_id, password, nickname, fish_count, budget, phone, image)
+		insert into USER (login_id, password, nickname, fish_count, budget, phone, image)
 		values (#{login_id}, #{password}, #{nickname}, #{fish_count}, #{budget}, #{phone}, #{image})
 	</insert>
 	<update id="updateUser" parameterType="UserDto">
-		update user
+		update USER
 		set password = #{password}, nickname = #{nickname}, fish_count = #{fish_count}, budget = #{budget}, phone = #{phone}, image = #{image}
 		where login_id = #{login_id}
 	</update>
 
 	<delete id="deleteUser" parameterType="UserDto">
-		delete from user
+		delete from USER
 		where login_id = #{login_id}
 	</delete>
 
 	<select id="login" parameterType="map" resultType="UserDto">
-		select login_id, password, nickname, fish_count, budget, phone, image
-		from user
+		select id, login_id, password, nickname, fish_count, budget, phone, image
+		from USER
 		where login_id = #{login_id} and password = #{password}
 	</select>
-
 
 </mapper>
