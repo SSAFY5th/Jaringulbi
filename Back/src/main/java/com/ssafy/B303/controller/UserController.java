@@ -4,18 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.UserService;
 
-import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
@@ -23,9 +20,9 @@ import java.util.Map;
 @RequestMapping(path = "/user")
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	private static final String SUCCESS="success";
+	private static final String SUCCESS = "success";
 	private static final String FAIL = "fail";
-	
+
 	private final UserService userService;
 
 	@Autowired
@@ -79,7 +76,7 @@ public class UserController {
 		System.out.println("로그인성공");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@PutMapping("{login_id}")
 	public ResponseEntity<String> update(@RequestBody UserDto userdto, @RequestParam Map<String, String> map,
 			Model model, HttpSession session) {
@@ -101,7 +98,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("{login_id}")
-	public ResponseEntity<String> delete(@PathVariable("login_id") String login_id,Model model, HttpSession session) {
+	public ResponseEntity<String> delete(@PathVariable("login_id") String login_id, Model model, HttpSession session) {
 		System.out.println("탈퇴");
 		try {
 			userService.deleteUser(login_id);
