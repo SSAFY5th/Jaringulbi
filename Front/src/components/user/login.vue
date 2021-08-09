@@ -11,7 +11,7 @@
                 class="margin"
               >
               </b-img>
-              <h5>자린굴비</h5>
+              <h5 style="color: #9175f3">자린굴비</h5>
             </div>
             <div class="login top list" id="font">
               <div class="login_form">
@@ -170,9 +170,9 @@ textarea,
 }
 
 #btn_group {
-  border: 1px solid skyblue;
-  background-color: rgba(0, 0, 0, 0);
-  color: skyblue;
+  background-color: #9be4e4;
+  color: #9175f3;
+  border: 1px solid #9be4e4;
   padding: 5px;
   width: 150px;
   margin-left: 14px;

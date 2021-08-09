@@ -1,5 +1,6 @@
 <template>
   <div
+    id="header"
     class="d-flex justify-content-between align-items-center px-3"
     style="width: 100%"
   >
@@ -25,6 +26,19 @@ export default {
 </script>
 
 <style scoped>
+#header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 80px;
+  background-color: #fff;
+  /* box-shadow: 0 2px 8px #ddd; */
+}
+
 #fish {
   height: 44px;
   width: 44px;

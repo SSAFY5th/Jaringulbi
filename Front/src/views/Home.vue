@@ -33,24 +33,7 @@ export default {
 </script>
 
 <style scoped>
-#header {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  width: 100%;
-  max-width: 420px;
-  height: 80px;
-  background-color: #fff;
-  /* box-shadow: 0 2px 8px #ddd; */
-}
-
 #font {
   font-family: CookieRunOTF-Bold;
-}
-
-#title {
-  text-align: left;
 }
 </style>
