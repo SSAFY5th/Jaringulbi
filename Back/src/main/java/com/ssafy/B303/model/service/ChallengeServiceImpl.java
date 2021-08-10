@@ -20,4 +20,16 @@ public class ChallengeServiceImpl implements ChallengeService{
     public List<ChallengeDto> getChallengeList() {
         return sqlSession.getMapper(ChallengeMapper.class).getChallengeList();
     }
+
+    @Override
+    public ChallengeDto getChallenge(int id) {
+        return sqlSession.getMapper(ChallengeMapper.class).getChallenge(id);
+    }
+
+    @Override
+    public int getChallengeUserNum(int id) {
+        Integer a = sqlSession.getMapper(ChallengeMapper.class).getChallengeUserNum(id);
+        if(a == null) return 0;
+        return a;
+    }
 }

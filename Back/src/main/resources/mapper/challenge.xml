@@ -4,10 +4,21 @@
 
 <mapper namespace="com.ssafy.B303.model.mapper.ChallengeMapper">
 
-    <select id="getChallengeList" parameterType="Map" resultType="ChallengeDto">
+    <select id="getChallengeList" resultType="ChallengeDto">
         select *
         from CHALLENGE
     </select>
 
+    <select id="getChallenge" parameterType="int" resultType="ChallengeDto">
+        select *
+        from CHALLENGE
+        where id = #{id}
+    </select>
+
+    <select id="getChallengeUserNum" parameterType="int" resultType="Integer">
+        select sum(id)
+        from USER_CHALLENGE
+        where challenge_id
+    </select>
 
 </mapper>

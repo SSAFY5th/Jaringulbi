@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ChallengeMapper {
     List<ChallengeDto> getChallengeList();
+    ChallengeDto getChallenge(int id);
+    Integer getChallengeUserNum(int id);
 }
