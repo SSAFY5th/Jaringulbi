@@ -13,6 +13,7 @@ import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
 import Graph from "../components/account_book/Graph.vue";
+import MyChallenge from "../components/challenge/MyChallenge.vue";
 
 Vue.use(VueRouter);
 
@@ -66,6 +67,11 @@ const routes = [
     path: "/challenge",
     name: "Challenge",
     component: Challenge,
+  },
+  {
+    path: "/mychallenge",
+    name: "MyChallenge",
+    component: MyChallenge,
   },
   {
     path: "/mypage",

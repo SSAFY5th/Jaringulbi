@@ -12,40 +12,39 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    private SqlSession sqlSession;
+	private SqlSession sqlSession;
 
-    @Autowired
-    public UserServiceImpl(SqlSession sqlSession) {
-        this.sqlSession = sqlSession;
-    }
+	@Autowired
+	public UserServiceImpl(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
 
+	@Override
+	public UserDto selectUser(String login_id) throws Exception {
+		return sqlSession.getMapper(UserMapper.class).selectUser(login_id);
+	}
 
+	@Override
+	public void insertUser(UserDto userDto) throws Exception {
+		sqlSession.getMapper(UserMapper.class).insertUser(userDto);
+	}
 
-    @Override
-    public UserDto selectUser(String login_id) throws Exception {
-        return sqlSession.getMapper(UserMapper.class).selectUser(login_id);
-    }
+	@Override
+	public void updateUser(UserDto userDto) throws Exception {
+		sqlSession.getMapper(UserMapper.class).updateUser(userDto);
+	}
 
-    @Override
-    public void insertUser(UserDto userDto) throws Exception {
-        sqlSession.getMapper(UserMapper.class).insertUser(userDto);
-    }
+	@Override
+	public void deleteUser(String login_id) throws Exception {
+		sqlSession.getMapper(UserMapper.class).deleteUser(login_id);
+	}
 
-    @Override
-    public void updateUser(UserDto userDto) throws Exception {
-        sqlSession.getMapper(UserMapper.class).updateUser(userDto);
-    }
-
-    @Override
-    public void deleteUser(String login_id) throws Exception {
-        sqlSession.getMapper(UserMapper.class).deleteUser(login_id);
-    }
-
-    @Override
-    public UserDto login(Map<String, String> map) throws Exception {
-        if(map.get("login_id") == null || map.get("password") == null) return null;
-        return sqlSession.getMapper(UserMapper.class).login(map);
-    }
+	@Override
+	public UserDto login(Map<String, String> map) throws Exception {
+		if (map.get("login_id") == null || map.get("password") == null)
+			return null;
+		return sqlSession.getMapper(UserMapper.class).login(map);
+	}
 }
