@@ -6,6 +6,7 @@ import java.util.Map;
 
 public interface UserMapper {
     public UserDto selectUser(String login_id) throws Exception;
+    public UserDto selectUserById(int id) throws Exception;
     public int insertUser(UserDto userDto);
     public int updateUser(UserDto userDto) throws Exception;
     public int deleteUser(UserDto userDto) throws Exception;

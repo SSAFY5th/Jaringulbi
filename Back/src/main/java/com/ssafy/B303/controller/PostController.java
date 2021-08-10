@@ -1,9 +1,13 @@
 package com.ssafy.B303.controller;
 
+import com.ssafy.B303.model.dto.CommentDto;
 import com.ssafy.B303.model.dto.PostDto;
+import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.CommentServiceImpl;
 import com.ssafy.B303.model.service.PostServiceImpl;
 import com.ssafy.B303.model.service.UpDownServiceImpl;
+import com.ssafy.B303.model.service.UserServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,11 +27,16 @@ public class PostController {
     @Autowired
     CommentServiceImpl commentService;
 
+    @Autowired
+    UserServiceImpl userService;
+
     @GetMapping("/board")
-    public List<PostDto> selectAllPost(){
+    public List<PostDto> selectAllPost() throws Exception {
         List<PostDto> postDtoList = postService.selectAllPost(1);
         for (PostDto postDto: postDtoList) {
             int id = postDto.getId();
+            UserDto user = userService.selectUserById(postDto.getUser_id());
+            postDto.setNickname(user.getNickname());
             postDto.setUp(upDownService.selectUpById(id));
             postDto.setUpCount(upDownService.getUpCount(id));
             postDto.setCommentCount(commentService.getCommentCount(id));
@@ -36,10 +45,12 @@ public class PostController {
     }
 
     @GetMapping("/buyornot")
-    public List<PostDto> selectAllBuyOrNot(){
+    public List<PostDto> selectAllBuyOrNot() throws Exception {
         List<PostDto> postDtoList = postService.selectAllPost(0);
         for (PostDto postDto: postDtoList) {
             int id = postDto.getId();
+            UserDto user = userService.selectUserById(postDto.getUser_id());
+            postDto.setNickname(user.getNickname());
             postDto.setUp(upDownService.selectUpById(id));
             postDto.setUpCount(upDownService.getUpCount(id));
             postDto.setDown(upDownService.selectDownById(id));
@@ -50,14 +61,20 @@ public class PostController {
     }
 
     @GetMapping(value = {"/board/{id}", "/buyornot/{id}"})
-    public PostDto selectBoardById(@PathVariable int id){
+    public PostDto selectBoardById(@PathVariable int id) throws Exception {
         PostDto postDto = postService.selectPostById(id);
+        UserDto user = userService.selectUserById(postDto.getUser_id());
+        postDto.setNickname(user.getNickname());
         postDto.setUp(upDownService.selectUpById(id));
         postDto.setUpCount(upDownService.getUpCount(id));
         postDto.setDown(upDownService.selectDownById(id));
         postDto.setDownCount(upDownService.getDownCount(id));
         postDto.setCommentCount(commentService.getCommentCount(id));
-        postDto.setComment(commentService.selectAll(id));
+        List<CommentDto> comment = commentService.selectAll(id);
+        for (CommentDto commentDto : comment) {
+            commentDto.setNickname(userService.selectUserById(commentDto.getUser_id()).getNickname());
+        }
+        postDto.setComment(comment);
         return postDto;
     }
 

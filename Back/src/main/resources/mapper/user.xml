@@ -11,6 +11,12 @@
 		where login_id = #{login_id}
 	</select>
 
+	<select id="selectUserById" parameterType="int" resultType="UserDto">
+		select login_id, password, nickname, fish_count, budget, phone, image
+		from USER
+		where id = #{id}
+	</select>
+
 	<insert id="insertUser" parameterType="UserDto">
 		insert into USER (login_id, password, nickname, fish_count, budget, phone, image)
 		values (#{login_id}, #{password}, #{nickname}, #{fish_count}, #{budget}, #{phone}, #{image})

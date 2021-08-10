@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto selectUserById(int id) throws Exception {
+        return sqlSession.getMapper(UserMapper.class).selectUserById(id);
+    }
+
+    @Override
     public void insertUser(UserDto userDto) throws Exception {
         sqlSession.getMapper(UserMapper.class).insertUser(userDto);
     }
