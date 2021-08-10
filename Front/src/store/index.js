@@ -54,15 +54,16 @@ export default new Vuex.Store({
           password: password,
         })
         .then(({ data }) => {
-          let msg = "로그인 완료!!";
+          // let msg = "로그인 완료!!";
+
           console.log("닉네임 : " + data.nickname);
           if (data.nickname == null) {
-            msg = "로그인 실패";
+            // msg = "로그인 실패";
             context.commit("LOG_OUT");
           } else {
             context.commit("LOG_IN", data);
           }
-          alert(msg);
+          // alert(msg);
         })
         .catch((error) => {
           alert("로그인 오류");
@@ -70,9 +71,13 @@ export default new Vuex.Store({
         });
     },
     deleteUser(context) {
-      console.log("회원 탈퇴");
+      console.log("회원탈퇴");
       context.commit("LOG_OUT");
       alert("탈퇴 되었습니다.");
+    },
+    logout(context) {
+      console.log("로그아웃");
+      context.commit("LOG_OUT");
     },
     getAccountBook(context) {
       http
