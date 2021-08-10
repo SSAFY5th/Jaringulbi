@@ -46,7 +46,8 @@
             ref="phone"
           />
           <br />
-          <button @click="checkValue" class="btn" id="btn_group">수정</button>
+          <button @click="modifyUser" class="btn" id="btn_group">수정</button>
+          <button @click="logout" class="btn" id="btn_group">로그아웃</button>
           <button @click="deleteUser" class="btn" id="btn_group">
             회원탈퇴
           </button>
@@ -82,27 +83,9 @@ export default {
     this.phone = this.$store.state.user.phone;
   },
   methods: {
-    checkValue() {
-      // 사용자 입력값 체크하기
-      let err = true;
-      let msg = "";
-      !this.login_id &&
-        ((msg = "id를 입력해주세요"),
-        (err = false),
-        this.$refs.login_id.focus());
-      err &&
-        !this.password &&
-        ((msg = "비밀번호를 입력해주세요"),
-        (err = false),
-        this.$refs.password.focus());
-
-      if (!err) alert(msg);
-      // 만약, 내용이 다 입력되어 있다면 회원 가입
-      else this.insertUser();
-    },
     modifyUser() {
       http
-        .post("/user/signup", {
+        .put(`/user/${this.login_id}`, {
           login_id: this.login_id,
           password: this.password,
           nickname: this.nickname,
@@ -110,15 +93,15 @@ export default {
         })
         .then(({ data }) => {
           console.log(data);
-          let msg = "회원가입 실패!!";
+          let msg = "회원수정 실패!!";
           if (data === "success") {
-            msg = "회원가입 완료";
+            msg = "회원수정 완료";
             this.$router.push("/");
           }
           alert(msg);
         })
         .catch((error) => {
-          alert("회원가입 실패");
+          alert("회원수정 실패");
           console.dir(error);
         });
     },
@@ -127,6 +110,12 @@ export default {
       if (confirm("정말 탈퇴 하시겠습니까?")) {
         http.delete(`/user/${this.login_id}`);
         this.$store.dispatch("deleteUser");
+        this.$router.push("/");
+      }
+    },
+    logout() {
+      if (confirm("정말 로그아웃 하시겠습니까?")) {
+        this.$store.dispatch("logout");
         this.$router.push("/");
       }
     },
