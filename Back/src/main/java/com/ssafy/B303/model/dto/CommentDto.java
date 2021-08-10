@@ -11,6 +11,7 @@ public class CommentDto {
     private int id;
     private int post_id;
     private int user_id;
+    private String nickname;
     private String contents;
     private LocalDateTime commented_time;
 
@@ -36,6 +37,14 @@ public class CommentDto {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getContents() {

@@ -9,6 +9,8 @@ public interface UserService {
 
     public UserDto selectUser(String login_id) throws Exception;
 
+    public UserDto selectUserById(int id) throws Exception;
+
     public void insertUser(UserDto userDto) throws Exception;
 
     public void updateUser(UserDto userDto) throws Exception;

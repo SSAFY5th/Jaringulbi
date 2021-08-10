@@ -12,6 +12,7 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
+
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	private SqlSession sqlSession;
@@ -25,6 +26,11 @@ public class UserServiceImpl implements UserService {
 	public UserDto selectUser(String login_id) throws Exception {
 		return sqlSession.getMapper(UserMapper.class).selectUser(login_id);
 	}
+
+    @Override
+    public UserDto selectUserById(int id) throws Exception {
+        return sqlSession.getMapper(UserMapper.class).selectUserById(id);
+    }
 
 	@Override
 	public void insertUser(UserDto userDto) throws Exception {
