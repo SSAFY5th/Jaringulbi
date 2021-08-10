@@ -31,7 +31,6 @@
           <input 
             type="text" class="form-control"
             placeholder="제목"
-            v-model="title"
           >
         </div>
         <br />
@@ -41,19 +40,31 @@
             cols="30" rows="20"
             class="form-control"
             placeholder="여기에 당신의 이야기를 써보세요"  
-            v-model="contents"
           >
 
           </textarea>
         </div>
-          <!-- <label for="tag">태그 입력 부분</label><br />
+          <!-- <label for="id">ID</label>
+          <input type="text" id="id" name="id" v-model="id" ref="id" />
+          <br />
+          <label for="name">이름</label>
           <input
             type="text"
-            id="tag"
-            name="tag"
-            ref="tag"
-          /><br /> -->
-          <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>-->
+            id="name"
+            name="name"
+            v-model="name"
+            ref="name"
+          /><br />          -->
+          <label for="address">태그 입력 부분</label><br />
+          <input
+            type="text"
+            id="address"
+            name="address"
+            v-model="address"
+            ref="address"
+          /><br />
+          <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>
+          <button @click="home" class="btn" id="btn_group">홈으로</button> -->
         </div>
     </div>
   </div>
@@ -63,9 +74,10 @@
 import http from "@/util/http-common";
 
 export default {
-  name: "CreateFreePost",
+  name: "CreateBuyOrNot",
   data: function () {
     return {
+      category: '',
       title: '',
       contents: '',
       user_id: '',
@@ -74,7 +86,7 @@ export default {
   methods: {
     onCreatePost: function () {
       http.post("/board", {        
-        // category: this.category,
+        category: this.category,
         title: this.title,
         contents: this.contents,
         user_id: this.$store.state.user.nickname,

@@ -46,7 +46,7 @@
       </div>
       <div class="d-inline-block">
         <b-icon icon="chat-left" aria-hidden="false"  class="me-2"></b-icon>
-        <span>3</span>
+        <span>{{ post.commentCount }}</span>
       </div>
     </div>
   </div> 
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import http from "@/util/http-common";
 
 export default {
@@ -64,24 +63,26 @@ export default {
   computed: {},
   data () {
     return {
-      content: '',
       freePostList: [],
+      username: '',
     };
   },
   methods: {
     getFreePostList: function () {
-      // const url = "http://localhost:80/board"
       http.get("board/")
       .then(response => {
         console.log(response.data)
         this.freePostList = response.data
+        this.username = this.$store.state.user.login_id
+        // context.commit("setFreeboard", response.data);     
       }).catch(err => {
         console.log(err)
       });
     },
   },
+    // this.$store.dispatch("getFreePostList")
   created: function () {
-    this.getFreePostList()
+    this.getFreePostList()    
   }
 }
 </script>

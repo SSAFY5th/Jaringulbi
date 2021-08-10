@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div class="post-wrap"  v-for="post in BuynotPostList" :key="post.id">
+    <div class="post-wrap"  v-for="post in buynotPostList" :key="post.id">
       <!--  v-for="post in freepost" :key="post.id" -->
       <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
           <div id="img-circle" class="d-inline-block">
             <img src="https://picsum.photos/48/48" alt="프로필사진">
           </div>      
-          <span class="d-inline-block ms-2">{{ post.user_id }}</span>
-          
+          <span class="d-inline-block ms-2">{{ post.user_id }}</span>          
         </div>
           
         <div class="d-inline-block">
@@ -18,14 +17,10 @@
       </div>
 
       <!-- 글 -->
-
       <router-link
         :to="{ name: 'FreeboardDetail', params: { id: post.id }}"
         class="text-decoration-none text-dark m-0 p-0"
-      >    
-      
-
-
+      >          
 
       <!-- ///////////////////////////////////////////////////// -->
       <div class="text-start mt-2">
@@ -59,6 +54,7 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
 
 export default {
   name: "BuyOrNot",
@@ -66,10 +62,23 @@ export default {
   },
   computed: {},
   data () {
-    return {};
+    return {
+      buynotPostList: [],
+      username: '',
+    };
   },
   methods: {
-
+    getBuynotPostList: function () {
+      http.get("board/")
+      .then(response => {
+        console.log(response.data)
+        this.buynotPostList = response.data
+        this.username = this.$store.state.user.login_id
+        // context.commit("setFreeboard", response.data);     
+      }).catch(err => {
+        console.log(err)
+      });
+    },
   },
 }
 </script>
