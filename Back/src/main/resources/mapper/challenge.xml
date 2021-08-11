@@ -26,4 +26,31 @@
         values(#{challenge_id}, #{user_id}, 0)
     </insert>
 
+    <select id="getUserChallengeList" parameterType = "int" resultType="UserChallengeDto">
+        select *
+        from USER_CHALLENGE
+        where user_id = #{user_id}
+    </select>
+
+    <select id="getChallengeReviewList" parameterType="int" resultType="ChallengeReviewDto">
+        select *
+        from REVIEW
+        where challenge_id = #{challenge_id}
+    </select>
+
+    <insert id="addChallengeReview" parameterType="ChallengeReviewDto">
+        insert into REVIEW(challenge_id, user_id, contents, commented_time)
+        values (#{challenge_id}, #{user_id}, #{contents}, NOW())
+    </insert>
+
+    <update id="updateChallengeReview" parameterType="ChallengeReviewDto">
+        update REVIEW
+        SET contents=#{contents}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteChallengeReview" parameterType="ChallengeReviewDto">
+        delete from REVIEW
+        where id=#{id}
+    </delete>
 </mapper>
