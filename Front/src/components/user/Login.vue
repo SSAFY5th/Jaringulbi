@@ -96,10 +96,11 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-      if (this.$store.state.user.login_id !== undefined) {
-        this.$router.push("/");
-      } else {
+      console.log(this.$store.state.user.login_id);
+      if (this.$store.state.user.login_id == undefined) {
         alert("아이디와 비밀번호를 다시 확인해주세요");
+      } else {
+        this.$router.push("/");
       }
     },
   },
