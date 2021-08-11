@@ -1,8 +1,10 @@
 package com.ssafy.B303.controller;
 
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ssafy.B303.model.dto.ChallengeDto;
+import com.ssafy.B303.model.dto.EnterChallengeVo;
 import com.ssafy.B303.model.service.ChallengeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,7 @@ public class ChallengeController {
             e.printStackTrace();
         }
 
+
         String challengeDtoToJson = new Gson().toJson(challengeDto);
         JsonObject obj = new JsonObject();
 
@@ -65,7 +68,19 @@ public class ChallengeController {
         obj.addProperty("reward", challengeDto.getReward());
         obj.addProperty("description", challengeDto.getDescription());
         obj.addProperty("ChallengeUserNum", challengeUserNum);
+
         return new ResponseEntity<JsonObject>(obj, HttpStatus.OK);
     }
+
+    @PostMapping(value="/enter")
+    public ResponseEntity<String> enterChallenge(@RequestBody EnterChallengeVo enterChallengeVo, Model model){
+        try {
+            challengeService.enterChallenge(enterChallengeVo);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

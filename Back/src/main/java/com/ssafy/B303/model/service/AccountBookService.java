@@ -14,8 +14,8 @@ public interface AccountBookService {
     List<AccountBookDto> selectDay(int month, int day, int user_id) throws Exception;
     void deleteAccountBook(int id) throws Exception;
     void modifyAccountBook(AccountBookDto accountBookDto) throws Exception;
-    int monthIncomes(int month) throws Exception;
-    int monthOutgoings(int month) throws Exception;
-    List<Number> dayIncomes(int month) throws Exception;
-    List<Number> dayOutgoings(int month) throws Exception;
+    int monthIncomes(int month, int user_id) throws Exception;
+    int monthOutgoings(int month, int user_id) throws Exception;
+    List<Number> dayIncomes(int month, int user_id) throws Exception;
+    List<Number> dayOutgoings(int month, int user_id) throws Exception;
 }
