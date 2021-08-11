@@ -79,7 +79,7 @@ export default {
       let err = true;
       let msg = "";
       !this.login_id &&
-        ((msg = "ID를 입력해주세요"),
+        ((msg = "id를 입력해주세요"),
         (err = false),
         this.$refs.login_id.focus());
       err &&
@@ -87,6 +87,7 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
+
       if (!err) alert(msg);
       //dispatch >> store에 있는 action안에 있는 login 함수를 실행시켜줍니다.
       else
@@ -95,9 +96,10 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-
-      if (this.$store.state.user.login_id !== undefined) {
-        console.log(this.$store.state.user.login_id + " " + "로그인성공");
+      console.log(this.$store.state.user.login_id);
+      if (this.$store.state.user.login_id == undefined) {
+        alert("아이디와 비밀번호를 다시 확인해주세요");
+      } else {
         this.$router.push("/");
       }
     },

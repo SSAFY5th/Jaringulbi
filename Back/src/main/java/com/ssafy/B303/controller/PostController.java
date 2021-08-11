@@ -80,6 +80,7 @@ public class PostController {
 
     @PostMapping("/board")
     public List<PostDto> insertBoard(@RequestBody PostDto post){
+    	System.out.println("게시판");
         post.setBoard_category(1);
         postService.insertPost(post);
         return postService.selectAllPost(1);

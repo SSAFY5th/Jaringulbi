@@ -13,7 +13,6 @@ export default new Vuex.Store({
     show: false,
     user: {},
     freePostList: [],
-
   },
 
   getters: {
@@ -47,7 +46,7 @@ export default new Vuex.Store({
 
     setFreeboard(state, payload) {
       state.freePostList = payload;
-    }
+    },
   },
 
   actions: {
@@ -98,14 +97,16 @@ export default new Vuex.Store({
           alert("에러발생!");
         });
     },
-    getFreePostList: function (context) {
-      http.get("/board")
-      .then(response => {
-        // this.freePostList = response.data
-        context.commit("setFreeboard", response.data);     
-      }).catch(err => {
-        console.log(err)
-      });
+    getFreePostList: function(context) {
+      http
+        .get("/board")
+        .then((response) => {
+          // this.freePostList = response.data
+          context.commit("setFreeboard", response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 
