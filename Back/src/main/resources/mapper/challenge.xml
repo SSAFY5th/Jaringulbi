@@ -21,4 +21,9 @@
         where challenge_id
     </select>
 
+    <insert id="enterChallenge" parameterType="EnterChallengeVo">
+        insert into USER_CHALLENGE(challenge_id, user_id, status)
+        values(#{challenge_id}, #{user_id}, 0)
+    </insert>
+
 </mapper>

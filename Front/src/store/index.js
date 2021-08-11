@@ -12,6 +12,7 @@ export default new Vuex.Store({
     password: {},
     show: false,
     user: {},
+    freePostList: [],
   },
 
   getters: {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     accountbook(state) {
       return state.accountbook;
+    },
+    freeboard(state) {
+      return state.freePostList;
     },
   },
 
@@ -38,6 +42,10 @@ export default new Vuex.Store({
     LOG_OUT(state) {
       state.user = {};
       state.show = false;
+    },
+
+    setFreeboard(state, payload) {
+      state.freePostList = payload;
     },
   },
 
@@ -87,6 +95,17 @@ export default new Vuex.Store({
         })
         .catch(() => {
           alert("에러발생!");
+        });
+    },
+    getFreePostList: function(context) {
+      http
+        .get("/board")
+        .then((response) => {
+          // this.freePostList = response.data
+          context.commit("setFreeboard", response.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   },

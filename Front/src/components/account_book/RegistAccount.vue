@@ -5,8 +5,8 @@
         <h1 class="underline top1">지출 등록</h1>
         <hr />
         <div>
-          <button class="btn" id="btn_group">수입</button>
-          <button class="btn" id="btn_group">지출</button>
+          <button class="btn" id="btn_group" @click="plus">수입</button>
+          <button class="btn" id="btn_group" @click="minus">지출</button>
         </div>
         <hr />
         <div class="regist_form">
@@ -66,9 +66,7 @@
           </div>
           <hr />
           <div>
-            <b-button v-b-modal.modal-center id="btn_group"
-              >카테고리 선택</b-button
-            >
+            <b-button v-b-modal.modal-center>카테고리 선택</b-button>
             <b-modal
               ref="my-modal"
               id="modal-center"
@@ -112,21 +110,35 @@
 </template>
 <script>
 import http from "@/util/http-common";
-//// import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
+
+// let year = today.getFullYear;
+// let month = today.getMonth;
+// let date = today.getDate;
+// let cal = year + "-" + month + "-" + date;
+
 export default {
-  name: "",
+  name: "regist account",
   computed: {},
   data() {
+    this.date = "";
     return {
       date: "",
       price: "",
       category: "",
+      categorynum: "",
       used: "",
       contents: "",
-      userid: "",
+      user_id: this.$store.state.user.id,
     };
   },
   methods: {
+    plus() {
+      this.price = " ";
+    },
+    minus() {
+      this.price = "-";
+    },
     registAccountBook() {
       console.log("가계부 등록");
       let err = true;
@@ -162,82 +174,98 @@ export default {
         .post("/accountbook", {
           date: this.date,
           price: this.price,
-          category: this.category,
+          category: this.categorynum,
           used: this.used,
           contents: this.contents,
-          userid: this.userid,
+          user_id: this.user_id,
         })
         .then(({ data }) => {
           let msg = "등록 처리시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "등록이 완료되었습니다.";
+            this.$router.push("/accountbook");
           }
           alert(msg);
-          this.$router.push("/accountbook");
         });
     },
     eat() {
       this.category = "식비";
+      this.categorynum = 1;
       this.$refs["my-modal"].hide();
     },
     cafe() {
       this.category = "카페";
+      this.categorynum = 2;
       this.$refs["my-modal"].hide();
     },
     alcohol() {
       this.category = "술";
+      this.categorynum = 3;
       this.$refs["my-modal"].hide();
     },
     life() {
       this.category = "생활";
+      this.categorynum = 4;
       this.$refs["my-modal"].hide();
     },
     fashion() {
       this.category = "패션";
+      this.categorynum = 5;
       this.$refs["my-modal"].hide();
     },
     beauti() {
       this.category = "뷰티";
+      this.categorynum = 6;
       this.$refs["my-modal"].hide();
     },
     trafic() {
       this.category = "교통";
+      this.categorynum = 7;
       this.$refs["my-modal"].hide();
     },
     car() {
       this.category = "자동차";
+      this.categorynum = 8;
       this.$refs["my-modal"].hide();
     },
     live() {
       this.category = "주거";
+      this.categorynum = 9;
       this.$refs["my-modal"].hide();
     },
     healthy() {
       this.category = "의료";
+      this.categorynum = 10;
       this.$refs["my-modal"].hide();
     },
     fund() {
       this.category = "금융";
+      this.categorynum = 11;
       this.$refs["my-modal"].hide();
     },
     culture() {
       this.category = "문화";
+      this.categorynum = 12;
       this.$refs["my-modal"].hide();
     },
     travel() {
       this.category = "여행";
+      this.categorynum = 13;
       this.$refs["my-modal"].hide();
     },
     edu() {
       this.category = "교육";
+      this.categorynum = 14;
       this.$refs["my-modal"].hide();
     },
     pet() {
       this.category = "반려동물";
+      this.categorynum = 15;
       this.$refs["my-modal"].hide();
     },
     gift() {
       this.category = "선물";
+      this.categorynum = 16;
       this.$refs["my-modal"].hide();
     },
   },
