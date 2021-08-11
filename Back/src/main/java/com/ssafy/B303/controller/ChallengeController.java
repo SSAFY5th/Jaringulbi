@@ -3,8 +3,7 @@ package com.ssafy.B303.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.ssafy.B303.model.dto.ChallengeDto;
-import com.ssafy.B303.model.dto.EnterChallengeVo;
+import com.ssafy.B303.model.dto.*;
 import com.ssafy.B303.model.service.ChallengeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,5 +81,55 @@ public class ChallengeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping(value="/mychallenge")
+    public ResponseEntity<List<UserChallengeDto>> myChallengeList(HttpSession session){
+        UserDto userDto = (UserDto) session.getAttribute("userinfo");
+        int user_id = userDto.getId();
+        List<UserChallengeDto> result = null;
+        try{
+            result = challengeService.getUserChallengeList(user_id);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
 
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/review/{challenge_id}")
+    public ResponseEntity<List<ChallengeReviewDto>> challengeReview(@PathVariable int challenge_id){
+        List<ChallengeReviewDto> list = null;
+        try{
+            list = challengeService.getChallengeReviewList(challenge_id);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/review")
+    public void addChallengeReview(@RequestBody ChallengeReviewDto challengeReviewDto){
+        try{
+            challengeService.addChallengeReview(challengeReviewDto);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @PutMapping(value="/review")
+    public void updateChallengeReview(@RequestBody ChallengeReviewDto challengeReviewDto){
+        try{
+            challengeService.updateChallengeReview(challengeReviewDto);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @DeleteMapping(value="/review")
+    public void deleteChallengeReview(@RequestBody ChallengeReviewDto challengeReviewDto){
+        try{
+            challengeService.deleteChallengeReview(challengeReviewDto);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
