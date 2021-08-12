@@ -22,7 +22,8 @@ public class CommentController {
 
     @PostMapping("/comment")
     public void insertComment(@RequestBody CommentDto comment){
-        commentService.insertComment(comment);
+    	System.out.println("댓글");
+    	commentService.insertComment(comment);
     }
 
     @PutMapping(value = {"/comment/{id}"})

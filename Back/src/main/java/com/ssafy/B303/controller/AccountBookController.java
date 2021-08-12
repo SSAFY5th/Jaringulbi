@@ -30,6 +30,8 @@ import java.util.Map;
 public class AccountBookController {
 
     private final AccountBookService accountBookService;
+    private static final String SUCCESS = "success";
+	private static final String FAIL = "fail";
 
     @Autowired
     public AccountBookController(AccountBookService accountBookService) {
@@ -37,11 +39,15 @@ public class AccountBookController {
     }
 
     @PostMapping
-    public ResponseEntity<AccountBookDto> addAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session) {
+    public ResponseEntity<String> addAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session) {
         //UserDto userDto = (UserDto) session.getAttribute("userinfo");
         //int user_id = userDto.getId();
+    	System.out.println("가계부 등록");
+    	System.out.println(tempAccountBookDto.getId() + " " + tempAccountBookDto.getDate() + " " 
+    	+ tempAccountBookDto.getCategory() + " " +
+    	" " +tempAccountBookDto.getUser_id());
         AccountBookDto accountBookDto = new AccountBookDto(
-                0,
+        		0,
                 //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
                 //시분초는 일단 기본값
                 tempAccountBookDto.getDate(),
@@ -49,9 +55,11 @@ public class AccountBookController {
                 tempAccountBookDto.getCategory(),
                 tempAccountBookDto.getUsed(),
                 tempAccountBookDto.getContents(),
-                tempAccountBookDto.getUser_id() );    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+                tempAccountBookDto.getUser_id());    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+ 
         try{
             accountBookService.insertAccountBook(accountBookDto);
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -62,7 +70,11 @@ public class AccountBookController {
     public ResponseEntity<JsonObject>  monthAccountBook(@RequestParam String date, Model model, HttpSession session){
         UserDto userDto = (UserDto) session.getAttribute("userinfo");
         int user_id = userDto.getId();
+        System.out.println("가계부 출력");
+        System.out.println(user_id);
+        
         int month = Integer.parseInt(date.substring(5, 7)); //월만 빼오기
+        System.out.println(month);
         Map<String, Object> result = new HashMap<String, Object>();
         List<Number> incomes = new LinkedList<>();
         List<Number> outgoings = new LinkedList<>();

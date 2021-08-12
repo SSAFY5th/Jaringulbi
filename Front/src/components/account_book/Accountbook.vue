@@ -18,7 +18,7 @@
       </div>
     </div>
     <div>
-      <calendar></calendar>
+      <calendar> </calendar>
     </div>
     <div>
       <router-link :to="`/registaccount`"
@@ -34,7 +34,6 @@
 <script>
 import Acheader from "@/layout/AC_Header.vue";
 import Calendar from "@/components/account_book/account_components/Calendar.vue";
-
 // import { mapGetters } from "vuex";
 
 export default {
@@ -43,7 +42,12 @@ export default {
     Acheader,
     Calendar,
   },
-  computed: {},
+  computed: {
+    // ...mapGetters(["accountbooks"]),
+  },
+  created() {
+    // this.$store.dispatch("getAccountBooks");
+  },
 
   data() {
     // const month = new Date().getMonth();

@@ -2,7 +2,10 @@
   <div>
     <!-- 글쓰기 헤더 부분 -->
     <div id="post-header">
-      <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
+      <div
+        class="d-flex justify-content-between align-self-center px-3"
+        style="width: 100%"
+      >
         <div class="">
           <router-link :to="{ name: 'Board' }" class="text-dark">
             <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
@@ -10,11 +13,13 @@
         </div>
         <div class="text-center">
           <span>글쓰기</span>
-        </div> 
+        </div>
         <div class="d-flex">
-          <a href="#"
-            class="text-secondary text-decoration-none" 
-            @click="onCreatePost">
+          <a
+            href="#"
+            class="text-secondary text-decoration-none"
+            @click="onCreatePost"
+          >
             등록
           </a>
         </div>
@@ -24,37 +29,37 @@
     <!-- 본문 글쓰기 부분 -->
     <div class="main-content">
       <div class="free-post-form pt-2">
-        <div class="category">
-          자유게시판
-        </div>
+        <div class="category">자유게시판</div>
         <div>
-          <input 
-            type="text" class="form-control"
+          <input
+            type="text"
+            class="form-control"
             placeholder="제목"
             v-model="title"
-          >
+          />
         </div>
         <br />
         <div>
           <textarea
-            name="" id=""
-            cols="30" rows="20"
+            name=""
+            id=""
+            cols="30"
+            rows="20"
             class="form-control"
-            placeholder="여기에 당신의 이야기를 써보세요"  
+            placeholder="여기에 당신의 이야기를 써보세요"
             v-model="contents"
           >
-
           </textarea>
         </div>
-          <!-- <label for="tag">태그 입력 부분</label><br />
+        <!-- <label for="tag">태그 입력 부분</label><br />
           <input
             type="text"
             id="tag"
             name="tag"
             ref="tag"
           /><br /> -->
-          <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>-->
-        </div>
+        <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>-->
+      </div>
     </div>
   </div>
 </template>
@@ -66,57 +71,55 @@ export default {
   name: "CreateFreePost",
   data: function () {
     return {
-      title: '',
-      contents: '',
+      title: "",
+      contents: "",
       category: 1,
-    }
+    };
   },
   methods: {
     onCreatePost: function () {
-      let msg = ''
-      msg = '제목 또는 내용을 입력해주세요.'
-      if (this.title.length == 0 || this.contents.length == 0)
-        alert(msg)
-
+      let msg = "";
+      msg = "제목 또는 내용을 입력해주세요.";
+      if (this.title.length == 0 || this.contents.length == 0) alert(msg);
       else
-        http.post("board/", {        
-          // category: this.category,
-          title: this.title,
-          contents: this.contents,
-          user_id: this.$store.state.user.id,
-          category: this.category,
-        })
-        .then(response => {
-          console.log(response.data)
-          // this.freePostList = response.data
-          this.$router.push({ name: 'Board' })
-        }).catch(err => {
-          console.log(err)
-        });        
-      }
-  }
-}
-
+        http
+          .post("board/", {
+            // category: this.category,
+            title: this.title,
+            contents: this.contents,
+            user_id: this.$store.state.user.id,
+            category: this.category,
+          })
+          .then((response) => {
+            console.log(response.data);
+            // this.freePostList = response.data
+            this.$router.push({ name: "Board" });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    },
+  },
+};
 </script>
 
 <style>
-  #post-header {
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    display: flex;
-    width: 100%;
-    max-width: 420px;
-    height: 80px;
-    background-color: #fff;
-    color: #222;
-    box-shadow: 0 2px 8px #ddd;
-  }
+#post-header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 80px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px #ddd;
+}
 
-  .category {
-    height: 50px;
-    line-height: 50px;
-    border-bottom: solid 1px #eee;
-  }
-
+.category {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: solid 1px #eee;
+}
 </style>
