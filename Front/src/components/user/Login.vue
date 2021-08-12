@@ -2,7 +2,7 @@
   <div class="row">
     <div>
       <b-container id="mainImage" class="top-login">
-        <div id="font" class="login-back">
+        <div class="login-back">
           <b-row>
             <div>
               <b-img
@@ -57,12 +57,12 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 export default {
   name: "bottom",
   computed: {
     //getter에 있는 userInfo 함수를 불러옵니다.
-    ...mapGetters(["userInfo"]),
+    // ...mapGetters(["userInfo"]),
   },
   data() {
     return {
@@ -79,7 +79,7 @@ export default {
       let err = true;
       let msg = "";
       !this.login_id &&
-        ((msg = "id를 입력해주세요"),
+        ((msg = "ID를 입력해주세요"),
         (err = false),
         this.$refs.login_id.focus());
       err &&
@@ -87,7 +87,6 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
-
       if (!err) alert(msg);
       //dispatch >> store에 있는 action안에 있는 login 함수를 실행시켜줍니다.
       else
@@ -96,10 +95,10 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-      console.log(this.$store.state.user.login_id);
-      if (this.$store.state.user.login_id == undefined) {
-        alert("아이디와 비밀번호를 다시 확인해주세요");
-      } else {
+      console.log(this.$store.state.user.id);
+      if (this.$store.state.user.login_id != undefined) {
+        console.log(this.$store.state.user.login_id + " " + "로그인성공");
+        alert("로그인 성공");
         this.$router.push("/");
       }
     },
@@ -107,10 +106,6 @@ export default {
 };
 </script>
 <style scoped>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
 .top {
   background-color: white;
   margin-top: 40px;
@@ -126,7 +121,7 @@ button {
 }
 
 .top-login {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .margin {

@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <b-container id="mainImage">
-      <div id="font">
+      <div>
         <div class="top">
           <b-img
             :src="require('@/assets/logo.png')"
@@ -128,25 +128,14 @@ export default {
 };
 </script>
 <style scoped>
-@font-face {
-  font-family: "CookieRunOTF-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .top {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .margin {
   margin-top: 20px;
 }
 
-#font {
-  font-family: CookieRunOTF-Bold;
-}
 .title {
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
   color: black;

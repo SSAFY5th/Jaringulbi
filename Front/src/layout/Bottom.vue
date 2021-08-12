@@ -25,22 +25,19 @@
           <p class="nav-name m-0">챌린지</p>
         </router-link>
       </div>
-      <em v-if="$store.state.show">
-        <div class="nav-icon">
-          <router-link :to="{ name: 'Mypage' }">
-            <b-icon icon="person" aria-hidden="true"></b-icon>
-            <p class="nav-name m-0">마이페이지</p>
-          </router-link>
-        </div>
-      </em>
-      <em v-else>
-        <div class="nav-icon">
-          <router-link :to="{ name: 'Login' }">
-            <b-icon icon="person" aria-hidden="true"></b-icon>
-            <p class="nav-name m-0">마이페이지</p>
-          </router-link>
-        </div>
-      </em>
+      <div class="nav-icon" v-if="$store.state.show">
+        <router-link :to="{ name: 'Mypage' }">
+          <b-icon icon="person" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">마이페이지</p>
+        </router-link>
+      </div>
+
+      <div class="nav-icon" v-else>
+        <router-link :to="{ name: 'Login' }">
+          <b-icon icon="person" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">마이페이지</p>
+        </router-link>
+      </div>
     </nav>
   </div>
 </template>

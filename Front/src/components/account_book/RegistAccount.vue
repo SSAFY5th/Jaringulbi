@@ -109,8 +109,7 @@
   </div>
 </template>
 <script>
-import http from "@/util/http-common";
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 // let year = today.getFullYear;
 // let month = today.getMonth;
@@ -118,8 +117,11 @@ import http from "@/util/http-common";
 // let cal = year + "-" + month + "-" + date;
 
 export default {
-  name: "regist account",
-  computed: {},
+  name: "regist_account",
+  computed: {
+    ...mapGetters(["accountbook"]),
+  },
+
   data() {
     this.date = "";
     return {
@@ -140,7 +142,6 @@ export default {
       this.price = "-";
     },
     registAccountBook() {
-      console.log("가계부 등록");
       let err = true;
       let msg = "";
       err &&
@@ -169,23 +170,14 @@ export default {
         (err = false),
         this.$refs.contents.focus());
       if (!err) alert(msg);
-
-      http
-        .post("/accountbook", {
+      else
+        this.$store.dispatch("registaccount", {
           date: this.date,
           price: this.price,
           category: this.categorynum,
           used: this.used,
           contents: this.contents,
           user_id: this.user_id,
-        })
-        .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "등록이 완료되었습니다.";
-            this.$router.push("/accountbook");
-          }
-          alert(msg);
         });
     },
     eat() {

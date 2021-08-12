@@ -34,6 +34,6 @@ export default {
 
 <style scoped>
 #font {
-  font-family: CookieRunOTF-Bold;
+  font-family: "Noto Sans KR", sans-serif;
 }
 </style>

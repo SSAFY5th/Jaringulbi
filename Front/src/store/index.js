@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     accountbook: {},
+    accountbooks: {},
     login_id: {},
     password: {},
     show: false,
@@ -23,14 +24,17 @@ export default new Vuex.Store({
     accountbook(state) {
       return state.accountbook;
     },
+    accountbooks(state) {
+      return state.accountbooks;
+    },
     freeboard(state) {
       return state.freePostList;
     },
   },
 
   mutations: {
-    setAccountBook(state, payload) {
-      state.accountbook = payload;
+    setAccountBooks(state, payload) {
+      state.accountbooks = payload;
     },
 
     LOG_IN(state, payload) {
@@ -43,6 +47,9 @@ export default new Vuex.Store({
       state.user = {};
       state.show = false;
     },
+    REGIST_ACCOUNT(state, payload) {
+      state.accountbook = payload;
+    },
 
     setFreeboard(state, payload) {
       state.freePostList = payload;
@@ -50,6 +57,22 @@ export default new Vuex.Store({
   },
 
   actions: {
+    registaccount(context, { date, price, category, used, contents, user_id }) {
+      console.log("가계부 등록");
+
+      http
+        .post("/accountbook", {
+          date: date,
+          price: price,
+          category: category,
+          used: used,
+          contents: contents,
+          user_id: user_id,
+        })
+        .then(({ data }) => {
+          context.commit("REGIST_ACCOUNT", data);
+        });
+    },
     login(context, { login_id, password }) {
       console.log("로그인");
 
@@ -87,14 +110,15 @@ export default new Vuex.Store({
       console.log("로그아웃");
       context.commit("LOG_OUT");
     },
-    getAccountBook(context) {
+    getAccountBooks(context) {
       http
-        .get("/accountbook")
+        .get("/accountbook/list")
         .then(({ data }) => {
-          context.commit("setAccountBook", data);
+          console.log("리스트 :" + data);
+          context.commit("setAccountBooks", data);
         })
         .catch(() => {
-          alert("에러발생!");
+          alert("가계부 불러오기 실패");
         });
     },
     getFreePostList: function(context) {
