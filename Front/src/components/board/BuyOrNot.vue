@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     getBuynotPostList: function () {
-      http.get("board/")
+      http.get("buyornot/")
       .then(response => {
         console.log(response.data)
         this.buynotPostList = response.data
