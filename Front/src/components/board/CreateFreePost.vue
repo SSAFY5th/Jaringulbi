@@ -73,26 +73,31 @@ export default {
     return {
       title: "",
       contents: "",
-      user_id: "",
+      category: 1,
     };
   },
   methods: {
     onCreatePost: function () {
-      http
-        .post("/board", {
-          // category: this.category,
-          title: this.title,
-          contents: this.contents,
-          user_id: this.$store.state.user.nickname,
-        })
-        .then((response) => {
-          console.log(response.data);
-          // this.freePostList = response.data
-          this.$router.push({ name: "Board" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      let msg = "";
+      msg = "제목 또는 내용을 입력해주세요.";
+      if (this.title.length == 0 || this.contents.length == 0) alert(msg);
+      else
+        http
+          .post("board/", {
+            // category: this.category,
+            title: this.title,
+            contents: this.contents,
+            user_id: this.$store.state.user.id,
+            category: this.category,
+          })
+          .then((response) => {
+            console.log(response.data);
+            // this.freePostList = response.data
+            this.$router.push({ name: "Board" });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
     },
   },
 };

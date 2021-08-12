@@ -70,7 +70,11 @@ public class AccountBookController {
     public ResponseEntity<JsonObject>  monthAccountBook(@RequestParam String date, Model model, HttpSession session){
         UserDto userDto = (UserDto) session.getAttribute("userinfo");
         int user_id = userDto.getId();
-        int month = Integer.parseInt(date.substring(3, 5)); //월만 빼오기
+        System.out.println("가계부 출력");
+        System.out.println(user_id);
+        
+        int month = Integer.parseInt(date.substring(5, 7)); //월만 빼오기
+        System.out.println(month);
         Map<String, Object> result = new HashMap<String, Object>();
         List<Number> incomes = new LinkedList<>();
         List<Number> outgoings = new LinkedList<>();

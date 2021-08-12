@@ -24,22 +24,40 @@
             <div id="img-circle" class="d-inline-block">
               <img src="https://picsum.photos/48/48" alt="프로필사진">
             </div>      
-            <span class="d-inline-block ms-2">{{ user_id }}</span>
+            <span class="d-inline-block ms-2">{{ freeDetail.nickname }}</span>
             <!-- -->
           </div>
             
           <div class="d-inline-block">
             <span class="text-secondary">2시간</span>
-            <!-- {{ post.created_time }} -->
+            <!-- {{ created_time }} -->
+            <!-- 본인일때만 삭제 가능하게 바꾸기 -->
+            <b-dropdown size="sm" id="dropdown-right" right
+              v-if="$store.state.user.id === freeDetail.user_id" 
+              variant="link" class="p-0"
+              toggle-class="text-decoration-none"              
+              no-caret
+            >
+              <template #button-content>
+                <b-icon icon="three-dots-vertical" aria-hidden="true"
+                  class="text-secondary"></b-icon>
+              </template>
+              <b-dropdown-item @click="goUpdate">                
+                수정
+              </b-dropdown-item>
+              <b-dropdown-item @click="deletePost(freeDetail)">
+                삭제
+              </b-dropdown-item>
+            </b-dropdown>
           </div>      
         </div>
         <!-- 내용 -->
         <div>
           <div class="text-start mt-2">            
-            {{ title }}
+            {{ freeDetail.title }}
           </div>
           <div class="text-start my-2">
-            {{ contents }}
+            {{ freeDetail.contents }}  
           </div>
           <div class="mb-2">
             <!-- 이미지가 있다면 {{ post.image }}-->
@@ -50,11 +68,11 @@
           <div class="text-end text-secondary">
             <div class="d-inline-block me-3">
               <b-icon icon="heart-fill" aria-hidden="false" class="me-2"></b-icon>
-              <span>{{ upCount }}</span>
+              <span>{{ freeDetail.upCount }}</span>
             </div>
             <div class="d-inline-block">
               <b-icon icon="chat-left" aria-hidden="false"  class="me-2"></b-icon>
-              <span>{{ commentCount }}</span>
+              <span>{{ freeDetail.commentCount }}</span>
             </div>
           </div>
         </div>
@@ -72,10 +90,12 @@
       </div>
 
       <div class="comment-form">
-        <CreateComment />
+        <CreateComment
+          v-bind:id="freeDetail.id"
+          v-on:contents="getFreePostDetail"
+        />
+        <!-- {{ freeDetail.id }} -->
       </div>
-
-
     </div>    
   </div>
 </template>
@@ -96,43 +116,46 @@ export default {
   computed: {},
   data () {
     return {
-      title: '',
-      contents: '',
-      user_id: '',
-      upCount: '',
-      commentCount: '',
+      freeDetail: [],
+      created_time: {},
       commentList: [],
     };
   },
   methods: {
-    // getFreePostList: function () {
-    //   http.get("board/")
-    //   .then(response => {
-    //     console.log(response.data)
-    //     this.freePostList = response.data
-    //     // context.commit("setFreeboard", response.data);     
-    //   }).catch(err => {
-    //     console.log(err)
-    //   });
-    // },
-  },
-  created: function () {
-    const id = this.$route.params.id
-    http.get("board/" + id)
+    getFreePostDetail: function () {
+      const id = this.$route.params.id
+      http.get("board/" + id)
       .then(response => {
-        console.log(response.data)
-        this.title = response.data.title
-        this.contents = response.data.contents
-        this.user_id = response.data.user_id
-        this.commentCount = response.data.commentCount
-        this.upCount = response.data.upCount
+        this.freeDetail = response.data
+        // this.title = response.data.title
         this.commentList = response.data.comment
-        // this.user_id = this.$store.state.user.login_id
-        // context.commit("setFreeboard", response.data);     
+        this.created_time = response.data.created_time
+        // console.log(response.data)
+        // this.user_id = this.$store.state.user.login_id   
       }).catch(err => {
         console.log(err)
       });
-
+    },
+    goUpdate() {
+      const id = this.$route.params.id
+      this.$router.push("/board/" + id + "/update")
+    },
+    deletePost: function (freeDetail){
+      console.log(freeDetail.id)
+      const id = this.$route.params.id
+      http.delete("board/" + id, {
+        user_id: this.$store.state.user.id,
+      })
+      .then(() => {
+        this.$route.push({ name: 'Board' })
+        // this.user_id = this.$store.state.user.login_id   
+      }).catch(err => {
+        console.log(err)
+      });
+    }
+  },
+  created: function () {    
+    this.getFreePostDetail()
   }
 }
 </script>

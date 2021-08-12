@@ -30,26 +30,37 @@ import http from "@/util/http-common";
 
 export default {
   name: "CreateComment",
+  props: {
+    id: {
+      type: Number,
+    },
+  },
   components: {},
   data() {
     return {
-      commentItem: [],
+      contents: "",
     };
   },
+  created() {},
   methods: {
     createComment: function () {
+      // console.log(this.id)
+      // const post_id = this.id
+      // console.log(post_id)
       if (!this.$store.state.show) {
         this.$router.push({ name: "Login" });
       } else {
         http
           .post("comment/", {
-            comment: this.commentItem,
+            contents: this.contents,
+            post_id: this.id,
+            user_id: this.$store.state.user.id,
           })
           .then((response) => {
             console.log(response.data);
-            // console.log(commentItem)
-            // this.getChatList()
             this.contents = "";
+            // this.$router.go()
+            this.$emit("contents");
           })
           .catch((err) => {
             console.log(err);
@@ -60,5 +71,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.mint-btn {
+  background-color: #9be4e4;
+  color: #7a69e6;
+}
+.mint-btn:hover {
+  background-color: #9be4e4;
+  color: #fff;
+}
 </style>
