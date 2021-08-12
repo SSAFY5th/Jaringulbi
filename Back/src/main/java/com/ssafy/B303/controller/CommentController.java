@@ -34,10 +34,8 @@ public class CommentController {
     }
 
     @DeleteMapping("/comment/{id}")
-    public void deleteComment(@PathVariable int id, @RequestBody CommentDto comment) {
-        if (commentService.selectCommentById(id).getUser_id() == comment.getUser_id()) {
-            commentService.deleteComment(id);
-        }
+    public void deleteComment(@PathVariable int id) {
+        commentService.deleteComment(id);
         
     }
 }
