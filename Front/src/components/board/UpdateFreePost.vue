@@ -5,7 +5,9 @@
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div class="">
           <!-- <router-link :to="{ name: 'FreeboardDetail', params: { id: post.id }}" class="text-dark"> -->
-          <router-link :to="{ name: 'Board' }" class="text-dark">
+          <router-link
+          :to="{ name: 'FreeboardDetail', params: { id: PostContents.id }}"
+          class="text-dark">
             <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
           </router-link>
         </div>
@@ -32,7 +34,7 @@
           <input 
             type="text" class="form-control"
             placeholder="제목"
-            v-model="title"
+            v-model="PostContents.title"
           >
         </div>
         <br />
@@ -42,7 +44,7 @@
             cols="30" rows="20"
             class="form-control"
             placeholder="여기에 당신의 이야기를 써보세요"  
-            v-model="contents"
+            v-model="PostContents.contents"
           >
           </textarea>
         </div>
@@ -57,31 +59,41 @@ import http from "@/util/http-common";
 export default {
   name: "UpdateFreePost",
   data: function () {
-    return {
+    return {      
+      PostContents: [],
       title: '',
       contents: '',
       category: 1,
     }
   },
   methods: {
+    getPostContents: function () {
+      const id = this.$route.params.id
+      http.get("board/" + id)
+      .then(response => {
+        this.PostContents = response.data
+        // console.log(response.data)
+        // this.user_id = this.$store.state.user.login_id   
+      }).catch(err => {
+        console.log(err)
+      });
+    },
     onUpdatePost: function () {
       const id = this.$route.params.id
       let msg = ''
       msg = '제목 또는 내용을 입력해주세요.'
-      if (this.title.length == 0 || this.contents.length == 0)
+      if (this.PostContents.title.length == 0 || this.PostContents.contents.length == 0)
         alert(msg)
 
       else
-        http.put("board/" + id, {        
-          // category: this.category,
-          title: this.title,
-          contents: this.contents,
+        http.put("board/" + id, {
+          title: this.PostContents.title,
+          contents: this.PostContents.contents,
           user_id: this.$store.state.user.id,
           category: this.category,
         })
         .then(response => {
           console.log(response.data)
-          // this.freePostList = response.data
           this.$router.push({ name: 'FreeboardDetail', params: { id: id } })
         }).catch(err => {
           console.log(err)
@@ -89,7 +101,7 @@ export default {
     }
   },
   created: function () {
-
+    this.getPostContents()
   }
 }
 

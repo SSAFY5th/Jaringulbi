@@ -31,7 +31,7 @@
           <div class="d-inline-block">
             <span class="text-secondary">2시간</span>
             <!-- {{ created_time }} -->
-            <!-- 본인일때만 삭제 가능하게 바꾸기 -->
+            <!-- 본인일때만 삭제 가능함 -->
             <b-dropdown size="sm" id="dropdown-right" right
               v-if="$store.state.user.id === freeDetail.user_id" 
               variant="link" class="p-0"
@@ -42,7 +42,11 @@
                 <b-icon icon="three-dots-vertical" aria-hidden="true"
                   class="text-secondary"></b-icon>
               </template>
-              <b-dropdown-item @click="goUpdate">                
+              <b-dropdown-item
+                v-bind:title="freeDetail.title"
+                v-bind:contents="freeDetail.contents"
+                @click="goUpdate(freeDetail)"
+              >                
                 수정
               </b-dropdown-item>
               <b-dropdown-item @click="deletePost(freeDetail)">
@@ -83,6 +87,7 @@
           <li v-for="comment in commentList" :key="comment.id">
             <Comment 
               :comment="comment"
+              v-on:contents="getFreePostDetail"
             />
           </li>
         </ul>
@@ -130,7 +135,7 @@ export default {
         // this.title = response.data.title
         this.commentList = response.data.comment
         this.created_time = response.data.created_time
-        // console.log(response.data)
+        console.log(response.data)
         // this.user_id = this.$store.state.user.login_id   
       }).catch(err => {
         console.log(err)
@@ -143,9 +148,7 @@ export default {
     deletePost: function (freeDetail){
       console.log(freeDetail.id)
       const id = this.$route.params.id
-      http.delete("board/" + id, {
-        user_id: this.$store.state.user.id,
-      })
+      http.delete("board/" + id)
       .then(() => {
         this.$route.push({ name: 'Board' })
         // this.user_id = this.$store.state.user.login_id   
