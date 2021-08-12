@@ -159,15 +159,14 @@ textarea,
 #btn_group {
   background-color: #9be4e4;
   color: #9175f3;
-  border: 1px solid #9be4e4;
-  padding: 5px;
   width: 150px;
   margin-left: 14px;
   margin-top: 23px;
 }
 
 #btn_group:hover {
-  color: white;
-  background-color: skyblue;
+  color: #9be4e4;
+  background-color: #FFF;
+  border: 1px solid #9be4e4;
 }
 </style>

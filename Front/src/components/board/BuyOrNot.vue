@@ -24,10 +24,10 @@
 
       <!-- ///////////////////////////////////////////////////// -->
       <div class="text-start mt-2">
-        <!-- 오늘 완전 득템!! 제목제목 -->
+        <!-- 제목 -->
         {{ post.title }}
       </div>
-      <div class="text-start my-2">
+      <div class="text-start mt-1 mb-2">
         {{ post.contents }}
         
       </div>

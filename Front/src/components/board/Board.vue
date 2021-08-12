@@ -5,7 +5,27 @@
     <div id="board-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div>
-          <span>자유게시판 / 살까말까</span> 
+          <span>자유게시판</span>
+          <b-dropdown size="sm" 
+              variant="link" class="p-0" right
+              toggle-class="text-decoration-none"              
+              no-caret
+            >
+              <template #button-content>
+                <b-icon icon="chevron-down" aria-hidden="true"
+                  class="text-secondary"></b-icon>
+              </template>
+              <b-dropdown-item
+              >                
+                <!-- v-bind:title="freeDetail.title"
+                v-bind:contents="freeDetail.contents"
+                @click="goUpdate(freeDetail)" -->
+                자유게시판
+              </b-dropdown-item>
+              <b-dropdown-item @click="deletePost(freeDetail)">
+                살까말까 게시판
+              </b-dropdown-item>
+            </b-dropdown>
         </div> 
         <div>
           <Search />

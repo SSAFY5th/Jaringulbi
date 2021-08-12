@@ -100,6 +100,11 @@ export default {
           });
     },
   },
+  created () {
+    if (!this.$store.state.show) {
+      this.$router.push({ name: "Login" });      
+    }
+  }
 };
 </script>
 
