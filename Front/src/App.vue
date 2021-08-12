@@ -68,4 +68,13 @@ export default {
     border-radius: 24px;
     overflow: hidden;
   }
+
+  .mint-btn {
+    background-color: #9be4e4;
+    color: #7a69e6;
+  }
+  .mint-btn:hover {
+    background-color: #9be4e4;
+    color: #fff;
+  }
 </style>

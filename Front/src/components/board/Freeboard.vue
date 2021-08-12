@@ -7,7 +7,7 @@
         <div id="img-circle" class="d-inline-block">
           <img src="https://picsum.photos/48/48" alt="프로필사진">
         </div>      
-        <span class="d-inline-block ms-2">{{ post.user_id }}</span>
+        <span class="d-inline-block ms-2">{{ post.nickname }}</span>
         
       </div>
         
@@ -71,18 +71,16 @@ export default {
     getFreePostList: function () {
       http.get("board/")
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         this.freePostList = response.data
-        this.username = this.$store.state.user.login_id
-        // context.commit("setFreeboard", response.data);     
+        // this.username = this.$store.state.user.login_id
       }).catch(err => {
         console.log(err)
       });
     },
   },
-    // this.$store.dispatch("getFreePostList")
   created: function () {
-    this.getFreePostList()    
+    this.getFreePostList()
   }
 }
 </script>
