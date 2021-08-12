@@ -1,11 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import PageNotFound from "../components/error/PageNotFound.vue";
+import PageReady from "../components/error/PageReady.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
 import Board from "../components/board/Board.vue";
 import CreateFreePost from "../components/board/CreateFreePost.vue";
 import CreateBuyOrNot from "../components/board/CreateBuyOrNot.vue";
+import UpdateFreePost from "../components/board/UpdateFreePost.vue";
 import FreeboardDetail from "../components/board/FreeboardDetail.vue";
 import BuyOrNotDetail from "../components/board/BuyOrNotDetail.vue";
 import Challenge from "../components/challenge/Challenge.vue";
@@ -20,6 +23,20 @@ import MyChallenge from "../components/challenge/MyChallenge.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "*",
+    redirect: '/404'
+  },
+  {
+    path: "/404",
+    name: "PageNotFound",
+    component: PageNotFound,
+  },
+  {
+    path: "/ready",
+    name: "PageReady",
+    component: PageReady,
+  },
   {
     path: "/",
     name: "Home",
@@ -59,6 +76,11 @@ const routes = [
     path: "/board/create",
     name: "CreateFreePost",
     component: CreateFreePost,
+  },
+  {
+    path: "/board/:id/update",
+    name: "UpdateFreePost",
+    component: UpdateFreePost,
   },
   {
     path: "/board/:id",

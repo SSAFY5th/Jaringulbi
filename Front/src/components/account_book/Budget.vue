@@ -14,7 +14,7 @@
         </div>
         <div class="float2 mt-3">
           <div>수입 {{ impo }}원</div>
-          <div>수출 {{ expo }}원</div>
+          <div>지출 {{ expo }}원</div>
         </div>
       </div>
       <div class="mt-3">한 달 예산</div>

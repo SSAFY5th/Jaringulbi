@@ -8,7 +8,7 @@
       is-expanded
     >
       <template v-slot:day-content="{ day, attributes }">
-        <div id="font">
+        <div>
           <div class="cal">
             <span>{{ day.day }}</span>
             <div style="font-size: 1pt; margin-top: 30px">
@@ -35,20 +35,39 @@ export default {
   components: {
     Calendar,
   },
+  props: {
+    id: Number,
+    date: String,
+    price: Number,
+    category: Number,
+    used: String,
+    contents: String,
+    user_id: Number,
+  },
   data() {
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
+
     return {
       attributes: [
         {
-          key: 1,
+          key: this.id,
           customData: {
             expo: "1,000,000",
             impo: "1,000,000",
             total: "1,000,000",
           },
-          dates: new Date(year, month, 1),
+          dates: new Date(year, month, 3),
         },
+        // {
+        //   key: this.key,
+        //   customData: {
+        //     expo: "1,000,000",
+        //     impo: "1,000,000",
+        //     total: "1,000,000",
+        //   },
+        //   dates: new Date(year, month, 3),
+        // },
       ],
     };
   },

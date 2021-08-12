@@ -26,6 +26,7 @@
         INSERT INTO COMMENT (post_id, user_id, contents, commented_time)
             VALUES (#{post_id}, #{user_id}, #{contents}, NOW());
     </insert>
+    
     <update id="update" parameterType="CommentDto">
         UPDATE COMMENT
         SET contents = #{contents}
