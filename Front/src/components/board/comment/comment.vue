@@ -9,7 +9,7 @@
 
       <div class="ms-2 flex-fill">
         <div class="d-flex justify-content-between">
-          <span>{{ comment.user_id }}</span>
+          <span>{{ comment.nickname }}</span>
           
           <span class="text-secondary">1시간</span>
           <!-- {{ comment.commented_time }} -->

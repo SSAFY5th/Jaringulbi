@@ -4,6 +4,7 @@
     <div id="post-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div class="">
+          <!-- <router-link :to="{ name: 'FreeboardDetail', params: { id: post.id }}" class="text-dark"> -->
           <router-link :to="{ name: 'Board' }" class="text-dark">
             <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
           </router-link>
@@ -14,8 +15,8 @@
         <div class="d-flex">
           <a href="#"
             class="text-secondary text-decoration-none" 
-            @click="onCreatePost">
-            등록
+            @click="onUpdatePost">
+            수정
           </a>
         </div>
       </div>
@@ -43,18 +44,9 @@
             placeholder="여기에 당신의 이야기를 써보세요"  
             v-model="contents"
           >
-
           </textarea>
         </div>
-          <!-- <label for="tag">태그 입력 부분</label><br />
-          <input
-            type="text"
-            id="tag"
-            name="tag"
-            ref="tag"
-          /><br /> -->
-          <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>-->
-        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -63,7 +55,7 @@
 import http from "@/util/http-common";
 
 export default {
-  name: "CreateFreePost",
+  name: "UpdateFreePost",
   data: function () {
     return {
       title: '',
@@ -72,14 +64,15 @@ export default {
     }
   },
   methods: {
-    onCreatePost: function () {
+    onUpdatePost: function () {
+      const id = this.$route.params.id
       let msg = ''
       msg = '제목 또는 내용을 입력해주세요.'
       if (this.title.length == 0 || this.contents.length == 0)
         alert(msg)
 
       else
-        http.post("board/", {        
+        http.put("board/" + id, {        
           // category: this.category,
           title: this.title,
           contents: this.contents,
@@ -89,11 +82,14 @@ export default {
         .then(response => {
           console.log(response.data)
           // this.freePostList = response.data
-          this.$router.push({ name: 'Board' })
+          this.$router.push({ name: 'FreeboardDetail', params: { id: id } })
         }).catch(err => {
           console.log(err)
         });        
-      }
+    }
+  },
+  created: function () {
+
   }
 }
 
