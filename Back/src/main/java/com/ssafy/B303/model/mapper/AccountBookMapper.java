@@ -1,6 +1,8 @@
 package com.ssafy.B303.model.mapper;
 
 import com.ssafy.B303.model.dto.AccountBookDto;
+import com.ssafy.B303.model.dto.PostDto;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,4 +18,5 @@ public interface AccountBookMapper {
     int monthOutgoings(int month, int user_id) throws Exception;
     Integer dayIncomes(Map<String, Number> map) throws Exception;
     Integer dayOutgoings(Map<String, Number> map) throws Exception;
+    void setBudget(@Param("id")int id, @Param("budget")int budget);
 }

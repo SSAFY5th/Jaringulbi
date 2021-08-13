@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ssafy.B303.model.dto.AccountBookDto;
+import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,6 +160,27 @@ public class AccountBookController {
             e.printStackTrace();
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "budget")
+    public ResponseEntity setBudget(@RequestBody UserDto userDto){
+        try{
+            accountBookService.setBudget(userDto.getId(), userDto.getBudget());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "budget/{id}")
+    public ResponseEntity<JsonObject> getBudgetInfo(@PathVariable int id){
+        try{
+        //    accountBookService.getBudgetInfo(id);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
