@@ -55,4 +55,9 @@
         where month(date) = #{month} and day(date) = #{day} and 0 > price and user_id = #{user_id}
     </select>
 
+    <update id="setBudget" parameterType="Map">
+        update USER
+        set budget = #{budget}
+        where id = #{id}
+    </update>
 </mapper>
