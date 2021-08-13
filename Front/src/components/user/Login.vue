@@ -2,7 +2,7 @@
   <div class="row">
     <div>
       <b-container id="mainImage" class="top-login">
-        <div id="font" class="login-back">
+        <div class="login-back">
           <b-row>
             <div>
               <b-img
@@ -57,12 +57,12 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 export default {
   name: "bottom",
   computed: {
     //getter에 있는 userInfo 함수를 불러옵니다.
-    ...mapGetters(["userInfo"]),
+    // ...mapGetters(["userInfo"]),
   },
   data() {
     return {
@@ -95,9 +95,10 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-
-      if (this.$store.state.user.login_id !== undefined) {
+      console.log(this.$store.state.user.id);
+      if (this.$store.state.user.login_id != undefined) {
         console.log(this.$store.state.user.login_id + " " + "로그인성공");
+        alert("로그인 성공");
         this.$router.push("/");
       }
     },
@@ -105,10 +106,6 @@ export default {
 };
 </script>
 <style scoped>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
 .top {
   background-color: white;
   margin-top: 40px;
@@ -124,7 +121,7 @@ button {
 }
 
 .top-login {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .margin {

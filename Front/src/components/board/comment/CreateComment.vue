@@ -1,16 +1,26 @@
 <template>
-  <div style="width:100%;">
+  <div style="width: 100%">
     <div v-if="$store.state.show" class="input-group">
-      <input type="text" class="form-control" 
-      v-model="commentItem" @keyup.enter="createComment"
-      placeholder="이곳을 눌러 댓글을 남겨보세요.">
+      <input
+        type="text"
+        class="form-control"
+        v-model="commentItem"
+        @keyup.enter="createComment"
+        placeholder="이곳을 눌러 댓글을 남겨보세요."
+      />
       <button class="btn" @click="createComment" type="button">➤</button>
     </div>
     <div v-else class="input-group">
-      <input type="text" class="form-control" @click="createComment"
-      v-model="commentItem"
-      placeholder="대화를 시작하려면 로그인하세요!">
-      <button class="btn disabled" @click="createComment" type="button">➤</button>
+      <input
+        type="text"
+        class="form-control"
+        @click="createComment"
+        v-model="commentItem"
+        placeholder="대화를 시작하려면 로그인하세요!"
+      />
+      <button class="btn disabled" @click="createComment" type="button">
+        ➤
+      </button>
     </div>
   </div>
 </template>
@@ -20,37 +30,54 @@ import http from "@/util/http-common";
 
 export default {
   name: "CreateComment",
-  components: {    
+  props: {
+    id: {
+      type: Number,
+    },
   },
-  data () {
+  components: {},
+  data() {
     return {
-      commentItem: [],
-    }
+      contents: "",
+    };
   },
+  created() {},
   methods: {
     createComment: function () {
+      // console.log(this.id)
+      // const post_id = this.id
+      // console.log(post_id)
       if (!this.$store.state.show) {
-        this.$router.push({ name: 'Login' })
-      } 
-      else{        
-        http.post("comment/", {
-          comment: this.commentItem,
-        })          
-        .then(response => {
-          console.log(response.data)
-          // console.log(commentItem)
-          // this.getChatList()
-          this.contents = ''
-        })
-        .catch((err) => {
-          console.log(err)
-        })      
+        this.$router.push({ name: "Login" });
+      } else {
+        http
+          .post("comment/", {
+            contents: this.contents,
+            post_id: this.id,
+            user_id: this.$store.state.user.id,
+          })
+          .then((response) => {
+            console.log(response.data);
+            this.contents = "";
+            // this.$router.go()
+            this.$emit("contents");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
   },
-}
+};
 </script>
 
-<style>
-
+<style scoped>
+.mint-btn {
+  background-color: #9be4e4;
+  color: #7a69e6;
+}
+.mint-btn:hover {
+  background-color: #9be4e4;
+  color: #fff;
+}
 </style>

@@ -62,6 +62,8 @@ public class UserController {
 		try {
 			UserDto result = userService.login(map);
 			session.setAttribute("userinfo", result);
+			System.out.println("세션정보: " + session.getAttribute("userinfo"));
+			System.out.println(result.getId());
 			if (result != null) { // 성공
 				ObjectMapper objectMapper = new ObjectMapper();
 				// System.out.println(objectMapper.writeValueAsString(result));
@@ -81,7 +83,7 @@ public class UserController {
 	public ResponseEntity<String> update(@RequestBody UserDto userdto, @RequestParam Map<String, String> map,
 			Model model, HttpSession session) {
 		System.out.println("회원 수정");
-		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getPassword(),
+		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getNickname(),
 				userdto.getPhone());
 		try {
 			if (userDto != null) {
