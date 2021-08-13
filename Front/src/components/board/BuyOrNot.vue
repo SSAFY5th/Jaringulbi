@@ -7,45 +7,57 @@
           <div id="img-circle" class="d-inline-block">
             <img src="https://picsum.photos/48/48" alt="프로필사진">
           </div>      
-          <span class="d-inline-block ms-2">{{ post.user_id }}</span>          
-        </div>
-          
+          <span class="d-inline-block ms-2" id="post-username">
+            {{ post.nickname }}
+          </span>          
+        </div>          
         <div class="d-inline-block">
-          <span class="text-secondary">2시간</span>
+          <span id="post-time">2시간</span>
           <!-- {{ post.created_time }} -->
         </div>      
       </div>
 
       <!-- 글 -->
       <router-link
-        :to="{ name: 'FreeboardDetail', params: { id: post.id }}"
+        :to="{ name: 'BuyOrNotDetail', params: { id: post.id }}"
         class="text-decoration-none text-dark m-0 p-0"
-      >          
-
+      > 
       <!-- ///////////////////////////////////////////////////// -->
-      <div class="text-start mt-2">
-        <!-- 제목 -->
-        {{ post.title }}
-      </div>
-      <div class="text-start mt-1 mb-2">
-        {{ post.contents }}
-        
-      </div>
-      <div class="mb-2">
-        <!-- 이미지가 있다면 {{ post.image }}-->
-        <img src="https://picsum.photos/392/180" alt="프로필사진">
-      </div>
+        <div class="my-2" id="receipt-wrap">
+          <p id="post-title" class="mt-3">RECEIPT</p>
+          <hr class="mx-2">
+          <div class="text-start ms-3" id="post-title">
+            <!-- 제목 -->
+            {{ post.title }}
+          </div>
+          <div class="text-start mt-1 ms-3" id="post-content">
+            {{ post.contents }}        
+          </div>
+          <hr class="mx-2">
+          <div class="text-start ms-3 mb-3">
+            <span id="post-content">Total.</span>
+            <span id="post-title"> {{ post.price }} 원</span>
+          </div>
+          <div>
+            <!-- 이미지가 있다면 {{ post.image }}-->
+            <img src="https://picsum.photos/392/180" alt="이미지">
+          </div>
+        </div>
     </router-link>
 
     <!-- 좋아요, 리플 수 -->
-    <div class="text-end text-secondary">
+    <div class="text-end" id="post-upcount">
       <div class="d-inline-block me-3">
-        <b-icon icon="heart-fill" aria-hidden="false" class="me-2"></b-icon>
+        <b-icon icon="hand-thumbs-up" aria-hidden="false" class="me-2"></b-icon>
         <span>{{ post.upCount }}</span>
       </div>
+      <div class="d-inline-block me-3">
+        <b-icon icon="hand-thumbs-down" aria-hidden="false" class="me-2"></b-icon>
+        <span>{{ post.downCount }}</span>
+      </div>
       <div class="d-inline-block">
-        <b-icon icon="chat-left" aria-hidden="false"  class="me-2"></b-icon>
-        <span>3</span>
+        <b-icon icon="chat-left" aria-hidden="false" class="me-2"></b-icon>
+        <span>{{ post.commentCount }}</span>
       </div>
     </div>
   </div> 
@@ -60,7 +72,6 @@ export default {
   name: "BuyOrNot",
   components: {
   },
-  computed: {},
   data () {
     return {
       buynotPostList: [],
@@ -73,13 +84,15 @@ export default {
       .then(response => {
         console.log(response.data)
         this.buynotPostList = response.data
-        this.username = this.$store.state.user.login_id
-        // context.commit("setFreeboard", response.data);     
+        // this.username = this.$store.state.user.login_id
       }).catch(err => {
         console.log(err)
       });
     },
   },
+  created: function () {
+    this.getBuynotPostList()
+  }
 }
 </script>
 
@@ -89,5 +102,10 @@ export default {
     padding: 10px 14px 12px 14px;
     border-bottom: solid 1px #eee;
     color: #444;
+  }
+  
+  #receipt-wrap {
+    border: solid 1px #ccc;
+    overflow: hidden;
   }
 </style>

@@ -5,7 +5,7 @@
     <div id="board-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div>
-          <span>자유게시판</span>
+          <span>카테고리</span>
           <b-dropdown size="sm" 
               variant="link" class="p-0" right
               toggle-class="text-decoration-none"              
@@ -16,13 +16,12 @@
                   class="text-secondary"></b-icon>
               </template>
               <b-dropdown-item
-              >                
-                <!-- v-bind:title="freeDetail.title"
-                v-bind:contents="freeDetail.contents"
-                @click="goUpdate(freeDetail)" -->
+              >               
+              <!-- @click="onFreeboard()"  -->
+                <!-- v-bind:title="freeDetail.title" -->
                 자유게시판
               </b-dropdown-item>
-              <b-dropdown-item @click="deletePost(freeDetail)">
+              <b-dropdown-item @click="onBuyOrNot()">
                 살까말까 게시판
               </b-dropdown-item>
             </b-dropdown>
@@ -43,10 +42,11 @@
           <span>+</span>
         </div>
       </router-link>
-      <div>
+      <div v-show="!onBuyOrNotClicked">
         <Freeboard />
       </div>
-      <div>
+      <div v-show="onBuyOrNotClicked">
+        <!--  && !onFreeboardClicked -->
         <BuyOrNot />
       </div>
     </div>    
@@ -68,9 +68,19 @@ export default {
   computed: {},
   data () {
     return {
+      category: '자유게시판',
+      onBuyOrNotClicked: false,
+      onFreeboardClicked: false,
     };
   },
-  methods: {},
+  methods: {
+    onBuyOrNot() {
+      this.onBuyOrNotClicked = !this.onBuyOrNotClicked
+    },
+    onFreeboard() {
+      this.onFreeboardClicked = !this.onFreeboardClicked
+    }
+  },
 }
 </script>
 

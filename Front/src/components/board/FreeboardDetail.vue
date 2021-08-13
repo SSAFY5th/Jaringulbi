@@ -120,7 +120,6 @@ export default {
     Comment,
     CreateComment
   },
-  computed: {},
   data () {
     return {
       freeDetail: [],

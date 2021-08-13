@@ -80,7 +80,8 @@ export default {
     onCreatePost: function () {
       let msg = "";
       msg = "제목 또는 내용을 입력해주세요.";
-      if (this.title.length == 0 || this.contents.length == 0) alert(msg);
+      if (this.title.length == 0 || this.contents.length == 0)
+        alert(msg);
       else
         http
           .post("board/", {

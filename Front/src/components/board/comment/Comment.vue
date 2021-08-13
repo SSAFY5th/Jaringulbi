@@ -81,7 +81,6 @@ export default {
       this.onUpdateCommentClicked = !this.onUpdateCommentClicked
     },
     updateComment: function (comment) {
-      // const id = this.$route.params.id
       let msg = ''
       msg = '내용을 입력해주세요.'
       if (this.comment.contents.length == 0)
@@ -102,16 +101,11 @@ export default {
         });        
     },
     deleteComment: function (comment){
-      console.log(comment.id)
-      console.log(this.$store.state.user.id)
-      // const id = this.$route.params.id
-      // const id = comment.id
-        // user_id: this.$store.state.user.id,        
+      // user_id: this.$store.state.user.id,        
       http.delete("comment/" + comment.id)
       .then(() => {
         // this.$router.go()
         this.$emit('contents')
-        // this.$route.push({ name: 'Board' })
       }).catch(err => {
         console.log(err)
       });      

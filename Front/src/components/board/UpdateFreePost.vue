@@ -92,8 +92,8 @@ export default {
           user_id: this.$store.state.user.id,
           category: this.category,
         })
-        .then(response => {
-          console.log(response.data)
+        .then(() => {
+          // console.log(response.data)
           this.$router.push({ name: 'FreeboardDetail', params: { id: id } })
         }).catch(err => {
           console.log(err)

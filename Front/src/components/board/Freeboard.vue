@@ -7,10 +7,10 @@
         <div id="img-circle" class="d-inline-block">
           <img src="https://picsum.photos/48/48" alt="프로필사진">
         </div>      
-        <span class="d-inline-block ms-2" id="post-username">{{ post.nickname }}</span>
-        
-      </div>
-        
+        <span class="d-inline-block ms-2" id="post-username">
+          {{ post.nickname }}
+        </span>        
+      </div>        
       <div class="d-inline-block">
         <span id="post-time">2시간</span>
         <!-- {{ post.created_time }} -->
@@ -42,7 +42,7 @@
         <span>{{ post.upCount }}</span>
       </div>
       <div class="d-inline-block">
-        <b-icon icon="chat-left" aria-hidden="false"  class="me-2"></b-icon>
+        <b-icon icon="chat-left" aria-hidden="false" class="me-2"></b-icon>
         <span>{{ post.commentCount }}</span>
       </div>
     </div>
@@ -57,7 +57,6 @@ export default {
   name: "Freeboard",
   components: {
   },
-  computed: {},
   data () {
     return {
       freePostList: [],
