@@ -69,13 +69,14 @@ public class UserController {
 				// System.out.println(objectMapper.writeValueAsString(result));
 				String str = objectMapper.writeValueAsString(result);
 				System.out.println(str);
+				System.out.println("로그인성공");
 				return new ResponseEntity<String>(str, HttpStatus.OK);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			System.out.println("로그인 실패");
 			model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
 		}
-		System.out.println("로그인성공");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

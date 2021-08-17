@@ -4,19 +4,21 @@
       <input
         type="text"
         class="form-control"
-        v-model="commentItem"
+        v-model="contents"
         @keyup.enter="createComment"
         placeholder="이곳을 눌러 댓글을 남겨보세요."
       />
-      <button class="btn" @click="createComment" type="button">➤</button>
+      <button class="btn mint-btn" @click="createComment" type="button">
+        ➤
+      </button>
     </div>
     <div v-else class="input-group">
       <input
         type="text"
         class="form-control"
         @click="createComment"
-        v-model="commentItem"
-        placeholder="대화를 시작하려면 로그인하세요!"
+        v-model="contents"
+        placeholder="로그인하여 댓글을 남겨보세요."
       />
       <button class="btn disabled" @click="createComment" type="button">
         ➤
@@ -44,12 +46,13 @@ export default {
   created() {},
   methods: {
     createComment: function () {
-      // console.log(this.id)
-      // const post_id = this.id
-      // console.log(post_id)
+      let msg = "";
+      msg = "내용을 입력해주세요.";
+
       if (!this.$store.state.show) {
         this.$router.push({ name: "Login" });
-      } else {
+      } else if (this.contents.length == 0) alert(msg);
+      else {
         http
           .post("comment/", {
             contents: this.contents,

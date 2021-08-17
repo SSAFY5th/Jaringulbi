@@ -7,7 +7,7 @@
           style="
             background-color: #9be4e4;
             color: #9175f3;
-            border: 1px solid #9be4e4;
+            border: 1px solid #9175f3;
           "
           size="lg"
           @click="go"

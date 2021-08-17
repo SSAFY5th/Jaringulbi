@@ -6,10 +6,9 @@
 
 <script>
 export default {
-  name: 'PageReady',
-}
+  name: "PageReady",
+};
 </script>
 
 <style>
-
 </style>
