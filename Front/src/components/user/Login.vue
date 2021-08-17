@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" id="login">
     <div>
       <b-container id="mainImage" class="top-login">
         <div class="login-back">
@@ -154,7 +154,7 @@ textarea,
 #btn_group {
   background-color: #9be4e4;
   color: #9175f3;
-  border: 1px solid #9be4e4;
+  border: 1px solid #9175f3;
   padding: 5px;
   width: 150px;
   margin-left: 14px;

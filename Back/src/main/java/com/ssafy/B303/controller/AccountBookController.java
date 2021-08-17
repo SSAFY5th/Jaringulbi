@@ -55,7 +55,7 @@ public class AccountBookController {
                 tempAccountBookDto.getCategory(),
                 tempAccountBookDto.getUsed(),
                 tempAccountBookDto.getContents(),
-                tempAccountBookDto.getUser_id());    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+                1);    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
  
         try{
             accountBookService.insertAccountBook(accountBookDto);
@@ -68,22 +68,21 @@ public class AccountBookController {
 
     @GetMapping
     public ResponseEntity<JsonObject>  monthAccountBook(@RequestParam String date, Model model, HttpSession session){
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
-        System.out.println("가계부 출력");
+    	System.out.println("가계부 출력");
+        int user_id = 1;
         System.out.println(user_id);
         
-        int month = Integer.parseInt(date.substring(5, 7)); //월만 빼오기
-        System.out.println(month);
+        int month = Integer.parseInt(date.substring(5, 7)) ; //월만 빼오기
+        	System.out.println(month);
         Map<String, Object> result = new HashMap<String, Object>();
         List<Number> incomes = new LinkedList<>();
         List<Number> outgoings = new LinkedList<>();
         int monthIncomes = 0, monthOutgoings = 0, monthSum = 0;
         try {
-            monthIncomes = accountBookService.monthIncomes(month, user_id);
-            monthOutgoings = accountBookService.monthOutgoings(month, user_id);
-            incomes = accountBookService.dayIncomes(month, user_id);
-            outgoings = accountBookService.dayOutgoings(month, user_id);
+        		monthIncomes = accountBookService.monthIncomes(month, user_id);
+        		monthOutgoings = accountBookService.monthOutgoings(month, user_id);
+        		incomes = accountBookService.dayIncomes(month, user_id);
+        		outgoings = accountBookService.dayOutgoings(month, user_id);			
         } catch (Exception e){
             e.printStackTrace();
         }

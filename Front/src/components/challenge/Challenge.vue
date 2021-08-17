@@ -7,8 +7,14 @@
       <ChallengeList
         v-for="(challenge, index) in challenges"
         :key="index"
-        :image="challenge.image"
+        :id="challenge.id"
+        :start_date="challenge.start_date"
+        :end_date="challenge.end_date"
         :contents="challenge.contents"
+        :entry_fee="challenge.entry_fee"
+        :reward="challenge.reward"
+        :image="challenge.image"
+        :description:="challenge.description"
       ></ChallengeList>
     </div>
   </div>

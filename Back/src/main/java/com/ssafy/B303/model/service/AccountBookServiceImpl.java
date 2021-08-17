@@ -59,12 +59,12 @@ public class AccountBookServiceImpl implements AccountBookService{
     }
 
     @Override
-    public int monthIncomes(int month, int user_id) throws Exception {
+    public Integer monthIncomes(int month, int user_id) throws Exception {
         return sqlSession.getMapper(AccountBookMapper.class).monthIncomes(month, user_id);
     }
 
     @Override
-    public int monthOutgoings(int month, int user_id) throws Exception {
+    public Integer monthOutgoings(int month, int user_id) throws Exception {
         return sqlSession.getMapper(AccountBookMapper.class).monthOutgoings(month, user_id);
     }
 

@@ -35,24 +35,24 @@
     <select id="monthIncomes" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and price > 0 and user_id = #{user_id}
+        where month(date) = #{month} and price >= 0 and user_id = #{user_id}
     </select>
 
     <select id="monthOutgoings" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and 0 > price and user_id = #{user_id}
+        where month(date) = #{month} and 0 >= price and user_id = #{user_id}
     </select>
 
     <select id="dayIncomes" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and day(date) = #{day} and price > 0 and user_id = #{user_id}
+        where month(date) = #{month} and day(date) = #{day} and price >= 0 and user_id = #{user_id}
     </select>
     <select id="dayOutgoings" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and day(date) = #{day} and 0 > price and user_id = #{user_id}
+        where month(date) = #{month} and day(date) = #{day} and 0 >= price and user_id = #{user_id}
     </select>
 
 </mapper>

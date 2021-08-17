@@ -1,26 +1,37 @@
 <template>
-  <tiny-slider :mouse-drag="true" :loop="false" items="2" gutter="20">
-    <div>Slider item #1</div>
-    <div>Slider item #2</div>
-    <div>Slider item #3</div>
-    <div>Slider item #4</div>
-    <div>Slider item #5</div>
-    <div>Slider item #6</div>
-  </tiny-slider>
+  <div>
+    <div id="components-demo">
+      <button-counter></button-counter>
+    </div>
+  </div>
 </template>
 
 <script>
-import VueTinySlider from "vue-tiny-slider";
-export default {
-  components: {
-    "tiny-slider": VueTinySlider,
+import Vue from "vue";
+
+const app = Vue.createApp({});
+
+// button-counter라는 새로운 전역 컴포넌트 정의
+app.component("button-counter", {
+  data() {
+    return {
+      count: 0,
+    };
   },
+  template: `
+    <button>
+      You clicked me {{ count }} times.
+    </button>`,
+});
+export default {
+  components: {},
   data() {
     return {
       slide: 0,
       sliding: null,
     };
   },
+
   methods: {
     onSlideStart() {
       this.sliding = true;
@@ -31,7 +42,7 @@ export default {
   },
 };
 </script>
-<style>
+<style >
 .margin {
   margin: 15px;
 }
