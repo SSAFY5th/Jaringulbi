@@ -9,9 +9,6 @@
         <b-button class="btn" title="예산" @click="budget">
           <div>예산</div>
         </b-button>
-        <b-button class="btn" title="통계" @click="graph">
-          <div>통계</div>
-        </b-button>
       </b-button-group>
     </div>
   </div>
@@ -50,5 +47,6 @@ export default {
   background-color: #9be4e4;
   color: #9175f3;
   border: 1px solid #9be4e4;
+  border-bottom-color: #9175f3;
 }
 </style>

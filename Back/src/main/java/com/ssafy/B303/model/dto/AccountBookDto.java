@@ -29,7 +29,7 @@ public class AccountBookDto {
 
     public AccountBookDto(){};
 
-    public AccountBookDto(int id, String date, int price, int category, String used, String contents, int user_id) {
+    public AccountBookDto(int id,String date, int price, int category, String used, String contents, int user_id) {
         this.id = id;
         this.date = date;
         this.price = price;

@@ -1,7 +1,6 @@
 package com.ssafy.B303.model.service;
 
 import com.ssafy.B303.model.dto.AccountBookDto;
-
 import com.ssafy.B303.model.mapper.AccountBookMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -35,7 +34,6 @@ public class AccountBookServiceImpl implements AccountBookService{
         map.put("month", month);
         map.put("user_id", user_id);
 
-
         return sqlSession.getMapper(AccountBookMapper.class).selectMonth(map);
     }
 
@@ -59,12 +57,12 @@ public class AccountBookServiceImpl implements AccountBookService{
     }
 
     @Override
-    public int monthIncomes(int month, int user_id) throws Exception {
+    public Integer monthIncomes(int month, int user_id) throws Exception {
         return sqlSession.getMapper(AccountBookMapper.class).monthIncomes(month, user_id);
     }
 
     @Override
-    public int monthOutgoings(int month, int user_id) throws Exception {
+    public Integer monthOutgoings(int month, int user_id) throws Exception {
         return sqlSession.getMapper(AccountBookMapper.class).monthOutgoings(month, user_id);
     }
 
@@ -94,6 +92,11 @@ public class AccountBookServiceImpl implements AccountBookService{
             outgoings.add(sqlSession.getMapper(AccountBookMapper.class).dayOutgoings(map));
         }
         return outgoings;
+    }
+
+    @Override
+    public void setBudget(int id, int budget) {
+        sqlSession.getMapper(AccountBookMapper.class).setBudget(id ,budget);
     }
 
 

@@ -1,25 +1,30 @@
 
 <template>
-  <div id="font" class="row">
+  <div class="row">
     <div><acheader></acheader></div>
     <hr />
-    <div>
+    <div style="margin-top: 6px">
       <div>
         <div class="float">수입</div>
         <div class="float">지출</div>
         <div class="float">합계</div>
-        <div class="float">자산</div>
       </div>
       <div>
-        <div class="float">{{ impo }}원</div>
-        <div class="float">{{ expo }}원</div>
-        <div class="float">{{ total }}원</div>
-        <div class="float">{{ asset }}원</div>
+        <div class="float" style="color: #86b2fa; font-weight: bold">
+          {{ this.$store.state.accountbooks.monthIncomes | makeComma }}원
+        </div>
+        <div class="float" style="color: #f08d73; font-weight: bold">
+          {{ this.$store.state.accountbooks.monthOutgoings | makeComma }}원
+        </div>
+        <div class="float" style="font-weight: bold">
+          {{ this.$store.state.accountbooks.monthSum | makeComma }}원
+        </div>
       </div>
     </div>
     <div>
-      <calendar> </calendar>
+      <calendar></calendar>
     </div>
+
     <div>
       <router-link :to="`/registaccount`"
         ><b-button
@@ -34,7 +39,14 @@
 <script>
 import Acheader from "@/layout/AC_Header.vue";
 import Calendar from "@/components/account_book/account_components/Calendar.vue";
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
+var month = new Date().getMonth() + 1;
+if (month < 10) month = "0" + month;
+const year = new Date().getFullYear();
+const day = new Date().getDate();
+
+const full = year + "-" + month + "-" + day;
+console.log(year + "-" + month + "-" + day);
 
 export default {
   name: "",
@@ -43,10 +55,11 @@ export default {
     Calendar,
   },
   computed: {
-    // ...mapGetters(["accountbooks"]),
+    ...mapGetters(["accountbooks"]),
   },
   created() {
-    // this.$store.dispatch("getAccountBooks");
+    // console.log(full);
+    this.$store.dispatch("getAccountBooks", { full: full });
   },
 
   data() {
@@ -58,11 +71,7 @@ export default {
     // console.log(year);
     // console.log(day1);
     return {
-      impo: "",
-      expo: "",
-      total: "",
       asset: "",
-      date: new Date(),
     };
   },
   methods: {},
@@ -71,10 +80,7 @@ export default {
 <style scoped>
 .float {
   display: inline-block;
-  width: 25%;
-}
-#font {
-  font-family: CookieRunOTF-Bold;
+  width: 33%;
 }
 
 #registbtn {

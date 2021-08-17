@@ -2,75 +2,113 @@
   <div>
     <div><acheader></acheader></div>
 
-    <div style="text-align: left; margin: 20px">
+    <div id="top_btn">
       <div class="top">
-        <div class="float1">
-          <h5>
-            <div>
-              <b-button class="btn1" size="sm">←</b-button
-              >{{ month }}월<b-button size="sm" class="btn1">→</b-button>
-            </div>
-          </h5>
-        </div>
+        <h5 class="float1" style="text-align: center">{{ month }}월</h5>
         <div class="float2 mt-3">
-          <div>수입 {{ impo }}원</div>
-          <div>지출 {{ expo }}원</div>
+          <div>수입 {{ impo | makeComma }}원</div>
+          <div>지출 {{ expo | makeComma }}원</div>
         </div>
       </div>
-      <div class="mt-3">한 달 예산</div>
-      <div class="mt-3">
-        <h2>{{ budget }}원 남음</h2>
+      <div>이번 달 목표 예산</div>
+      <div>
+        <h2>{{ realbudget | makeComma }}원</h2>
       </div>
-      <div class="mt-3">하루 예산 {{ daybudget }}원</div>
-      <div>총 예상 지출 {{ dayimpo }}원</div>
-      <div class="mt-5">
-        <h5>권장 60%</h5>
-        <b-progress :max="max">
-          <b-progress-bar
-            :value="value"
-            :label="`${((value / max) * 100).toFixed(2)}%`"
-          ></b-progress-bar>
-        </b-progress>
+      <div>남은 예산</div>
+      <div>
+        <h2>{{ budget | makeComma }}원</h2>
+      </div>
+      <div></div>
+      <br />
+
+      <div>
+        <img
+          alt="Vue logo"
+          :src="imgLink"
+          style="width: 350px; height: 300px"
+          class="margin"
+        />
+
+        <div>
+          <h1>{{ contents }}</h1>
+        </div>
       </div>
       <div>
-        총 예산<span>{{ budget }}</span>
-      </div>
-      <div>
-        오늘까지 권장 지출<span>{{ recommend }}</span>
-      </div>
-      <div class="mt-5">
-        <b-button id="btn_group">카테고리별 예산 설정</b-button>
+        <b-button v-b-modal.modal-center id="btn_group"
+          >이번 달 예산 설정</b-button
+        >
+        <b-modal
+          id="modal-center"
+          @ok="registbudget"
+          centered
+          title="예산 등록"
+        >
+          <h5>금액을 입력해주세요</h5>
+          <p class="my-4">
+            <input v-model.lazy="budget" />
+          </p>
+        </b-modal>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Acheader from "@/layout/AC_Header.vue";
+// import save from "@/assets/save.png";
+// import good from "@/assets/good.png"
 
-//// import { mapGetters } from "vuex";
+var month = new Date().getMonth() + 1;
+
+import { mapGetters } from "vuex";
 export default {
   components: {
     Acheader,
   },
   name: "",
-  computed: {},
+  computed: { ...mapGetters(["budget", "realbudget"]) },
   data() {
+    var budget =
+      Number(this.$store.state.budget) +
+      Number(this.$store.state.accountbooks.monthOutgoings);
+    var contents = "";
+    var imgLink = "";
+    //이번달 예산 남은거가 설정해놓은 예산보다 작을경우
+    console.log(Number(this.$store.state.budget));
+    console.log(Number(this.$store.state.realbudget));
+    if (budget >= 0) {
+      contents = "아직까진 넉넉해요 ! ";
+      imgLink = require("@/assets/good.png");
+    }
+    if (budget < 0) {
+      contents = "예산 초과했어요 ㅠ_ㅠ";
+      imgLink = require("@/assets/save.png");
+    }
+
+    console.log(contents);
     return {
-      month: "7",
-      impo: "5000",
-      expo: "5000",
-      budget: "500,000",
-      daybudget: "50,000",
-      recommend: "",
-      dayimpo: "0",
-      value: 50,
-      max: 100,
+      month: month,
+      impo: this.$store.state.accountbooks.monthIncomes,
+      expo: this.$store.state.accountbooks.monthOutgoings,
+      budget: budget,
+      contents: contents,
+      realbudget: this.$store.state.realbudget,
+      imgLink: imgLink,
     };
   },
-  methods: {},
+  methods: {
+    registbudget() {
+      this.$store.dispatch("getBudget", this.budget);
+      this.$router.go();
+    },
+  },
 };
 </script>
 <style scoped>
+#top_btn {
+  text-align: left;
+  margin: 20px;
+}
+
 .btn1 {
   background-color: rgba(0, 0, 0, 0);
   border-color: rgba(0, 0, 0, 0);
@@ -78,17 +116,27 @@ export default {
 }
 .top {
   background-color: #9be4e4;
-  color: white;
-
+  color: #9175f3;
   border-radius: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .float1 {
   display: inline-block;
-  width: 30%;
+  width: 40%;
 }
 .float2 {
   display: inline-block;
   width: 60%;
+}
+
+#btn_group {
+  background-color: #9be4e4;
+  color: #9175f3;
+  border: 1px solid #9be4e4;
+  padding: 5px;
+  width: 330px;
+  margin: 20px;
 }
 </style>

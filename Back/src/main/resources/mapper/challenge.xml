@@ -53,4 +53,10 @@
         delete from REVIEW
         where id=#{id}
     </delete>
+
+    <select id="relatedPost" parameterType="int" resultType="PostDto">
+        select *
+        from POST
+        where challenge_id = #{challenge_id}
+    </select>
 </mapper>

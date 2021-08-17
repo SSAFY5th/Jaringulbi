@@ -33,7 +33,4 @@ export default {
 </script>
 
 <style scoped>
-#font {
-  font-family: "Noto Sans KR", sans-serif;
-}
 </style>

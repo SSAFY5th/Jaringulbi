@@ -1,9 +1,6 @@
 package com.ssafy.B303.model.mapper;
 
-import com.ssafy.B303.model.dto.ChallengeDto;
-import com.ssafy.B303.model.dto.ChallengeReviewDto;
-import com.ssafy.B303.model.dto.EnterChallengeVo;
-import com.ssafy.B303.model.dto.UserChallengeDto;
+import com.ssafy.B303.model.dto.*;
 
 import java.util.List;
 
@@ -19,4 +16,5 @@ public interface ChallengeMapper {
     void updateChallengeReview(ChallengeReviewDto challengeReviewDto);
 
     void deleteChallengeReview(ChallengeReviewDto challengeReviewDto);
+    List<PostDto> relatedPost(int id) throws Exception;
 }
