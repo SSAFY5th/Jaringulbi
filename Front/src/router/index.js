@@ -6,9 +6,11 @@ import PageReady from "../components/error/PageReady.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
 import Board from "../components/board/Board.vue";
+import BuyOrNot from "../components/board/BuyOrNot.vue";
 import CreateFreePost from "../components/board/CreateFreePost.vue";
 import CreateBuyOrNot from "../components/board/CreateBuyOrNot.vue";
 import UpdateFreePost from "../components/board/UpdateFreePost.vue";
+import UpdateBuyOrNot from "../components/board/UpdateBuyOrNot.vue";
 import FreeboardDetail from "../components/board/FreeboardDetail.vue";
 import BuyOrNotDetail from "../components/board/BuyOrNotDetail.vue";
 import Challenge from "../components/challenge/Challenge.vue";
@@ -73,6 +75,11 @@ const routes = [
     component: Board,
   },
   {
+    path: "/buyornot",
+    name: "BuyOrNot",
+    component: BuyOrNot,
+  },
+  {
     path: "/board/create",
     name: "CreateFreePost",
     component: CreateFreePost,
@@ -93,6 +100,11 @@ const routes = [
     component: CreateBuyOrNot,
   },
   {
+    path: "/buyornot/:id/update",
+    name: "UpdateBuyOrNot",
+    component: UpdateBuyOrNot,
+  },
+  {
     path: "/buyornot/:id",
     name: "BuyOrNotDetail",
     component: BuyOrNotDetail,
@@ -106,11 +118,6 @@ const routes = [
     path: "/mychallenge",
     name: "MyChallenge",
     component: MyChallenge,
-  },
-  {
-    path: "/mypage",
-    name: "Mypage",
-    component: Mypage,
   },
   {
     path: "/sora",
