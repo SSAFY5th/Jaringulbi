@@ -5,7 +5,23 @@
     <div id="board-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div>
-          <span>자유게시판 / 살까말까</span> 
+          <span>카테고리</span>
+          <b-dropdown size="sm" 
+              variant="link" class="p-0" right
+              toggle-class="text-decoration-none"              
+              no-caret
+            >
+              <template #button-content>
+                <b-icon icon="chevron-down" aria-hidden="true"
+                  class="text-secondary"></b-icon>
+              </template>
+              <b-dropdown-item>               
+                자유게시판
+              </b-dropdown-item>
+              <b-dropdown-item @click="goBuyOrNot">
+                살까말까 게시판
+              </b-dropdown-item>
+            </b-dropdown>
         </div> 
         <div>
           <Search />
@@ -17,18 +33,15 @@
     <!-- 위에 카테고리 분류(board_category)로 v-if 등으로 카테고리 처리해서 보여주기 -->
     <div class="main-content">
       <!-- 무한 스크롤 구현 -->
-      <!-- 글 작성 버튼 -->
-      <router-link :to="{ name: 'CreateFreePost' }">
-        <div id="write-btn" class="">
-          <span>+</span>
-        </div>
-      </router-link>
       <div>
+        <!-- 글 작성 버튼 -->
+        <router-link :to="{ name: 'CreateFreePost' }">
+          <div id="write-btn" class="">
+            <span>+</span>
+          </div>
+        </router-link>
         <Freeboard />
-      </div>
-      <div>
-        <BuyOrNot />
-      </div>
+      </div>      
     </div>    
   </div>  
 </template>
@@ -36,21 +49,24 @@
 <script>
 import Search from "@/layout/Search.vue";
 import Freeboard from "@/components/board/Freeboard.vue";
-import BuyOrNot from "@/components/board/BuyOrNot.vue";
 
 export default {
   name: "Board",
   components: {
     Search,
     Freeboard,
-    BuyOrNot,
   },
   computed: {},
   data () {
     return {
+      category: '자유게시판',
     };
   },
-  methods: {},
+  methods: {
+    goBuyOrNot() {
+      this.$router.push({ name: "BuyOrNot" });
+    },
+  },
 }
 </script>
 
