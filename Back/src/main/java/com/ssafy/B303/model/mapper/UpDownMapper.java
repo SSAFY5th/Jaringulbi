@@ -22,8 +22,8 @@ public interface UpDownMapper {
     void insertDown(UpDownDto down);
 
     // 좋아요 취소
-    void deleteUp(UpDownDto up);
+    void deleteUp(int id);
 
-    void deleteDown(UpDownDto down);
+    void deleteDown(int id);
 
 }
