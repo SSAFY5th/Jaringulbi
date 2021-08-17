@@ -16,7 +16,7 @@
         class="form-control"
         @click="createComment"
         v-model="contents"
-        placeholder="대화를 시작하려면 로그인하세요!"
+        placeholder="로그인하여 댓글을 남겨보세요."
       />
       <button class="btn disabled" @click="createComment" type="button">
         ➤

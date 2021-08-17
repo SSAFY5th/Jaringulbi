@@ -15,13 +15,10 @@
                 <b-icon icon="chevron-down" aria-hidden="true"
                   class="text-secondary"></b-icon>
               </template>
-              <b-dropdown-item
-              >               
-              <!-- @click="onFreeboard()"  -->
-                <!-- v-bind:title="freeDetail.title" -->
+              <b-dropdown-item>               
                 자유게시판
               </b-dropdown-item>
-              <b-dropdown-item @click="onBuyOrNot()">
+              <b-dropdown-item @click="goBuyOrNot">
                 살까말까 게시판
               </b-dropdown-item>
             </b-dropdown>
@@ -36,19 +33,15 @@
     <!-- 위에 카테고리 분류(board_category)로 v-if 등으로 카테고리 처리해서 보여주기 -->
     <div class="main-content">
       <!-- 무한 스크롤 구현 -->
-      <!-- 글 작성 버튼 -->
-      <router-link :to="{ name: 'CreateFreePost' }">
-        <div id="write-btn" class="">
-          <span>+</span>
-        </div>
-      </router-link>
-      <div v-show="!onBuyOrNotClicked">
+      <div>
+        <!-- 글 작성 버튼 -->
+        <router-link :to="{ name: 'CreateFreePost' }">
+          <div id="write-btn" class="">
+            <span>+</span>
+          </div>
+        </router-link>
         <Freeboard />
-      </div>
-      <div v-show="onBuyOrNotClicked">
-        <!--  && !onFreeboardClicked -->
-        <BuyOrNot />
-      </div>
+      </div>      
     </div>    
   </div>  
 </template>
@@ -56,30 +49,23 @@
 <script>
 import Search from "@/layout/Search.vue";
 import Freeboard from "@/components/board/Freeboard.vue";
-import BuyOrNot from "@/components/board/BuyOrNot.vue";
 
 export default {
   name: "Board",
   components: {
     Search,
     Freeboard,
-    BuyOrNot,
   },
   computed: {},
   data () {
     return {
       category: '자유게시판',
-      onBuyOrNotClicked: false,
-      onFreeboardClicked: false,
     };
   },
   methods: {
-    onBuyOrNot() {
-      this.onBuyOrNotClicked = !this.onBuyOrNotClicked
+    goBuyOrNot() {
+      this.$router.push({ name: "BuyOrNot" });
     },
-    onFreeboard() {
-      this.onFreeboardClicked = !this.onFreeboardClicked
-    }
   },
 }
 </script>

@@ -11,9 +11,9 @@
             <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
           </router-link>
         </div>
-        <div class="text-center">
+        <!-- <div class="text-center">
           <span>글쓰기</span>
-        </div>
+        </div> -->
         <div class="d-flex">
           <a
             href="#"
@@ -28,28 +28,34 @@
 
     <!-- 본문 글쓰기 부분 -->
     <div class="main-content">
-      <div class="free-post-form pt-2">
+      <div class="form-area mt-2">
         <div class="category">자유게시판</div>
-        <div>
+        <div class="mb-2">
           <input
             type="text"
-            class="form-control"
+            class="form-control form-control-sm"
             placeholder="제목"
             v-model="title"
           />
         </div>
-        <br />
-        <div>
+        <div class="mb-3">
           <textarea
             name=""
             id=""
             cols="30"
             rows="20"
-            class="form-control"
+            class="form-control form-control-sm"
             placeholder="여기에 당신의 이야기를 써보세요"
             v-model="contents"
           >
           </textarea>
+        </div>
+        <div class="">
+          <input
+            type="file"
+            id="formFileSm"
+            class="form-control form-control-sm"
+          >
         </div>
         <!-- <label for="tag">태그 입력 부분</label><br />
           <input
@@ -85,7 +91,6 @@ export default {
       else
         http
           .post("board/", {
-            // category: this.category,
             title: this.title,
             contents: this.contents,
             user_id: this.$store.state.user.id,
@@ -123,9 +128,15 @@ export default {
   box-shadow: 0 2px 8px #ddd;
 }
 
+.form-area {
+  padding: 10px 14px 12px 14px;
+}
+
 .category {
   height: 50px;
   line-height: 50px;
-  border-bottom: solid 1px #eee;
+  font-weight: 600;
+  color: #333;
+  /* border-bottom: solid 1px #eee; */
 }
 </style>

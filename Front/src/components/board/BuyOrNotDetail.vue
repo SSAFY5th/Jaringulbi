@@ -4,13 +4,12 @@
     <div id="post-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div>
-          <router-link :to="{ name: 'Board' }" class="text-dark">
+          <router-link :to="{ name: 'BuyOrNot' }" class="text-dark">
             <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
           </router-link>
         </div>
         <div>
           <Search />
-          <!-- <span class="text-secondary">등록</span> -->
         </div>
       </div>
     </div>
@@ -83,11 +82,13 @@
           <!-- 추천, 비추천 수 -->
           <!-- on:click 어쩌구로 구현해보기... -->
           <div class="mt-4 mb-3">
-            <div class="d-inline-block me-5">
+            <div
+              class="d-inline-block me-5 bg-warning"
+              v-show="!upClicked"
+            >
               <div class="d-inline-block">
                 <div
-                  id="thumb-btn"
-                  class="d-flex align-items-center justify-content-center me-2"
+                  class="thumb-btn d-flex align-items-center justify-content-center me-2"
                   @click="clickUp"
                 >              
                   <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
@@ -95,13 +96,27 @@
               </div>
               <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
             </div>
-            <div class="d-inline-block">
+            <div
+              class="d-inline-block me-5 bg-warning"
+              v-show="upClicked"
+            >
               <div class="d-inline-block">
                 <div
-                  id="thumb-btn"
-                  class="d-flex align-items-center justify-content-center me-2"
+                  class="thumb-btn-clicked d-flex align-items-center justify-content-center me-2"
+                  @click="deleteUp"
+                >              
+                  <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
+              </div>
+              </div>
+              <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
+            </div>
+            <div class="d-inline-block bg-warning">
+              <div class="d-inline-block">
+                <div
+                  class="thumb-btn d-flex align-items-center justify-content-center me-2"
                   @click="clickDown"
                 >
+                  <!-- :class="{ thumb-btn-clicked: onClick }" -->
                   <b-icon icon="hand-thumbs-down" aria-hidden="false"></b-icon>
                 </div>
               </div>
@@ -158,6 +173,8 @@ export default {
       BuynotDetail: [],
       created_time: {},
       commentList: [],
+      upClicked: false,
+      downClicked: false,
     };
   },
   methods: {
@@ -184,7 +201,7 @@ export default {
         user_id: this.$store.state.user.id,
       })
       .then(() => {
-        this.$router.push({ name: 'Board' })
+        this.$router.push({ name: 'BuyOrNot' })
       }).catch(err => {
         console.log(err)
       });
@@ -201,6 +218,7 @@ export default {
           })
           .then((response) => {
             console.log(response.data);
+            this.upClicked = !this.upClicked
             // this.freePostList = response.data
             // this.$router.push({ name: "Board" });
           })
@@ -216,24 +234,64 @@ export default {
         http
         .post("down/", {
           post_id: this.$route.params.id,
-          user_id: this.$store.state.user.id,            
+          user_id: this.$store.state.user.id,         
         })
         .then((response) => {
           console.log(response.data);
+          this.downClicked = !this.downClicked
           // this.freePostList = response.data
           // this.$router.push({ name: "Board" });
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+    },
+    deleteUp() {
+      if (!this.$store.state.show) {
+        this.$router.push({ name: "Login" })
+      }
+      else
+        http
+          .delete("up/", {
+            post_id: this.$route.params.id,
+            user_id: this.$store.state.user.id,              
+          })
+          .then((response) => {
+            console.log(response.data);
+            this.upClicked = !this.upClicked
+            // this.freePostList = response.data
+            // this.$router.push({ name: "Board" });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    },
+    deleteDown() {
+      if (!this.$store.state.show) {
+        this.$router.push({ name: "Login" })
+      }
+      else
+        http
+        .delete("down/", {
+          post_id: this.$route.params.id,
+          user_id: this.$store.state.user.id,            
+        })
+        .then((response) => {
+          console.log(response.data)
+          this.downClicked = !this.downClicked
+          // this.freePostList = response.data
+          // this.$router.push({ name: "Board" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   created: function () {    
     this.getBuynotPostDetail()
   }
 }
 </script>
-
 
 <style scoped>
   .post-detail {
@@ -253,7 +311,7 @@ export default {
     font-size: 18px;
   }
 
-  #thumb-btn {
+  .thumb-btn {
     width: 40px;
     height: 40px;
     background-color: #ddd;
@@ -261,7 +319,7 @@ export default {
     cursor: pointer;
   }
 
-  #thumb-btn:hover {
+  .thumb-btn:hover {
     width: 40px;
     height: 40px;
     background-color: #9be4e4;
@@ -270,7 +328,7 @@ export default {
     cursor: pointer;
   }
 
-  #thumb-btn-clicked {
+  .thumb-btn-clicked {
     width: 40px;
     height: 40px;
     background-color: #9be4e4;
@@ -279,7 +337,7 @@ export default {
     cursor: pointer;
   }
 
-  #thumb-btn-clicked:hover {
+  .thumb-btn-clicked:hover {
     width: 40px;
     height: 40px;
     background-color: #ddd;
