@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <div class="row">
-      <div>{{ image }}</div>
-      <div>{{ contents }}</div>
-      <div>{{ start_date }} ~ {{ end_date }}</div>
-      <div>참가비용 : {{ entry_fee }} 보상 : {{ reward }}</div>
-    </div>
-  </div>
+  <tr>
+    <td>id : {{ id }}</td>
+    <td>contents : {{ contents }}</td>
+    <td>reward : {{ reward }}</td>
+    <td>entry_fee : {{ entry_fee }}</td>
+    <td>description : {{ description }}</td>
+  </tr>
 </template>
 <script>
 export default {
-  name: "list",
+  name: "challengelist",
   props: {
     id: Number,
     start_date: String,

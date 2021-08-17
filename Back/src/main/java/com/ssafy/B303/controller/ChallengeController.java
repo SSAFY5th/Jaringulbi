@@ -28,9 +28,11 @@ public class ChallengeController {
 
     @GetMapping
     public ResponseEntity<List<ChallengeDto>> getChallengeList(){
-        List<ChallengeDto> challengeList = null;
+        System.out.println("챌린지 목록 요청");
+    	List<ChallengeDto> challengeList = null;
         try {
             challengeList = challengeService.getChallengeList();
+            	
         } catch (Exception e){
             e.printStackTrace();
         }

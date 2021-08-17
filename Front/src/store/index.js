@@ -142,7 +142,7 @@ export default new Vuex.Store({
       context.commit("LOG_OUT");
     },
     getAccountBooks(context, { full }) {
-      console.log("vue:" + full);
+      console.log("vue :" + full);
       http
         .get("/accountbook", {
           params: {
@@ -173,7 +173,7 @@ export default new Vuex.Store({
       console.log(context);
     },
 
-    getChalleng(context, { id }) {
+    getChallenge(context, { id }) {
       console.log("챌린지 상세보기");
       console.log(id);
       http
@@ -192,7 +192,7 @@ export default new Vuex.Store({
         });
     },
 
-    getChallengs: function(context) {
+    getChallenges: function(context) {
       http
         .get("/challenge")
         .then((data) => {
