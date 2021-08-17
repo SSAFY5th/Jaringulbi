@@ -1,9 +1,7 @@
 package com.ssafy.B303.model.service;
 
-import com.ssafy.B303.model.dto.ChallengeDto;
-import com.ssafy.B303.model.dto.ChallengeReviewDto;
-import com.ssafy.B303.model.dto.EnterChallengeVo;
-import com.ssafy.B303.model.dto.UserChallengeDto;
+import com.ssafy.B303.model.dto.*;
+import com.ssafy.B303.model.mapper.AccountBookMapper;
 import com.ssafy.B303.model.mapper.ChallengeMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
@@ -64,5 +62,10 @@ public class ChallengeServiceImpl implements ChallengeService{
     @Override
     public void deleteChallengeReview(ChallengeReviewDto challengeReviewDto) {
         sqlSession.getMapper(ChallengeMapper.class).deleteChallengeReview(challengeReviewDto);
+    }
+
+    @Override
+    public List<PostDto> relatedPost(int id) throws Exception {
+        return sqlSession.getMapper(ChallengeMapper.class).relatedPost(id);
     }
 }

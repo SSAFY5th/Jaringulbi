@@ -2,6 +2,7 @@ package com.ssafy.B303.model.service;
 
 
 import com.ssafy.B303.model.dto.AccountBookDto;
+import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.dto.UserDto;
 
 import java.sql.SQLException;
@@ -18,4 +19,6 @@ public interface AccountBookService {
     Integer monthOutgoings(int month, int user_id) throws Exception;
     List<Number> dayIncomes(int month, int user_id) throws Exception;
     List<Number> dayOutgoings(int month, int user_id) throws Exception;
+
+    void setBudget(int id, int budget);
 }

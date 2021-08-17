@@ -132,4 +132,15 @@ public class ChallengeController {
             e.printStackTrace();
         }
     }
+
+    @GetMapping(value = "/post/{id}")
+    public ResponseEntity<List<PostDto>> relatedPost(@PathVariable int id){
+        List<PostDto> result = null;
+        try {
+            result = challengeService.relatedPost(id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }
