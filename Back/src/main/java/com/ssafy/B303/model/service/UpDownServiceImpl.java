@@ -44,12 +44,12 @@ public class UpDownServiceImpl implements UpDownService {
     }
 
     @Override
-    public void deleteUp(UpDownDto up) {
-        upDownMapper.deleteUp(up);
+    public void deleteUp(int id) {
+        upDownMapper.deleteUp(id);
     }
 
     @Override
-    public void deleteDown(UpDownDto down) {
-        upDownMapper.deleteDown(down);
+    public void deleteDown(int id) {
+        upDownMapper.deleteDown(id);
     }
 }
