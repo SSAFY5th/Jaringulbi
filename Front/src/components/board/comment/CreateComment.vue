@@ -8,13 +8,9 @@
         @keyup.enter="createComment"
         placeholder="이곳을 눌러 댓글을 남겨보세요."
       />
-<<<<<<< HEAD
-      <button class="btn mint-btn" @click="createComment" type="button">➤</button>
-=======
       <button class="btn mint-btn" @click="createComment" type="button">
         ➤
       </button>
->>>>>>> 42bd436b90f60adef118e92bf7245254390d98d5
     </div>
     <div v-else class="input-group">
       <input
@@ -50,25 +46,12 @@ export default {
   created() {},
   methods: {
     createComment: function () {
-<<<<<<< HEAD
-      let msg = ''
-      msg = '내용을 입력해주세요.'
-
-      if (!this.$store.state.show) {
-        this.$router.push({ name: "Login" });      
-      }
-
-      else if (this.contents.length == 0)
-        alert(msg)
-      
-=======
       let msg = "";
       msg = "내용을 입력해주세요.";
 
       if (!this.$store.state.show) {
         this.$router.push({ name: "Login" });
       } else if (this.contents.length == 0) alert(msg);
->>>>>>> 42bd436b90f60adef118e92bf7245254390d98d5
       else {
         http
           .post("comment/", {

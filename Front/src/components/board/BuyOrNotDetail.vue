@@ -173,6 +173,7 @@ export default {
       BuynotDetail: [],
       created_time: {},
       commentList: [],
+      downList: [],
       upClicked: false,
       downClicked: false,
     };
@@ -217,7 +218,7 @@ export default {
             user_id: this.$store.state.user.id,            
           })
           .then((response) => {
-            console.log(response.data);
+            console.log(response.data);            
             this.upClicked = !this.upClicked
             // this.freePostList = response.data
             // this.$router.push({ name: "Board" });
@@ -250,11 +251,13 @@ export default {
       if (!this.$store.state.show) {
         this.$router.push({ name: "Login" })
       }
+            // post_id: this.$route.params.id,
+            // user_id: this.$store.state.user.id,              
       else
         http
           .delete("up/", {
             post_id: this.$route.params.id,
-            user_id: this.$store.state.user.id,              
+            user_id: this.$store.state.user.id,  
           })
           .then((response) => {
             console.log(response.data);
