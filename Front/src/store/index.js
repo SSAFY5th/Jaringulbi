@@ -14,6 +14,10 @@ export default new Vuex.Store({
     show: false,
     user: {},
     freePostList: [],
+    budget: {},
+    realbudget: {},
+    challenge: {},
+    challenges: {},
   },
 
   getters: {
@@ -29,6 +33,20 @@ export default new Vuex.Store({
     },
     freeboard(state) {
       return state.freePostList;
+    },
+    budget(state) {
+      return state.budget;
+    },
+    realbudget(state) {
+      return state.realbudget;
+    },
+
+    challenge(state) {
+      return state.challenge;
+    },
+
+    challenges(state) {
+      return state.challenges;
     },
   },
 
@@ -54,6 +72,18 @@ export default new Vuex.Store({
     setFreeboard(state, payload) {
       state.freePostList = payload;
     },
+    setBudget(state, payload) {
+      state.budget = payload;
+      state.realbudget = payload;
+    },
+
+    setChallenge(state, payload) {
+      state.challenges = payload;
+    },
+
+    setChallenges(state, payload) {
+      state.challenges = payload;
+    },
   },
 
   actions: {
@@ -75,6 +105,7 @@ export default new Vuex.Store({
     },
     login(context, { login_id, password }) {
       console.log("로그인");
+      console.log(login_id + " " + password);
 
       //들고간 값을 통해서 post요청을 해줍니다.
       //post요청을 하고 나서 받은 객체를 mutations로 보내줍니다. (payload)
@@ -110,11 +141,15 @@ export default new Vuex.Store({
       console.log("로그아웃");
       context.commit("LOG_OUT");
     },
-    getAccountBooks(context) {
+    getAccountBooks(context, { full }) {
+      console.log("vue:" + full);
       http
-        .get("/accountbook/list")
+        .get("/accountbook", {
+          params: {
+            date: full,
+          },
+        })
         .then(({ data }) => {
-          console.log("리스트 :" + data);
           context.commit("setAccountBooks", data);
         })
         .catch(() => {
@@ -130,6 +165,43 @@ export default new Vuex.Store({
         })
         .catch((err) => {
           console.log(err);
+        });
+    },
+    getBudget: function(context, budget) {
+      context.commit("setBudget", budget);
+
+      console.log(context);
+    },
+
+    getChalleng(context, { id }) {
+      console.log("챌린지 상세보기");
+      console.log(id);
+      http
+        .get("/detail/${this.id}", {
+          id: id,
+        })
+        .then(({ data }) => {
+          console.log("챌린지 제목 : " + data.title);
+          if (data.title != null) {
+            context.commit("setChallenge", data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error("챌린지 상세보기 실패");
+        });
+    },
+
+    getChallengs: function(context) {
+      http
+        .get("/challenge")
+        .then((data) => {
+          // this.freePostList = response.data
+          context.commit("setChallenges", data);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.error("챌린지 목록 불러오기 실패");
         });
     },
   },
