@@ -1,33 +1,22 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
   <div>
-    <div class="row">
-      <div>
-        <b-button
-          style="
-            background-color: #9be4e4;
-            color: #9175f3;
-            border: 1px solid #9175f3;
-          "
-          size="lg"
-          @click="go"
-          ><b-img :src="require('@/assets/소라고동.jpg')" id="sora"></b-img
-          >선택이 고민될 땐 무엇이든 !
-          <div>마-법의 소라고동</div>
-        </b-button>
-      </div>
+    <div class="sora" @click="go">
+      <b-img :src="require('@/assets/소라고동.jpg')" id="sora">
+      </b-img>
+        <span>선택이 고민될 땐 무엇이든!</span>
+      <p>마-법의 소라고동</p>
+
     </div>
   </div>
 </template>
+
 <script>
-//// import { mapGetters } from "vuex";
 export default {
-  name: "",
-  computed: {},
+  name: "Mainsora",
   data() {
     return {};
   },
-
   methods: {
     go() {
       this.$router.push("/sora");
@@ -35,10 +24,23 @@ export default {
   },
 };
 </script>
+
 <style>
 #sora {
   width: 60px;
   height: 60px;
-  border-radius: 100px;
+  border-radius: 60px;
+}
+
+.sora {
+  background-color: #9be4e4;
+  cursor: pointer;
+  border-radius: 14px;
+}
+
+.sora p {
+  color: #fff;
+  font-size: 16pt;
+  font-weight: 800;
 }
 </style>
