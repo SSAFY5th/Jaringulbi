@@ -1,9 +1,14 @@
 <template>
   <div class="row" id="challenge">
     <div>
-      <router-link :to="`/challenge/detail/${id}`">
-        <b-img :src="require('@/assets/소라고동.jpg')" id="image"></b-img
-      ></router-link>
+      <router-link
+        :to="{
+          path: `/challenge/detail/${id}`,
+          query: { name: image },
+        }"
+      >
+        <img alt="list" :src="image" id="image"
+      /></router-link>
     </div>
     <div>{{ title }}</div>
     <div>
