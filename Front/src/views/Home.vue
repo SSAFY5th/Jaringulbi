@@ -7,6 +7,9 @@
     <div class="main-content">
       <Report></Report>
       <Mainsora></Mainsora>
+      <div class="bg-warning">
+        음음
+      </div>
     </div>
   </div>
 </template>
@@ -33,4 +36,8 @@ export default {
 </script>
 
 <style scoped>
+  .main-content {
+    padding: 10px 14px 12px 14px;
+
+  }
 </style>
