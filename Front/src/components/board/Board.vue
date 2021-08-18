@@ -91,8 +91,9 @@ export default {
     height: 60px;
     border-radius: 30px;
     background-color: #9be4e4;
-    color: #7a69e6;
+    color: #fff;
     font-size: 30pt;
-    line-height: 60px;
+    line-height: 56px;
+    box-shadow: 2px 2px 6px #ccc;
   }
 </style>

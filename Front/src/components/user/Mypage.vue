@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="post-header">
+    <div id="mypage-header">
       <div
         class="d-flex justify-content-center align-self-center px-3"
         style="width: 100%"
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-#post-header {
+#mypage-header {
   position: fixed;
   top: 0;
   z-index: 999;
@@ -67,6 +67,7 @@ export default {
   box-shadow: 0 2px 8px #ddd;
   text-align: center;
 }
+
 .form-area {
   padding: 10px 14px 12px 14px;
 }

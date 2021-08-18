@@ -25,16 +25,19 @@
       :to="{ name: 'FreeboardDetail', params: { id: post.id }}"
       class="text-decoration-none text-dark m-0 p-0"
     >    
-      <div class="text-start mt-2" id="post-title">
-        <!-- 제목 -->
-        {{ post.title }}
-      </div>
-      <div class="text-start mt-1 mb-2" id="post-content">
-        {{ post.contents }}        
-      </div>
-      <div class="mb-2">
-        <!-- 이미지가 있다면 {{ post.image }}-->
-        <img src="https://picsum.photos/392/180" alt="프로필사진">
+      <div class="content-wrap my-2">
+        <div class="text-start mt-1" id="post-title">
+          <!-- 제목 -->
+          {{ post.title }}
+        </div>
+        <div class="text-start mt-1 mb-2" id="post-content">
+          {{ post.contents }}        
+        </div>
+        <div class="post-img" v-if="post.image">              
+          <b-img :src="post.image" class="img-fluid"></b-img>
+          <!-- <img src="https://picsum.photos/392/180" alt="이미지"> -->
+        </div>
+        <div v-else></div>
       </div>
     </router-link>
 
@@ -70,7 +73,7 @@ export default {
     getFreePostList: function () {
       http.get("board/")
       .then(response => {
-        // console.log(response.data)
+        console.log(response.data)
         this.freePostList = response.data
         // this.username = this.$store.state.user.login_id
       }).catch(err => {
@@ -91,4 +94,11 @@ export default {
     color: #444;
   }
 
+  .content-wrap {
+    overflow: hidden;
+  }
+
+  .post-img {
+    max-height: 400px;
+  }
 </style>
