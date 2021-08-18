@@ -23,6 +23,7 @@ import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
 import MyChallenge from "../components/challenge/MyChallenge.vue";
 import ChallengeDetail from "../components/challenge/Viewdetail.vue";
+import Description from "../components/challenge/Description.vue";
 
 Vue.use(VueRouter);
 
@@ -125,6 +126,11 @@ const routes = [
     path: "/challenge",
     name: "Challenge",
     component: Challenge,
+  },
+  {
+    path: "/challenge/Description",
+    name: "Description ",
+    component: Description,
   },
   {
     path: "/challenge/detail/:id",
