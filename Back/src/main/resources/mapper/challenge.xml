@@ -10,7 +10,8 @@
     </select>
 
     <select id="getChallenge" parameterType="int" resultType="ChallengeDto">
-        select *
+        select id, start_date, end_date, title, entry_fee, reward, image, status,
+               REPLACE(description, '\n', '') as description
         from CHALLENGE
         where id = #{id}
     </select>

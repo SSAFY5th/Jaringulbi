@@ -47,37 +47,57 @@
             <b-button v-b-modal.modal-center id="btn_group_category"
               >카테고리 선택</b-button
             >
-            <b-modal
-              ref="my-modal"
-              id="modal-center"
-              hide-footer
-              centered
-              title="카테고리 분류"
-              ><div id="group_category">
-                <button class="btn_modal" @click="eat">식비</button>
-                <button class="btn_modal" @click="cafe">카페/간식</button>
-                <button class="btn_modal" @click="alcohol">음주/유흥</button>
-                <button class="btn_modal" @click="life">생활</button>
-              </div>
-              <div>
-                <button class="btn_modal" @click="fashion">패션/쇼핑</button>
-                <button class="btn_modal" @click="beauti">뷰티/미용</button>
-                <button class="btn_modal" @click="trafic">교통</button>
-                <button class="btn_modal" @click="car">자동차</button>
-              </div>
-              <div>
-                <button class="btn_modal" @click="live">주거/통신</button>
-                <button class="btn_modal" @click="healthy">의료/건강</button>
-                <button class="btn_modal" @click="fund">금융</button>
-                <button class="btn_modal" @click="culture">문화/여가</button>
-              </div>
-              <div>
-                <button class="btn_modal" @click="travel">여행/숙박</button>
-                <button class="btn_modal" @click="edu">교육/학습</button>
-                <button class="btn_modal" @click="gift">반려동물</button>
-                <button class="btn_modal" @click="pet">경조/선물</button>
-              </div>
-            </b-modal>
+            <div v-if="this.if == 1">
+              <b-modal
+                ref="my-modal"
+                id="modal-center"
+                hide-footer
+                centered
+                title="카테고리 지출"
+                ><div id="group_category">
+                  <button class="btn_modal" @click="eat">식비</button>
+                  <button class="btn_modal" @click="cafe">카페/간식</button>
+                  <button class="btn_modal" @click="alcohol">음주/유흥</button>
+                  <button class="btn_modal" @click="life">생활</button>
+                </div>
+                <div>
+                  <button class="btn_modal" @click="fashion">패션/쇼핑</button>
+                  <button class="btn_modal" @click="beauti">뷰티/미용</button>
+                  <button class="btn_modal" @click="trafic">교통</button>
+                  <button class="btn_modal" @click="car">자동차</button>
+                </div>
+                <div>
+                  <button class="btn_modal" @click="live">주거/통신</button>
+                  <button class="btn_modal" @click="healthy">의료/건강</button>
+                  <button class="btn_modal" @click="fund">금융</button>
+                  <button class="btn_modal" @click="culture">문화/여가</button>
+                </div>
+                <div>
+                  <button class="btn_modal" @click="travel">여행/숙박</button>
+                  <button class="btn_modal" @click="edu">교육/학습</button>
+                  <button class="btn_modal" @click="gift">반려동물</button>
+                  <button class="btn_modal" @click="pet">경조/선물</button>
+                </div>
+              </b-modal>
+            </div>
+            <div v-else>
+              <b-modal
+                ref="my-modal"
+                id="modal-center"
+                hide-footer
+                centered
+                title="카테고리 수입"
+                ><div id="group_category">
+                  <button class="btn_modal" @click="salary">급여</button>
+                  <button class="btn_modal" @click="pocket">용돈</button>
+                  <button class="btn_modal" @click="fundmoney">금융수입</button>
+                  <button class="btn_modal" @click="businessmoney">
+                    사업수입
+                  </button>
+                  <button class="btn_modal" @click="etcmoney">기타수입</button>
+                </div>
+              </b-modal>
+            </div>
           </div>
           <hr />
           <div class="float1"><label for="used">장소</label></div>
@@ -126,6 +146,7 @@ export default {
       used: "",
       contents: "",
       userid: "",
+      if: "0",
     };
   },
   methods: {
@@ -133,28 +154,23 @@ export default {
       console.log("가계부 등록");
       let err = true;
       let msg = "";
-      err &&
-        !this.date &&
+      !this.date &&
         ((msg = "날짜를 입력해주세요."),
         (err = false),
         this.$refs.date.focus());
-      err &&
-        !this.price &&
+      !this.price &&
         ((msg = "금액을 입력해주세요."),
         (err = false),
         this.$refs.price.focus());
-      err &&
-        !this.category &&
+      !this.category &&
         ((msg = "카테고리를 입력해주세요"),
         (err = false),
         this.$refs.category.focus());
-      err &&
-        !this.used &&
+      !this.used &&
         ((msg = "장소를 입력해주세요"),
         (err = false),
         this.$refs.category.focus());
-      err &&
-        !this.contents &&
+      !this.contents &&
         ((msg = "내용을 입력해주세요."),
         (err = false),
         this.$refs.contents.focus());
@@ -258,11 +274,38 @@ export default {
       this.categorynum = 16;
       this.$refs["my-modal"].hide();
     },
+    salary() {
+      this.category = "급여";
+      this.categorynum = 17;
+      this.$refs["my-modal"].hide();
+    },
+    pocket() {
+      this.category = "용돈";
+      this.categorynum = 18;
+      this.$refs["my-modal"].hide();
+    },
+    fundmoney() {
+      this.category = "금융수입";
+      this.categorynum = 19;
+      this.$refs["my-modal"].hide();
+    },
+    businessmoney() {
+      this.category = "사업수입";
+      this.categorynum = 20;
+      this.$refs["my-modal"].hide();
+    },
+    etcmoney() {
+      this.category = "기타수입";
+      this.categorynum = 21;
+      this.$refs["my-modal"].hide();
+    },
     plus() {
       this.price = "";
+      this.if = 0;
     },
     minus() {
       this.price = "-";
+      this.if = 1;
     },
   },
 };
