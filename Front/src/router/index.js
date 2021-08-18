@@ -17,6 +17,7 @@ import FreeboardDetail from "../components/board/FreeboardDetail.vue";
 import BuyOrNotDetail from "../components/board/BuyOrNotDetail.vue";
 import Challenge from "../components/challenge/Challenge.vue";
 import Mypage from "../components/user/Mypage.vue";
+import Modify from "../components/user/Modify.vue";
 import Login from "../components/user/Login.vue";
 import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/Sora.vue";
@@ -71,6 +72,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/modify",
+    name: "Modify",
+    component: Modify,
   },
   {
     path: "/mypage",
