@@ -4,12 +4,12 @@
     <!-- 리플 작성자 이름 -->
     <div class="d-flex">
       <div id="img-circle" class="bg-light" style="width: 48px">
-        <img src="https://picsum.photos/48/48" alt="프로필사진" />
+        <b-img :src="comment.profile" class="img-fluid"></b-img>
       </div>
 
       <div class="ms-2 flex-fill">
         <div class="d-flex justify-content-between">
-          <span class="align-self-center" id="post-username">
+          <span class="align-self-center" id="post-username-bold">
             {{ comment.nickname }}
           </span>          
           <div>

@@ -1,11 +1,6 @@
 <template>
-  <div id="bottom">
-    <div v-if="$store.state.show">
-      <div>
-        <b-button @click="join">참가하기</b-button>
-        <div></div>
-      </div>
-    </div>
+  <div class="participate-btn" @click="join">
+    <p>참가하기</p>
   </div>
 </template>
 
@@ -50,9 +45,18 @@ export default {
   color: #fff;
 }
 
-#bottom {
-  position: fixed;
+.participate-btn {
+  /* display: flex; */
   width: 100%;
-  height: 65px;
+  max-width: 420px;
+  height: 58px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #9be4e4;
+  color: #fff;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 54px;
+  text-align: center;
 }
 </style>

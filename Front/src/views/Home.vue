@@ -64,7 +64,7 @@
           </div>
           <div class="d-flex">
             <div
-              class="chlg-wrap"
+              class="chlg-btn-wrap"
               v-for="challenge in challenges.data.slice(0,3)"
               :key="challenge.id"
             >            
@@ -121,8 +121,6 @@ export default {
     chlgImg = this.challenges.data
     chlgImg = chlgImg.slice(0, 3);
     console.log(chlgImg)
-    console.log(this.challenges.data)
-    console.log(this.challengesImg)
   },
 };
 </script>
@@ -202,17 +200,17 @@ export default {
     transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  .chlg-wrap {
+  .chlg-btn-wrap {
     width: 33%;
     /* display: inline-block; */
   }
 
   .challenge-btn {
     width: 100%;
-    max-width: 118px;
+    max-width: 120px;
     height: 100%;
-    max-height: 118px;
-    border-radius: 59px;
+    max-height: 120px;
+    border-radius: 60px;
     /* line-height: 118px;     */
     background-color: #eee;    
     overflow: hidden;

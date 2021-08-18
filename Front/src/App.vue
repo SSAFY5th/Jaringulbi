@@ -98,6 +98,12 @@ export default {
     color: #444;
   }
 
+  #post-username-bold {
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+  }
+
   #post-time {
     color: #aaa;
     font-size: 13px;
