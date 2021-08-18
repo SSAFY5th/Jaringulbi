@@ -13,7 +13,7 @@
     <br />
     <div id="acheader">
       <b-button-group id="acbutton">
-        <b-button class="btn" title="상세 설명" @click="description">
+        <b-button class="btn" title="상세 설명" @click="descript">
           <div>상세 설명</div>
         </b-button>
 
@@ -23,9 +23,9 @@
       </b-button-group>
     </div>
     <div>
-      <description :v-show="true"></description
-      ><review :v-show="false"></review>
+      <description v-show="dshow"></description><review v-show="rshow"></review>
     </div>
+    <div><challenge-bottom class="comment-form1"></challenge-bottom></div>
   </div>
 </template>
 
@@ -33,6 +33,7 @@
 import { mapGetters } from "vuex";
 import Description from "@/components/challenge/Description.vue";
 import Review from "@/components/challenge/Review.vue";
+import ChallengeBottom from "@/components/challenge/ChallengeBottom.vue";
 
 export default {
   name: "Viewdetail",
@@ -42,6 +43,7 @@ export default {
   components: {
     Description,
     Review,
+    ChallengeBottom,
   },
   created() {
     console.log(this.id);
@@ -51,8 +53,8 @@ export default {
   data() {
     return {
       id: Number(this.$route.params.id),
-      dshow: "true",
-      rshow: "false",
+      dshow: true,
+      rshow: "",
       period: "",
       start: "",
       title: "",
@@ -63,7 +65,14 @@ export default {
     };
   },
   methods: {
-    review() {},
+    descript() {
+      this.dshow = true;
+      this.rshow = false;
+    },
+    review() {
+      this.dshow = false;
+      this.rshow = true;
+    },
   },
 };
 </script>
@@ -71,5 +80,19 @@ export default {
 <style>
 .detail {
   text-align: left;
+}
+
+.comment-form1 {
+  padding: 10px 14px 12px 14px;
+  border-top: solid 1px #eee;
+  border-bottom: solid 1px #eee;
+  background-color: #fff;
+  position: fixed;
+  bottom: 65px;
+  z-index: 3;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 60px;
 }
 </style>

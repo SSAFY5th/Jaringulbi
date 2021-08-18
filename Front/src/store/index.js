@@ -18,6 +18,7 @@ export default new Vuex.Store({
     realbudget: {},
     challenge: {},
     challenges: {},
+    challengeid: {},
   },
 
   getters: {
@@ -47,6 +48,10 @@ export default new Vuex.Store({
 
     challenges(state) {
       return state.challenges;
+    },
+
+    challengeid(state) {
+      return state.challengeid;
     },
   },
 
@@ -83,6 +88,10 @@ export default new Vuex.Store({
 
     setChallenges(state, payload) {
       state.challenges = payload;
+    },
+
+    setChallengeId(state, payload) {
+      state.challengeid = payload;
     },
   },
 
@@ -201,6 +210,26 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err);
           console.error("챌린지 목록 불러오기 실패");
+        });
+    },
+    enter(context, { challenge_id, user_id }) {
+      console.log("참가하기");
+      console.log(challenge_id + " " + user_id);
+      http
+        .post("/challenge/enter", {
+          challenge_id: challenge_id,
+          user_id: user_id,
+        })
+        .then(({ data }) => {
+          // let msg = "로그인 완료!!";
+
+          console.log("챌린지번호 : " + data);
+          context.commit("setChallengeId", data);
+
+          // alert(msg);
+        })
+        .catch((error) => {
+          console.error(error);
         });
     },
   },

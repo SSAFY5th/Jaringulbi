@@ -22,7 +22,7 @@ import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
 import MyChallenge from "../components/challenge/MyChallenge.vue";
-import ChallengeDetail from "../components/challenge/Viewdetail.vue";
+import ChallengeDetail from "../components/challenge/Challengedetail.vue";
 import Description from "../components/challenge/Description.vue";
 
 Vue.use(VueRouter);

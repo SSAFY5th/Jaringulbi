@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>리뷰</div>
+    <div><p v-html="aLinkToMedium"></p></div>
   </div>
 </template>
 
