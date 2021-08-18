@@ -12,8 +12,11 @@
         </span>        
       </div>        
       <div class="d-inline-block">
-        <span id="post-time">2시간</span>
-        <!-- {{ post.created_time }} -->
+        <span id="post-time">
+        {{ post.created_time.date.year }}.
+        {{ post.created_time.date.month }}.
+        {{ post.created_time.date.day }}
+        </span>
       </div>      
     </div>
 

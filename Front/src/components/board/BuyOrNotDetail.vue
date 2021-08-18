@@ -30,8 +30,12 @@
           </div>
             
           <div class="d-inline-block">
-            <span id="post-time">2시간</span>
+            <span id="post-time">
+              {{ created_time.year }}.
+              {{ created_time.month }}.
+              {{ created_time.day }}
             <!-- {{ created_time }} -->
+            </span>
             <!-- 본인일때만 삭제 가능함 -->
             <b-dropdown size="sm" id="dropdown-right" right
               v-if="$store.state.user.id === BuynotDetail.user_id" 
@@ -82,46 +86,56 @@
           <!-- 추천, 비추천 수 -->
           <!-- on:click 어쩌구로 구현해보기... -->
           <div class="mt-4 mb-3">
-            <div
-              class="d-inline-block me-5 bg-warning"
-              v-show="!upClicked"
-            >
-              <div class="d-inline-block">
-                <div
-                  class="thumb-btn d-flex align-items-center justify-content-center me-2"
-                  @click="clickUp"
-                >              
-                  <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
-              </div>
-              </div>
-              <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
-            </div>
-            <div
-              class="d-inline-block me-5 bg-warning"
-              v-show="upClicked"
-            >
-              <div class="d-inline-block">
-                <div
-                  class="thumb-btn-clicked d-flex align-items-center justify-content-center me-2"
-                  @click="deleteUp"
-                >              
-                  <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
-              </div>
-              </div>
-              <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
-            </div>
-            <div class="d-inline-block bg-warning">
-              <div class="d-inline-block">
-                <div
-                  class="thumb-btn d-flex align-items-center justify-content-center me-2"
-                  @click="clickDown"
-                >
-                  <!-- :class="{ thumb-btn-clicked: onClick }" -->
-                  <b-icon icon="hand-thumbs-down" aria-hidden="false"></b-icon>
+            <!-- 추천 버튼을 누르지 않았을때 -->
+            <div v-show="!upClicked">
+              <div class="d-inline-block me-5">
+                <div class="d-inline-block">
+                  <div
+                    class="thumb-btn d-flex align-items-center justify-content-center me-2"
+                    @click="clickUp"
+                  >              
+                    <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
                 </div>
+                </div>
+                <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
               </div>
-              <span id="thumb-cnt">{{ BuynotDetail.downCount }}</span>
+              <div class="d-inline-block">
+                <div class="d-inline-block">
+                  <div
+                    class="thumb-btn d-flex align-items-center justify-content-center me-2"
+                    @click="clickDown"
+                  >
+                    <!-- :class="{ thumb-btn-clicked: onClick }" -->
+                    <b-icon icon="hand-thumbs-down" aria-hidden="false"></b-icon>
+                  </div>
+                </div>
+                <span id="thumb-cnt">{{ BuynotDetail.downCount }}</span>
+              </div>
             </div>
+            <!-- 추천 버튼을 눌렀을때 -->
+            <div v-show="upClicked">
+              <div class="d-inline-block me-5">
+                <div class="d-inline-block">
+                  <div
+                    class="thumb-btn-clicked d-flex align-items-center justify-content-center me-2"
+                    @click="deleteUp"
+                  >              
+                    <b-icon icon="hand-thumbs-up" aria-hidden="false"></b-icon>
+                </div>
+                </div>
+                <span id="thumb-cnt">{{ BuynotDetail.upCount }}</span>
+              </div>
+              <div class="d-inline-block">
+                <div class="d-inline-block">
+                  <div
+                    class="thumb-btn-disabled d-flex align-items-center justify-content-center me-2"                    
+                  >
+                    <b-icon icon="hand-thumbs-down" aria-hidden="false"></b-icon>
+                  </div>
+                </div>
+                <span id="thumb-cnt">{{ BuynotDetail.downCount }}</span>
+              </div>
+          </div>
           </div>
 
           <!-- 리플 수 -->
@@ -171,7 +185,7 @@ export default {
   data () {
     return {
       BuynotDetail: [],
-      created_time: {},
+      created_time: [],
       commentList: [],
       downList: [],
       upClicked: false,
@@ -185,8 +199,8 @@ export default {
       .then(response => {
         this.BuynotDetail = response.data
         this.commentList = response.data.comment
-        this.created_time = response.data.created_time
-        console.log(response.data)
+        this.created_time = response.data.created_time.date
+        // console.log(response.data)
       }).catch(err => {
         console.log(err)
       });
@@ -196,7 +210,6 @@ export default {
       this.$router.push("/buyornot/" + id + "/update")
     },
     deletePost: function (){
-      // console.log(BuynotDetail.id)
       const id = this.$route.params.id
       http.delete("buyornot/" + id, {
         user_id: this.$store.state.user.id,
@@ -250,20 +263,19 @@ export default {
     deleteUp() {
       if (!this.$store.state.show) {
         this.$router.push({ name: "Login" })
-      }
-            // post_id: this.$route.params.id,
-            // user_id: this.$store.state.user.id,              
+      }          
       else
         http
           .delete("up/", {
-            post_id: this.$route.params.id,
-            user_id: this.$store.state.user.id,  
+            data: {
+              post_id: this.$route.params.id,
+              user_id: this.$store.state.user.id,  
+            }
           })
           .then((response) => {
             console.log(response.data);
             this.upClicked = !this.upClicked
             // this.freePostList = response.data
-            // this.$router.push({ name: "Board" });
           })
           .catch((err) => {
             console.log(err);
@@ -330,6 +342,23 @@ export default {
     border-radius: 20px;
     cursor: pointer;
   }
+
+  .thumb-btn-disabled {
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 20px;
+    /* cursor: pointer; */
+  }
+
+  /* .thumb-btn-disabled:hover {
+    width: 40px;
+    height: 40px;
+    background-color: #9be4e4;
+    color: #7a69e6;
+    border-radius: 20px;
+    cursor: pointer;
+  } */
 
   .thumb-btn-clicked {
     width: 40px;

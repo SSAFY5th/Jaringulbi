@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Notice from "../components/main/Notice.vue";
+import SearchPage from "../components/main/SearchPage.vue";
 import PageNotFound from "../components/error/PageNotFound.vue";
 import PageReady from "../components/error/PageReady.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
@@ -43,6 +45,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/notice",
+    name: "Notice",
+    component: Notice,
+  },
+  {
+    path: "/search",
+    name: "SearchPage",
+    component: SearchPage,
   },
   {
     path: "/registaccount",
