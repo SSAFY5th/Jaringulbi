@@ -23,15 +23,27 @@
         </div>
         <br />
         <div class="mb-3">
-          <b-button style="width: 100%" @click="modify">프로필 수정</b-button>
+          <b-button style="width: 100%" @click="modify" id="btn_group"
+            >프로필 수정</b-button
+          >
         </div>
         <div>
-          <b-list-group>
+          <b-list-group class="mb-3">
             <b-list-group-item>계정설정</b-list-group-item>
             <b-list-group-item>고객센터</b-list-group-item>
             <b-list-group-item>어플공유</b-list-group-item>
             <b-list-group-item>자주 하는 질문</b-list-group-item>
           </b-list-group>
+        </div>
+        <div class="mb-3">
+          <button
+            @click="logout"
+            style="width: 100%"
+            class="btn"
+            id="btn_group"
+          >
+            로그아웃
+          </button>
         </div>
       </div>
     </div>
@@ -48,6 +60,12 @@ export default {
   methods: {
     modify() {
       this.$router.push("/modify");
+    },
+    logout() {
+      if (confirm("정말 로그아웃 하시겠습니까?")) {
+        this.$store.dispatch("logout");
+        this.$router.push("/");
+      }
     },
   },
 };

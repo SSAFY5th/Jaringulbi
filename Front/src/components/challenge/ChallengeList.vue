@@ -10,16 +10,18 @@
         <img alt="list" :src="image" id="image"
       /></router-link>
     </div>
-    <div>{{ title }}</div>
     <div>
-      {{ start_date.date.year }}-{{ start_date.date.month }}-{{
-        start_date.date.day
-      }}~{{ end_date.date.year }}-{{ end_date.date.month }}-{{
-        end_date.date.day
-      }}
+      <div>{{ title }}</div>
+      <div>
+        {{ start_date.date.year }}-{{ start_date.date.month }}-{{
+          start_date.date.day
+        }}~{{ end_date.date.year }}-{{ end_date.date.month }}-{{
+          end_date.date.day
+        }}
+      </div>
+      <div>참가비 : {{ entry_fee }}굴비</div>
+      <div>보상 : {{ reward }}굴비</div>
     </div>
-    <div>참가비 : {{ entry_fee }}굴비</div>
-    <div>보상 : {{ reward }}굴비</div>
   </div>
 </template>
 <script>

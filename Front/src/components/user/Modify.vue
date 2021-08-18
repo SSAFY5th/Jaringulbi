@@ -62,7 +62,6 @@
           />
           <br />
           <button @click="modifyUser" class="btn" id="btn_group">수정</button>
-          <button @click="logout" class="btn" id="btn_group">로그아웃</button>
           <button @click="deleteUser" class="btn" id="btn_group">
             회원탈퇴
           </button>
@@ -126,12 +125,6 @@ export default {
       if (confirm("정말 탈퇴 하시겠습니까?")) {
         http.delete(`/user/${this.login_id}`);
         this.$store.dispatch("deleteUser");
-        this.$router.push("/");
-      }
-    },
-    logout() {
-      if (confirm("정말 로그아웃 하시겠습니까?")) {
-        this.$store.dispatch("logout");
         this.$router.push("/");
       }
     },
