@@ -41,7 +41,6 @@ public class ChallengeController {
 
     @GetMapping(value = "/detail/{id}")
     public ResponseEntity<JsonObject> getDetailChallengeList(@PathVariable int id){
-    	System.out.println("상세보기");
         ChallengeDto challengeDto = null;
         int challengeUserNum = 0;
         try{
@@ -76,8 +75,9 @@ public class ChallengeController {
 
     @PostMapping(value="/enter")
     public ResponseEntity<String> enterChallenge(@RequestBody EnterChallengeVo enterChallengeVo, Model model){
+    	System.out.println("참가");
         try {
-            challengeService.enterChallenge(enterChallengeVo);
+        	challengeService.enterChallenge(enterChallengeVo);
         } catch(Exception e){
             e.printStackTrace();
         }
