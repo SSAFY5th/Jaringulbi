@@ -6,9 +6,11 @@ import PageReady from "../components/error/PageReady.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
 import Board from "../components/board/Board.vue";
+import BuyOrNot from "../components/board/BuyOrNot.vue";
 import CreateFreePost from "../components/board/CreateFreePost.vue";
 import CreateBuyOrNot from "../components/board/CreateBuyOrNot.vue";
 import UpdateFreePost from "../components/board/UpdateFreePost.vue";
+import UpdateBuyOrNot from "../components/board/UpdateBuyOrNot.vue";
 import FreeboardDetail from "../components/board/FreeboardDetail.vue";
 import BuyOrNotDetail from "../components/board/BuyOrNotDetail.vue";
 import Challenge from "../components/challenge/Challenge.vue";
@@ -17,16 +19,16 @@ import Login from "../components/user/Login.vue";
 import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
-import Graph from "../components/account_book/Graph.vue";
 import MyChallenge from "../components/challenge/MyChallenge.vue";
+import ChallengeDetail from "../components/challenge/Viewdetail.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "*",
-    redirect: "/404",
-  },
+  // {
+  //   path: "*",
+  //   redirect: "/404",
+  // },
   {
     path: "/404",
     name: "PageNotFound",
@@ -73,6 +75,11 @@ const routes = [
     component: Board,
   },
   {
+    path: "/buyornot",
+    name: "BuyOrNot",
+    component: BuyOrNot,
+  },
+  {
     path: "/board/create",
     name: "CreateFreePost",
     component: CreateFreePost,
@@ -93,6 +100,11 @@ const routes = [
     component: CreateBuyOrNot,
   },
   {
+    path: "/buyornot/:id/update",
+    name: "UpdateBuyOrNot",
+    component: UpdateBuyOrNot,
+  },
+  {
     path: "/buyornot/:id",
     name: "BuyOrNotDetail",
     component: BuyOrNotDetail,
@@ -103,14 +115,14 @@ const routes = [
     component: Challenge,
   },
   {
+    path: "/challenge/detail/:id",
+    name: "ChallengeDetail",
+    component: ChallengeDetail,
+  },
+  {
     path: "/mychallenge",
     name: "MyChallenge",
     component: MyChallenge,
-  },
-  {
-    path: "/mypage",
-    name: "Mypage",
-    component: Mypage,
   },
   {
     path: "/sora",
@@ -121,11 +133,6 @@ const routes = [
     path: "/budget",
     name: "Budget",
     component: Budget,
-  },
-  {
-    path: "/graph",
-    name: "Graph",
-    component: Graph,
   },
 ];
 

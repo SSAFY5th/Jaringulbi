@@ -24,14 +24,16 @@
             <div id="img-circle" class="d-inline-block">
               <img src="https://picsum.photos/48/48" alt="프로필사진">
             </div>      
-            <span class="d-inline-block ms-2">{{ freeDetail.nickname }}</span>
+            <span class="d-inline-block ms-2" id="post-username">
+              {{ freeDetail.nickname }}
+            </span>
             <!-- -->
           </div>
             
           <div class="d-inline-block">
-            <span class="text-secondary">2시간</span>
+            <span id="post-time">2시간</span>
             <!-- {{ created_time }} -->
-            <!-- 본인일때만 삭제 가능하게 바꾸기 -->
+            <!-- 본인일때만 삭제 가능함 -->
             <b-dropdown size="sm" id="dropdown-right" right
               v-if="$store.state.user.id === freeDetail.user_id" 
               variant="link" class="p-0"
@@ -42,7 +44,11 @@
                 <b-icon icon="three-dots-vertical" aria-hidden="true"
                   class="text-secondary"></b-icon>
               </template>
-              <b-dropdown-item @click="goUpdate">                
+              <b-dropdown-item
+                v-bind:title="freeDetail.title"
+                v-bind:contents="freeDetail.contents"
+                @click="goUpdate(freeDetail)"
+              >                
                 수정
               </b-dropdown-item>
               <b-dropdown-item @click="deletePost(freeDetail)">
@@ -53,10 +59,10 @@
         </div>
         <!-- 내용 -->
         <div>
-          <div class="text-start mt-2">            
+          <div class="text-start mt-2" id="post-title">            
             {{ freeDetail.title }}
           </div>
-          <div class="text-start my-2">
+          <div class="text-start mt-1 mb-2" id="post-content">
             {{ freeDetail.contents }}  
           </div>
           <div class="mb-2">
@@ -65,7 +71,7 @@
           </div>
 
           <!-- 좋아요, 리플 수 -->
-          <div class="text-end text-secondary">
+          <div class="text-end text-secondary" id="post-upcount">
             <div class="d-inline-block me-3">
               <b-icon icon="heart-fill" aria-hidden="false" class="me-2"></b-icon>
               <span>{{ freeDetail.upCount }}</span>
@@ -83,6 +89,7 @@
           <li v-for="comment in commentList" :key="comment.id">
             <Comment 
               :comment="comment"
+              v-on:contents="getFreePostDetail"
             />
           </li>
         </ul>
@@ -113,7 +120,6 @@ export default {
     Comment,
     CreateComment
   },
-  computed: {},
   data () {
     return {
       freeDetail: [],
@@ -127,11 +133,9 @@ export default {
       http.get("board/" + id)
       .then(response => {
         this.freeDetail = response.data
-        // this.title = response.data.title
         this.commentList = response.data.comment
         this.created_time = response.data.created_time
         // console.log(response.data)
-        // this.user_id = this.$store.state.user.login_id   
       }).catch(err => {
         console.log(err)
       });
@@ -140,15 +144,14 @@ export default {
       const id = this.$route.params.id
       this.$router.push("/board/" + id + "/update")
     },
-    deletePost: function (freeDetail){
-      console.log(freeDetail.id)
+    deletePost: function (){
+      // console.log(freeDetail.id)
       const id = this.$route.params.id
       http.delete("board/" + id, {
-        user_id: this.$store.state.user.id,
+        user_id: this.$store.state.user.id,   
       })
       .then(() => {
-        this.$route.push({ name: 'Board' })
-        // this.user_id = this.$store.state.user.login_id   
+        this.$router.push({ name: 'Board' })
       }).catch(err => {
         console.log(err)
       });

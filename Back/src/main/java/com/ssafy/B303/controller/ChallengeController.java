@@ -28,7 +28,7 @@ public class ChallengeController {
 
     @GetMapping
     public ResponseEntity<List<ChallengeDto>> getChallengeList(){
-        System.out.println("챌린지 목록 요청");
+        
     	List<ChallengeDto> challengeList = null;
         try {
             challengeList = challengeService.getChallengeList();
@@ -41,6 +41,7 @@ public class ChallengeController {
 
     @GetMapping(value = "/detail/{id}")
     public ResponseEntity<JsonObject> getDetailChallengeList(@PathVariable int id){
+    	System.out.println("상세보기");
         ChallengeDto challengeDto = null;
         int challengeUserNum = 0;
         try{

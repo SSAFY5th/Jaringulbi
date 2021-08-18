@@ -78,7 +78,7 @@ export default new Vuex.Store({
     },
 
     setChallenge(state, payload) {
-      state.challenges = payload;
+      state.challenge = payload;
     },
 
     setChallenges(state, payload) {
@@ -175,9 +175,8 @@ export default new Vuex.Store({
 
     getChallenge(context, { id }) {
       console.log("챌린지 상세보기");
-      console.log(id);
       http
-        .get("/detail/${this.id}", {
+        .get("/challenge/detail/" + id, {
           id: id,
         })
         .then(({ data }) => {
