@@ -1,21 +1,30 @@
 <template>
-  <div>
-    <div class="row">
-      <div>{{ image }}</div>
-      <div>{{ contents }}</div>
-      <div>{{ start_date }} ~ {{ end_date }}</div>
-      <div>참가비용 : {{ entry_fee }} 보상 : {{ reward }}</div>
+  <div class="row" id="challenge">
+    <div>
+      <router-link :to="`/challenge/detail/${id}`">
+        <b-img :src="require('@/assets/소라고동.jpg')" id="image"></b-img
+      ></router-link>
     </div>
+    <div>{{ title }}</div>
+    <div>
+      {{ start_date.date.year }}-{{ start_date.date.month }}-{{
+        start_date.date.day
+      }}~{{ end_date.date.year }}-{{ end_date.date.month }}-{{
+        end_date.date.day
+      }}
+    </div>
+    <div>참가비 : {{ entry_fee }}굴비</div>
+    <div>보상 : {{ reward }}굴비</div>
   </div>
 </template>
 <script>
 export default {
-  name: "list",
+  name: "challengelist",
   props: {
     id: Number,
+    title: String,
     start_date: String,
     end_date: String,
-    contents: String,
     entry_fee: Number,
     reward: Number,
     image: String,
@@ -25,4 +34,15 @@ export default {
 };
 </script>
 <style scope>
+#image {
+  width: 90%;
+  height: 120px;
+  margin: 14px;
+  border-radius: 20px;
+}
+
+#challenge {
+  display: inline-block;
+  width: 50%;
+}
 </style>

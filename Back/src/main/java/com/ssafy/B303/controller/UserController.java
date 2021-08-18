@@ -61,9 +61,6 @@ public class UserController {
 
 		try {
 			UserDto result = userService.login(map);
-			session.setAttribute("userinfo", result);
-			System.out.println("세션정보: " + session.getAttribute("userinfo"));
-			System.out.println(result.getId());
 			if (result != null) { // 성공
 				ObjectMapper objectMapper = new ObjectMapper();
 				// System.out.println(objectMapper.writeValueAsString(result));

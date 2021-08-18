@@ -21,16 +21,16 @@ import Login from "../components/user/Login.vue";
 import Signup from "../components/user/Signup.vue";
 import Sora from "../components/sora/Sora.vue";
 import Budget from "../components/account_book/Budget.vue";
-import Graph from "../components/account_book/Graph.vue";
 import MyChallenge from "../components/challenge/MyChallenge.vue";
+import ChallengeDetail from "../components/challenge/Viewdetail.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "*",
-    redirect: "/404",
-  },
+  // {
+  //   path: "*",
+  //   redirect: "/404",
+  // },
   {
     path: "/404",
     name: "PageNotFound",
@@ -127,6 +127,11 @@ const routes = [
     component: Challenge,
   },
   {
+    path: "/challenge/detail/:id",
+    name: "ChallengeDetail",
+    component: ChallengeDetail,
+  },
+  {
     path: "/mychallenge",
     name: "MyChallenge",
     component: MyChallenge,
@@ -140,11 +145,6 @@ const routes = [
     path: "/budget",
     name: "Budget",
     component: Budget,
-  },
-  {
-    path: "/graph",
-    name: "Graph",
-    component: Graph,
   },
 ];
 
