@@ -36,6 +36,7 @@ public class PostController {
         for (PostDto postDto: postDtoList) {
             int id = postDto.getId();
             UserDto user = userService.selectUserById(postDto.getUser_id());
+            postDto.setProfile(user.getImage());
             postDto.setNickname(user.getNickname());
             postDto.setUp(upDownService.selectUpById(id));
             postDto.setUpCount(upDownService.getUpCount(id));
@@ -51,6 +52,7 @@ public class PostController {
             int id = postDto.getId();
             UserDto user = userService.selectUserById(postDto.getUser_id());
             postDto.setNickname(user.getNickname());
+            postDto.setProfile(user.getImage());
             postDto.setUp(upDownService.selectUpById(id));
             postDto.setUpCount(upDownService.getUpCount(id));
             postDto.setDown(upDownService.selectDownById(id));
@@ -65,6 +67,7 @@ public class PostController {
         PostDto postDto = postService.selectPostById(id);
         UserDto user = userService.selectUserById(postDto.getUser_id());
         postDto.setNickname(user.getNickname());
+        postDto.setProfile(user.getImage());
         postDto.setUp(upDownService.selectUpById(id));
         postDto.setUpCount(upDownService.getUpCount(id));
         postDto.setDown(upDownService.selectDownById(id));
@@ -72,7 +75,9 @@ public class PostController {
         postDto.setCommentCount(commentService.getCommentCount(id));
         List<CommentDto> comment = commentService.selectAll(id);
         for (CommentDto commentDto : comment) {
-            commentDto.setNickname(userService.selectUserById(commentDto.getUser_id()).getNickname());
+            UserDto commentUser = userService.selectUserById(commentDto.getUser_id());
+            commentDto.setProfile(commentUser.getImage());
+            commentDto.setNickname(commentUser.getNickname());
         }
         postDto.setComment(comment);
         return postDto;
