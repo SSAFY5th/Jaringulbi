@@ -32,14 +32,15 @@ public class UpDownController {
         upDownService.insertDown(down);
     }
 
-    @DeleteMapping("/up/{id}")
-    public void deleteUp(@PathVariable int id){
-        upDownService.deleteUp(id);
+    @DeleteMapping("/up")
+    public void deleteUp(@RequestBody UpDownDto up){
+        upDownService.deleteUp(up);
     }
 
-    @DeleteMapping("/down/{id}")
-    public void deleteDown(@PathVariable int id){
-        upDownService.deleteDown(id);
+    @DeleteMapping("/down")
+    public void deleteDown(@RequestBody UpDownDto down){
+        if (postService.selectPostById(down.getPost_id()).getBoard_category() == 1) return;
+        upDownService.deleteDown(down);
     }
 
 
