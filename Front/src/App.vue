@@ -76,7 +76,13 @@ export default {
   .mint-btn:hover {
     background-color: #9be4e4;
     color: #fff;
-}
+  }
+
+  #main-title {
+    color: #222;
+    font-weight: 600;
+    font-size: 19px;
+  }
 
   #post-username {
     font-size: 15px;

@@ -35,7 +35,7 @@ export default {
 .sora {
   background-color: #9be4e4;
   cursor: pointer;
-  border-radius: 16px;
+  border-radius: 14px;
 }
 
 .sora p {
