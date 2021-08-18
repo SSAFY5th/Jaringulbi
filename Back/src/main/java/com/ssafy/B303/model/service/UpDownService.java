@@ -11,6 +11,7 @@ public interface UpDownService {
     List<UpDownDto> selectDownById(int post_id);
     void insertUp(UpDownDto up);
     void insertDown(UpDownDto down);
-    void deleteUp(int id);
-    void deleteDown(int id);
+    void deleteUp(UpDownDto up);
+    void deleteDown(UpDownDto down);
+
 }
