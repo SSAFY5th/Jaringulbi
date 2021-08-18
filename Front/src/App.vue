@@ -46,6 +46,7 @@ export default {
   .main-content {
     margin-top: 80px;
     position: relative;
+    color: #222;
   }
 
   #bottom-menu {
@@ -58,6 +59,13 @@ export default {
     height: 65px;
     padding: 0;
     background-color: #fff;
+  }
+
+  #profile-img {
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    overflow: hidden;
   }
 
   #img-circle {

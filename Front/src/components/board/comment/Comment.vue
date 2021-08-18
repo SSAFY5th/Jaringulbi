@@ -96,9 +96,7 @@ export default {
         })
         .then(() => {
           // this.$emit('contents')
-          // this.$router.push({ name: 'FreeboardDetail', params: { id: id } })
           this.onUpdateCommentClicked = !this.onUpdateCommentClicked
-          // this.$router.go()
         }).catch(err => {
           console.log(err)
         });        
