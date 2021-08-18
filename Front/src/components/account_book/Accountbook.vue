@@ -26,13 +26,11 @@
     </div>
 
     <div>
-      <router-link :to="`/registaccount`"
-        ><b-button
-          id="registbtn"
-          variant="primary"
-          class="rounded-circle px-2 circle"
-          ><b-icon icon="plus" scale="2"></b-icon></b-button
-      ></router-link>
+      <router-link :to="`/registaccount`">
+        <div id="write-btn">
+          <span>+</span>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -83,17 +81,18 @@ export default {
   width: 33%;
 }
 
-#registbtn {
-  position: fixed;
-  bottom: 110px;
-  margin-left: 120px;
+#write-btn {
+  position: fixed;    
+  left: calc(50vw + 120px);
+  bottom: 85px;
   z-index: 3;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 30px;
   background-color: #9be4e4;
-  color: #7a69e6;
-  font-size: 20pt;
-  line-height: 30px;
+  color: #fff;
+  font-size: 30pt;
+  line-height: 56px;
+  box-shadow: 2px 2px 6px #ccc;
 }
 </style>

@@ -8,7 +8,12 @@
       <Report></Report>
       <Mainsora></Mainsora>
       <div class="bg-warning">
-        음음
+        <p id="post-title" class="text-start">커뮤니티</p>
+        <div></div>
+        <div></div>
+        <div>
+          <p id="post-title" class="text-start">챌린지</p>
+        </div>
       </div>
     </div>
   </div>

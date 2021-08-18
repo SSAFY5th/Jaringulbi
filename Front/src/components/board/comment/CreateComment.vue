@@ -9,7 +9,7 @@
         placeholder="이곳을 눌러 댓글을 남겨보세요."
       />
       <button class="btn mint-btn" @click="createComment" type="button">
-        ➤
+        <span class="send-btn">➤</span>
       </button>
     </div>
     <div v-else class="input-group">
@@ -21,7 +21,7 @@
         placeholder="로그인하여 댓글을 남겨보세요."
       />
       <button class="btn disabled" @click="createComment" type="button">
-        ➤
+        <span class="send-btn">➤</span>
       </button>
     </div>
   </div>
@@ -75,12 +75,15 @@ export default {
 </script>
 
 <style scoped>
-.mint-btn {
-  background-color: #9be4e4;
-  color: #7a69e6;
-}
-.mint-btn:hover {
-  background-color: #9be4e4;
-  color: #fff;
-}
+  .mint-btn {
+    background-color: #9be4e4;
+    color: #fff;
+  }
+  
+  .mint-btn:hover {
+    background-color: #fff;
+    border: solid 1px #9be4e4;
+    color: #9be4e4;
+    /* color: #7a69e6; */
+  }
 </style>
