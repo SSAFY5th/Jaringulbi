@@ -1,14 +1,28 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
-  <div id="font">
-    <div id="header" class="">
-      <Header></Header>
-    </div>
+  <div>
+    <Header></Header>
     <div class="main-content">
+      <div class="report-wrap mb-2 d-flex">
+        <!-- justify-content-evenly -->
+        <div class="align-self-center report-img">
+          <router-link :to="{ name: 'Mypage' }">
+            <img alt="프로필" :src="image" id="profile-img" />
+          </router-link>
+        </div>
+        <div class="text-start align-self-center">
+          <p class="report-text m-0">이번 주는</p>
+          <span class="puple-text">544,350원</span>
+          <span class="report-text"> 썼어요</span>
+          <p id="post-upcount" class="m-0">8월 1주차 (08.01 ~ 08.07)</p>
+        </div>
+      </div>
       <Report></Report>
-      <Mainsora></Mainsora>
       
-      <div class="">
+      <div class="main-section-wrap">
+        <div class="mb-4">
+          <Mainsora></Mainsora>
+        </div>
         <p id="main-title" class="text-start mb-2">커뮤니티</p>
         <div class="mb-4">
           <div class="freeboard">
@@ -48,15 +62,27 @@
               </router-link>
             </span>
           </div>
-          <div class="mb-3">
-            <div class="challeng-btn bg-secondary d-inline-block">
-              챌린지
-            </div>
-            <div class="challeng-btn bg-secondary d-inline-block">
-              챌린지
-            </div>
-            <div class="challeng-btn bg-secondary d-inline-block">
-              챌린지
+          <div class="d-flex">
+            <div
+              class="chlg-btn-wrap"
+              v-for="challenge in challenges.data.slice(0,3)"
+              :key="challenge.id"
+            >            
+              <div class="challenge-btn d-inline-block">
+                <router-link
+                  :to="{
+                    path: `/challenge/detail/${challenge.id}`,
+                    query: { name: challenge.image },
+                  }"
+                >
+                  <img
+                    alt="챌린지"
+                    class="chlg-img"
+                    :src="challenge.image"
+                    style="object-fit: cover;"
+                  />
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -69,8 +95,8 @@
 import Header from "@/layout/Header.vue";
 import Report from "@/components/main/Report.vue";
 import Mainsora from "@/components/main/Mainsora.vue";
+import { mapGetters } from "vuex";
 
-// import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -78,16 +104,50 @@ export default {
     Report,
     Mainsora,
   },
-  computed: {},
   data() {
-    return {};
+    return {
+      image: this.$store.state.user.image,   
+      challengesImg: this.chlgImg,
+    };
   },
-  methods: {},
+  computed: {
+    ...mapGetters(["challenges"]),
+  },
+  methods: {   
+  },
+  created() {
+    this.$store.dispatch("getChallenges");
+    let chlgImg = [];
+    chlgImg = this.challenges.data
+    chlgImg = chlgImg.slice(0, 3);
+    console.log(chlgImg)
+  },
 };
 </script>
 
 <style scoped>
-  .main-content {
+  .report-wrap{
+    width: 100%;
+    height: 180px;
+    border-bottom: solid 1px #eee;
+  }
+
+  .report-img {
+    width: 40%;
+  }
+
+  .puple-text {
+    color: #7a69e6;
+    font-weight: 600;
+    font-size: 21px;
+  }
+
+  .report-text {
+    font-size: 21px;
+    /* text-align: left; */
+  }
+
+  .main-section-wrap {
     padding: 10px 14px 12px 14px;
   }
 
@@ -109,6 +169,13 @@ export default {
     color: #7a69e6;
   }
 
+  .freeboard-btn:hover {
+    background-color: #9be4e4;
+    cursor: pointer;
+    color: #fff;
+    transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
   .buyornot {
     width: 50%;
     display: inline-block;
@@ -126,10 +193,32 @@ export default {
     color: #7a69e6;
   }
 
-  .challeng-btn {
-    width: 124px;
-    height: 124px;
-    border-radius: 62px;
-    line-height: 120px;
+  .buyornot-btn:hover {
+    background-color: #9be4e4;
+    cursor: pointer;
+    color: #fff;
+    transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
   }
+
+  .chlg-btn-wrap {
+    width: 33%;
+    /* display: inline-block; */
+  }
+
+  .challenge-btn {
+    width: 100%;
+    max-width: 120px;
+    height: 100%;
+    max-height: 120px;
+    border-radius: 60px;
+    /* line-height: 118px;     */
+    background-color: #eee;    
+    overflow: hidden;
+  }
+
+  .chlg-img {
+    object-fit: cover;
+  }
+
+
 </style>

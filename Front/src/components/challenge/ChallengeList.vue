@@ -1,5 +1,5 @@
 <template>
-  <div class="row" id="challenge">
+  <div id="challenge">
     <div>
       <router-link
         :to="{
@@ -10,16 +10,16 @@
         <img alt="list" :src="image" id="image"
       /></router-link>
     </div>
-    <div>{{ title }}</div>
-    <div>
+    <div id="post-title">{{ title }}</div>
+    <div id="post-time">
       {{ start_date.date.year }}-{{ start_date.date.month }}-{{
         start_date.date.day
       }}~{{ end_date.date.year }}-{{ end_date.date.month }}-{{
         end_date.date.day
       }}
     </div>
-    <div>참가비 : {{ entry_fee }}굴비</div>
-    <div>보상 : {{ reward }}굴비</div>
+    <div id="post-content">참가비 : {{ entry_fee }}굴비</div>
+    <div id="post-content">보상 : {{ reward }}굴비</div>
   </div>
 </template>
 <script>
@@ -40,14 +40,14 @@ export default {
 </script>
 <style scope>
 #image {
-  width: 90%;
+  width: 98%;
   height: 120px;
-  margin: 14px;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 
 #challenge {
   display: inline-block;
   width: 50%;
+  text-align: left;
 }
 </style>

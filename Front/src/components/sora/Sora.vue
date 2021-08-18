@@ -1,31 +1,28 @@
 
 <template>
   <div>
-    <div class="row">
+    <Header></Header>
+    <div class="main-content">
+      <p id="post-title">마법의 소라고동</p>
+      <b-img
+        :src="require('@/assets/sora.jpg')"
+        style="width: 200px"
+        class="margin"
+      >
+      </b-img>
       <div>
-        <Header></Header>
-        <div class="margin">
-          <h1>마법의 소라고동</h1>
-          <b-img
-            :src="require('@/assets/sora.jpg')"
-            style="width: 200px"
-            class="margin"
-          >
-          </b-img>
-          <div>
-            <b-button variant="info" class="margin" v-on:click.once="play()"
-              >소라고동 클릭</b-button
-            >
-            <b-button class="margin" @click="replay()">다시 하기 </b-button>
-          </div>
-          <div>
-            <b-card class="margin margin_btn">
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card>
-          </div>
-        </div>
+        <b-button variant="info" class="margin" v-on:click.once="play()"
+          >소라고동 클릭</b-button
+        >
+        <b-button class="margin" @click="replay()">다시 하기 </b-button>
+      </div>
+      <div>
+        <b-card class="margin margin_btn">
+          <b-card-text>{{ text }}</b-card-text>
+        </b-card>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -42,7 +39,6 @@ export default {
       num: "",
     };
   },
-  //   created() {},
   methods: {
     play() {
       var sound =
@@ -89,10 +85,10 @@ export default {
 };
 </script>
 <style scoped>
-.margin {
-  margin-top: 20px;
-}
 
+.main-content {
+  padding: 10px 14px 12px 14px;
+}
 .margin_btn {
   margin-left: 30px;
   margin-right: 30px;
