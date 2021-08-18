@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -72,7 +71,7 @@ public class ChallengeController {
     }
 
     @PostMapping(value="/enter")
-    public ResponseEntity<String> enterChallenge(@RequestBody EnterChallengeVo enterChallengeVo, Model model){
+    public ResponseEntity<String> enterChallenge(@RequestBody EnterChallengeVo enterChallengeVo){
         try {
             challengeService.enterChallenge(enterChallengeVo);
         } catch(Exception e){

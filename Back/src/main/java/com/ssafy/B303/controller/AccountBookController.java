@@ -1,15 +1,12 @@
 package com.ssafy.B303.controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ssafy.B303.model.dto.AccountBookDto;
-import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -40,23 +37,15 @@ public class AccountBookController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session) {
-        //UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        //int user_id = userDto.getId();
-    	System.out.println("가계부 등록");
-    	System.out.println(tempAccountBookDto.getId() + " " + tempAccountBookDto.getDate() + " " 
-    	+ tempAccountBookDto.getCategory() + " " +
-    	" " +tempAccountBookDto.getUser_id());
+    public ResponseEntity<String> addAccountBook(@RequestBody AccountBookDto tempAccountBookDto) {
         AccountBookDto accountBookDto = new AccountBookDto(
         		0,
-                //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
-                //시분초는 일단 기본값
                 tempAccountBookDto.getDate(),
                 tempAccountBookDto.getPrice(),
                 tempAccountBookDto.getCategory(),
                 tempAccountBookDto.getUsed(),
                 tempAccountBookDto.getContents(),
-                1);    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+                1);
  
         try{
             accountBookService.insertAccountBook(accountBookDto);
@@ -95,9 +84,6 @@ public class AccountBookController {
             if(outgoings.get(i) != null) b = outgoings.get(i).intValue();
             daySum.add(a + b);
         }
-
-        System.out.println(incomes);
-
 
         String incomesToJson = new Gson().toJson(incomes);
         String outgoingsToJson = new Gson().toJson(outgoings);
@@ -142,12 +128,8 @@ public class AccountBookController {
     @PutMapping(value = "detail")
     public ResponseEntity<AccountBookDto> modifyAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session){
         UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
-        String login_id = userDto.getLogin_id();
         AccountBookDto accountBookDto = new AccountBookDto(
                 tempAccountBookDto.getId(),
-                //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
-                //시분초는 일단 기본값
                 tempAccountBookDto.getDate(),
                 tempAccountBookDto.getPrice(),
                 tempAccountBookDto.getCategory(),
@@ -164,7 +146,7 @@ public class AccountBookController {
     }
 
     @DeleteMapping(value = "detail")
-    public ResponseEntity deleteAccountBook(@RequestParam int id, HttpSession session) {
+    public ResponseEntity deleteAccountBook(@RequestParam int id) {
         try {
             accountBookService.deleteAccountBook(id);
         } catch (Exception e){

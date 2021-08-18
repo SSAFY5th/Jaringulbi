@@ -28,7 +28,7 @@ public class CommentController {
 
     @PutMapping(value = {"/comment/{id}"})
     public void updateComment(@PathVariable int id, @RequestBody CommentDto comment){
-        if (commentService.selectCommentById(id).getUser_id() == comment.getUser_id()) { //댓글 작성자만 수정 가능
+        if (commentService.selectCommentById(id).getUser_id() == comment.getUser_id()) {
             commentService.updateComment(id, comment);
         }
     }

@@ -43,10 +43,10 @@ public class UpDownController {
     }
 
 
-    private boolean isSelected(UpDownDto upDownDto) { // Up, Down 둘중에 하나라도 선택되어있으면 true 반환
+    private boolean isSelected(UpDownDto upDownDto) {
         return upDownService.selectUpById(upDownDto.getPost_id())
                 .stream()
-                .anyMatch(upDto -> upDto.getUser_id() == upDownDto.getUser_id())//user_id같은게 있으면 true
+                .anyMatch(upDto -> upDto.getUser_id() == upDownDto.getUser_id())
                 ||
                 upDownService.selectDownById(upDownDto.getPost_id())
                         .stream()
