@@ -1,40 +1,62 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
   <div id="font">
-    <div id="header" class="bg-light">
+    <div id="header" class="">
       <Header></Header>
     </div>
     <div class="main-content">
       <Report></Report>
       <Mainsora></Mainsora>
       
-      <div class="bg-light">
+      <div class="">
         <p id="main-title" class="text-start mb-2">커뮤니티</p>
-        <div class="mb-3">
+        <div class="mb-4">
           <div class="freeboard">
-            <div class="freeboard-btn">
-
+            <router-link :to="{ name: 'Board' }"
+              class="text-decoration-none m-0 p-0"
+            >
+              <div class="freeboard-btn">
                 <b-icon icon="chat-square-text" aria-hidden="false"></b-icon>
-
-            </div>
-            <span id="post-content">
-              자유게시판
-            </span>
+              </div>
+              <span id="post-content">
+                자유게시판
+              </span>
+            </router-link>
           </div>
           <div class="buyornot">
-            <div class="buyornot-btn">
-            </div>
-              <span id="post-content" class="">
+            <router-link :to="{ name: 'BuyOrNot' }"
+              class="text-decoration-none m-0 p-0"
+            >
+              <div class="buyornot-btn">
+                <b-icon icon="cart-x" aria-hidden="false"></b-icon>
+              </div>
+              <span id="post-content">
                 살까말까 게시판
               </span>
+            </router-link>
           </div>
         </div>
         <div>
-          <p id="main-title" class="text-start">챌린지</p>
-          <span id="post-upcount">전체보기</span>
+          <div class="d-flex justify-content-between mb-3">
+            <span id="main-title" class="align-self-center">챌린지</span>
+            <span class="align-self-center">
+              <router-link :to="{ name: 'Challenge' }"
+              class="text-decoration-none m-0 p-0"
+              id="post-upcount"
+              >
+                전체보기
+              </router-link>
+            </span>
+          </div>
           <div class="mb-3">
-            <div>
-
+            <div class="challeng-btn bg-secondary d-inline-block">
+              챌린지
+            </div>
+            <div class="challeng-btn bg-secondary d-inline-block">
+              챌린지
+            </div>
+            <div class="challeng-btn bg-secondary d-inline-block">
+              챌린지
             </div>
           </div>
         </div>
@@ -98,5 +120,16 @@ export default {
     background-color: #eee;
     cursor: pointer;
     border-radius: 12px;
+    line-height: 120px;
+    font-size: 30pt;
+    /* color: #9be4e4; */
+    color: #7a69e6;
+  }
+
+  .challeng-btn {
+    width: 124px;
+    height: 124px;
+    border-radius: 62px;
+    line-height: 120px;
   }
 </style>
