@@ -30,7 +30,6 @@
     </div>
 
     <!-- 글 리스트 출력 -->
-    <!-- 위에 카테고리 분류(board_category)로 v-if 등으로 카테고리 처리해서 보여주기 -->
     <div class="main-content">
       <!-- 무한 스크롤 구현 -->
       <div>

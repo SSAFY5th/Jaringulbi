@@ -31,8 +31,11 @@
           </div>
             
           <div class="d-inline-block">
-            <span id="post-time">2시간</span>
-            <!-- {{ created_time }} -->
+            <span id="post-time">
+              {{ created_time.year }}.
+              {{ created_time.month }}.
+              {{ created_time.day }}
+            </span>
             <!-- 본인일때만 삭제 가능함 -->
             <b-dropdown size="sm" id="dropdown-right" right
               v-if="$store.state.user.id === freeDetail.user_id" 
@@ -101,7 +104,6 @@
           v-bind:id="freeDetail.id"
           v-on:contents="getFreePostDetail"
         />
-        <!-- {{ freeDetail.id }} -->
       </div>
     </div>    
   </div>
@@ -123,7 +125,7 @@ export default {
   data () {
     return {
       freeDetail: [],
-      created_time: {},
+      created_time: [],
       commentList: [],
     };
   },
@@ -134,8 +136,8 @@ export default {
       .then(response => {
         this.freeDetail = response.data
         this.commentList = response.data.comment
-        this.created_time = response.data.created_time
-        // console.log(response.data)
+        this.created_time = response.data.created_time.date
+        console.log(response.data)
       }).catch(err => {
         console.log(err)
       });
