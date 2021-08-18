@@ -13,8 +13,11 @@
             {{ comment.nickname }}
           </span>          
           <div>
-          <span id="post-time">1시간</span>
-          <!-- {{ comment.commented_time }} -->
+          <span id="post-time">            
+          {{ comment.commented_time.date.year }}.
+          {{ comment.commented_time.date.month }}.
+          {{ comment.commented_time.date.day }}
+          </span>
           <!-- 본인일때만 삭제 가능함 -->
             <b-dropdown size="sm" id="dropdown-right" right
               v-if="$store.state.user.id === comment.user_id" 
