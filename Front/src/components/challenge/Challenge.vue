@@ -1,22 +1,19 @@
 <template>
   <div>
     <div><CLHeader></CLHeader></div>
-    <div>모든 챌린지</div>
 
-    <div>
-      <ChallengeList
-        v-for="(challenge, index) in challenges"
-        :key="index"
-        :id="challenge.id"
-        :start_date="challenge.start_date"
-        :end_date="challenge.end_date"
-        :contents="challenge.contents"
-        :entry_fee="challenge.entry_fee"
-        :reward="challenge.reward"
-        :image="challenge.image"
-        :description:="challenge.description"
-      ></ChallengeList>
-    </div>
+    <challenge-list
+      v-for="(challenge, index) in challenges.data"
+      v-bind:key="index"
+      :image="challenge.image"
+      :title="challenge.title"
+      :start_date="challenge.start_date"
+      :entry_fee="challenge.entry_fee"
+      :reward="challenge.reward"
+      :end_date="challenge.end_date"
+      :description="challenge.description"
+      :id="challenge.id"
+    ></challenge-list>
   </div>
 </template>
 
@@ -34,8 +31,9 @@ export default {
   computed: {
     ...mapGetters(["challenges"]),
   },
+
   created() {
-    this.$store.dispatch("getChallengs");
+    this.$store.dispatch("getChallenges");
   },
 };
 </script>

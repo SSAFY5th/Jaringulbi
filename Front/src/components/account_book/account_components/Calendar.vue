@@ -33,7 +33,7 @@ import { mapGetters } from "vuex";
 
 var month = new Date().getMonth() + 1;
 console.log("month : " + month);
-if (month < 10) month = "0" + month + 1;
+if (month < 10) month = "0" + month;
 const year = new Date().getFullYear();
 const day = new Date().getDate();
 const full = year + "-" + month + "-" + day;

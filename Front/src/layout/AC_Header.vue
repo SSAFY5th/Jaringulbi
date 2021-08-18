@@ -35,10 +35,6 @@ export default {
 };
 </script>
 <style scoped>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
 #acbutton {
   width: 420px;
 }

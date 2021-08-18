@@ -4,7 +4,7 @@
     <div id="acheader">
       <b-button-group id="acbutton">
         <b-button class="btn" title="모든 챌린지" @click="all">
-          <div>모든 챌린지</div>
+          <div>전체</div>
         </b-button>
         <b-button class="btn" title="나의 챌린지" @click="my">
           <div>나의 챌린지</div>
