@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <div>
-      <b-img :src="require('@/assets/소라고동.jpg')" id="image"></b-img>
+      <img alt="list" :src="this.image" id="image" />
     </div>
     <div style="font-weight: bold; font-size: 20pt">
       {{ this.$store.state.challenge.title }}
@@ -10,6 +10,7 @@
     <div>{{ this.$store.state.challenge.period }} 동안 진행</div>
     <div>참가인원 {{ this.$store.state.challenge.ChallengeUserNum }}</div>
     <div>참가비 {{ this.$store.state.challenge.entry_fee }}</div>
+
     <br />
     <div id="acheader">
       <b-button-group id="acbutton">
@@ -62,6 +63,7 @@ export default {
       reward: "",
       description: "",
       ChallengeUserNum: "",
+      image: this.$route.query.name,
     };
   },
   methods: {
