@@ -19,6 +19,7 @@ export default new Vuex.Store({
     challenge: {},
     challenges: {},
     challengeid: {},
+    myChallenge: {},
   },
 
   getters: {
@@ -52,6 +53,10 @@ export default new Vuex.Store({
 
     challengeid(state) {
       return state.challengeid;
+    },
+
+    myChallenge(state) {
+      return state.myChallenge;
     },
   },
 
@@ -95,6 +100,10 @@ export default new Vuex.Store({
 
     setChallengeId(state, payload) {
       state.challengeid = payload;
+    },
+
+    setmyChallenge(state, payload) {
+      state.myChallenge = payload;
     },
   },
 
@@ -215,6 +224,23 @@ export default new Vuex.Store({
         .catch((error) => {
           console.log(error);
           console.error("챌린지 상세보기 실패");
+        });
+    },
+
+    getmyChallenge(context, { id }) {
+      console.log("마이 챌린지 시작");
+      console.log(id);
+      http
+        .get("/challenge/mylist/" + id, {
+          id: id,
+        })
+        .then(({ data }) => {
+          console.log("마이챌린지 제목 : " + data[0].title);
+          context.commit("setmyChallenge", data);
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error("마이챌린지 보기 실패");
         });
     },
 

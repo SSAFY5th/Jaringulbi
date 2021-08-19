@@ -34,11 +34,13 @@ export default {
     ChallengeList,
   },
   computed: {
-    ...mapGetters(["challenges"]),
+    ...mapGetters(["challenges", "myChallenge"]),
   },
 
   created() {
+    var id = this.$store.state.user.id;
     this.$store.dispatch("getChallenges");
+    this.$store.dispatch("getmyChallenge", { id: id });
   },
 };
 </script>

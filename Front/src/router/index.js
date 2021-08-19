@@ -157,7 +157,7 @@ const routes = [
     component: ChallengeDetail,
   },
   {
-    path: "/mychallenge",
+    path: "/mychallenge/:id",
     name: "MyChallenge",
     component: MyChallenge,
   },

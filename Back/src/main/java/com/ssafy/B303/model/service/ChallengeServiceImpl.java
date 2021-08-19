@@ -43,6 +43,10 @@ public class ChallengeServiceImpl implements ChallengeService{
     public List<UserChallengeDto> getUserChallengeList(int user_id) {
         return sqlSession.getMapper(ChallengeMapper.class).getUserChallengeList(user_id);
     }
+    @Override
+    public List<ChallengeDto> getMyChallengeList(int id) {
+    	return sqlSession.getMapper(ChallengeMapper.class).getMyChallengeList(id);
+    }
 
     @Override
     public List<ChallengeReviewDto> getChallengeReviewList(int challenge_id) {

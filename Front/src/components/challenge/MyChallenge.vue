@@ -17,15 +17,20 @@
 
       <div class="challenge-wrap">
         <!-- MyChallengeList.length -->
-        <ul v-if="MyChallengeList" class="p-0">
-          <li v-for="myChallenge in myChallengeList" :key="myChallenge.id">
-            <MyChallengeList
-              :myChallenge="myChallenge"
-              v-on:contents="getMyChallengeList"
-            />
-          </li>
-        </ul>
-        <p v-else class="mt-5">아직 참여중인 챌린지가 없습니다.</p>
+        <my-challenge-list
+          v-for="(challenge, index) in myChallenge"
+          :key="index"
+          :image="challenge.image"
+          :title="challenge.title"
+          :start_date="challenge.start_date"
+          :entry_fee="challenge.entry_fee"
+          :reward="challenge.reward"
+          :end_date="challenge.end_date"
+          :description="challenge.description"
+          :id="challenge.id"
+          :status="challenge.status"
+        >
+        </my-challenge-list>
       </div>
     </div>
   </div>
@@ -34,6 +39,7 @@
 import CLHeader from "@/layout/CL_Header.vue";
 import MyChallengeList from "@/components/challenge/MyChallengeList.vue";
 import http from "@/util/http-common";
+import { mapGetters } from "vuex";
 
 export default {
   name: "MyChallenge",
@@ -41,10 +47,18 @@ export default {
     CLHeader,
     MyChallengeList,
   },
+  computed: {
+    ...mapGetters(["myChallenge"]),
+  },
+
+  created() {
+    const check = this.$store.state.myChallenge.id;
+    const id = this.$store.state.user.id;
+    this.$store.dispatch("getmyChallenge", { id: id });
+    console.log(check);
+  },
   data() {
-    return {
-      myChallengeList: [],
-    };
+    return {};
   },
   methods: {
     getMyChallengeList: function () {
@@ -59,9 +73,6 @@ export default {
           console.log(err);
         });
     },
-  },
-  created() {
-    this.getMyChallengeList();
   },
 };
 </script>
