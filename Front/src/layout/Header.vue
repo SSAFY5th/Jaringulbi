@@ -34,7 +34,7 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 80px;
+  height: 65px;
   background-color: #fff;
   box-shadow: 0 2px 8px #ddd;
 }

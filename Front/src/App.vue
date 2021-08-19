@@ -21,107 +21,106 @@ export default {
 </script>
 
 <style>
-  #app {
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    font-family: "Noto Sans KR", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    background-color: #eee;
-  }
+#app {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  font-family: "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  background-color: #eee;
+}
 
-  #home {
-    margin: 0 auto;
-    padding-bottom: 65px;
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    min-height: 100vh;
-    overflow: hidden;
-    background-color: #fff;
-  }
+#home {
+  margin: 0 auto;
+  padding-bottom: 65px;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+}
 
-  .main-content {
-    margin-top: 80px;
-    position: relative;
-    color: #222;
-  }
+.main-content {
+  margin-top: 65px;
+  position: relative;
+  color: #222;
+}
 
-  #bottom-menu {
-    position: fixed;
-    bottom: 0;
-    z-index: 999;
-    display: flex;
-    width: 100%;
-    max-width: 420px;
-    height: 65px;
-    padding: 0;
-    background-color: #fff;
-  }
+#bottom-menu {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  padding: 0;
+  background-color: #fff;
+}
 
-  #profile-img {
-    width: 68px;
-    height: 68px;
-    border-radius: 34px;
-    overflow: hidden;
-  }
+#profile-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 34px;
+  overflow: hidden;
+}
 
-  #img-circle {
-    min-width: 48px;
-    width: 48px;
-    height: 48px;
-    border-radius: 24px;
-    overflow: hidden;
-  }
+#img-circle {
+  min-width: 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  overflow: hidden;
+}
 
-  .mint-btn {
-    background-color: #9be4e4;
-    color: #7a69e6;
-  }
+.mint-btn {
+  background-color: #9be4e4;
+  color: #7a69e6;
+}
 
-  .mint-btn:hover {
-    background-color: #9be4e4;
-    color: #fff;
-  }
+.mint-btn:hover {
+  background-color: #9be4e4;
+  color: #fff;
+}
 
-  #main-title {
-    color: #222;
-    font-weight: 600;
-    font-size: 19px;
-  }
+#main-title {
+  color: #222;
+  font-weight: 600;
+  font-size: 19px;
+}
 
-  #post-username {
-    font-size: 15px;
-    /* font-weight: 600; */
-    color: #444;
-  }
+#post-username {
+  font-size: 15px;
+  /* font-weight: 600; */
+  color: #444;
+}
 
-  #post-username-bold {
-    font-size: 15px;
-    font-weight: 600;
-    color: #444;
-  }
+#post-username-bold {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+}
 
-  #post-time {
-    color: #aaa;
-    font-size: 13px;
-  }
+#post-time {
+  color: #aaa;
+  font-size: 13px;
+}
 
-  #post-title {  
-    font-weight: 600;
-    color: #333;
-  }
+#post-title {
+  font-weight: 600;
+  color: #333;
+}
 
-  #post-content {
-    font-size: 14px;
-    color: #444;
-  }
+#post-content {
+  font-size: 14px;
+  color: #444;
+}
 
-  #post-upcount {
-    font-size: 14px;
-    color: #888;
-  }
-
+#post-upcount {
+  font-size: 14px;
+  color: #888;
+}
 </style>

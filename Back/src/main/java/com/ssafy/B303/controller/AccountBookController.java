@@ -44,9 +44,6 @@ public class AccountBookController {
         //UserDto userDto = (UserDto) session.getAttribute("userinfo");
         //int user_id = userDto.getId();
     	System.out.println("가계부 등록");
-    	System.out.println(tempAccountBookDto.getId() + " " + tempAccountBookDto.getDate() + " " 
-    	+ tempAccountBookDto.getCategory() + " " +
-    	" " +tempAccountBookDto.getUser_id());
         AccountBookDto accountBookDto = new AccountBookDto(
         		0,
                 //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
@@ -118,8 +115,8 @@ public class AccountBookController {
 
     @GetMapping(value = "detail")
     public ResponseEntity<List<AccountBookDto>> dayAccountBook(@RequestParam String date, HttpSession session) {
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
+   
+        int user_id = 1;
         int month = LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(date+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul")))
                 .getMonthValue();
         int day = LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(date+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul")))
@@ -140,10 +137,8 @@ public class AccountBookController {
     }
 
     @PutMapping(value = "detail")
-    public ResponseEntity<AccountBookDto> modifyAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session){
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
-        String login_id = userDto.getLogin_id();
+    public ResponseEntity<String> modifyAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session){
+        System.out.println("가계부 수정");	
         AccountBookDto accountBookDto = new AccountBookDto(
                 tempAccountBookDto.getId(),
                 //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
@@ -156,11 +151,12 @@ public class AccountBookController {
                 tempAccountBookDto.getUser_id());    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
         try {
             accountBookService.modifyAccountBook(accountBookDto);
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        return null;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "detail")
