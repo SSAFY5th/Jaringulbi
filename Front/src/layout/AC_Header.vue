@@ -37,6 +37,7 @@ export default {
 <style scoped>
 #acbutton {
   width: 420px;
+  height: 65px;
 }
 
 .btn {

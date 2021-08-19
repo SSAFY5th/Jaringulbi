@@ -1,5 +1,5 @@
 <template>
-  <div id="font">
+  <div>
     <router-view />
     <div id="acheader">
       <b-button-group id="acbutton">

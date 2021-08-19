@@ -30,20 +30,19 @@
         </div>
         <br />
         <div class="mb-3">
-          <b-button style="width: 100%" @click="modify">프로필 수정</b-button>
+          <b-button style="width: 100%" @click="modify">계정 설정</b-button>
         </div>
         <div>
-          <b-list-group class="mb-3">
-            <b-list-group-item>계정설정</b-list-group-item>
+          <b-list-group class="mb-3 text-start">
             <b-list-group-item>고객센터</b-list-group-item>
             <b-list-group-item>어플공유</b-list-group-item>
             <b-list-group-item>자주 하는 질문</b-list-group-item>
           </b-list-group>
         </div>
         <div class="mb-3">
-          <b-button @click="logout" style="width: 100%" class="btn">
+          <button @click="logout" style="width: 100%" class="btn">
             로그아웃
-          </b-button>
+          </button>
         </div>
       </div>
     </div>
@@ -79,7 +78,7 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 80px;
+  height: 65px;
   background-color: #fff;
   color: #222;
   box-shadow: 0 2px 8px #ddd;
