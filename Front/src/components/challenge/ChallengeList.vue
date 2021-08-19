@@ -8,7 +8,7 @@
             query: { name: image },
           }"
         >
-          <img alt="list" :src="image" id="image"
+          <img :src="image" id="image" alt="챌린지 이미지"
         /></router-link>
       </div>
       <div id="post-title" class="my-2">{{ title }}</div>
@@ -44,6 +44,7 @@ export default {
 #image {
   width: 100%;
   height: 120px;
+  object-fit: cover;
   border-radius: 12px;
 }
 
