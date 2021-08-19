@@ -21,7 +21,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <div id="img-circle" class="d-inline-block">
-              <img src="https://picsum.photos/48/48" alt="프로필사진">
+              <b-img :src="BuynotDetail.profile" class="img-fluid"></b-img>
             </div>      
             <span class="d-inline-block ms-2" id="post-username">
               {{ BuynotDetail.nickname }}
