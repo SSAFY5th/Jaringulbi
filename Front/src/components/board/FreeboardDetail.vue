@@ -25,7 +25,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <div id="img-circle" class="d-inline-block">
-              <img src="https://picsum.photos/48/48" alt="프로필사진" />
+              <b-img :src="freeDetail.profile" class="img-fluid"></b-img>
             </div>
             <span class="d-inline-block ms-2" id="post-username">
               {{ freeDetail.nickname }}
@@ -77,10 +77,11 @@
           <div class="text-start mt-1 mb-2" id="post-content">
             {{ freeDetail.contents }}
           </div>
-          <div class="mb-2">
-            <!-- 이미지가 있다면 {{ post.image }}-->
-            <img src="https://picsum.photos/392/180" alt="이미지" />
+          <div class="post-img mb-2" v-if="freeDetail.image">              
+            <b-img :src="freeDetail.image" class="img-fluid"></b-img>
+            <!-- <img src="https://picsum.photos/392/180" alt="이미지"> -->
           </div>
+          <div v-else></div>
 
           <!-- 좋아요, 리플 수 -->
           <div class="text-end text-secondary" id="post-upcount">

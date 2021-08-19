@@ -1,9 +1,19 @@
 <template>
   <div>
-    <div id="font">
+    <div id="regist-account-header">
+      <div
+        class="d-flex justify-content-center align-self-center px-3"
+        style="width: 100%"
+      >
+        <div class="text-center">
+          <span>지출 등록</span>
+        </div>
+      </div>
+    </div>
+    <div id="font" class="main-content">
       <div class="regist">
-        <h1 class="underline top1">지출 등록</h1>
-        <hr />
+        <!-- <h1 class="underline top1">지출 등록</h1> -->
+        <!-- <hr /> -->
         <div>
           <button class="btn" id="btn_group" @click="plus">수입</button>
           <button class="btn" id="btn_group" @click="minus">지출</button>
@@ -20,7 +30,7 @@
               ref="date"
             />
           </div>
-          <hr />
+          <!-- <hr /> -->
           <div class="float1"><label for="price">금액</label></div>
           <div class="float2">
             <input
@@ -31,7 +41,7 @@
               ref="price"
             />
           </div>
-          <hr />
+          <!-- <hr /> -->
           <div class="float1"><label for="category">카테고리</label></div>
           <div class="float3">
             <input
@@ -99,7 +109,7 @@
               </b-modal>
             </div>
           </div>
-          <hr />
+          <!-- <hr /> -->
           <div class="float1"><label for="used">장소</label></div>
           <div class="float2">
             <input
@@ -110,7 +120,7 @@
               ref="used"
             />
           </div>
-          <hr />
+          <!-- <hr /> -->
           <div class="float1"><label for="contents">내용</label></div>
           <div class="float2">
             <input
@@ -120,8 +130,7 @@
               ref="contents"
             />
           </div>
-          <hr />
-
+          <!-- <hr /> -->
           <button class="btn" id="btn_group" @click="registAccountBook">
             등록
           </button>
@@ -311,12 +320,18 @@ export default {
 };
 </script>
 <style>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
-.regist {
-  padding: 10px;
+#regist-account-header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 80px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px #ddd;
+  text-align: center;
 }
 
 input {

@@ -65,7 +65,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 #challenge-header {
   position: fixed;
   top: 0;

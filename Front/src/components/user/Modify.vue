@@ -1,73 +1,55 @@
 <template>
-  <div class="row">
-    <b-container id="mainImage">
-      <div>
-        <div class="top">
-          <!-- <b-img
-            :src="require('@/assets/logo.png')"
-            style="width: 100px"
-            class="margin"
-          ></b-img> -->
-          <img alt="프로필" :src="image" id="image" />
-          <div id="post-header">
-            <div
-              class="d-flex justify-content-between align-self-center px-3"
-              style="width: 100%"
-            >
-              <div class="">
-                <router-link :to="{ name: 'Board' }" class="text-dark">
-                  <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
-                </router-link>
-              </div>
-              <!-- <div class="text-center">
-          <span>글쓰기</span>
-        </div> -->
-            </div>
-          </div>
-          <!-- <h5 style="color: #9175f3">자린굴비</h5> -->
-        </div>
-        <div class="regist_form">
-          <label for="login_id">아이디</label>
-          <input
-            readonly
-            type="text"
-            id="login_id"
-            name="login_id"
-            v-model="login_id"
-            ref="login_id"
-          />
-          <label for="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            v-model="password"
-            ref="password"
-          /><br />
-          <label for="nickname">이름</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            v-model="nickname"
-            ref="nickname"
-          /><br />
-          <label for="phone">전화번호</label><br />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            v-model="phone"
-            ref="phone"
-          />
-          <br />
-          <button @click="modifyUser" class="btn" id="btn_group">수정</button>
-          <button @click="deleteUser" class="btn" id="btn_group">
-            회원탈퇴
-          </button>
+  <div>
+    <div id="post-header">
+      <div
+        class="d-flex justify-content-between align-self-center px-3"
+        style="width: 100%"
+      >
+        <div>
+          <router-link :to="{ name: 'Mypage' }" class="text-dark">
+            <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
+          </router-link>
         </div>
       </div>
-    </b-container>
+    </div>
+    <div class="main-content">
+      <div>
+        <img alt="프로필" :src="image" id="profile-img" />
+      </div>
+      <div class="regist_form">
+        <label for="login_id">아이디</label>
+        <input
+          readonly
+          type="text"
+          id="login_id"
+          name="login_id"
+          v-model="login_id"
+          ref="login_id"
+        />
+        <label for="password">비밀번호</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          v-model="password"
+          ref="password"
+        /><br />
+        <label for="nickname">이름</label>
+        <input
+          type="text"
+          id="nickname"
+          name="nickname"
+          v-model="nickname"
+          ref="nickname"
+        /><br />
+        <label for="phone">전화번호</label><br />
+        <input type="tel" id="phone" name="phone" v-model="phone" ref="phone" />
+        <br />
+        <button @click="modifyUser" class="btn" id="btn_group">수정</button>
+
+        <button @click="deleteUser" class="btn" id="btn_group">회원탈퇴</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -132,13 +114,10 @@ export default {
 };
 </script>
 <style scoped>
-.top {
-  margin-top: 60px;
+.main-content {
+  padding: 10px 14px 12px 14px;
 }
 
-.margin {
-  margin-top: 20px;
-}
 .title {
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
   color: black;
@@ -149,7 +128,7 @@ export default {
 .regist_form {
   text-align: left;
   border-radius: 5px;
-  padding: 35px;
+  /* padding: 35px; */
 }
 input,
 textarea,

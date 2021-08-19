@@ -46,6 +46,7 @@ export default {
   .main-content {
     margin-top: 80px;
     position: relative;
+    color: #222;
   }
 
   #bottom-menu {
@@ -58,6 +59,13 @@ export default {
     height: 65px;
     padding: 0;
     background-color: #fff;
+  }
+
+  #profile-img {
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    overflow: hidden;
   }
 
   #img-circle {
@@ -76,11 +84,23 @@ export default {
   .mint-btn:hover {
     background-color: #9be4e4;
     color: #fff;
-}
+  }
+
+  #main-title {
+    color: #222;
+    font-weight: 600;
+    font-size: 19px;
+  }
 
   #post-username {
     font-size: 15px;
     /* font-weight: 600; */
+    color: #444;
+  }
+
+  #post-username-bold {
+    font-size: 15px;
+    font-weight: 600;
     color: #444;
   }
 

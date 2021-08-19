@@ -57,14 +57,6 @@
             class="form-control form-control-sm"
           >
         </div>
-        <!-- <label for="tag">태그 입력 부분</label><br />
-          <input
-            type="text"
-            id="tag"
-            name="tag"
-            ref="tag"
-          /><br /> -->
-        <!-- <button @click="checkValue" class="btn" id="btn_group">가입</button>-->
       </div>
     </div>
   </div>
@@ -114,7 +106,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #post-header {
   position: fixed;
   top: 0;

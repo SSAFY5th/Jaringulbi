@@ -45,7 +45,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <div id="img-circle" class="d-inline-block">
-              <img src="https://picsum.photos/48/48" alt="프로필사진">
+              <b-img :src="post.profile" class="img-fluid"></b-img>
             </div>      
             <span class="d-inline-block ms-2" id="post-username">
               {{ post.nickname }}
@@ -57,7 +57,6 @@
               {{ post.created_time.date.month }}.
               {{ post.created_time.date.day }}
             </span>
-            <!-- {{ post.created_time }} -->
           </div>      
         </div>
 
@@ -71,7 +70,6 @@
             <p id="post-title" class="mt-3">RECEIPT</p>
             <hr class="mx-2">
             <div class="text-start ms-3" id="post-title">
-              <!-- 제목 -->
               {{ post.title }}
             </div>
             <div class="text-start mt-1 ms-3" id="post-content">
@@ -82,9 +80,9 @@
               <span id="post-content">Total.</span>
               <span id="post-title"> {{ post.price }} 원</span>
             </div>
-            <div>
-              <!-- 이미지가 있다면 {{ post.image }}-->
-              <img src="https://picsum.photos/392/180" alt="이미지">
+            <div class="post-img">              
+              <b-img :src="post.image" class="img-fluid"></b-img>
+              <!-- <img src="https://picsum.photos/392/180" alt="이미지"> -->
             </div>
           </div>
         </router-link>
@@ -128,7 +126,7 @@ export default {
     getBuynotPostList: function () {
       http.get("buyornot/")
       .then(response => {
-        // console.log(response.data)
+        console.log(response.data)
         this.buynotPostList = response.data
         // this.username = this.$store.state.user.login_id
       }).catch(err => {
@@ -168,9 +166,10 @@ export default {
     height: 60px;
     border-radius: 30px;
     background-color: #9be4e4;
-    color: #7a69e6;
+    color: #fff;
     font-size: 30pt;
-    line-height: 60px;
+    line-height: 56px;
+    box-shadow: 2px 2px 6px #ccc;
   }
 
   .post-wrap {
@@ -182,5 +181,9 @@ export default {
   #receipt-wrap {
     border: solid 1px #ccc;
     overflow: hidden;
+  }
+
+  .post-img {
+    max-height: 400px;
   }
 </style>

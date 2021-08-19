@@ -67,7 +67,7 @@
       <hr>
       <p id="post-title" class="text-start">카테고리</p>
       <div>
-        카테고리들
+        자유게시판 | 살까말까
       </div>
     </div>
   </div>

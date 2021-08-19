@@ -1,33 +1,26 @@
 <!--전반적인 틀이 되는 컴포넌트-->
 <template>
   <div>
-    <div class="row">
-      <div>
-        <b-button
-          style="
-            background-color: #9be4e4;
-            color: #9175f3;
-            border: 1px solid #9175f3;
-          "
-          size="lg"
-          @click="go"
-          ><b-img :src="require('@/assets/소라고동.jpg')" id="sora"></b-img
-          >선택이 고민될 땐 무엇이든 !
-          <div>마-법의 소라고동</div>
-        </b-button>
+    <div class="sora d-flex justify-content-between" @click="go">
+      <!-- <b-img :src="require('@/assets/소라고동.jpg')" id="sora"> -->
+      <!-- </b-img> -->
+      <div class="align-self-center ms-4">
+        <span>선택이 고민될 땐 무엇이든!</span>
+        <p class="m-0">마-법의 소라고둥</p>
+      </div>
+      <div class="align-self-center go-icon me-3">
+        <b-icon icon="chevron-right" aria-hidden="false"></b-icon>
       </div>
     </div>
   </div>
 </template>
+
 <script>
-//// import { mapGetters } from "vuex";
 export default {
-  name: "",
-  computed: {},
+  name: "Mainsora",
   data() {
     return {};
   },
-
   methods: {
     go() {
       this.$router.push("/sora");
@@ -35,10 +28,24 @@ export default {
   },
 };
 </script>
+
 <style>
-#sora {
-  width: 60px;
-  height: 60px;
-  border-radius: 100px;
-}
+  .sora {
+    background-color: #9be4e4;
+    cursor: pointer;
+    border-radius: 12px;
+    height: 100px;
+    color: #fff;
+    text-align: left;
+  }
+
+  .sora p {
+    color: #7a69e6;
+    font-size: 21px;
+    font-weight: 800;
+  }
+
+  .go-icon {
+    font-size: 24px;
+  }
 </style>

@@ -21,7 +21,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <div id="img-circle" class="d-inline-block">
-              <img src="https://picsum.photos/48/48" alt="프로필사진">
+              <b-img :src="BuynotDetail.profile" class="img-fluid"></b-img>
             </div>      
             <span class="d-inline-block ms-2" id="post-username">
               {{ BuynotDetail.nickname }}
@@ -77,14 +77,13 @@
               <span id="post-content">Total.</span>
               <span id="post-title"> {{ BuynotDetail.price }} 원</span>
             </div>
-            <div>
-              <!-- 이미지가 있다면 {{ BuynotDetail.image }}-->
-              <img src="https://picsum.photos/392/180" alt="이미지">
+            <div class="post-img">              
+              <b-img :src="BuynotDetail.image" class="img-fluid"></b-img>
+              <!-- <img src="https://picsum.photos/392/180" alt="이미지"> -->
             </div>
           </div>
 
           <!-- 추천, 비추천 수 -->
-          <!-- on:click 어쩌구로 구현해보기... -->
           <div class="mt-4 mb-3">
             <!-- 추천 버튼을 누르지 않았을때 -->
             <div v-show="!upClicked">
@@ -318,6 +317,10 @@ export default {
   #receipt-wrap {
     border: solid 1px #ccc;
     overflow: hidden;
+  }
+
+  .post-img {
+    max-height: 400px;
   }
 
   #thumb-cnt {
