@@ -2,8 +2,9 @@
 <template>
   <div class="row">
     <div><acheader></acheader></div>
-    <hr />
-    <div style="margin-top: 6px">
+
+    <div>
+      <br />
       <div>
         <div class="float">수입</div>
         <div class="float">지출</div>

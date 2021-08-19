@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100px">
     <Calendar class="calendar" :attributes="attributes" disable-page-swipe>
       <template v-slot:day-content="{ day, attributes }">
         <div>
@@ -138,7 +138,7 @@ export default {
 .cal {
   border: 1px solid #b8c2cc;
   width: 100%;
-  height: 106px;
+  height: 100px;
   text-align: left;
   font-weight: bold;
 }

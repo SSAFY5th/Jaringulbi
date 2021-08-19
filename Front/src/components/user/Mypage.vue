@@ -12,7 +12,7 @@
     </div>
     <div class="main-content">
       <div class="form-area">
-        <div>
+        <div class="mt-5">
           <div class="float1">
             <img alt="프로필" :src="image" id="image" />
           </div>
@@ -30,16 +30,18 @@
         </div>
         <br />
         <div class="mb-3">
-          <b-button style="width: 100%" @click="modify">계정 설정</b-button>
+          <b-button style="width: 100%" @click="modify" class="mint-btn"
+            >계정 설정</b-button
+          >
         </div>
         <div>
-          <b-list-group class="mb-3 text-start">
+          <b-list-group class="mb-3 text-start mt-5">
             <b-list-group-item>고객센터</b-list-group-item>
             <b-list-group-item>어플공유</b-list-group-item>
             <b-list-group-item>자주 하는 질문</b-list-group-item>
           </b-list-group>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 mt-5">
           <button @click="logout" style="width: 100%" class="btn">
             로그아웃
           </button>
@@ -83,6 +85,20 @@ export default {
   color: #222;
   box-shadow: 0 2px 8px #ddd;
   text-align: center;
+}
+
+.mint-btn {
+  background-color: #9be4e4;
+  color: #7a69e6;
+  border: 1px solid #9be4e4;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.mint-btn:hover {
+  border: 1px solid white;
+  background-color: #9be4e4;
+  color: #fff;
 }
 
 .form-area {

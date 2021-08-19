@@ -45,9 +45,10 @@
         <label for="phone">전화번호</label><br />
         <input type="tel" id="phone" name="phone" v-model="phone" ref="phone" />
         <br />
-        <button @click="modifyUser" class="btn" id="btn_group">수정</button>
-
-        <button @click="deleteUser" class="btn" id="btn_group">회원탈퇴</button>
+      </div>
+      <div>
+        <button @click="modifyUser" id="btn_group">수정</button>
+        <button @click="deleteUser" id="btn_group">회원탈퇴</button>
       </div>
     </div>
   </div>
@@ -150,11 +151,12 @@ textarea,
   width: 150px;
   margin-left: 14px;
   margin-top: 23px;
+  border-radius: 0.25rem;
+  border: 1px solid #9be4e4;
 }
 
 #btn_group:hover {
-  color: #9be4e4;
-  background-color: #fff;
+  color: #fff;
   border: 1px solid #9be4e4;
 }
 </style>
