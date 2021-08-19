@@ -5,10 +5,10 @@
     <div class="main-content">
       <div id="post-title" class="mt-5">
         {{ this.$store.state.user.nickname }}님, 어떤 고민이 있으신가요?
-        <br />소라고동님께 물어보세요! <br />
-        ex) 치킨 시킬까요?~ 말까요?
+        <br />소라고둥님께 물어보세요! <br />
       </div>
-      <div class="mt-4">
+       <span id="post-upcount"> ex) 치킨 시킬까요? 말까요? </span>
+      <div class="mt-3">
         <b-img
           :src="require('@/assets/sora.jpg')"
           style="width: 200px; cursor: pointer; border-radius: 200px"
@@ -22,18 +22,19 @@
           ></b-button>
         </b-img>
       </div>
-      <div>(사진을 클릭해주세요)</div>
+      <div id="post-upcount">(사진을 클릭해주세요)</div>
       <div>
-        <b-card class="margin margin_btn mt-5">
+        <b-card class=" mt-5">
           <b-form-textarea
             v-model="text"
-            placeholder="소라고동님 명령 대기중..."
-            >{{ text }}</b-form-textarea
+            placeholder="소라고둥님 명령 대기중..."
           >
+            {{ text }}
+          </b-form-textarea>
         </b-card>
       </div>
       <div>
-        <b-button class="mint-btn mt-5" @click="replay()">다시 하기 </b-button>
+        <button class="btn mint-btn mt-3" @click="replay()">다시 하기</button>
       </div>
     </div>
   </div>
@@ -99,24 +100,20 @@ export default {
 </script>
 <style scoped>
 .mint-btn {
-  background-color: #9be4e4;
-  color: #7a69e6;
   width: 100%;
-  border: 1px solid white;
+  background-color: #9be4e4;
+  color: #fff;
+  /* border: solid 1px #9be4e4; */
 }
 
 .mint-btn:hover {
-  background-color: #9be4e4;
-  color: #fff;
-  border: 1px solid white;
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
 }
 
 .main-content {
   padding: 10px 14px 12px 14px;
-}
-.margin_btn {
-  margin-left: 30px;
-  margin-right: 30px;
 }
 
 #board-header {

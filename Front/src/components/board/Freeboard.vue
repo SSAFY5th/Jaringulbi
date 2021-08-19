@@ -35,7 +35,7 @@
           {{ post.contents }}        
         </div>
         <div class="post-img" v-if="post.image">              
-          <b-img :src="post.image" class="img-fluid"></b-img>
+          <b-img :src="post.image" class="img-fluid" alt="이미지"></b-img>
           <!-- <img src="https://picsum.photos/392/180" alt="이미지"> -->
         </div>
         <div v-else></div>
