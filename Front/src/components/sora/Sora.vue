@@ -30,7 +30,7 @@
         <b-card class=" mt-5">
           <b-form-textarea
             v-model="text"
-            placeholder="소라고둥님 명령 대기중..."
+            placeholder="🐚소라고둥님이 뭐라고 답하실까요...?🐚"
           >
             {{ text }}
           </b-form-textarea>

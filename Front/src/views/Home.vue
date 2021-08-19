@@ -12,7 +12,7 @@
         </div>
         <div class="text-start align-self-center">
           <p class="report-text m-0">이번 주는</p>
-          <span class="puple-text">544,350원</span>
+          <span class="puple-text">124,350원</span>
           <span class="report-text"> 썼어요</span>
           <p id="post-upcount" class="m-0">8월 1주차 (08.01 ~ 08.07)</p>
         </div>
