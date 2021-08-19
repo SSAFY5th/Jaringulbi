@@ -42,9 +42,9 @@ export default {
 
 <style>
   .chlg-content {
-    padding: 10px 14px 12px 14px;
-    margin-top: 65px;
+    padding: 12px 4px 12px 14px;
+    /* margin-top: 65px; */
     position: relative;
-    color: #222;
+    color: #222;    
   }
 </style>

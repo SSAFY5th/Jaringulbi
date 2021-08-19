@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div id="challenge-header">
+    <div>
       <CLHeader />
     </div>
-    <div class="main-content">
+    <div class="mychlg-content">
       <div class="d-flex summary-box align-items-center justify-content-evenly">
         <div class="d-inline-block me-5">
           <p id="post-username">챌린지</p>
@@ -66,20 +66,7 @@ export default {
 };
 </script>
 <style scoped>
-#challenge-header {
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  width: 100%;
-  max-width: 420px;
-  height: 65px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px #ddd;
-}
-
-.main-content {
-  margin-top: 65px;
+.mychlg-content {
   margin-bottom: 60px;
   padding: 15px 14px 12px 14px;
   position: relative;

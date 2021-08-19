@@ -96,12 +96,13 @@ export default {
 
   .mint-btn {
     background-color: #9be4e4;
-    color: #7a69e6;
+    color: #fff;
   }
 
   .mint-btn:hover {
-    background-color: #9be4e4;
-    color: #fff;
+    border: solid 1px #9be4e4;
+    background-color: #fff;
+    color: #9be4e4;
   }
 
   #main-title {
