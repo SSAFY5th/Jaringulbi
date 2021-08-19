@@ -15,7 +15,19 @@
                   attr.customData.impo | makeComma
                 }}</span>
                 <br />
-                <span>{{ attr.customData.total | makeComma }}</span>
+                <span
+                  ><router-link
+                    :to="{
+                      path: `/accountdetail`,
+                      query: {
+                        year: attr.year,
+                        month: attr.date,
+                        day: attr.key + 1,
+                      },
+                    }"
+                    >{{ attr.customData.total | makeComma }}</router-link
+                  ></span
+                >
                 <br />
               </p>
             </div>
@@ -83,6 +95,8 @@ export default {
       customData["impo"] = Number(monthOutgoings[i]);
       customData["total"] = Number(monthIncomes[i]) + Number(monthOutgoings[i]);
 
+      eachAttr["year"] = year;
+      eachAttr["date"] = month;
       eachAttr["key"] = i;
       eachAttr["customData"] = customData;
       eachAttr["dates"] = `${year}-${month + 1}-${i + 1}`;

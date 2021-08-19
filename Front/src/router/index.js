@@ -6,6 +6,8 @@ import SearchPage from "../components/main/SearchPage.vue";
 import PageNotFound from "../components/error/PageNotFound.vue";
 import PageReady from "../components/error/PageReady.vue";
 import Accountbook from "../components/account_book/Accountbook.vue";
+import AccountDetail from "../components/account_book/AccountDetail.vue";
+import Modifybook from "../components/account_book/ModifyAccount.vue";
 import RegistAccount from "../components/account_book/RegistAccount.vue";
 import Board from "../components/board/Board.vue";
 import BuyOrNot from "../components/board/BuyOrNot.vue";
@@ -67,6 +69,17 @@ const routes = [
     path: "/accountbook",
     name: "Accountbook",
     component: Accountbook,
+  },
+  {
+    path: "/accountdetail",
+    name: "AccountDetail",
+    component: AccountDetail,
+  },
+
+  {
+    path: "/modifyaccountbook",
+    name: "Modifybook",
+    component: Modifybook,
   },
   {
     path: "/login",
