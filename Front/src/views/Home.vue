@@ -211,13 +211,15 @@ export default {
   max-width: 120px;
   height: 100%;
   max-height: 120px;
-  border-radius: 60px;
-  /* line-height: 118px;     */
+  border-radius: 12px;
+  /* line-height: 118px; */
   background-color: #eee;
   overflow: hidden;
 }
 
 .chlg-img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 </style>
