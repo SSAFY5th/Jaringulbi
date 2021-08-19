@@ -85,9 +85,8 @@ public class ChallengeController {
     }
 
     @GetMapping(value="/mychallenge")
-    public ResponseEntity<List<UserChallengeDto>> myChallengeList(HttpSession session){
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
+    public ResponseEntity<List<UserChallengeDto>> myChallengeList(){
+        int user_id = 4;
         List<UserChallengeDto> result = null;
         try{
             result = challengeService.getUserChallengeList(user_id);
