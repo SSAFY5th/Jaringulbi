@@ -21,4 +21,6 @@ public interface AccountBookMapper {
     Integer dayIncomes(Map<String, Number> map) throws Exception;
     Integer dayOutgoings(Map<String, Number> map) throws Exception;
     void setBudget(@Param("id")int id, @Param("budget")int budget);
+
+    int getBudget(int id);
 }

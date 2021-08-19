@@ -6,7 +6,7 @@
       <!-- </b-img> -->
       <div class="align-self-center ms-4">
         <span>선택이 고민될 땐 무엇이든!</span>
-        <p class="m-0">마-법의 소라고둥</p>
+        <p class="m-0">✨마-법의 소라고둥✨</p>
       </div>
       <div class="align-self-center go-icon me-3">
         <b-icon icon="chevron-right" aria-hidden="false"></b-icon>

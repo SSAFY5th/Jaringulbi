@@ -1,6 +1,6 @@
 <template>
   <!-- <router-view /> -->
-  <div id="acheader">
+  <div>
     <div class="d-flex">
       <b-button-group id="acbutton">
         <b-button class="top-category-btn" title="모든 챌린지" @click="all">
@@ -38,6 +38,7 @@ export default {
 .top-category-btn {
   position: fixed;
   top: 0;
+  z-index: 999;
   width: 100%;
   max-width: 420px;
   height: 65px;

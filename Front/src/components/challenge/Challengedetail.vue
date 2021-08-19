@@ -26,33 +26,56 @@
       </div>
     </div>
 
-    <div class="main-content text-start">
+    <div class="chlg-cover-img">
+      <img :src="this.image" alt="챌린지 이미지" />
+    </div>
+    <div class="text-start">
       <div class="chlg-wrap">     
-        <div>
-          <img alt="list" :src="this.image" id="image" />
-        </div>
-        <div style="font-weight: bold; font-size: 20pt">
+        <div style="font-weight: bold; font-size: 24px;">
           {{ this.$store.state.challenge.title }}
         </div>
-        <div>{{ this.$store.state.challenge.start }}</div>
-        <div>{{ this.$store.state.challenge.period }} 동안 진행</div>
-        <div>참가인원 {{ this.$store.state.challenge.ChallengeUserNum }}</div>
-        <div>참가비 {{ this.$store.state.challenge.entry_fee }}</div>
+        <div class="mt-2" style="color:#7a69e6; font-weight: 600;">
+          {{ this.$store.state.challenge.start }}
+        </div>
+        <div id="post-content"
+          style="border-bottom:solid 1px #eee;"
+          class="pb-3"
+        >
+          {{ this.$store.state.challenge.period }} 동안 진행
+        </div>
+        
+        <div class="d-flex align-items-center mt-3">
+          <span id="post-upcount" class="me-3">참가인원</span> 
+          <span id="post-title">
+            {{ this.$store.state.challenge.ChallengeUserNum }} 명
+          </span>
+        </div>
+        <div class="d-flex align-items-center">
+          <span id="post-upcount" class="me-4">참가비</span>          
+          <span id="post-title">
+            {{ this.$store.state.challenge.entry_fee }} 굴비
+          </span>          
+        </div>
+        <div class="d-flex align-items-center pb-3"
+          style="border-bottom:solid 1px #ddd;"
+        >
+          <span id="post-upcount" class="me-4">보상</span>          
+          <span id="post-title" style="color:#7a69e6;">
+            {{ this.$store.state.challenge.reward }} 굴비
+          </span>          
+        </div>
 
-        <br />
-        <div id="acheader">
-          <b-button-group id="acbutton">
-            <b-button class="btn" title="상세 설명" @click="descript">
-              <div>상세 설명</div>
-            </b-button>
-
-            <b-button class="btn" title="후기" @click="review">
-              <div>후기</div>
-            </b-button>
-          </b-button-group>
+        <div class="my-3 chlg-detail-tab">          
+          <span @click="descript" class="me-5">
+            상세 설명
+          </span>        
+          <span @click="review" class="ps-3">
+            후기
+          </span>          
         </div>
         <div>
-          <description v-show="dshow"></description><review v-show="rshow"></review>
+          <Description v-show="dshow" />          
+          <Review v-show="rshow" />
         </div>        
       </div>
     </div>    
@@ -111,7 +134,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 #chlg-header {
   position: fixed;
   top: 0;
@@ -125,9 +148,27 @@ export default {
   box-shadow: 0 2px 8px #ddd;
 }
 
+.chlg-cover-img {
+  margin-top: 65px;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.chlg-cover-img img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
 .chlg-wrap {
   padding: 10px 14px 12px 14px;
   margin-bottom: 55px;
+}
+
+.chlg-detail-tab span {
+  font-weight: 600;
+  color: #666;
 }
 
 .comment-form1 {
