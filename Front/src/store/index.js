@@ -56,6 +56,9 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    setAccountBook(state, payload) {
+      state.accountbook = payload;
+    },
     setAccountBooks(state, payload) {
       state.accountbooks = payload;
     },
@@ -150,6 +153,32 @@ export default new Vuex.Store({
       console.log("로그아웃");
       context.commit("LOG_OUT");
     },
+    getAccountBook(context, { full1 }) {
+      console.log("상세보기 가자 :" + full1);
+      http
+        .get("/accountbook/detail", {
+          params: {
+            date: full1,
+          },
+        })
+        .then(({ data }) => {
+          context.commit("setAccountBook", data);
+        })
+        .catch(() => {
+          alert("가계부 상세보기 실패");
+        });
+    },
+    getFreePostList: function(context) {
+      http
+        .get("/board")
+        .then((response) => {
+          // this.freePostList = response.data
+          context.commit("setFreeboard", response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     getAccountBooks(context, { full }) {
       console.log("vue :" + full);
       http
@@ -163,17 +192,6 @@ export default new Vuex.Store({
         })
         .catch(() => {
           alert("가계부 불러오기 실패");
-        });
-    },
-    getFreePostList: function(context) {
-      http
-        .get("/board")
-        .then((response) => {
-          // this.freePostList = response.data
-          context.commit("setFreeboard", response.data);
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     getBudget: function(context, budget) {

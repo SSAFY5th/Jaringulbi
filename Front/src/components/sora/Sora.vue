@@ -3,26 +3,39 @@
   <div>
     <Header></Header>
     <div class="main-content">
-      <p id="post-title">마법의 소라고동</p>
-      <b-img
-        :src="require('@/assets/sora.jpg')"
-        style="width: 200px"
-        class="margin"
-      >
-      </b-img>
-      <div>
-        <b-button variant="info" class="margin" v-on:click.once="play()"
-          >소라고동 클릭</b-button
-        >
-        <b-button class="margin" @click="replay()">다시 하기 </b-button>
+      <div id="post-title" class="mt-5">
+        {{ this.$store.state.user.nickname }}님, 어떤 고민이 있으신가요?
+        <br />소라고동님께 물어보세요! <br />
+        ex) 치킨 시킬까요?~ 말까요?
       </div>
+      <div class="mt-4">
+        <b-img
+          :src="require('@/assets/sora.jpg')"
+          style="width: 200px; cursor: pointer; border-radius: 200px"
+          class="margin"
+          v-on:click.once="play()"
+        >
+          <b-button
+            variant="info"
+            class="margin"
+            v-on:click.once="play()"
+          ></b-button>
+        </b-img>
+      </div>
+      <div>(사진을 클릭해주세요)</div>
       <div>
-        <b-card class="margin margin_btn">
-          <b-card-text>{{ text }}</b-card-text>
+        <b-card class="margin margin_btn mt-5">
+          <b-form-textarea
+            v-model="text"
+            placeholder="소라고동님 명령 대기중..."
+            >{{ text }}</b-form-textarea
+          >
         </b-card>
       </div>
+      <div>
+        <b-button class="mint-btn mt-5" @click="replay()">다시 하기 </b-button>
+      </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -85,6 +98,18 @@ export default {
 };
 </script>
 <style scoped>
+.mint-btn {
+  background-color: #9be4e4;
+  color: #7a69e6;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.mint-btn:hover {
+  background-color: #9be4e4;
+  color: #fff;
+  border: 1px solid white;
+}
 
 .main-content {
   padding: 10px 14px 12px 14px;

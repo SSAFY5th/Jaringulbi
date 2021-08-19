@@ -55,7 +55,7 @@
             type="file"
             id="formFileSm"
             class="form-control form-control-sm"
-          >
+          />
         </div>
       </div>
     </div>
@@ -78,8 +78,7 @@ export default {
     onCreatePost: function () {
       let msg = "";
       msg = "제목 또는 내용을 입력해주세요.";
-      if (this.title.length == 0 || this.contents.length == 0)
-        alert(msg);
+      if (this.title.length == 0 || this.contents.length == 0) alert(msg);
       else
         http
           .post("board/", {
@@ -98,11 +97,11 @@ export default {
           });
     },
   },
-  created () {
+  created() {
     if (!this.$store.state.show) {
-      this.$router.push({ name: "Login" });      
+      this.$router.push({ name: "Login" });
     }
-  }
+  },
 };
 </script>
 
@@ -114,7 +113,7 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 80px;
+  height: 65px;
   background-color: #fff;
   color: #222;
   box-shadow: 0 2px 8px #ddd;

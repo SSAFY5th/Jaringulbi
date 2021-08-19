@@ -1,7 +1,7 @@
 <template>
-  <div id="font">
+  <div>
     <router-view />
-    <div id="acheader">
+    <div>
       <b-button-group id="acbutton">
         <b-button class="btn" title="가계부" @click="account">
           <div>가계부</div>
@@ -13,7 +13,6 @@
     </div>
   </div>
 </template>
- 
 <script>
 export default {
   name: "Acheader",
@@ -37,12 +36,18 @@ export default {
 <style scoped>
 #acbutton {
   width: 420px;
+  height: 65px;
 }
 
 .btn {
-  background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9be4e4;
-  border-bottom-color: #9175f3;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px #ddd;
+  border: 1px solid white;
 }
 </style>

@@ -2,8 +2,9 @@
 <template>
   <div class="row">
     <div><acheader></acheader></div>
-    <hr />
-    <div style="margin-top: 6px">
+
+    <div>
+      <br />
       <div>
         <div class="float">수입</div>
         <div class="float">지출</div>
@@ -56,6 +57,9 @@ export default {
     ...mapGetters(["accountbooks"]),
   },
   created() {
+    if (!this.$store.state.show) {
+      this.$router.push({ name: "Login" });
+    }
     // console.log(full);
     this.$store.dispatch("getAccountBooks", { full: full });
   },
@@ -82,7 +86,7 @@ export default {
 }
 
 #write-btn {
-  position: fixed;    
+  position: fixed;
   left: calc(50vw + 120px);
   bottom: 85px;
   z-index: 3;
