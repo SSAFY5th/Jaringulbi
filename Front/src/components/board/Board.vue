@@ -1,6 +1,6 @@
 <template>
   <!-- 자유게시판의 차지하는 범위:회색 -->
-  <div class="">
+  <div class="wrap">
     <!-- 자유게시판 헤더 부분 -->
     <div id="board-header">
       <div
@@ -77,17 +77,17 @@ export default {
 </script>
 
 <style scoped>
-#board-header {
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  width: 100%;
-  max-width: 420px;
-  height: 65px;
-  background-color: #fff;
-  box-shadow: 0 2px 8px #ddd;
-}
+  #board-header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    max-width: 420px;
+    height: 65px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px #ddd;
+  }
 
   #write-btn {
     position: fixed;    

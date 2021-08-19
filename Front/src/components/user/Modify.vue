@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="main-content">
-      <div>
+      <div class="mt-2 mb-4">
         <img alt="프로필" :src="image" id="profile-img" />
       </div>
       <div class="regist_form">
@@ -46,9 +46,9 @@
         <input type="tel" id="phone" name="phone" v-model="phone" ref="phone" />
         <br />
       </div>
-      <div>
-        <button @click="modifyUser" id="btn_group">수정</button>
-        <button @click="deleteUser" id="btn_group">회원탈퇴</button>
+      <div style="width:100%;" class="mt-3">
+        <button @click="modifyUser" class="btn mint-btn me-3">수정</button>
+        <button @click="deleteUser" class="btn btn-secondary">회원탈퇴</button>
       </div>
     </div>
   </div>
@@ -131,9 +131,8 @@ export default {
   border-radius: 5px;
   /* padding: 35px; */
 }
-input,
-textarea,
-.view {
+
+input, textarea, .view {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -159,4 +158,16 @@ textarea,
   color: #fff;
   border: 1px solid #9be4e4;
 }
+
+.mint-btn {
+  background-color: #9be4e4;
+  color: #fff;
+}
+
+.mint-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
+}
+
 </style>

@@ -58,7 +58,7 @@ export default {
   position: relative;
   width: 100%;
   height: 65px;
-  box-shadow: 8px 2px 8px #ddd;
+  /* box-shadow: 0 0px 5px #ddd; */
 }
 
 .nav-icon {
