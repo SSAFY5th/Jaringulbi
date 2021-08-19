@@ -34,7 +34,7 @@ public class UserController {
 	public ResponseEntity<String> signup(@RequestBody UserDto userdto, @RequestParam Map<String, String> map,
 			Model model, HttpSession session) {
 		System.out.println("회원가입");
-		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getPassword(),
+		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getNickname(),
 				userdto.getPhone());
 		try {
 			if (userDto != null) {
@@ -86,7 +86,7 @@ public class UserController {
 		try {
 			if (userDto != null) {
 				userService.updateUser(userDto);
-				session.setAttribute("userinfo", userDto);
+				
 				return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 			}
 

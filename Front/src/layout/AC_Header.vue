@@ -53,6 +53,6 @@ export default {
 
 .top-category-btn:hover {
   background-color: #9be4e4;
-   border: 1px solid #9be4e4;
+  border: 1px solid #9be4e4;
 }
 </style>

@@ -24,7 +24,7 @@
 
     <insert id="enterChallenge" parameterType="EnterChallengeVo">
         insert into USER_CHALLENGE(challenge_id, user_id, status)
-        values(#{challenge_id}, #{user_id}, 0)
+        values(#{challenge_id}, #{user_id}, 1)
     </insert>
 
     <select id="getUserChallengeList" parameterType = "int" resultType="UserChallengeDto">

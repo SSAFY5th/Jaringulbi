@@ -13,6 +13,7 @@
         :end_date="challenge.end_date"
         :description="challenge.description"
         :id="challenge.id"
+        :status="challenge.status"
       >
       </challenge-list>
     </div>
@@ -41,10 +42,10 @@ export default {
 </script>
 
 <style>
-  .chlg-content {
-    padding: 12px 4px 12px 14px;
-    /* margin-top: 65px; */
-    position: relative;
-    color: #222;    
-  }
+.chlg-content {
+  padding: 12px 4px 12px 14px;
+  /* margin-top: 65px; */
+  position: relative;
+  color: #222;
+}
 </style>
