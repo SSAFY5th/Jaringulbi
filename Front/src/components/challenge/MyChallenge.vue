@@ -79,7 +79,7 @@ export default {
 }
 
 .main-content {
-  margin-top: 80px;
+  margin-top: 65px;
   margin-bottom: 60px;
   padding: 15px 14px 12px 14px;
   position: relative;

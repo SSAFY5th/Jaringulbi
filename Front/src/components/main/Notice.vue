@@ -134,14 +134,14 @@ export default {
     display: flex;
     width: 100%;
     max-width: 420px;
-    height: 80px;
+    height: 65px;
     background-color: #fff;
     color: #222;
     box-shadow: 0 2px 8px #ddd;
   }
   
   .main-content {
-    margin-top: 80px;
+    margin-top: 65px;
     position: relative;
     color: #333;
   }
