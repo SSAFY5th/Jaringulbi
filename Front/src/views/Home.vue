@@ -3,7 +3,7 @@
   <div>
     <Header></Header>
     <div class="main-content">
-      <div class="report-wrap mb-2 d-flex">
+      <div class="report-wrap mb-3 d-flex">
         <!-- justify-content-evenly -->
         <div class="align-self-center report-img">
           <router-link :to="{ name: 'Mypage' }">

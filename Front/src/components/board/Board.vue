@@ -89,18 +89,18 @@ export default {
   box-shadow: 0 2px 8px #ddd;
 }
 
-#write-btn {
-  position: fixed;
-  left: calc(50vw + 120px);
-  bottom: 85px;
-  z-index: 3;
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  background-color: #9be4e4;
-  color: #fff;
-  font-size: 30pt;
-  line-height: 56px;
-  box-shadow: 2px 2px 6px #ccc;
-}
+  #write-btn {
+    position: fixed;    
+    left: calc(50vw + 380px);
+    bottom: 85px;
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #9be4e4;
+    color: #fff;
+    font-size: 30pt;
+    line-height: 56px;
+    box-shadow: 2px 2px 6px #ccc;
+  }
 </style>

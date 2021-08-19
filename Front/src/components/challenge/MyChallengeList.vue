@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div>
       <div>{{ image }}</div>
       <div>{{ contents }}</div>
       <div>{{ start_date }} ~ {{ end_date }}</div>

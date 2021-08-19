@@ -86,8 +86,8 @@ export default {
 }
 
 #write-btn {
-  position: fixed;
-  left: calc(50vw + 120px);
+  position: fixed;    
+  left: calc(50vw + 380px);
   bottom: 85px;
   z-index: 3;
   width: 60px;
