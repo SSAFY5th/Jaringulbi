@@ -21,4 +21,6 @@ public interface AccountBookService {
     List<Number> dayOutgoings(int month, int user_id) throws Exception;
 
     void setBudget(int id, int budget);
+
+    int getBudgetInfo(int id);
 }
