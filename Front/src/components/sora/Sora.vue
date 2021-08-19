@@ -1,29 +1,40 @@
 
 <template>
   <div>
-    <div class="row">
-      <div>
-        <Header></Header>
-        <div class="margin">
-          <h1>마법의 소라고동</h1>
-          <b-img
-            :src="require('@/assets/sora.jpg')"
-            style="width: 200px"
+    <Header></Header>
+    <div class="main-content">
+      <div id="post-title" class="mt-5">
+        {{ this.$store.state.user.nickname }}님, 어떤 고민이 있으신가요?
+        <br />소라고둥님께 물어보세요! <br />
+      </div>
+      <span id="post-upcount"> ex) 치킨 시킬까요? 말까요? </span>
+      <div class="mt-3">
+        <b-img
+          :src="require('@/assets/sora.jpg')"
+          style="width: 200px; cursor: pointer; border-radius: 200px"
+          class="margin"
+          v-on:click.once="play()"
+        >
+          <b-button
+            variant="info"
             class="margin"
+            v-on:click.once="play()"
+          ></b-button>
+        </b-img>
+      </div>
+      <div id="post-upcount">(사진을 클릭해주세요)</div>
+      <div>
+        <b-card class="mt-5">
+          <b-form-textarea
+            v-model="text"
+            placeholder="소라고둥님 명령 대기중..."
           >
-          </b-img>
-          <div>
-            <b-button variant="info" class="margin" v-on:click.once="play()"
-              >소라고동 클릭</b-button
-            >
-            <b-button class="margin" @click="replay()">다시 하기 </b-button>
-          </div>
-          <div>
-            <b-card class="margin margin_btn">
-              <b-card-text>{{ text }}</b-card-text>
-            </b-card>
-          </div>
-        </div>
+            {{ text }}
+          </b-form-textarea>
+        </b-card>
+      </div>
+      <div>
+        <button class="btn mint-btn mt-3" @click="replay()">다시 하기</button>
       </div>
     </div>
   </div>
@@ -42,11 +53,10 @@ export default {
       num: "",
     };
   },
-  //   created() {},
   methods: {
     play() {
-      var sound =
-        "https://docs.google.com/uc?export=open&id=1eC7sDbpWRBOIr9FBEn1UbsDsJD9tvjIg";
+      var sound = new Audio(require("@/assets/sora_sound.mp3"));
+
       console.log("play it");
       var audio = new Audio(sound);
       audio.play();
@@ -89,13 +99,21 @@ export default {
 };
 </script>
 <style scoped>
-.margin {
-  margin-top: 20px;
+.mint-btn {
+  width: 100%;
+  background-color: #9be4e4;
+  color: #fff;
+  /* border: solid 1px #9be4e4; */
 }
 
-.margin_btn {
-  margin-left: 30px;
-  margin-right: 30px;
+.mint-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
+}
+
+.main-content {
+  padding: 10px 14px 12px 14px;
 }
 
 #board-header {
@@ -105,7 +123,7 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 80px;
+  height: 65px;
   background-color: #fff;
   box-shadow: 0 2px 8px #ddd;
 }

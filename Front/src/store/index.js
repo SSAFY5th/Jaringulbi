@@ -14,6 +14,11 @@ export default new Vuex.Store({
     show: false,
     user: {},
     freePostList: [],
+    budget: {},
+    realbudget: {},
+    challenge: {},
+    challenges: {},
+    challengeid: {},
   },
 
   getters: {
@@ -30,9 +35,30 @@ export default new Vuex.Store({
     freeboard(state) {
       return state.freePostList;
     },
+    budget(state) {
+      return state.budget;
+    },
+    realbudget(state) {
+      return state.realbudget;
+    },
+
+    challenge(state) {
+      return state.challenge;
+    },
+
+    challenges(state) {
+      return state.challenges;
+    },
+
+    challengeid(state) {
+      return state.challengeid;
+    },
   },
 
   mutations: {
+    setAccountBook(state, payload) {
+      state.accountbook = payload;
+    },
     setAccountBooks(state, payload) {
       state.accountbooks = payload;
     },
@@ -53,6 +79,22 @@ export default new Vuex.Store({
 
     setFreeboard(state, payload) {
       state.freePostList = payload;
+    },
+    setBudget(state, payload) {
+      state.budget = payload;
+      state.realbudget = payload;
+    },
+
+    setChallenge(state, payload) {
+      state.challenge = payload;
+    },
+
+    setChallenges(state, payload) {
+      state.challenges = payload;
+    },
+
+    setChallengeId(state, payload) {
+      state.challengeid = payload;
     },
   },
 
@@ -75,6 +117,7 @@ export default new Vuex.Store({
     },
     login(context, { login_id, password }) {
       console.log("로그인");
+      console.log(login_id + " " + password);
 
       //들고간 값을 통해서 post요청을 해줍니다.
       //post요청을 하고 나서 받은 객체를 mutations로 보내줍니다. (payload)
@@ -110,15 +153,19 @@ export default new Vuex.Store({
       console.log("로그아웃");
       context.commit("LOG_OUT");
     },
-    getAccountBooks(context) {
+    getAccountBook(context, { full1 }) {
+      console.log("상세보기 가자 :" + full1);
       http
-        .get("/accountbook/list")
+        .get("/accountbook/detail", {
+          params: {
+            date: full1,
+          },
+        })
         .then(({ data }) => {
-          console.log("리스트 :" + data);
-          context.commit("setAccountBooks", data);
+          context.commit("setAccountBook", data);
         })
         .catch(() => {
-          alert("가계부 불러오기 실패");
+          alert("가계부 상세보기 실패");
         });
     },
     getFreePostList: function(context) {
@@ -130,6 +177,77 @@ export default new Vuex.Store({
         })
         .catch((err) => {
           console.log(err);
+        });
+    },
+    getAccountBooks(context, { full }) {
+      console.log("vue :" + full);
+      http
+        .get("/accountbook", {
+          params: {
+            date: full,
+          },
+        })
+        .then(({ data }) => {
+          context.commit("setAccountBooks", data);
+        })
+        .catch(() => {
+          alert("가계부 불러오기 실패");
+        });
+    },
+    getBudget: function(context, budget) {
+      context.commit("setBudget", budget);
+
+      console.log(context);
+    },
+
+    getChallenge(context, { id }) {
+      console.log("챌린지 상세보기");
+      http
+        .get("/challenge/detail/" + id, {
+          id: id,
+        })
+        .then(({ data }) => {
+          console.log("챌린지 제목 : " + data.title);
+          if (data.title != null) {
+            context.commit("setChallenge", data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.error("챌린지 상세보기 실패");
+        });
+    },
+
+    getChallenges: function(context) {
+      http
+        .get("/challenge")
+        .then((data) => {
+          // this.freePostList = response.data
+          context.commit("setChallenges", data);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.error("챌린지 목록 불러오기 실패");
+        });
+    },
+    enter(context, { challenge_id, user_id }) {
+      console.log("참가하기");
+      console.log(challenge_id + " " + user_id);
+      http
+        .post("/challenge/enter", {
+          challenge_id: challenge_id,
+          user_id: user_id,
+        })
+        .then(({ data }) => {
+          // let msg = "로그인 완료!!";
+
+          console.log("챌린지번호 : " + data);
+          context.commit("setChallengeId", data);
+
+          // alert(msg);
+        })
+        .catch((error) => {
+          console.error(error);
         });
     },
   },

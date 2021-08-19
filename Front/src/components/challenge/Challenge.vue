@@ -1,15 +1,21 @@
 <template>
   <div>
     <div><CLHeader></CLHeader></div>
-    <div>모든 챌린지</div>
-
-    <div>
-      <ChallengeList
-        v-for="(challenge, index) in challenges"
-        :key="index"
+    <div class="chlg-content">
+      <challenge-list
+        v-for="(challenge, index) in challenges.data"
+        v-bind:key="index"
         :image="challenge.image"
-        :contents="challenge.contents"
-      ></ChallengeList>
+        :title="challenge.title"
+        :start_date="challenge.start_date"
+        :entry_fee="challenge.entry_fee"
+        :reward="challenge.reward"
+        :end_date="challenge.end_date"
+        :description="challenge.description"
+        :id="challenge.id"
+        :status="challenge.status"
+      >
+      </challenge-list>
     </div>
   </div>
 </template>
@@ -28,10 +34,18 @@ export default {
   computed: {
     ...mapGetters(["challenges"]),
   },
+
   created() {
-    this.$store.dispatch("getChallengs");
+    this.$store.dispatch("getChallenges");
   },
 };
 </script>
+
 <style>
+.chlg-content {
+  padding: 12px 4px 12px 14px;
+  /* margin-top: 65px; */
+  position: relative;
+  color: #222;
+}
 </style>

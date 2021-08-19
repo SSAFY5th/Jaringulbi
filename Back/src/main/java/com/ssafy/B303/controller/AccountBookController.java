@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ssafy.B303.model.dto.AccountBookDto;
+import com.ssafy.B303.model.dto.PostDto;
 import com.ssafy.B303.model.dto.UserDto;
 import com.ssafy.B303.model.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,6 @@ public class AccountBookController {
         //UserDto userDto = (UserDto) session.getAttribute("userinfo");
         //int user_id = userDto.getId();
     	System.out.println("가계부 등록");
-    	System.out.println(tempAccountBookDto.getId() + " " + tempAccountBookDto.getDate() + " " 
-    	+ tempAccountBookDto.getCategory() + " " +
-    	" " +tempAccountBookDto.getUser_id());
         AccountBookDto accountBookDto = new AccountBookDto(
         		0,
                 //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
@@ -55,7 +53,7 @@ public class AccountBookController {
                 tempAccountBookDto.getCategory(),
                 tempAccountBookDto.getUsed(),
                 tempAccountBookDto.getContents(),
-                tempAccountBookDto.getUser_id());    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+                1);    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
  
         try{
             accountBookService.insertAccountBook(accountBookDto);
@@ -68,22 +66,21 @@ public class AccountBookController {
 
     @GetMapping
     public ResponseEntity<JsonObject>  monthAccountBook(@RequestParam String date, Model model, HttpSession session){
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
-        System.out.println("가계부 출력");
+    	System.out.println("가계부 출력");
+        int user_id = 1;
         System.out.println(user_id);
         
-        int month = Integer.parseInt(date.substring(5, 7)); //월만 빼오기
-        System.out.println(month);
+        int month = Integer.parseInt(date.substring(5, 7)) ; //월만 빼오기
+        	System.out.println(month);
         Map<String, Object> result = new HashMap<String, Object>();
         List<Number> incomes = new LinkedList<>();
         List<Number> outgoings = new LinkedList<>();
         int monthIncomes = 0, monthOutgoings = 0, monthSum = 0;
         try {
-            monthIncomes = accountBookService.monthIncomes(month, user_id);
-            monthOutgoings = accountBookService.monthOutgoings(month, user_id);
-            incomes = accountBookService.dayIncomes(month, user_id);
-            outgoings = accountBookService.dayOutgoings(month, user_id);
+        		monthIncomes = accountBookService.monthIncomes(month, user_id);
+        		monthOutgoings = accountBookService.monthOutgoings(month, user_id);
+        		incomes = accountBookService.dayIncomes(month, user_id);
+        		outgoings = accountBookService.dayOutgoings(month, user_id);			
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -141,9 +138,8 @@ public class AccountBookController {
 
     @PutMapping(value = "detail")
     public ResponseEntity<AccountBookDto> modifyAccountBook(@RequestBody AccountBookDto tempAccountBookDto, HttpSession session){
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
-        String login_id = userDto.getLogin_id();
+        System.out.println("가계부 수정");
+    	
         AccountBookDto accountBookDto = new AccountBookDto(
                 tempAccountBookDto.getId(),
                 //LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(tempAccountBookDto.getDate()+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul"))),
@@ -171,6 +167,27 @@ public class AccountBookController {
             e.printStackTrace();
         }
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = "budget")
+    public ResponseEntity setBudget(@RequestBody UserDto userDto){
+        try{
+            accountBookService.setBudget(userDto.getId(), userDto.getBudget());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "budget/{id}")
+    public ResponseEntity<JsonObject> getBudgetInfo(@PathVariable int id){
+        try{
+        //    accountBookService.getBudgetInfo(id);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

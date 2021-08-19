@@ -1,12 +1,12 @@
 <template>
-  <div id="font">
-    <router-view />
-    <div id="acheader">
+  <!-- <router-view /> -->
+  <div id="acheader">
+    <div class="d-flex">
       <b-button-group id="acbutton">
-        <b-button class="btn" title="모든 챌린지" @click="all">
-          <div>모든 챌린지</div>
+        <b-button class="top-category-btn" title="모든 챌린지" @click="all">
+          <div>전체</div>
         </b-button>
-        <b-button class="btn" title="나의 챌린지" @click="my">
+        <b-button class="top-category-btn" title="나의 챌린지" @click="my">
           <div>나의 챌린지</div>
         </b-button>
       </b-button-group>
@@ -32,17 +32,23 @@ export default {
 };
 </script>
 <style scoped>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
 #acbutton {
-  width: 420px;
+  width: 100%;
+}
+.top-category-btn {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 6px #ddd;
+  border: 1px solid white;
 }
 
-.btn {
+.top-category-btn:hover {
   background-color: #9be4e4;
-  color: #9175f3;
   border: 1px solid #9be4e4;
 }
 </style>

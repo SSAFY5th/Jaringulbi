@@ -28,9 +28,11 @@ public class ChallengeController {
 
     @GetMapping
     public ResponseEntity<List<ChallengeDto>> getChallengeList(){
-        List<ChallengeDto> challengeList = null;
+        
+    	List<ChallengeDto> challengeList = null;
         try {
             challengeList = challengeService.getChallengeList();
+            	
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -73,8 +75,9 @@ public class ChallengeController {
 
     @PostMapping(value="/enter")
     public ResponseEntity<String> enterChallenge(@RequestBody EnterChallengeVo enterChallengeVo, Model model){
+    	System.out.println("참가");
         try {
-            challengeService.enterChallenge(enterChallengeVo);
+        	challengeService.enterChallenge(enterChallengeVo);
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -131,5 +134,16 @@ public class ChallengeController {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @GetMapping(value = "/post/{id}")
+    public ResponseEntity<List<PostDto>> relatedPost(@PathVariable int id){
+        List<PostDto> result = null;
+        try {
+            result = challengeService.relatedPost(id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

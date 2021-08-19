@@ -34,7 +34,7 @@ public class UserController {
 	public ResponseEntity<String> signup(@RequestBody UserDto userdto, @RequestParam Map<String, String> map,
 			Model model, HttpSession session) {
 		System.out.println("회원가입");
-		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getPassword(),
+		UserDto userDto = new UserDto(userdto.getLogin_id(), userdto.getPassword(), userdto.getNickname(),
 				userdto.getPhone());
 		try {
 			if (userDto != null) {
@@ -61,21 +61,19 @@ public class UserController {
 
 		try {
 			UserDto result = userService.login(map);
-			session.setAttribute("userinfo", result);
-			System.out.println("세션정보: " + session.getAttribute("userinfo"));
-			System.out.println(result.getId());
 			if (result != null) { // 성공
 				ObjectMapper objectMapper = new ObjectMapper();
 				// System.out.println(objectMapper.writeValueAsString(result));
 				String str = objectMapper.writeValueAsString(result);
 				System.out.println(str);
+				System.out.println("로그인성공");
 				return new ResponseEntity<String>(str, HttpStatus.OK);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			System.out.println("로그인 실패");
 			model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
 		}
-		System.out.println("로그인성공");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
@@ -88,7 +86,7 @@ public class UserController {
 		try {
 			if (userDto != null) {
 				userService.updateUser(userDto);
-				session.setAttribute("userinfo", userDto);
+				
 				return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 			}
 

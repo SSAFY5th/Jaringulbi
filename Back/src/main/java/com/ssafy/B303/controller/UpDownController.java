@@ -4,13 +4,11 @@ import com.ssafy.B303.model.dto.UpDownDto;
 import com.ssafy.B303.model.service.PostServiceImpl;
 import com.ssafy.B303.model.service.UpDownServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
+@CrossOrigin(origins= {"*"}, maxAge =6000)
 @RestController
 public class UpDownController {
 

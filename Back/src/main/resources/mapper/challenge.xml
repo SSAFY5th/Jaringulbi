@@ -10,7 +10,8 @@
     </select>
 
     <select id="getChallenge" parameterType="int" resultType="ChallengeDto">
-        select *
+        select id, start_date, end_date, title, entry_fee, reward, image, status,
+               REPLACE(description, '\n', '') as description
         from CHALLENGE
         where id = #{id}
     </select>
@@ -23,7 +24,7 @@
 
     <insert id="enterChallenge" parameterType="EnterChallengeVo">
         insert into USER_CHALLENGE(challenge_id, user_id, status)
-        values(#{challenge_id}, #{user_id}, 0)
+        values(#{challenge_id}, #{user_id}, 1)
     </insert>
 
     <select id="getUserChallengeList" parameterType = "int" resultType="UserChallengeDto">
@@ -53,4 +54,10 @@
         delete from REVIEW
         where id=#{id}
     </delete>
+
+    <select id="relatedPost" parameterType="int" resultType="PostDto">
+        select *
+        from POST
+        where challenge_id = #{challenge_id}
+    </select>
 </mapper>

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" id="login">
     <div>
       <b-container id="mainImage" class="top-login">
         <div class="login-back">
@@ -57,13 +57,14 @@
   </div>
 </template>
 <script>
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "bottom",
   computed: {
     //getter에 있는 userInfo 함수를 불러옵니다.
-    // ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo"]),
   },
+
   data() {
     return {
       login_id: "",
@@ -95,10 +96,10 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-      console.log(this.$store.state.user.id);
-      if (this.$store.state.user.login_id != undefined) {
+
+      if (this.$store.state.user.nickname !== undefined) {
         console.log(this.$store.state.user.login_id + " " + "로그인성공");
-        alert("로그인 성공");
+
         this.$router.push("/");
       }
     },
@@ -154,7 +155,7 @@ textarea,
 #btn_group {
   background-color: #9be4e4;
   color: #9175f3;
-  border: 1px solid #9be4e4;
+  border: 1px solid #9175f3;
   padding: 5px;
   width: 150px;
   margin-left: 14px;

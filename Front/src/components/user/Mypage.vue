@@ -1,117 +1,65 @@
 <template>
-  <div class="row">
-    <b-container id="mainImage">
-      <div>
-        <div class="top">
-          <b-img
-            :src="require('@/assets/logo.png')"
-            style="width: 100px"
-            class="margin"
-          ></b-img>
-
-          <h5 style="color: #9175f3">자린굴비</h5>
+  <div>
+    <div id="mypage-header">
+      <div
+        class="d-flex justify-content-center align-self-center px-3"
+        style="width: 100%"
+      >
+        <div class="text-center">
+          <span>마이페이지</span>
         </div>
-        <div class="regist_form">
-          <label for="login_id">아이디</label>
-          <input
-            readonly
-            type="text"
-            id="login_id"
-            name="login_id"
-            v-model="login_id"
-            ref="login_id"
-          />
-          <label for="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            v-model="password"
-            ref="password"
-          /><br />
-          <label for="nickname">이름</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            v-model="nickname"
-            ref="nickname"
-          /><br />
-          <label for="phone">전화번호</label><br />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            v-model="phone"
-            ref="phone"
-          />
-          <br />
-          <button @click="modifyUser" class="btn" id="btn_group">수정</button>
-          <button @click="logout" class="btn" id="btn_group">로그아웃</button>
-          <button @click="deleteUser" class="btn" id="btn_group">
-            회원탈퇴
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="form-area">
+        <div class="my-4 d-flex">
+          <div class="float1">
+            <img alt="프로필" :src="image" id="image" />
+          </div>
+          <div class="float2">
+            <div style="font-weight: bold">
+              {{ this.$store.state.user.nickname }}
+            </div>
+            <div id="post-content" class="mt-1">
+              굴비 개수 {{ this.$store.state.user.fish_count }}개
+            </div>
+            <div id="post-content">
+              이번 달 예산 {{ this.$store.state.budget | makeComma }}원
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <button style="width: 100%" @click="modify" class="btn mint-btn">
+            계정 설정
+          </button>
+        </div>
+        <div>
+          <b-list-group class="mb-3 text-start mt-4" id="post-content">
+            <b-list-group-item>고객센터</b-list-group-item>
+            <b-list-group-item>어플공유</b-list-group-item>
+            <b-list-group-item>자주 하는 질문</b-list-group-item>
+          </b-list-group>
+        </div>
+        <div class="mt-3">
+          <button @click="logout" style="width: 100%" class="btn">
+            <span id="post-time" class="p-0">로그아웃</span>
           </button>
         </div>
       </div>
-    </b-container>
+    </div>
   </div>
 </template>
-<script>
-import http from "@/util/http-common";
-import { mapGetters } from "vuex";
 
+<script>
 export default {
-  name: "signup",
-  props: {
-    type: { type: String },
-  },
-  computed: {
-    ...mapGetters(["userInfo"]),
-  },
   data() {
     return {
-      login_id: "",
-      password: "",
-      nickname: "",
-      phone: "",
+      image: this.$store.state.user.image,
     };
   },
-  created() {
-    this.login_id = this.$store.state.user.login_id;
-    this.password = this.$store.state.user.password;
-    this.nickname = this.$store.state.user.nickname;
-    this.phone = this.$store.state.user.phone;
-  },
   methods: {
-    modifyUser() {
-      http
-        .put(`/user/${this.login_id}`, {
-          login_id: this.login_id,
-          password: this.password,
-          nickname: this.nickname,
-          phone: this.phone,
-        })
-        .then(({ data }) => {
-          console.log(data);
-          let msg = "회원수정 실패!!";
-          if (data === "success") {
-            msg = "회원수정 완료";
-            this.$router.push("/");
-          }
-          alert(msg);
-        })
-        .catch((error) => {
-          alert("회원수정 실패");
-          console.dir(error);
-        });
-    },
-    deleteUser() {
-      console.log("삭제 : " + this.login_id);
-      if (confirm("정말 탈퇴 하시겠습니까?")) {
-        http.delete(`/user/${this.login_id}`);
-        this.$store.dispatch("deleteUser");
-        this.$router.push("/");
-      }
+    modify() {
+      this.$router.push("/modify");
     },
     logout() {
       if (confirm("정말 로그아웃 하시겠습니까?")) {
@@ -122,52 +70,48 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-.top {
-  margin-top: 60px;
-}
-
-.margin {
-  margin-top: 20px;
-}
-.title {
-  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
-  color: black;
-  font-size: 40px;
-  text-shadow: 5px 5px #558abb;
-}
-
-.regist_form {
-  text-align: left;
-  border-radius: 5px;
-  padding: 35px;
-}
-input,
-textarea,
-.view {
+#mypage-header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #787878;
-  font-size: medium;
+  max-width: 420px;
+  height: 65px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px #ddd;
+  text-align: center;
 }
 
-#btn_group {
+.form-area {
+  padding: 10px 14px 12px 14px;
+}
+#image {
+  width: 100px;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.mint-btn {
   background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9be4e4;
-  padding: 5px;
-  width: 150px;
-  margin-left: 14px;
-  margin-top: 23px;
+  color: #fff;
 }
 
-#btn_group:hover {
-  color: white;
-  background-color: skyblue;
+.mint-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
+}
+
+.float1 {
+  width: 35%;
+}
+
+.float2 {
+  width: 65%;
+  text-align: left;
 }
 </style>
