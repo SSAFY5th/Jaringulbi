@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div id="left-screen" class="">
+      <LeftHome />
+    </div>
     <div id="home">
       <router-view />
       <div id="bottom-menu" class="">
@@ -11,11 +14,13 @@
 
 <script>
 import Bottom from "@/layout/Bottom.vue";
+import LeftHome from "@/views/LeftHome.vue";
 
 export default {
   name: "App",
   components: {
     Bottom,
+    LeftHome,
   },
 };
 </script>
@@ -30,10 +35,10 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     letter-spacing: -.4px;
-    background-image: url('https://imgur.com/fsTlQvU.png');
-    background-position: left 0;
+    background-image: url('https://imgur.com/EFTInxc.png');
+    background-position: left top;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
     /* background-color: #eee; */
     /* background: rgb(215,238,238);
@@ -41,6 +46,13 @@ export default {
   rgba(215,238,238,1) 17%, 
   rgba(238,238,238,1) 67%,
   rgba(229,226,241,1) 100%); */
+  }
+
+  #left-screen {
+    position: fixed;
+    left: 15%;
+    bottom: 2%;
+    max-height: 100%;
   }
 
   #home {

@@ -53,7 +53,7 @@ public class AccountBookController {
                 tempAccountBookDto.getCategory(),
                 tempAccountBookDto.getUsed(),
                 tempAccountBookDto.getContents(),
-                1);    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
+                4);    //일단은 id 1. 나중에 로그인 정보에서 id값 가져와야함
  
         try{
             accountBookService.insertAccountBook(accountBookDto);
@@ -67,7 +67,7 @@ public class AccountBookController {
     @GetMapping
     public ResponseEntity<JsonObject>  monthAccountBook(@RequestParam String date, Model model, HttpSession session){
     	System.out.println("가계부 출력");
-        int user_id = 1;
+        int user_id = 4;
         System.out.println(user_id);
         
         int month = Integer.parseInt(date.substring(5, 7)) ; //월만 빼오기
@@ -115,8 +115,9 @@ public class AccountBookController {
 
     @GetMapping(value = "detail")
     public ResponseEntity<List<AccountBookDto>> dayAccountBook(@RequestParam String date, HttpSession session) {
-        UserDto userDto = (UserDto) session.getAttribute("userinfo");
-        int user_id = userDto.getId();
+
+   
+        int user_id = 4;
         int month = LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(date+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul")))
                 .getMonthValue();
         int day = LocalDateTime.from(Instant.from(DateTimeFormatter.ISO_DATE_TIME.parse(date+"T00:00:00+09:00")).atZone(ZoneId.of("Asia/Seoul")))
@@ -181,13 +182,14 @@ public class AccountBookController {
 
 
     @GetMapping(value = "budget/{id}")
-    public ResponseEntity<JsonObject> getBudgetInfo(@PathVariable int id){
+    public ResponseEntity<Integer> getBudgetInfo(@PathVariable int id){
+        int a = 0;
         try{
-        //    accountBookService.getBudgetInfo(id);
+            a = accountBookService.getBudgetInfo(id);
         } catch(Exception e){
             e.printStackTrace();
         }
-         return new ResponseEntity<>(HttpStatus.OK);
+         return new ResponseEntity<Integer>(a, HttpStatus.OK);
     }
 
 }

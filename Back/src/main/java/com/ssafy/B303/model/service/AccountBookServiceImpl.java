@@ -99,5 +99,10 @@ public class AccountBookServiceImpl implements AccountBookService{
         sqlSession.getMapper(AccountBookMapper.class).setBudget(id ,budget);
     }
 
+    @Override
+    public int getBudgetInfo(int id) {
+        return sqlSession.getMapper(AccountBookMapper.class).getBudget(id);
+    }
+
 
 }

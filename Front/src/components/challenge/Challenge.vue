@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div><CLHeader></CLHeader></div>
+    <div>
+      <CLHeader />
+    </div>
     <div class="chlg-content">
       <challenge-list
         v-for="(challenge, index) in challenges.data"
@@ -41,11 +43,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .chlg-content {
   padding: 12px 4px 12px 14px;
-  /* margin-top: 65px; */
   position: relative;
-  color: #222;
+  color: #333;
 }
 </style>
