@@ -60,4 +60,10 @@
         set budget = #{budget}
         where id = #{id}
     </update>
+
+    <select id="getBudget" parameterType="int">
+        select budget
+        from USER
+        where id = #{id}
+    </select>
 </mapper>
