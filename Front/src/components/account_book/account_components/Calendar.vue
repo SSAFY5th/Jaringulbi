@@ -12,8 +12,6 @@
                   :to="{
                     path: `/accountdetail`,
                     query: {
-                      year: attr.year,
-                      month: attr.date,
                       day: attr.key + 1,
                     },
                   }"
@@ -27,8 +25,6 @@
                   :to="{
                     path: `/accountdetail`,
                     query: {
-                      year: attr.year,
-                      month: attr.date,
                       day: attr.key + 1,
                     },
                   }"
@@ -43,8 +39,6 @@
                     :to="{
                       path: `/accountdetail`,
                       query: {
-                        year: attr.year,
-                        month: attr.date,
                         day: attr.key + 1,
                       },
                     }"

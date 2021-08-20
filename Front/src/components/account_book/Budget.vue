@@ -8,28 +8,24 @@
     <div class="main-content">
       <div class="d-flex summary-box align-items-center justify-content-evenly">
         <div class="d-inline-block me-3">
-          <span
-            style="font-weight: 600; font-size:21px;"
-          >{{ month }}월</span>
+          <span style="font-weight: 600; font-size: 21px">{{ month }}월</span>
         </div>
         <div class="d-inline-block me-3">
           <div class="d-flex align-items-center mb-2">
-            <span id="post-username">
-              수입
-            </span>
-            <span id="post-title" class="ms-3" style="font-size:18px;">
+            <span id="post-username"> 수입 </span>
+            <span id="post-title" class="ms-3" style="font-size: 18px">
               {{ impo | makeComma }}원
             </span>
           </div>
           <div class="d-flex align-items-center mb-2">
-            <span id="post-username" class="m-0">
-              지출
-            </span>
-            <span id="post-title" class="ms-3"
-              style="color:#7a69e6; font-size:18px;"
+            <span id="post-username" class="m-0"> 지출 </span>
+            <span
+              id="post-title"
+              class="ms-3"
+              style="color: #7a69e6; font-size: 18px"
             >
-             {{ expo | makeComma }}원
-            </span> 
+              {{ expo | makeComma }}원
+            </span>
           </div>
         </div>
       </div>
@@ -37,33 +33,35 @@
       <div class="mt-4 text-start">
         <div class="d-flex align-items-center">
           <span class="me-4">이번달 목표 예산</span>
-          <span id="post-title">{{ realbudget | makeComma }}원</span>
+          <span id="post-title"
+            >{{ this.$store.state.realbudget | makeComma }}원</span
+          >
         </div>
         <div>
           <span class="me-4">남은 예산</span>
-          <span style="color: #7a69e6;font-weight:600;">
-            {{ budget | makeComma }}원
+          <span style="color: #7a69e6; font-weight: 600">
+            {{
+              (Number(this.$store.state.realbudget) +
+                Number(this.$store.state.accountbooks.monthOutgoings))
+                | makeComma
+            }}원
           </span>
         </div>
       </div>
 
-      <div class="mt-5 pt-3">
+      <div class="mt-5 pt-2">
         <!-- <img
           :src="imgLink"
           style="width: 350px; height: 300px"
           class="margin"
         /> -->
-        
-        <p id="post-title" style="font-size:21px;">
+
+        <p id="post-title" style="font-size: 21px">
           {{ contents }}
-        </p>        
+        </p>
       </div>
       <div>
-        <button 
-          v-b-modal.modal-center          
-          class="btn mt-4"
-          id="budget-btn"
-        >
+        <button v-b-modal.modal-center class="btn mt-4" id="budget-btn">
           이번 달 예산 설정
         </button>
         <b-modal
@@ -74,7 +72,7 @@
         >
           <p>금액을 입력해주세요</p>
           <p class="my-4">
-            <input v-model.lazy="budget" class="form-control" />
+            <input v-model.lazy="realbudget" class="form-control" />
           </p>
         </b-modal>
       </div>
@@ -97,10 +95,11 @@ export default {
   computed: { ...mapGetters(["budget", "realbudget"]) },
   data() {
     var budget =
-      Number(this.$store.state.budget) +
+      Number(this.$store.state.realbudget) +
       Number(this.$store.state.accountbooks.monthOutgoings);
     var contents = "";
     var imgLink = "";
+    var realbudget = this.$store.state.realbudget;
     //이번달 예산 남은거가 설정해놓은 예산보다 작을경우
     console.log(Number(this.$store.state.budget));
     console.log(Number(this.$store.state.realbudget));
@@ -120,14 +119,15 @@ export default {
       expo: this.$store.state.accountbooks.monthOutgoings,
       budget: budget,
       contents: contents,
-      realbudget: this.$store.state.realbudget,
+      realbudget: realbudget,
       imgLink: imgLink,
     };
   },
+
   methods: {
     registbudget() {
       this.$store.dispatch("getBudget", this.budget);
-      this.$router.go();
+      this.$store.dispatch("getrealBudget", this.realbudget);
     },
   },
 };

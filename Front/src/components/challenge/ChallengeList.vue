@@ -10,9 +10,7 @@
           class="text-decoration-none"
         >
           <div class="chlg-img-wrap">
-            <img :src="image"
-              class="chlg-thumbnail"
-              alt="챌린지 이미지"/>
+            <img :src="image" class="chlg-thumbnail" alt="챌린지 이미지" />
           </div>
           <div id="post-title" class="my-2">{{ title }}</div>
         </router-link>
@@ -47,7 +45,7 @@ export default {
 };
 </script>
 <style>
-.chlg-list-wrap {  
+.chlg-list-wrap {
   height: 100%;
 }
 
@@ -60,14 +58,14 @@ export default {
   vertical-align: top;
   width: 100%;
   height: 100%;
-  overflow: hidden;  
+  overflow: hidden;
   border-radius: 12px;
 }
 
 .chlg-thumbnail {
   width: 100%;
   height: 120px;
-  object-fit: cover;  
+  object-fit: cover;
 }
 
 .chlg-thumbnail:hover {

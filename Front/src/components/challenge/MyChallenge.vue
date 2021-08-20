@@ -21,20 +21,25 @@
 
       <div class="challenge-wrap">
         <!-- MyChallengeList.length -->
-        <my-challenge-list
-          v-for="(challenge, index) in myChallenge"
-          :key="index"
-          :image="challenge.image"
-          :title="challenge.title"
-          :start_date="challenge.start_date"
-          :entry_fee="challenge.entry_fee"
-          :reward="challenge.reward"
-          :end_date="challenge.end_date"
-          :description="challenge.description"
-          :id="challenge.id"
-          :status="challenge.status"
-        >
-        </my-challenge-list>
+        <div v-if="myChallenge">
+          <my-challenge-list
+            v-for="(challenge, index) in myChallenge"
+            :key="index"
+            :image="challenge.image"
+            :title="challenge.title"
+            :start_date="challenge.start_date"
+            :entry_fee="challenge.entry_fee"
+            :reward="challenge.reward"
+            :end_date="challenge.end_date"
+            :description="challenge.description"
+            :id="challenge.id"
+            :status="challenge.status"
+          >
+          </my-challenge-list>
+        </div>
+        <p v-else class="mt-5">
+          아직 참여중인 챌린지가 없습니다.
+        </p>
       </div>
     </div>
   </div>
@@ -90,9 +95,10 @@ export default {
 }
 
 .summary-box {
-  width: 100%;
+  /* width: 100%; */
   height: 120px;
   border: solid 1px #eee;
+  margin-right: 10px;
 }
 
 /* .challenge-wrap {
@@ -100,7 +106,7 @@ export default {
   color: #444;
 } */
 
-.challenge-wrap > p {
+.challenge-wrap p {
   color: #999;
 }
 
