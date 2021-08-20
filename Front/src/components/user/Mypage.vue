@@ -24,7 +24,15 @@
               굴비 개수 {{ this.$store.state.user.fish_count }}개
             </div>
             <div id="post-content">
-              이번 달 예산 {{ this.$store.state.budget | makeComma }}원
+              이번 달 예산 {{ this.$store.state.realbudget | makeComma }}원
+            </div>
+            <div id="post-content">
+              자산 현황
+              {{
+                (Number(this.$store.state.accountbooks.monthOutgoings) +
+                  Number(this.$store.state.accountbooks.monthIncomes))
+                  | makeComma
+              }}원
             </div>
           </div>
         </div>
@@ -33,11 +41,13 @@
             계정 설정
           </button>
         </div>
-        <div style="cursor:pointer;">
+        <div style="cursor: pointer">
           <b-list-group class="mb-3 text-start mt-4" id="post-content">
             <b-list-group-item @click="goReadyPage">고객센터</b-list-group-item>
             <b-list-group-item @click="goReadyPage">어플공유</b-list-group-item>
-            <b-list-group-item @click="goReadyPage">자주 하는 질문</b-list-group-item>
+            <b-list-group-item @click="goReadyPage"
+              >자주 하는 질문</b-list-group-item
+            >
           </b-list-group>
         </div>
         <div class="mt-3">
