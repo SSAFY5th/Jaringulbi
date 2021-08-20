@@ -67,28 +67,28 @@
           </span>
         </div>
 
-        <div class="mt-2 mb-3 chlg-detail-tab">          
+        <div class="mt-2 mb-3 chlg-detail-tab">
           <div class="d-flex justify-content-around">
             <div>
-              <span @click="descript" class="">
-                상세 설명
-              </span>        
+              <span @click="descript" class=""> 상세 설명 </span>
             </div>
             <div>
-              <span @click="review" class="">
-                후기
-              </span>          
+              <span @click="review" class=""> 후기 </span>
             </div>
           </div>
         </div>
-        <div style="font-size:15px; color: #444;">
-          <Description v-show="dshow" />          
+        <div style="font-size: 15px; color: #444">
+          <Description v-show="dshow" />
           <Review v-show="rshow" />
         </div>
       </div>
     </div>
     <div class="comment-form1" v-if="$store.state.show">
-      <div class="participate-btn" @click="join">
+      <div
+        class="participate-btn"
+        @click="join"
+        v-if="$store.state.myChallenge[0].status == 1"
+      >
         <p>참가하기</p>
       </div>
     </div>

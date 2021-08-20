@@ -7,11 +7,13 @@
       <div class="d-flex summary-box align-items-center justify-content-evenly">
         <div class="d-inline-block me-5">
           <p id="post-username">챌린지</p>
-          <span id="post-title">6개</span>
+          <span id="post-title"
+            >{{ this.$store.state.myChallenge.length }}개</span
+          >
         </div>
         <div class="d-inline-block">
           <p id="post-username">누적 굴비 수</p>
-          <span id="post-title">17개</span>
+          <span id="post-title">{{ this.$store.state.user.fish }}</span>
         </div>
       </div>
 
