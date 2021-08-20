@@ -19,6 +19,10 @@
           <p>{{ contents }}</p>
         </div>
       </div>
+      <div class="d-flex justify-content-between">
+        <span style="color: #888"> {{ date }} </span>
+        <span @click="signup" class="sign-up-link"> {{ price }} </span>
+      </div>
     </div>
   </div>
 </template>
@@ -68,5 +72,16 @@ export default {
 .float2 {
   width: 65%;
   text-align: left;
+}
+
+.sign-up-link {
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sign-up-link:hover {
+  color: #7a69e6;
+  font-weight: 600;
 }
 </style>
