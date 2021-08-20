@@ -12,9 +12,14 @@
         </div>
         <div class="text-start align-self-center">
           <p class="report-text m-0">이번 주는</p>
-          <span class="puple-text">504,200원</span>
-          <span class="report-text"> 썼어요</span>
-          <p id="post-upcount" class="m-0">8월 3주차 (08.15 ~ 08.21)</p>
+          <span class="puple-text"
+            >{{
+              Math.abs(this.$store.state.accountbooks.monthOutgoings)
+                | makeComma
+            }}
+          </span>
+          <span class="report-text">원 썼어요</span>
+          <p id="post-upcount" class="m-0">8월 3주차 (08.01 ~ 08.31)</p>
         </div>
       </div>
       <Report></Report>
@@ -55,7 +60,7 @@
               <router-link
                 :to="{ name: 'Challenge' }"
                 class="text-decoration-none m-0 p-0"
-                id="post-upcount"                
+                id="post-upcount"
               >
                 전체보기
               </router-link>
@@ -74,11 +79,7 @@
                     query: { name: challenge.image },
                   }"
                 >
-                  <img
-                    alt="챌린지"
-                    class="chlg-img"
-                    :src="challenge.image"
-                  />
+                  <img alt="챌린지" class="chlg-img" :src="challenge.image" />
                 </router-link>
               </div>
             </div>

@@ -8,20 +8,37 @@
             <span id="cal_title">{{ day.day }}</span>
             <div class="prices" style="font-size: 1pt; margin-top: 30px">
               <p v-for="attr in attributes" :key="attr.key">
-                <span style="color: #86b2fa"
-                  >+{{ attr.customData.expo | makeComma }}</span
+                <router-link
+                  :to="{
+                    path: `/accountdetail`,
+                    query: {
+                      day: attr.key + 1,
+                    },
+                  }"
+                  class="text-dark text-decoration-none"
+                >
+                  <span style="color: #86b2fa"
+                    >+{{ attr.customData.expo | makeComma }}</span
+                  > </router-link
                 ><br />
-                <span style="color: red">{{
-                  attr.customData.impo | makeComma
-                }}</span>
+                <router-link
+                  :to="{
+                    path: `/accountdetail`,
+                    query: {
+                      day: attr.key + 1,
+                    },
+                  }"
+                  class="text-dark text-decoration-none"
+                  ><span style="color: red">{{
+                    attr.customData.impo | makeComma
+                  }}</span></router-link
+                >
                 <br />
                 <span>
                   <router-link
                     :to="{
                       path: `/accountdetail`,
                       query: {
-                        year: attr.year,
-                        month: attr.date,
                         day: attr.key + 1,
                       },
                     }"
