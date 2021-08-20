@@ -24,16 +24,12 @@
               굴비 개수 {{ this.$store.state.user.fish_count }}개
             </div>
             <div id="post-content">
-              이번 달 예산 {{ this.$store.state.budget }}원
+              이번 달 예산 {{ this.$store.state.budget | makeComma }}원
             </div>
           </div>
         </div>
         <div class="mb-3">
-          <button
-            style="width: 100%"
-            @click="modify"
-            class="btn mint-btn"
-          >
+          <button style="width: 100%" @click="modify" class="btn mint-btn">
             계정 설정
           </button>
         </div>
@@ -46,7 +42,7 @@
         </div>
         <div class="mt-3">
           <button @click="logout" style="width: 100%" class="btn">
-          <span id="post-time" class="p-0">로그아웃</span>
+            <span id="post-time" class="p-0">로그아웃</span>
           </button>
         </div>
       </div>

@@ -4,13 +4,15 @@
     <Header></Header>
     <div class="main-content">
       <div id="post-title" class="mt-4">
-        <span style="color:#7a69e6;">{{ this.$store.state.user.nickname }}</span>님, 어떤 고민이 있으신가요?
-        <br />소라고둥님께 물어보세요! <br />
+        <span style="color: #7a69e6">{{ this.$store.state.user.nickname }}</span
+        >님, 어떤 고민이 있으신가요? <br />소라고둥님께 물어보세요! <br />
         <br />✨마법의 소라고둥 사용법✨<br />
       </div>
-        <span id="post-upcount"> 질문은 한번에 하나씩, </span><br>
-        <span id="post-upcount"> 완전한 문장으로 하는 것이 좋습니다 </span><br>
-       <span id="post-upcount"> ex) 취업을 할 수 있을까요?  치킨을 시킬까요? </span>
+      <span id="post-upcount"> 질문은 한번에 하나씩, </span><br />
+      <span id="post-upcount"> 완전한 문장으로 하는 것이 좋습니다 </span><br />
+      <span id="post-upcount">
+        ex) 취업을 할 수 있을까요? 치킨을 시킬까요?
+      </span>
       <div class="mt-3">
         <b-img
           :src="require('@/assets/sora.jpg')"
@@ -27,7 +29,7 @@
       </div>
       <div id="post-upcount">(사진을 클릭해주세요)</div>
       <div>
-        <b-card class=" mt-5">
+        <b-card class="mt-5">
           <b-form-textarea
             v-model="text"
             placeholder="🐚소라고둥님이 뭐라고 답하실까요...?🐚"
@@ -58,8 +60,8 @@ export default {
   },
   methods: {
     play() {
-      var sound =
-        "https://docs.google.com/uc?export=open&id=1eC7sDbpWRBOIr9FBEn1UbsDsJD9tvjIg";
+      var sound = new Audio(require("@/assets/sora_sound.mp3"));
+
       console.log("play it");
       var audio = new Audio(sound);
       audio.play();
@@ -134,8 +136,7 @@ export default {
       }
     },
     replay() {
-      var sound =
-        "https://jaringulbi.s3.ap-northeast-2.amazonaws.com/sora.m4a";
+      var sound = "https://jaringulbi.s3.ap-northeast-2.amazonaws.com/sora.m4a";
       console.log("replay it");
       var audio = new Audio(sound);
       audio.pause();

@@ -107,6 +107,19 @@ public class ChallengeController {
         }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    
+    @GetMapping(value = "/mylist/{id}")
+    public ResponseEntity<List<ChallengeDto>> challengeList(@PathVariable int id){
+    	System.out.println("나의 리스트");
+    	List<ChallengeDto> list = null;
+    	try{
+    		list = challengeService.getMyChallengeList(id);
+    		 
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    	return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
     @PostMapping(value = "/review")
     public void addChallengeReview(@RequestBody ChallengeReviewDto challengeReviewDto){

@@ -30,39 +30,41 @@
       <img :src="this.image" alt="챌린지 이미지" />
     </div>
     <div class="text-start">
-      <div class="chlg-wrap">     
-        <div style="font-weight: bold; font-size: 24px;">
+      <div class="chlg-wrap">
+        <div style="font-weight: bold; font-size: 24px">
           {{ this.$store.state.challenge.title }}
         </div>
-        <div class="mt-2" style="color:#7a69e6; font-weight: 600;">
+        <div class="mt-2" style="color: #7a69e6; font-weight: 600">
           {{ this.$store.state.challenge.start }}
         </div>
-        <div id="post-content"
-          style="border-bottom:solid 1px #eee;"
+        <div
+          id="post-content"
+          style="border-bottom: solid 1px #eee"
           class="pb-3"
         >
           {{ this.$store.state.challenge.period }} 동안 진행
         </div>
-        
+
         <div class="d-flex align-items-center mt-3">
-          <span id="post-upcount" class="me-3">참가인원</span> 
+          <span id="post-upcount" class="me-3">참가인원</span>
           <span id="post-title">
             {{ this.$store.state.challenge.ChallengeUserNum }} 명
           </span>
         </div>
         <div class="d-flex align-items-center">
-          <span id="post-upcount" class="me-4">참가비</span>          
+          <span id="post-upcount" class="me-4">참가비</span>
           <span id="post-title">
             {{ this.$store.state.challenge.entry_fee }} 굴비
-          </span>          
+          </span>
         </div>
-        <div class="d-flex align-items-center pb-3"
-          style="border-bottom:solid 1px #ddd;"
+        <div
+          class="d-flex align-items-center pb-3"
+          style="border-bottom: solid 1px #ddd"
         >
-          <span id="post-upcount" class="me-4">보상</span>          
-          <span id="post-title" style="color:#7a69e6;">
+          <span id="post-upcount" class="me-4">보상</span>
+          <span id="post-title" style="color: #7a69e6">
             {{ this.$store.state.challenge.reward }} 굴비
-          </span>          
+          </span>
         </div>
 
         <div class="mt-2 mb-3 chlg-detail-tab">          
@@ -82,12 +84,14 @@
         <div style="font-size:15px; color: #444;">
           <Description v-show="dshow" />          
           <Review v-show="rshow" />
-        </div>        
+        </div>
       </div>
-    </div>    
-      <div class="comment-form1" v-if="$store.state.show">
-        <ChallengeBottom />
+    </div>
+    <div class="comment-form1" v-if="$store.state.show">
+      <div class="participate-btn" @click="join">
+        <p>참가하기</p>
       </div>
+    </div>
   </div>
 </template>
 
@@ -95,7 +99,6 @@
 import { mapGetters } from "vuex";
 import Description from "@/components/challenge/Description.vue";
 import Review from "@/components/challenge/Review.vue";
-import ChallengeBottom from "@/components/challenge/ChallengeBottom.vue";
 
 export default {
   name: "Viewdetail",
@@ -105,7 +108,6 @@ export default {
   components: {
     Description,
     Review,
-    ChallengeBottom,
   },
   created() {
     console.log(this.id);
@@ -125,6 +127,8 @@ export default {
       description: "",
       ChallengeUserNum: "",
       image: this.$route.query.name,
+      challenge_id: Number(this.$route.params.id),
+      user_id: this.$store.state.user.id,
     };
   },
   methods: {
@@ -135,6 +139,14 @@ export default {
     review() {
       this.dshow = false;
       this.rshow = true;
+    },
+    join() {
+      this.$store.dispatch("enter", {
+        challenge_id: this.challenge_id,
+        user_id: this.user_id,
+      });
+
+      alert("참가가 완료되었습니다!");
     },
   },
 };
@@ -162,9 +174,9 @@ export default {
 }
 
 .chlg-cover-img img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .chlg-wrap {
@@ -195,5 +207,20 @@ export default {
   width: 100%;
   max-width: 420px;
   height: 58px;
+}
+
+.participate-btn {
+  /* display: flex; */
+  width: 100%;
+  max-width: 420px;
+  height: 58px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #9be4e4;
+  color: #fff;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 54px;
+  text-align: center;
 }
 </style>

@@ -24,12 +24,11 @@ export default {
 
   methods: {
     join() {
+      this.$router.push("/challenge");
       this.$store.dispatch("enter", {
         challenge_id: this.challenge_id,
         user_id: this.user_id,
       });
-
-      alert("참가가 완료되었습니다!");
     },
   },
 };

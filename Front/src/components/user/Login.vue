@@ -65,14 +65,14 @@
   </div>
 </template>
 <script>
-// import { mapGetters } from "vuex";
-
+import { mapGetters } from "vuex";
 export default {
   name: "bottom",
   computed: {
     //getter에 있는 userInfo 함수를 불러옵니다.
-    // ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo"]),
   },
+
   data() {
     return {
       login_id: "",
@@ -104,10 +104,10 @@ export default {
           login_id: this.login_id,
           password: this.password,
         });
-      console.log(this.$store.state.user.id);
-      if (this.$store.state.user.login_id != undefined) {
+
+      if (this.$store.state.user.nickname !== undefined) {
         console.log(this.$store.state.user.login_id + " " + "로그인성공");
-        alert("로그인 성공");
+
         this.$router.push("/");
       }
     },

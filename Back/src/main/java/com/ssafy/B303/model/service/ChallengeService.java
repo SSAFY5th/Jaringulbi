@@ -12,9 +12,9 @@ public interface ChallengeService {
     List<UserChallengeDto> getUserChallengeList(int user_id);
     List<ChallengeReviewDto> getChallengeReviewList(int challenge_id);
     void addChallengeReview(ChallengeReviewDto challengeReviewDto);
-
     void updateChallengeReview(ChallengeReviewDto challengeReviewDto);
 
+    List<ChallengeDto> getMyChallengeList(int id);
     void deleteChallengeReview(ChallengeReviewDto challengeReviewDto);
     public List<PostDto> relatedPost(int id) throws Exception;
 }

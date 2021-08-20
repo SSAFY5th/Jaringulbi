@@ -15,6 +15,7 @@
         :end_date="challenge.end_date"
         :description="challenge.description"
         :id="challenge.id"
+        :status="challenge.status"
       >
       </challenge-list>
     </div>
@@ -33,11 +34,13 @@ export default {
     ChallengeList,
   },
   computed: {
-    ...mapGetters(["challenges"]),
+    ...mapGetters(["challenges", "myChallenge"]),
   },
 
   created() {
+    var id = this.$store.state.user.id;
     this.$store.dispatch("getChallenges");
+    this.$store.dispatch("getmyChallenge", { id: id });
   },
 };
 </script>
