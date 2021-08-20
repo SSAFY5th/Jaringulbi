@@ -1,27 +1,29 @@
 <template>
   <div>
-    <div id="mypage-header">
-      <div
-        class="d-flex justify-content-center align-self-center px-3"
-        style="width: 100%"
-      >
-        <div class="text-center">
-          <span>가계부 상세보기</span>
-        </div>
-      </div>
-    </div>
-    <div class="main-content">
-      <div class="form-area">
+    <div>
+      <div class="form-area text-start">
         <div>
-          <p>{{ date }}</p>
-          <p>{{ price }}</p>
-          <p>{{ used }}</p>
-          <p>{{ contents }}</p>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <span id="post-content">{{ date }}</span>
+            <span style="color: #7a69e6;
+              font-size: 18px;
+              font-weight: 600;">
+              {{ price }} 원
+            </span>
+          </div>
+          <div class="d-flex align-items-center mt-3">
+            <span id="post-upcount" class="me-3">사용처</span>
+            <span id="post-title">{{ used }}</span>
+          </div>
+          <div class="d-flex align-items-center mb-1">
+            <span id="post-upcount" class="me-3">내용</span>
+            <span id="post-title">{{ contents }}</span>
+          </div>
         </div>
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
           <span style="color: #888"> {{ date }} </span>
           <span @click="signup" class="sign-up-link"> {{ price }} </span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -41,38 +43,9 @@ export default {
 };
 </script>
 <style scoped>
-#mypage-header {
-  position: fixed;
-  top: 0;
-  z-index: 999;
-  display: flex;
-  width: 100%;
-  max-width: 420px;
-  height: 65px;
-  background-color: #fff;
-  color: #222;
-  box-shadow: 0 2px 8px #ddd;
-  text-align: center;
-}
-
 .form-area {
   padding: 12px 14px 12px 14px;
-}
-
-#image {
-  width: 100px;
-  height: 100%;
-  border-radius: 100%;
-  margin-bottom: 40px;
-}
-
-.float1 {
-  width: 35%;
-}
-
-.float2 {
-  width: 65%;
-  text-align: left;
+  border-bottom: solid 1px #eee;
 }
 
 .sign-up-link {

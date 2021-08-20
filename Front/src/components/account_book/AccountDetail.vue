@@ -1,6 +1,21 @@
 <template>
   <div>
-    <div>
+      <div id="mypage-header">
+      <div
+        class="d-flex justify-content-between align-self-center px-3"
+        style="width: 100%"
+      >
+      <div class="">
+          <router-link :to="{ name: 'Accountbook' }" class="text-dark">
+            <b-icon icon="chevron-left" aria-hidden="false"></b-icon>
+          </router-link>
+      </div>
+      <div class="text-center">
+        <!-- <span>가계부 상세보기</span> -->
+      </div>
+      </div>
+    </div>
+    <div class="main-content">
       <account-list
         v-for="(account, index) in accountbook"
         v-bind:key="index"
@@ -46,4 +61,17 @@ export default {
 };
 </script>
 <style scoped>
+#mypage-header {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  height: 65px;
+  background-color: #fff;
+  color: #222;
+  box-shadow: 0 2px 8px #ddd;
+  text-align: center;
+}
 </style>
