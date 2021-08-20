@@ -46,9 +46,10 @@ export default {
 </script>
 
 <style scoped>
-.chlg-content {
-  padding: 12px 4px 12px 14px;
-  position: relative;
-  color: #333;
-}
+  .chlg-content {
+    padding: 15px 4px 12px 14px;
+    position: relative;
+    color: #333;
+    margin-top: 65px;
+  }
 </style>

@@ -1,59 +1,67 @@
 <template>
-  <div class="row" id="login">
-    <div>
-      <b-container id="mainImage" class="top-login">
-        <div class="login-back">
-          <b-row>
-            <div>
-              <b-img
-                :src="require('@/assets/logo.png')"
-                style="width: 100px"
-                class="margin"
-              >
-              </b-img>
-              <h5 style="color: #9175f3">자린굴비</h5>
-            </div>
-            <div class="login top list" id="font">
-              <div class="login_form">
-                <label for="id">ID</label><br />
-                <input
-                  type="text"
-                  id="login_id"
-                  name="login_id"
-                  v-model="login_id"
-                  ref="login_id"
-                /><br />
-                <label for="pwd">비밀번호</label><br />
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  v-model="password"
-                  ref="password"
-                  @keyup.enter="checkValue"
-                /><br />
-                <div class="buttons">
-                  <button
-                    id="btn_group"
-                    class="btn"
-                    @keyup.enter="checkValue"
-                    @click="checkValue"
-                  >
-                    로그인
-                  </button>
-                  <button class="btn" @click="signup" id="btn_group">
-                    회원가입
-                  </button>
-                  <button class="btn" id="btn_group">아이디 찾기</button>
-                  <button class="btn" id="btn_group">비밀번호 찾기</button>
-                </div>
-              </div>
-            </div>
-          </b-row>
-        </div>
-      </b-container>
+  <div>    
+    <div style="margin-top: 80px;">
+      <b-img
+        :src="require('@/assets/logo.png')"
+        style="width: 100px;"            
+      >
+      </b-img>
+      <h4
+        class="my-3"
+        style="color: #9be4e4; font-weight:600;"
+      >
+        자린굴비
+      </h4>
     </div>
-    <div class="col-xs-6 col-md-2"></div>
+    <div class="login-form">
+      <input
+        type="text"
+        id="login_id"
+        name="login_id"
+        v-model="login_id"
+        ref="login_id"
+        placeholder="ID"
+        class="form-control mt-5 mb-2"
+      />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        v-model="password"
+        ref="password"
+        placeholder="비밀번호"
+        class="form-control mb-3"
+        @keyup.enter="checkValue"
+      />
+      <div>
+        <button
+          class="btn mb-5"
+          id="login-btn"
+          @keyup.enter="checkValue"
+          @click="checkValue"
+        >
+          로그인
+        </button>
+        <div class="d-flex justify-content-between">
+          <span style="color:#888;">
+            아직 계정이 없으신가요?
+          </span>
+          <span 
+            @click="signup"
+            class="sign-up-link"
+          >
+            회원가입
+          </span>
+        </div>
+        <!-- <button
+          style="width: 100%"
+          class="btn btn-mint btn-primary"
+          @click="signup"
+        >
+          회원가입
+        </button> -->
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -106,53 +114,36 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-.top {
-  background-color: white;
-  margin-top: 40px;
+.login-form {
+  padding: 0 40px 0 40px;
 }
 
-button {
-  margin: 5px;
-  background-color: skyblue;
+#login-btn {
+  width: 100%;
+  background-color: #9be4e4;
+  color: #fff;
 }
 
-.buttons {
-  margin-top: 25px;
+#login-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
 }
 
-.top-login {
-  margin-top: 60px;
+.sign-up-link {
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.margin {
-  margin-top: 20px;
+.sign-up-link:hover {
+  color: #7a69e6;
+  font-weight: 600;
 }
 
-.regist {
-  padding: 10px;
-}
-.regist_form {
-  text-align: left;
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-input,
-textarea,
-.view {
-  width: 60%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #787878;
-  font-size: medium;
-}
-
-#btn_group {
+/* #btn_group {
   background-color: #9be4e4;
   color: #9175f3;
   border: 1px solid #9175f3;
@@ -160,5 +151,6 @@ textarea,
   width: 150px;
   margin-left: 14px;
   margin-top: 23px;
-}
+} */
+
 </style>

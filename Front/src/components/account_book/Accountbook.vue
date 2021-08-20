@@ -1,37 +1,38 @@
 
 <template>
-  <div class="row">
-    <div><acheader></acheader></div>
+  <div>
+    <div><Acheader/></div>
 
-    <div>
-      <br />
-      <div>
-        <div class="float">수입</div>
-        <div class="float">지출</div>
-        <div class="float">합계</div>
+    <div class="main-content">
+      <div class="pt-3">
+        <div>
+          <div class="float">수입</div>
+          <div class="float">지출</div>
+          <div class="float">합계</div>
+        </div>
+        <div>
+          <div class="float" style="color: #86b2fa; font-weight: bold">
+            {{ this.$store.state.accountbooks.monthIncomes | makeComma }}원
+          </div>
+          <div class="float" style="color: #f08d73; font-weight: bold">
+            {{ this.$store.state.accountbooks.monthOutgoings | makeComma }}원
+          </div>
+          <div class="float" style="font-weight: bold">
+            {{ this.$store.state.accountbooks.monthSum | makeComma }}원
+          </div>
+        </div>
       </div>
       <div>
-        <div class="float" style="color: #86b2fa; font-weight: bold">
-          {{ this.$store.state.accountbooks.monthIncomes | makeComma }}원
-        </div>
-        <div class="float" style="color: #f08d73; font-weight: bold">
-          {{ this.$store.state.accountbooks.monthOutgoings | makeComma }}원
-        </div>
-        <div class="float" style="font-weight: bold">
-          {{ this.$store.state.accountbooks.monthSum | makeComma }}원
-        </div>
+        <calendar></calendar>
       </div>
-    </div>
-    <div>
-      <calendar></calendar>
-    </div>
 
-    <div>
-      <router-link :to="`/registaccount`">
-        <div id="write-btn">
-          <span>+</span>
-        </div>
-      </router-link>
+      <div>
+        <router-link :to="`/registaccount`">
+          <div id="write-btn">
+            <span>+</span>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
