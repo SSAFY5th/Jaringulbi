@@ -13,10 +13,10 @@
       </div>
     </div>
     <div class="main-content">
-      <div class="mt-2 mb-4">
+      <div class="pt-5 pb-2 mb-4">
         <img alt="프로필" :src="image" id="profile-img" />
       </div>
-      <div class="regist_form">
+      <div class="modify-form">
         <label for="login_id">아이디</label>
         <input
           readonly
@@ -25,6 +25,7 @@
           name="login_id"
           v-model="login_id"
           ref="login_id"
+          class="form-control mt-1 mb-2"
         />
         <label for="password">비밀번호</label>
         <input
@@ -33,22 +34,44 @@
           name="password"
           v-model="password"
           ref="password"
-        /><br />
-        <label for="nickname">이름</label>
+          class="form-control mt-1 mb-2"
+        />
+        <label for="nickname">닉네임</label>
         <input
           type="text"
           id="nickname"
           name="nickname"
           v-model="nickname"
           ref="nickname"
-        /><br />
-        <label for="phone">전화번호</label><br />
-        <input type="tel" id="phone" name="phone" v-model="phone" ref="phone" />
-        <br />
-      </div>
-      <div style="width:100%;" class="mt-3">
-        <button @click="modifyUser" class="btn mint-btn me-3">수정</button>
-        <button @click="deleteUser" class="btn btn-secondary">회원탈퇴</button>
+          class="form-control mt-1 mb-2"
+        />
+        <label for="phone">전화번호</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          v-model="phone"
+          ref="phone"
+          class="form-control mt-1 mb-3"
+        />
+        <div>
+          <button
+            class="btn mb-5"
+            id="login-btn"
+            @keyup.enter="modifyUser"
+            @click="modifyUser"
+          >
+            수정
+          </button>
+          <div class="d-flex justify-content-between">
+            <span
+              @click="deleteUser"
+              class="goback-link"
+            >
+              회원탈퇴
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -115,59 +138,27 @@ export default {
 };
 </script>
 <style scoped>
-.main-content {
-  padding: 10px 14px 12px 14px;
-}
-
-.title {
-  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
-  color: black;
-  font-size: 40px;
-  text-shadow: 5px 5px #558abb;
-}
-
-.regist_form {
+.modify-form {
+  padding: 0 40px 0 40px;
   text-align: left;
-  border-radius: 5px;
-  /* padding: 35px; */
+  color: #888;
+  font-size: 14px;
 }
 
-input, textarea, .view {
+#login-btn {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #787878;
-  font-size: medium;
-}
-
-#btn_group {
-  background-color: #9be4e4;
-  color: #9175f3;
-  width: 150px;
-  margin-left: 14px;
-  margin-top: 23px;
-  border-radius: 0.25rem;
-  border: 1px solid #9be4e4;
-}
-
-#btn_group:hover {
-  color: #fff;
-  border: 1px solid #9be4e4;
-}
-
-.mint-btn {
   background-color: #9be4e4;
   color: #fff;
 }
 
-.mint-btn:hover {
+#login-btn:hover {
   border: solid 1px #9be4e4;
   background-color: #fff;
   color: #9be4e4;
 }
 
+.goback-link {
+  color: #888;
+  cursor: pointer;
+}
 </style>

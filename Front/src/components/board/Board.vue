@@ -8,7 +8,7 @@
         style="width: 100%"
       >
         <div>
-          <span>카테고리</span>
+          <span>자유게시판</span>
           <b-dropdown
             size="sm"
             variant="link"
@@ -24,7 +24,7 @@
                 class="text-secondary"
               ></b-icon>
             </template>
-            <b-dropdown-item> 자유게시판 </b-dropdown-item>
+            <b-dropdown-item>자유게시판</b-dropdown-item>
             <b-dropdown-item @click="goBuyOrNot">
               살까말까 게시판
             </b-dropdown-item>

@@ -26,15 +26,44 @@
     </div>
 
     <div class="main-content">
+      <router-link
+        :to="{ name: 'BuyOrNotDetail', params: { id: 20 }}"
+        class="text-decoration-none text-dark m-0 p-0"
+      >
       <div class="notice-item">
         <div class="d-flex align-items-center">        
           <div id="img-circle" class="bg-secondary">
+            <img
+              src="https://jaringulbi.s3.ap-northeast-2.amazonaws.com/profile/lsh.jpg"
+              alt="프로필 사진"
+              class="img-fluid"
+            >
           </div>
           <div class="ms-3">
             <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
+              애옹집사 님이 댓글을 남겼습니다.
             </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
+            <p id="post-content" class="m-0 text-start">5만원이면 무난하죠</p>
+          </div>
+        </div>
+        <span id="post-time" class="text-center">
+          여기를 눌러 댓글을 확인해보세요.
+        </span>
+      </div>      
+      <div class="notice-item">
+        <div class="d-flex align-items-center">        
+          <div id="img-circle" class="bg-secondary">
+            <img
+              src="https://jaringulbi.s3.ap-northeast-2.amazonaws.com/profile/seeggp.jpg"
+              alt="프로필 사진"
+              class="img-fluid"
+            >
+          </div>
+          <div class="ms-3">
+            <p id="post-title" class="p-0 my-1">
+              시급좀올려주세요 님이 댓글을 남겼습니다.
+            </p>
+            <p id="post-content" class="m-0 text-start">어느정도 친한친구인데요?</p>
           </div>
         </div>
         <span id="post-time" class="text-center">
@@ -44,78 +73,24 @@
       <div class="notice-item">
         <div class="d-flex align-items-center">        
           <div id="img-circle" class="bg-secondary">
+            <img
+              src="https://jaringulbi.s3.ap-northeast-2.amazonaws.com/profile/htr.jpg"
+              alt="프로필 사진"
+              class="img-fluid"
+            >
           </div>
           <div class="ms-3">
             <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
+              서버요정 님이 댓글을 남겼습니다.
             </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
+            <p id="post-content" class="m-0 text-start">생일전에 싸워라</p>
           </div>
         </div>
         <span id="post-time" class="text-center">
           여기를 눌러 댓글을 확인해보세요.
         </span>
       </div>
-      <div class="notice-item">
-        <div class="d-flex align-items-center">        
-          <div id="img-circle" class="bg-secondary">
-          </div>
-          <div class="ms-3">
-            <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
-            </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
-          </div>
-        </div>
-        <span id="post-time" class="text-center">
-          여기를 눌러 댓글을 확인해보세요.
-        </span>
-      </div>
-      <div class="notice-item">
-        <div class="d-flex align-items-center">        
-          <div id="img-circle" class="bg-secondary">
-          </div>
-          <div class="ms-3">
-            <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
-            </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
-          </div>
-        </div>
-        <span id="post-time" class="text-center">
-          여기를 눌러 댓글을 확인해보세요.
-        </span>
-      </div>
-      <div class="notice-item">
-        <div class="d-flex align-items-center">        
-          <div id="img-circle" class="bg-secondary">
-          </div>
-          <div class="ms-3">
-            <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
-            </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
-          </div>
-        </div>
-        <span id="post-time" class="text-center">
-          여기를 눌러 댓글을 확인해보세요.
-        </span>
-      </div>
-      <div class="notice-item">
-        <div class="d-flex align-items-center">        
-          <div id="img-circle" class="bg-secondary">
-          </div>
-          <div class="ms-3">
-            <p id="post-title" class="p-0 my-1">
-              어쩌구 님이 뭐했어요!
-            </p>
-            <p id="post-content" class="m-0 text-start">너무 귀여워용</p>
-          </div>
-        </div>
-        <span id="post-time" class="text-center">
-          여기를 눌러 댓글을 확인해보세요.
-        </span>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
