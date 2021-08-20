@@ -1,5 +1,5 @@
 <template>
-  <div id="challenge" class="mb-3" v-if="status == 2">
+  <div id="challenge" class="mb-3">
     <div class="chlg-list-wrap">
       <router-link
         :to="{
