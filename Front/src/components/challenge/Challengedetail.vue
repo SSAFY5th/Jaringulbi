@@ -67,12 +67,22 @@
           </span>
         </div>
 
-        <div class="my-3 chlg-detail-tab">
-          <span @click="descript" class="me-5"> 상세 설명 </span>
-          <span @click="review" class="ps-3"> 후기 </span>
+        <div class="mt-2 mb-3 chlg-detail-tab">          
+          <div class="d-flex justify-content-around">
+            <div>
+              <span @click="descript" class="">
+                상세 설명
+              </span>        
+            </div>
+            <div>
+              <span @click="review" class="">
+                후기
+              </span>          
+            </div>
+          </div>
         </div>
-        <div>
-          <Description v-show="dshow" />
+        <div style="font-size:15px; color: #444;">
+          <Description v-show="dshow" />          
           <Review v-show="rshow" />
         </div>
       </div>
@@ -177,6 +187,11 @@ export default {
 .chlg-detail-tab span {
   font-weight: 600;
   color: #666;
+  cursor: pointer;
+}
+
+.chlg-detail-tab span:hover {
+  color: #7a69e6;
 }
 
 .comment-form1 {

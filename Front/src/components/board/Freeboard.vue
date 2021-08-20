@@ -90,7 +90,7 @@ export default {
 
 <style scoped>
   .post-wrap {
-    padding: 10px 14px 12px 14px;
+    padding: 12px 14px 12px 14px;
     border-bottom: solid 1px #eee;
     color: #444;
   }
