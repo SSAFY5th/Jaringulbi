@@ -7,11 +7,12 @@
           <div>전체</div>
         </b-button>
 
-        <b-button class="top-category-btn" title="나의 챌린지">
+        <b-button class="cl-tab-btn" title="나의 챌린지">
           <router-link
             :to="{
               path: /mychallenge/ + this.$store.state.user.id,
             }"
+            class="text-decoration-none text-dark"
           >
             <div>나의 챌린지</div>
           </router-link>
@@ -50,6 +51,7 @@ export default {
   width: 100%;
   max-width: 420px;
   height: 65px;
+  z-index: 5;
   background-color: #fff;
   box-shadow: 0 2px 6px #ddd;
 }
@@ -63,6 +65,7 @@ export default {
 .cl-tab-btn:hover {
   background-color: #9be4e4;
   border: 1px solid #9be4e4;
+  
 }
 
 #acbutton {

@@ -7,11 +7,15 @@
       <div class="d-flex summary-box align-items-center justify-content-evenly">
         <div class="d-inline-block me-5">
           <p id="post-username">챌린지</p>
-          <span id="post-title">6개</span>
+          <span id="post-title">
+            {{ this.$store.state.myChallenge.length }}개
+          </span>
         </div>
         <div class="d-inline-block">
           <p id="post-username">누적 굴비 수</p>
-          <span id="post-title">17개</span>
+          <span id="post-title">
+            {{ this.$store.state.user.fish_count }}개
+          </span>
         </div>
       </div>
 
@@ -79,7 +83,7 @@ export default {
 <style scoped>
 .mychlg-content {
   margin-bottom: 60px;
-  padding: 15px 14px 12px 14px;
+  padding: 15px 4px 12px 14px;
   margin-top: 65px;
   position: relative;
   color: #333;
@@ -91,10 +95,10 @@ export default {
   border: solid 1px #eee;
 }
 
-.challenge-wrap {
+/* .challenge-wrap {
   border-bottom: solid 1px #eee;
-  /* color: #444; */
-}
+  color: #444;
+} */
 
 .challenge-wrap > p {
   color: #999;
