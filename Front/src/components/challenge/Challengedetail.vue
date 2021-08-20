@@ -84,11 +84,7 @@
       </div>
     </div>
     <div class="comment-form1" v-if="$store.state.show">
-      <div
-        class="participate-btn"
-        @click="join"
-        v-if="$store.state.myChallenge[0].status == 1"
-      >
+      <div class="participate-btn" @click="join">
         <p>참가하기</p>
       </div>
     </div>
