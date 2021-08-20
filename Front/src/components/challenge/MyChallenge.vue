@@ -21,7 +21,7 @@
 
       <div class="challenge-wrap">
         <!-- MyChallengeList.length -->
-        <div v-if="myChallenge">
+        <div v-if="myChallenge.length">
           <my-challenge-list
             v-for="(challenge, index) in myChallenge"
             :key="index"
@@ -36,10 +36,10 @@
             :status="challenge.status"
           >
           </my-challenge-list>
-        </div>
+        </div>        
         <p v-else class="mt-5">
           아직 참여중인 챌린지가 없습니다.
-        </p>
+        </p>        
       </div>
     </div>
   </div>
