@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div>
@@ -56,8 +55,27 @@
           class="margin"
         /> -->
 
-        <p id="post-title" style="font-size: 21px">
-          {{ contents }}
+        <p
+          id="post-title"
+          style="font-size: 21px"
+          v-if="
+            Number(this.$store.state.realbudget) +
+              Number(this.$store.state.accountbooks.monthOutgoings) >=
+            0
+          "
+        >
+          아직까진 넉넉해요!
+        </p>
+        <p
+          v-if="
+            Number(this.$store.state.realbudget) +
+              Number(this.$store.state.accountbooks.monthOutgoings) <
+            0
+          "
+          id="post-title"
+          style="font-size: 21px"
+        >
+          예산을 초과했어요 ㅠ_ㅠ
         </p>
       </div>
       <div>
@@ -68,6 +86,7 @@
           id="modal-center"
           @ok="registbudget"
           centered
+          ref="my-dal1"
           title="예산 등록"
         >
           <p>금액을 입력해주세요</p>
@@ -94,33 +113,16 @@ export default {
   name: "",
   computed: { ...mapGetters(["budget", "realbudget"]) },
   data() {
-    var budget =
-      Number(this.$store.state.realbudget) +
-      Number(this.$store.state.accountbooks.monthOutgoings);
-    var contents = "";
-    var imgLink = "";
     var realbudget = this.$store.state.realbudget;
     //이번달 예산 남은거가 설정해놓은 예산보다 작을경우
-    console.log(Number(this.$store.state.budget));
-    console.log(Number(this.$store.state.realbudget));
-    if (budget >= 0) {
-      contents = "아직까진 넉넉해요 ! ";
-      imgLink = require("@/assets/good.png");
-    }
-    if (budget < 0) {
-      contents = "예산을 초과했어요 ㅠ_ㅠ";
-      imgLink = require("@/assets/save.png");
-    }
 
-    console.log(contents);
     return {
       month: month,
       impo: this.$store.state.accountbooks.monthIncomes,
       expo: this.$store.state.accountbooks.monthOutgoings,
-      budget: budget,
-      contents: contents,
+      budget: this.budget,
+
       realbudget: realbudget,
-      imgLink: imgLink,
     };
   },
 
@@ -128,6 +130,7 @@ export default {
     registbudget() {
       this.$store.dispatch("getBudget", this.budget);
       this.$store.dispatch("getrealBudget", this.realbudget);
+      this.$refs["my-dal1"].hide();
     },
   },
 };
