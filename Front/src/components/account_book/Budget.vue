@@ -1,63 +1,91 @@
 
 <template>
   <div>
-    <div><acheader></acheader></div>
+    <div>
+      <Acheader />
+    </div>
 
-    <div id="top_btn">
-      <div class="top">
-        <h5 class="float1" style="text-align: center">{{ month }}월</h5>
-        <div class="float2 mt-3">
-          <div>수입 {{ impo | makeComma }}원</div>
-          <div>지출 {{ expo | makeComma }}원</div>
+    <div class="main-content">
+      <div class="d-flex summary-box align-items-center justify-content-evenly">
+        <div class="d-inline-block me-3">
+          <span
+            style="font-weight: 600; font-size:21px;"
+          >{{ month }}월</span>
+        </div>
+        <div class="d-inline-block me-3">
+          <div class="d-flex align-items-center mb-2">
+            <span id="post-username">
+              수입
+            </span>
+            <span id="post-title" class="ms-3" style="font-size:18px;">
+              {{ impo | makeComma }}원
+            </span>
+          </div>
+          <div class="d-flex align-items-center mb-2">
+            <span id="post-username" class="m-0">
+              지출
+            </span>
+            <span id="post-title" class="ms-3"
+              style="color:#7a69e6; font-size:18px;"
+            >
+             {{ expo | makeComma }}원
+            </span> 
+          </div>
         </div>
       </div>
-      <div>이번 달 목표 예산</div>
-      <div>
-        <h2>{{ realbudget | makeComma }}원</h2>
-      </div>
-      <div>남은 예산</div>
-      <div>
-        <h2>{{ budget | makeComma }}원</h2>
-      </div>
-      <div></div>
-      <br />
 
-      <div>
-        <img
-          alt="Vue logo"
+      <div class="mt-4 text-start">
+        <div class="d-flex align-items-center">
+          <span class="me-4">이번달 목표 예산</span>
+          <span id="post-title">{{ realbudget | makeComma }}원</span>
+        </div>
+        <div>
+          <span class="me-4">남은 예산</span>
+          <span style="color: #7a69e6;font-weight:600;">
+            {{ budget | makeComma }}원
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3">
+        <!-- <img
           :src="imgLink"
           style="width: 350px; height: 300px"
           class="margin"
-        />
-
-        <div>
-          <h1>{{ contents }}</h1>
-        </div>
+        /> -->
+        
+        <p id="post-title" style="font-size:21px;">
+          {{ contents }}
+        </p>        
       </div>
       <div>
-        <b-button v-b-modal.modal-center id="btn_group"
-          >이번 달 예산 설정</b-button
+        <button 
+          v-b-modal.modal-center          
+          class="btn mt-4"
+          id="budget-btn"
         >
+          이번 달 예산 설정
+        </button>
         <b-modal
           id="modal-center"
           @ok="registbudget"
           centered
           title="예산 등록"
         >
-          <h5>금액을 입력해주세요</h5>
+          <p>금액을 입력해주세요</p>
           <p class="my-4">
-            <input v-model.lazy="budget" />
+            <input v-model.lazy="budget" class="form-control" />
           </p>
         </b-modal>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import Acheader from "@/layout/AC_Header.vue";
 // import save from "@/assets/save.png";
 // import good from "@/assets/good.png"
-
 var month = new Date().getMonth() + 1;
 
 import { mapGetters } from "vuex";
@@ -81,7 +109,7 @@ export default {
       imgLink = require("@/assets/good.png");
     }
     if (budget < 0) {
-      contents = "예산 초과했어요 ㅠ_ㅠ";
+      contents = "예산을 초과했어요 ㅠ_ㅠ";
       imgLink = require("@/assets/save.png");
     }
 
@@ -105,39 +133,25 @@ export default {
 };
 </script>
 <style scoped>
-#top_btn {
-  text-align: left;
-  margin: 20px;
+.main-content {
+  padding: 15px 14px 12px 14px;
 }
 
-.btn1 {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  border-radius: 20px;
+.summary-box {
+  width: 100%;
+  height: 120px;
+  border: solid 1px #eee;
 }
-.top {
+
+#budget-btn {
+  width: 100%;
   background-color: #9be4e4;
-  color: #9175f3;
-  border-radius: 10px;
-  margin-bottom: 30px;
-  padding-bottom: 10px;
+  color: #fff;
 }
 
-.float1 {
-  display: inline-block;
-  width: 40%;
-}
-.float2 {
-  display: inline-block;
-  width: 60%;
-}
-
-#btn_group {
-  background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9be4e4;
-  padding: 5px;
-  width: 330px;
-  margin: 20px;
+#budget-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
 }
 </style>

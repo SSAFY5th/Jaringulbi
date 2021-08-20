@@ -1,55 +1,74 @@
 <template>
-  <div class="row">
-    <b-container id="mainImage">
+  <div>
+    <div style="margin-top: 80px;">
+      <b-img
+        :src="require('@/assets/logo.png')"
+        style="width: 100px;"            
+      >
+      </b-img>
+      <h4
+        class="my-3"
+        style="color: #9be4e4; font-weight:600;"
+      >
+        자린굴비
+      </h4>
+    </div>
+    <div class="login-form">
+      <input
+        type="text"
+        id="login_id"
+        name="login_id"
+        v-model="login_id"
+        ref="login_id"
+        placeholder="ID"
+        class="form-control mt-5 mb-2"
+      />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        v-model="password"
+        ref="password"
+        placeholder="비밀번호"
+        class="form-control mb-2"
+      />
+      <input
+        type="text"
+        id="nickname"
+        name="nickname"
+        v-model="nickname"
+        ref="nickname"
+        placeholder="닉네임"
+        class="form-control mb-2"
+      />
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        v-model="phone"
+        ref="phone"
+        placeholder="전화번호"
+        class="form-control mb-3"
+      />
       <div>
-        <div class="top">
-          <b-img
-            :src="require('@/assets/logo.png')"
-            style="width: 100px"
-            class="margin"
-          ></b-img>
-
-          <h5 style="color: #9175f3">자린굴비</h5>
-        </div>
-        <div class="regist_form">
-          <label for="login_id">ID</label>
-          <input
-            type="text"
-            id="login_id"
-            name="login_id"
-            v-model="login_id"
-            ref="login_id"
-          />
-          <label for="password">비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            v-model="password"
-            ref="password"
-          /><br />
-          <label for="nickname">이름</label>
-          <input
-            type="text"
-            id="nickname"
-            name="nickname"
-            v-model="nickname"
-            ref="nickname"
-          /><br />
-          <label for="phone">Phone</label><br />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            v-model="phone"
-            ref="phone"
-          />
-          <br />
-          <button @click="checkValue" class="btn" id="btn_group">가입</button>
-          <button @click="home" class="btn" id="btn_group">홈으로</button>
+        <button
+          class="btn mb-5"
+          id="login-btn"
+          @keyup.enter="checkValue"
+          @click="checkValue"
+        >
+          회원가입
+        </button>
+        <div class="d-flex justify-content-between">
+          <span
+            @click="home"
+            class="goback-link"
+          >
+            홈으로 돌아가기
+          </span>
         </div>
       </div>
-    </b-container>
+    </div>
   </div>
 </template>
 <script>
@@ -128,52 +147,29 @@ export default {
 };
 </script>
 <style scoped>
-.top {
-  margin-top: 60px;
+.login-form {
+  padding: 0 40px 0 40px;
 }
 
-.margin {
-  margin-top: 20px;
-}
-
-.title {
-  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
-  color: black;
-  font-size: 40px;
-  text-shadow: 5px 5px #558abb;
-}
-
-.regist_form {
-  text-align: left;
-  border-radius: 5px;
-  padding: 35px;
-}
-input,
-textarea,
-.view {
+#login-btn {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #787878;
-  font-size: medium;
-}
-
-#btn_group {
   background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9be4e4;
-  padding: 5px;
-  width: 150px;
-  margin-left: 14px;
-  margin-top: 23px;
+  color: #fff;
 }
 
-#btn_group:hover {
-  color: white;
-  background-color: skyblue;
+#login-btn:hover {
+  border: solid 1px #9be4e4;
+  background-color: #fff;
+  color: #9be4e4;
 }
+
+.goback-link {
+  color: #888;
+  cursor: pointer;
+}
+/* 
+.goback-link:hover {
+  color: #7a69e6;
+  font-weight: 600;
+} */
 </style>

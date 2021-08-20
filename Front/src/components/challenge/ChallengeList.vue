@@ -1,17 +1,20 @@
 <template>
   <div id="challenge" class="mb-3" v-if="status == 2">
     <div class="chlg-list-wrap">
-      <div>
-        <router-link
-          :to="{
-            path: `/challenge/detail/${id}`,
-            query: { name: image },
-          }"
-        >
-          <img :src="image" id="image" alt="챌린지 이미지"
-        /></router-link>
-      </div>
-      <div id="post-title" class="my-2">{{ title }}</div>
+      <router-link
+        :to="{
+          path: `/challenge/detail/${id}`,
+          query: { name: image },
+        }"
+        class="text-decoration-none"
+      >
+        <div class="chlg-img-wrap">
+          <img :src="image"
+            class="chlg-thumbnail"
+            alt="챌린지 이미지"/>
+        </div>
+        <div id="post-title" class="my-2">{{ title }}</div>
+      </router-link>
       <div id="post-time" class="">
         {{ start_date.date.year }}-{{ start_date.date.month }}-{{
           start_date.date.day
@@ -51,12 +54,24 @@ export default {
   methods: {},
 };
 </script>
-<style scope>
-#image {
-  width: 98%;
+<style>
+.chlg-img-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;  
+  border-radius: 12px;
+}
+
+.chlg-thumbnail {
+  width: 100%;
   height: 120px;
   object-fit: cover;
-  border-radius: 12px;
+}
+
+.chlg-thumbnail:hover {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  transition: 500ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 #challenge {

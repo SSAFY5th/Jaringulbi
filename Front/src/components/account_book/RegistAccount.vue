@@ -10,11 +10,11 @@
         </div>
       </div>
     </div>
-    <div id="font" class="main-content">
+    <div class="main-content">
       <div class="regist">
         <!-- <h1 class="underline top1">지출 등록</h1> -->
         <!-- <hr /> -->
-        <div>
+        <div class="mt-3">
           <button class="btn" id="btn_group" @click="plus">수입</button>
           <button class="btn" id="btn_group" @click="minus">지출</button>
         </div>
@@ -28,6 +28,7 @@
               name="date"
               v-model="date"
               ref="date"
+              class="form-control mb-2"
             />
           </div>
           <!-- <hr /> -->
@@ -39,6 +40,7 @@
               name="price"
               v-model="price"
               ref="price"
+              class="form-control mb-2"
             />
           </div>
           <!-- <hr /> -->
@@ -51,6 +53,7 @@
               name="category"
               v-model="category"
               ref="category"
+              class="form-control mb-2"
             />
           </div>
           <div class="float3">
@@ -118,6 +121,7 @@
               name="used"
               v-model="used"
               ref="used"
+              class="form-control mb-2"
             />
           </div>
           <!-- <hr /> -->
@@ -128,6 +132,7 @@
               name="contents"
               v-model="contents"
               ref="contents"
+              class="form-control mb-2"
             />
           </div>
           <!-- <hr /> -->
@@ -333,7 +338,7 @@ export default {
   box-shadow: 0 2px 8px #ddd;
   text-align: center;
 }
-
+/* 
 input {
   width: 100%;
   padding: 12px 20px;
@@ -344,11 +349,12 @@ input {
   box-sizing: border-box;
   color: #787878;
   font-size: medium;
-}
+} */
+
 #btn_group {
   background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9175f3;
+  color: #fff;
+  border: 1px solid #9be4e4;
   padding: 5px;
   width: 180px;
   margin: 10px;
@@ -356,8 +362,8 @@ input {
 
 #btn_group_category {
   background-color: #9be4e4;
-  color: #9175f3;
-  border: 1px solid #9175f3;
+  color: #fff;
+  border: 1px solid #9be4e4;
   padding: 5px;
   width: 120px;
   margin: 10px;
@@ -371,6 +377,7 @@ input {
 .float1 {
   display: inline-block;
   width: 20%;
+  text-align: left;
 }
 .float2 {
   display: inline-block;
@@ -385,9 +392,9 @@ input {
 .btn_modal {
   display: inline-block;
   width: 25%;
-  border: 1px solid #9175f3;
-  background-color: #9be4e4;
-  color: #9175f3;
+  border: 1px solid #9be4e4;
+  background-color: #fff;
+  color: #444;
 }
 </style>
 

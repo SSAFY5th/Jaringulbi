@@ -4,7 +4,7 @@
     <div id="board-header">
       <div class="d-flex justify-content-between align-self-center px-3" style="width:100%">
         <div>
-          <span>카테고리</span>
+          <span>살까말까 게시판</span>
           <b-dropdown size="sm" 
               variant="link" class="p-0" right
               toggle-class="text-decoration-none"              
@@ -15,8 +15,6 @@
                   class="text-secondary"></b-icon>
               </template>
               <b-dropdown-item @click="goFreeboard">               
-              <!-- @click="onFreeboard()"  -->
-                <!-- v-bind:title="freeDetail.title" -->
                 자유게시판
               </b-dropdown-item>
               <b-dropdown-item>
@@ -173,7 +171,7 @@ export default {
   }
 
   .post-wrap {
-    padding: 10px 14px 12px 14px;
+    padding: 12px 14px 12px 14px;
     border-bottom: solid 1px #eee;
     color: #444;
   }
