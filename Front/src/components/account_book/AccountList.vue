@@ -5,9 +5,7 @@
         <div>
           <div class="d-flex justify-content-between align-items-center mt-2">
             <span id="post-content">{{ date }}</span>
-            <span style="color: #7a69e6;
-              font-size: 18px;
-              font-weight: 600;">
+            <span style="color: #7a69e6; font-size: 18px; font-weight: 600">
               {{ price }} 원
             </span>
           </div>
@@ -44,8 +42,22 @@ export default {
 </script>
 <style scoped>
 .form-area {
-  padding: 12px 14px 12px 14px;
-  border-bottom: solid 1px #eee;
+  padding: 10px 14px 12px 14px;
+}
+#image {
+  width: 100px;
+  height: 100%;
+  border-radius: 100%;
+  margin-bottom: 40px;
+}
+
+.float1 {
+  width: 35%;
+}
+
+.float2 {
+  width: 65%;
+  text-align: left;
 }
 
 .sign-up-link {

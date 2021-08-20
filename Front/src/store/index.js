@@ -20,6 +20,7 @@ export default new Vuex.Store({
     challenges: {},
     challengeid: {},
     myChallenge: {},
+    myList: {},
   },
 
   getters: {
@@ -87,6 +88,9 @@ export default new Vuex.Store({
     },
     setBudget(state, payload) {
       state.budget = payload;
+    },
+
+    setrealBudget(state, payload) {
       state.realbudget = payload;
     },
 
@@ -209,6 +213,12 @@ export default new Vuex.Store({
       console.log(context);
     },
 
+    getrealBudget: function(context, budget) {
+      context.commit("setrealBudget", budget);
+
+      console.log(context);
+    },
+
     getChallenge(context, { id }) {
       console.log("챌린지 상세보기");
       http
@@ -235,7 +245,6 @@ export default new Vuex.Store({
           id: id,
         })
         .then(({ data }) => {
-          console.log("마이챌린지 제목 : " + data[0].title);
           context.commit("setmyChallenge", data);
         })
         .catch((error) => {
