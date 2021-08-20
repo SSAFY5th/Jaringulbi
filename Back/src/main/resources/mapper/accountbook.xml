@@ -32,27 +32,38 @@
         where id = #{id}
     </update>
 
-    <select id="monthIncomes" parameterType="Integer" resultType="Integer">
+    <select id="monthIncomes" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and price > 0
+        where month(date) = #{month} and price >= 0 and user_id = #{user_id}
     </select>
 
-    <select id="monthOutgoings" parameterType="Integer" resultType="Integer">
+    <select id="monthOutgoings" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and 0 > price
+        where month(date) = #{month} and 0 >= price and user_id = #{user_id}
     </select>
 
     <select id="dayIncomes" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and day(date) = #{day} and price > 0
+        where month(date) = #{month} and day(date) = #{day} and price >= 0 and user_id = #{user_id}
     </select>
     <select id="dayOutgoings" parameterType="Map" resultType="Integer">
         select sum(price)
         from ACCOUNT_BOOK
-        where month(date) = #{month} and day(date) = #{day} and 0 > price
+        where month(date) = #{month} and day(date) = #{day} and 0 >= price and user_id = #{user_id}
     </select>
 
+    <update id="setBudget" parameterType="Map">
+        update USER
+        set budget = #{budget}
+        where id = #{id}
+    </update>
+
+    <select id="getBudget" parameterType="int">
+        select budget
+        from USER
+        where id = #{id}
+    </select>
 </mapper>

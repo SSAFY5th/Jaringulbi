@@ -1,20 +1,35 @@
 package com.ssafy.B303.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
 public class AccountBookDto {
     private int id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDateTime date;
+
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private String date;
     private int price;
     private int category;
     private String used;
     private String contents;
     private int user_id;
 
-    public AccountBookDto(int id, LocalDateTime date, int price, int category, String used, String contents, int user_id) {
+    public AccountBookDto(){};
+
+    public AccountBookDto(int id,String date, int price, int category, String used, String contents, int user_id) {
         this.id = id;
         this.date = date;
         this.price = price;
@@ -24,19 +39,12 @@ public class AccountBookDto {
         this.user_id = user_id;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

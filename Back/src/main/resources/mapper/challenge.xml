@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.B303.model.mapper.ChallengeMapper">
+
+	<select id="getChallengeList" resultType="ChallengeDto">
+		select *
+		from CHALLENGE
+	</select>
+
+	<select id="getMyChallengeList" resultType="ChallengeDto">
+		select  A.id,A.start_date,A.end_date, A.title,A.entry_fee,
+		A.reward,A.image,B.status,A.description
+		from CHALLENGE A
+		left join USER_CHALLENGE B on A.id = B.challenge_id and B.status = 1
+        where B.status is not NULL;
+	</select>
+
+	<select id="getChallenge" parameterType="int"
+		resultType="ChallengeDto">
+		select id, start_date, end_date, title, entry_fee, reward, image, status,
+		REPLACE(description, '\n', '') as description
+		from CHALLENGE
+		where id = #{id}
+	</select>
+
+	<select id="getChallengeUserNum" parameterType="int"
+		resultType="Integer">
+		select sum(id)
+		from USER_CHALLENGE
+		where challenge_id
+	</select>
+
+	<insert id="enterChallenge" parameterType="EnterChallengeVo">
+		insert into USER_CHALLENGE(challenge_id, user_id, status)
+		values(#{challenge_id}, #{user_id}, 1)
+	</insert>
+
+	<select id="getUserChallengeList" parameterType="int"
+		resultType="UserChallengeDto">
+		select *
+		from USER_CHALLENGE
+		where user_id = #{user_id}
+	</select>
+
+	<select id="getChallengeReviewList" parameterType="int"
+		resultType="ChallengeReviewDto">
+		select *
+		from REVIEW
+		where challenge_id = #{challenge_id}
+	</select>
+
+	<insert id="addChallengeReview"
+		parameterType="ChallengeReviewDto">
+		insert into REVIEW(challenge_id, user_id, contents, commented_time)
+		values (#{challenge_id}, #{user_id}, #{contents}, NOW())
+	</insert>
+
+	<update id="updateChallengeReview"
+		parameterType="ChallengeReviewDto">
+		update REVIEW
+		SET contents=#{contents}
+		where id = #{id}
+	</update>
+
+	<delete id="deleteChallengeReview"
+		parameterType="ChallengeReviewDto">
+		delete from REVIEW
+		where id=#{id}
+	</delete>
+
+	<select id="relatedPost" parameterType="int"
+		resultType="PostDto">
+		select *
+		from POST
+		where challenge_id = #{challenge_id}
+	</select>
+</mapper>

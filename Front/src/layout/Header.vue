@@ -34,16 +34,14 @@ export default {
   display: flex;
   width: 100%;
   max-width: 420px;
-  height: 80px;
+  height: 65px;
   background-color: #fff;
-  /* box-shadow: 0 2px 8px #ddd; */
+  box-shadow: 0 2px 8px #ddd;
 }
 
 #fish {
   height: 44px;
   width: 44px;
-  /* left: 21px;
-  top: 22px; */
 }
 </style>
 

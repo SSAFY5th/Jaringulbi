@@ -8,6 +8,13 @@ Vue.config.productionTip = false;
 // Install BootstrapVue
 // Optionally install the BootstrapVue icon components plugin
 
+Vue.config.productionTip = false;
+Vue.config.silent = true;
+
+Vue.filter("makeComma", (val) => {
+  return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+});
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 

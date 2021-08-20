@@ -5,7 +5,7 @@
         <router-link :to="{ name: 'Accountbook' }">
           <b-icon icon="calculator" aria-hidden="true"></b-icon>
           <p class="nav-name m-0">가계부</p>
-        </router-link>      
+        </router-link>
       </div>
       <div class="nav-icon">
         <router-link :to="{ name: 'Board' }">
@@ -25,7 +25,14 @@
           <p class="nav-name m-0">챌린지</p>
         </router-link>
       </div>
-      <div class="nav-icon">
+      <div class="nav-icon" v-if="$store.state.show">
+        <router-link :to="{ name: 'Mypage' }">
+          <b-icon icon="person" aria-hidden="true"></b-icon>
+          <p class="nav-name m-0">마이페이지</p>
+        </router-link>
+      </div>
+
+      <div class="nav-icon" v-else>
         <router-link :to="{ name: 'Login' }">
           <b-icon icon="person" aria-hidden="true"></b-icon>
           <p class="nav-name m-0">마이페이지</p>
@@ -47,35 +54,36 @@ export default {
 </script>
  
 <style scoped>
-  #bottom-nav {
-    position: relative;
-    width: 100%;
-    height: 65px;
-  }
+#bottom-nav {
+  position: relative;
+  width: 100%;
+  height: 65px;
+  /* box-shadow: 0 0px 5px #ddd; */
+}
 
-  .nav-icon {
-    display: inline-block;
-    width: 20%;
-    height: 100%;
-    font-size: 14pt;
-    padding-top: 5px;
-  }
+.nav-icon {
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  font-size: 14pt;
+  padding-top: 5px;
+}
 
-  .nav-icon > a {
-    text-decoration: none;
-    color: #222;
-  }
+.nav-icon > a {
+  text-decoration: none;
+  color: #222;
+}
 
-  .nav-icon > a:hover {
-    color: #9be4e4;
-    /* color: #7a69e6; */
-  }
+.nav-icon > a:hover {
+  color: #9be4e4;
+  /* color: #7a69e6; */
+}
 
-  .nav-icon > a.router-link-exact-active {
-    color: #9be4e4;
-  }
+.nav-icon > a.router-link-exact-active {
+  color: #9be4e4;
+}
 
-  .nav-name {
-    font-size: 11px;
-  }
+.nav-name {
+  font-size: 11px;
+}
 </style>
