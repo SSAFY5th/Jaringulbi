@@ -18,10 +18,10 @@
           <p>{{ used }}</p>
           <p>{{ contents }}</p>
         </div>
-      </div>
-      <div class="d-flex justify-content-between">
-        <span style="color: #888"> {{ date }} </span>
-        <span @click="signup" class="sign-up-link"> {{ price }} </span>
+        <div class="d-flex justify-content-between">
+          <span style="color: #888"> {{ date }} </span>
+          <span @click="signup" class="sign-up-link"> {{ price }} </span>
+        </div>
       </div>
     </div>
   </div>
@@ -56,8 +56,9 @@ export default {
 }
 
 .form-area {
-  padding: 10px 14px 12px 14px;
+  padding: 12px 14px 12px 14px;
 }
+
 #image {
   width: 100px;
   height: 100%;
