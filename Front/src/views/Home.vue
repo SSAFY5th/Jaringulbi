@@ -13,7 +13,10 @@
         <div class="text-start align-self-center">
           <p class="report-text m-0">이번 주는</p>
           <span class="puple-text"
-            >{{ Math.abs(this.$store.state.accountbooks.monthOutgoings) }}
+            >{{
+              Math.abs(this.$store.state.accountbooks.monthOutgoings)
+                | makeComma
+            }}
           </span>
           <span class="report-text">원 썼어요</span>
           <p id="post-upcount" class="m-0">8월 3주차 (08.01 ~ 08.31)</p>
