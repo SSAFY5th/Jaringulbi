@@ -1,10 +1,11 @@
 <template>
-  <div id="app" class="">
+  <div id="app">
+    <div id="left-screen" class="">
+      <LeftHome />
+    </div>
     <div id="home">
       <router-view />
-      <div
-        id="bottom-menu"
-        class="">
+      <div id="bottom-menu" class="">
         <Bottom></Bottom>
       </div>
     </div>
@@ -13,11 +14,13 @@
 
 <script>
 import Bottom from "@/layout/Bottom.vue";
+import LeftHome from "@/views/LeftHome.vue";
 
 export default {
   name: "App",
   components: {
     Bottom,
+    LeftHome,
   },
 };
 </script>
@@ -27,33 +30,59 @@ export default {
     margin: 0 auto;
     width: 100%;
     height: 100%;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background-color: #eee;
+    letter-spacing: -.4px;
+    background-image: url('https://imgur.com/EFTInxc.png');
+    background-position: left top;
+    background-attachment: fixed;
+    background-size: auto;
+    background-repeat: no-repeat;
+    /* background-color: #eee; */
+    /* background: rgb(215,238,238);
+    background: linear-gradient(140deg,
+  rgba(215,238,238,1) 17%, 
+  rgba(238,238,238,1) 67%,
+  rgba(229,226,241,1) 100%); */
+  }
+
+  #left-screen {
+    position: fixed;
+    left: 15%;
+    bottom: 2%;
+    max-height: 100%;
   }
 
   #home {
-    margin: 0 auto;
+    margin-left: 53%;
     padding-bottom: 65px;
     position: relative;
     width: 100%;
-    max-width: 420px;
+    max-width: 422px;
     min-height: 100vh;
     overflow: hidden;
     background-color: #fff;
+    border-left: solid 1px #eee;
+    border-right: solid 1px #eee;
   }
 
+  /* @media only screen and (min-width: 421px) and (max-width: 1024px)
+  #home {
+    margin: 0 auto;
+  } */
+
   .main-content {
-    margin-top: 80px;
+    margin-top: 65px;
     position: relative;
+    color: #222;
   }
 
   #bottom-menu {
     position: fixed;
     bottom: 0;
-    z-index: 999;  
+    z-index: 999;
     display: flex;
     width: 100%;
     max-width: 420px;
@@ -62,10 +91,68 @@ export default {
     background-color: #fff;
   }
 
+  #profile-img {
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    overflow: hidden;
+  }
+
   #img-circle {
     min-width: 48px;
+    width: 48px;
     height: 48px;
     border-radius: 24px;
     overflow: hidden;
   }
+
+  .mint-btn {
+    background-color: #9be4e4;
+    color: #fff;
+  }
+
+  .mint-btn:hover {
+    border: solid 1px #9be4e4;
+    background-color: #fff;
+    color: #9be4e4;
+  }
+
+  #main-title {
+    color: #222;
+    font-weight: 600;
+    font-size: 19px;
+  }
+
+  #post-username {
+    font-size: 15px;
+    /* font-weight: 600; */
+    color: #444;
+  }
+
+  #post-username-bold {
+    font-size: 15px;
+    font-weight: 600;
+    color: #444;
+  }
+
+  #post-time {
+    color: #aaa;
+    font-size: 13px;
+  }
+
+  #post-title {  
+    font-weight: 600;
+    color: #333;
+  }
+
+  #post-content {
+    font-size: 14px;
+    color: #444;
+  }
+
+  #post-upcount {
+    font-size: 14px;
+    color: #888;
+  }
+
 </style>

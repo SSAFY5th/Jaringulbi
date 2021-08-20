@@ -1,8 +1,8 @@
 <template>
-  <div class="row">
+  <div class="row" id="login">
     <div>
       <b-container id="mainImage" class="top-login">
-        <div id="font" class="login-back">
+        <div class="login-back">
           <b-row>
             <div>
               <b-img
@@ -41,11 +41,11 @@
                   >
                     로그인
                   </button>
-                  <button class="btn" id="btn_group">아이디 찾기</button>
-                  <button class="btn" id="btn_group">비밀번호 찾기</button>
                   <button class="btn" @click="signup" id="btn_group">
                     회원가입
                   </button>
+                  <button class="btn" id="btn_group">아이디 찾기</button>
+                  <button class="btn" id="btn_group">비밀번호 찾기</button>
                 </div>
               </div>
             </div>
@@ -57,11 +57,14 @@
   </div>
 </template>
 <script>
-import http from "@/util/http-common";
-
+import { mapGetters } from "vuex";
 export default {
   name: "bottom",
-  computed: {},
+  computed: {
+    //getter에 있는 userInfo 함수를 불러옵니다.
+    ...mapGetters(["userInfo"]),
+  },
+
   data() {
     return {
       login_id: "",
@@ -77,7 +80,7 @@ export default {
       let err = true;
       let msg = "";
       !this.login_id &&
-        ((msg = "id를 입력해주세요"),
+        ((msg = "ID를 입력해주세요"),
         (err = false),
         this.$refs.login_id.focus());
       err &&
@@ -86,44 +89,24 @@ export default {
         (err = false),
         this.$refs.password.focus());
       if (!err) alert(msg);
-      // 만약, 내용이 다 입력되어 있다면 로그인
-      //else this.login();
-      else {
-        http
-          .post("/user/login", {
-            login_id: this.login_id,
-            password: this.password,
-          })
-          .then(({ data }) => {
-            console.log(data);
-            if (data === "success") {
-              this.$router.push("/");
-            }
-            if (data === "fail") {
-              console.log("아이디 비번 확인");
-              alert("아이디와 비밀번호를 확인해주세요");
-            }
-          })
-          .catch((error) => {
-            alert("로그인 실패");
-            console.dir(error);
-          });
+      //dispatch >> store에 있는 action안에 있는 login 함수를 실행시켜줍니다.
+      else
+        this.$store.dispatch("login", {
+          //form에서 받은 값을 action에 있는 login 함수로 들고
+          login_id: this.login_id,
+          password: this.password,
+        });
+
+      if (this.$store.state.user.nickname !== undefined) {
+        console.log(this.$store.state.user.login_id + " " + "로그인성공");
+
+        this.$router.push("/");
       }
-      // if (this.$store.state.user.email !== null) {
-      //   console.log(this.$store.state.user.email + " " + "로그인성공");
-      //   this.$router.push("/");
-      // } else {
-      //   console.log("bye");
-      // }
     },
   },
 };
 </script>
 <style scoped>
-#font {
-  font-family: CookieRunOTF-Bold;
-}
-
 .top {
   background-color: white;
   margin-top: 40px;
@@ -139,7 +122,7 @@ button {
 }
 
 .top-login {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .margin {
@@ -172,7 +155,7 @@ textarea,
 #btn_group {
   background-color: #9be4e4;
   color: #9175f3;
-  border: 1px solid #9be4e4;
+  border: 1px solid #9175f3;
   padding: 5px;
   width: 150px;
   margin-left: 14px;

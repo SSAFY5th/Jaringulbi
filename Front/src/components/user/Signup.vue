@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <b-container id="mainImage">
-      <div id="font">
+      <div>
         <div class="top">
           <b-img
             :src="require('@/assets/logo.png')"
@@ -70,18 +70,13 @@ export default {
     };
   },
   methods: {
-    check() {
-      console.log("id =" + this.login_id);
-      console.log("pass = " + this.password);
-      console.log("nick = " + this.nickname);
-      console.log("phone = " + this.phone);
-    },
     checkValue() {
       // 사용자 입력값 체크하기
       let err = true;
       let msg = "";
-      !this.login_id &&
-        ((msg = "id를 입력해주세요"),
+      err &&
+        !this.login_id &&
+        ((msg = "ID를 입력해주세요"),
         (err = false),
         this.$refs.login_id.focus());
       err &&
@@ -89,6 +84,16 @@ export default {
         ((msg = "비밀번호를 입력해주세요"),
         (err = false),
         this.$refs.password.focus());
+      err &&
+        !this.nickname &&
+        ((msg = "이름을 입력해주세요"),
+        (err = false),
+        this.$refs.nickname.focus());
+      err &&
+        !this.phone &&
+        ((msg = "전화번호를 입력해주세요"),
+        (err = false),
+        this.$refs.phone.focus());
 
       if (!err) alert(msg);
       // 만약, 내용이 다 입력되어 있다면 회원 가입
@@ -96,20 +101,23 @@ export default {
     },
     insertUser() {
       http
-        .post("/user/login", {
+        .post("/user/signup", {
           login_id: this.login_id,
           password: this.password,
+          nickname: this.nickname,
+          phone: this.phone,
         })
         .then(({ data }) => {
           console.log(data);
-          let msg = "로그인 실패!!";
+          let msg = "회원가입 실패!!";
           if (data === "success") {
-            msg = "로그인 완료";
+            msg = "회원가입 완료";
+            this.$router.push("/");
           }
           alert(msg);
         })
         .catch((error) => {
-          alert("로그인 실패");
+          alert("회원가입 실패");
           console.dir(error);
         });
     },
@@ -120,25 +128,14 @@ export default {
 };
 </script>
 <style scoped>
-@font-face {
-  font-family: "CookieRunOTF-Bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff")
-    format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .top {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .margin {
   margin-top: 20px;
 }
 
-#font {
-  font-family: CookieRunOTF-Bold;
-}
 .title {
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
   color: black;

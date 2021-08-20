@@ -13,4 +13,5 @@ public interface UpDownService {
     void insertDown(UpDownDto down);
     void deleteUp(UpDownDto up);
     void deleteDown(UpDownDto down);
+
 }

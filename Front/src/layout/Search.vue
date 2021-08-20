@@ -2,10 +2,14 @@
   <div>
     <div class="d-flex search">
       <div class="me-3">
-        <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
+        <router-link :to="{ name: 'Notice' }" class="text-dark">
+          <b-icon icon="bell-fill" aria-hidden="false"></b-icon>
+        </router-link>
       </div>
-      <div >
-        <b-icon icon="search" aria-hidden="false"></b-icon>
+      <div>
+        <router-link :to="{ name: 'SearchPage' }"  class="text-dark">
+          <b-icon icon="search" aria-hidden="false"></b-icon>
+        </router-link>
       </div>
     </div>
   </div>
@@ -23,8 +27,8 @@
 // };
 </script>
 <style scoped>
-.search {
-  font-size: 16pt;
-  color: #333;
-}
+  .search {
+    font-size: 16pt;
+    color: #333;
+  }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div>
-    기타 다른게 들어가는 공간
+    <b-img :src="require('@/assets/bg.png')">      
+    </b-img>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: "LeftHome",
+  
 }
 </script>
 

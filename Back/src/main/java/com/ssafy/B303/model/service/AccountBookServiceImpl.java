@@ -34,7 +34,6 @@ public class AccountBookServiceImpl implements AccountBookService{
         map.put("month", month);
         map.put("user_id", user_id);
 
-
         return sqlSession.getMapper(AccountBookMapper.class).selectMonth(map);
     }
 
@@ -58,23 +57,24 @@ public class AccountBookServiceImpl implements AccountBookService{
     }
 
     @Override
-    public int monthIncomes(int month) throws Exception {
-        return sqlSession.getMapper(AccountBookMapper.class).monthIncomes(month);
+    public Integer monthIncomes(int month, int user_id) throws Exception {
+        return sqlSession.getMapper(AccountBookMapper.class).monthIncomes(month, user_id);
     }
 
     @Override
-    public int monthOutgoings(int month) throws Exception {
-        return sqlSession.getMapper(AccountBookMapper.class).monthOutgoings(month);
+    public Integer monthOutgoings(int month, int user_id) throws Exception {
+        return sqlSession.getMapper(AccountBookMapper.class).monthOutgoings(month, user_id);
     }
 
     @Override
-    public List<Number> dayIncomes(int month) throws Exception {
+    public List<Number> dayIncomes(int month, int user_id) throws Exception {
         List<Number> incomes = new LinkedList<>();
 
         for(int i = 1; i <= 31; i++){
             Map<String, Number> map = new HashMap<>();
             map.put("month", month);
             map.put("day", i);
+            map.put("user_id", user_id);
             incomes.add(sqlSession.getMapper(AccountBookMapper.class).dayIncomes(map));
         }
 
@@ -82,15 +82,26 @@ public class AccountBookServiceImpl implements AccountBookService{
     }
 
     @Override
-    public List<Number> dayOutgoings(int month) throws Exception {
+    public List<Number> dayOutgoings(int month, int user_id) throws Exception {
         List<Number> outgoings = new LinkedList<>();
         for(int i = 1; i <= 31; i++){
             Map<String, Number> map = new HashMap<>();
             map.put("month", month);
             map.put("day", i);
+            map.put("user_id", user_id);
             outgoings.add(sqlSession.getMapper(AccountBookMapper.class).dayOutgoings(map));
         }
         return outgoings;
+    }
+
+    @Override
+    public void setBudget(int id, int budget) {
+        sqlSession.getMapper(AccountBookMapper.class).setBudget(id ,budget);
+    }
+
+    @Override
+    public int getBudgetInfo(int id) {
+        return sqlSession.getMapper(AccountBookMapper.class).getBudget(id);
     }
 
 
