@@ -15,8 +15,8 @@
                   attr.customData.impo | makeComma
                 }}</span>
                 <br />
-                <span
-                  ><router-link
+                <span>
+                  <router-link
                     :to="{
                       path: `/accountdetail`,
                       query: {
@@ -25,9 +25,10 @@
                         day: attr.key + 1,
                       },
                     }"
+                    class="text-dark text-decoration-none"
                     >{{ attr.customData.total | makeComma }}</router-link
-                  ></span
-                >
+                  >
+                </span>
                 <br />
               </p>
             </div>

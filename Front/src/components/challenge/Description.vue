@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div v-html="description"></div>
+    <span v-html="description">
+
+    </span>
   </div>
 </template>
 

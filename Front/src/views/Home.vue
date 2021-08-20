@@ -55,7 +55,7 @@
               <router-link
                 :to="{ name: 'Challenge' }"
                 class="text-decoration-none m-0 p-0"
-                id="post-upcount"
+                id="post-upcount"                
               >
                 전체보기
               </router-link>
@@ -78,7 +78,6 @@
                     alt="챌린지"
                     class="chlg-img"
                     :src="challenge.image"
-                    style="object-fit: cover"
                   />
                 </router-link>
               </div>
@@ -202,15 +201,15 @@ export default {
 }
 
 .chlg-btn-wrap {
-  width: 33%;
+  width: 33.3%;
   /* display: inline-block; */
 }
 
 .challenge-btn {
   width: 100%;
-  max-width: 120px;
+  max-width: 124px;
   height: 100%;
-  max-height: 120px;
+  max-height: 124px;
   border-radius: 12px;
   /* line-height: 118px; */
   background-color: #eee;
@@ -218,8 +217,14 @@ export default {
 }
 
 .chlg-img {
-  width: 100%;
+  width: 120%;
   height: 100%;
   object-fit: cover;
+}
+
+.chlg-img:hover {
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  transition: 500ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 </style>

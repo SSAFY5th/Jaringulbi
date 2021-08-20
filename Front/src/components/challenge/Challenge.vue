@@ -44,8 +44,9 @@ export default {
 
 <style scoped>
   .chlg-content {
-    padding: 12px 4px 12px 14px;
+    padding: 15px 4px 12px 14px;
     position: relative;
-    color: #333;    
+    color: #333;
+    margin-top: 65px;
   }
 </style>

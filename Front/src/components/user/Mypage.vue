@@ -37,11 +37,11 @@
             계정 설정
           </button>
         </div>
-        <div>
+        <div style="cursor:pointer;">
           <b-list-group class="mb-3 text-start mt-4" id="post-content">
-            <b-list-group-item>고객센터</b-list-group-item>
-            <b-list-group-item>어플공유</b-list-group-item>
-            <b-list-group-item>자주 하는 질문</b-list-group-item>
+            <b-list-group-item @click="goReadyPage">고객센터</b-list-group-item>
+            <b-list-group-item @click="goReadyPage">어플공유</b-list-group-item>
+            <b-list-group-item @click="goReadyPage">자주 하는 질문</b-list-group-item>
           </b-list-group>
         </div>
         <div class="mt-3">
@@ -64,6 +64,9 @@ export default {
   methods: {
     modify() {
       this.$router.push("/modify");
+    },
+    goReadyPage() {
+      this.$router.push("/ready");
     },
     logout() {
       if (confirm("정말 로그아웃 하시겠습니까?")) {
@@ -93,6 +96,7 @@ export default {
 .form-area {
   padding: 10px 14px 12px 14px;
 }
+
 #image {
   width: 100px;
   height: 100%;

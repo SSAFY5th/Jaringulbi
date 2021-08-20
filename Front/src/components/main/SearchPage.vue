@@ -24,7 +24,8 @@
             href="#"
             class="text-dark text-decoration-none"
           >
-          <b-icon icon="search" aria-hidden="false"></b-icon>
+          <b-icon @click="goReadyPage" icon="search" aria-hidden="false">            
+          </b-icon>
           </a>
         </div>
       </div>
@@ -66,9 +67,30 @@
       </div>
       <hr>
       <p id="post-title" class="text-start">카테고리</p>
-      <div>
-        자유게시판 | 살까말까
-      </div>
+       <div class="mb-4">
+          <div class="freeboard">
+            <router-link
+              :to="{ name: 'Board' }"
+              class="text-decoration-none m-0 p-0"
+            >
+              <div class="freeboard-btn">
+                <b-icon icon="chat-square-text" aria-hidden="false"></b-icon>
+              </div>
+              <span id="post-content"> 자유게시판 </span>
+            </router-link>
+          </div>
+          <div class="buyornot">
+            <router-link
+              :to="{ name: 'BuyOrNot' }"
+              class="text-decoration-none m-0 p-0"
+            >
+              <div class="buyornot-btn">
+                <b-icon icon="cart-x" aria-hidden="false"></b-icon>
+              </div>
+              <span id="post-content"> 살까말까 게시판 </span>
+            </router-link>
+          </div>
+        </div>
     </div>
   </div>
 </template>
@@ -76,6 +98,11 @@
 <script>
 export default {
   name: "SearchPage",
+  methods: {
+    goReadyPage() {
+      this.$router.push("/ready");
+    },
+  }
 }
 </script>
 
@@ -110,4 +137,53 @@ export default {
     margin-bottom: 14px;
     cursor: pointer;
   }
+
+  .freeboard {
+  width: 50%;
+  /* background-color: aquamarine; */
+  display: inline-block;
+}
+
+.freeboard-btn {
+  height: 124px;
+  margin-right: 5px;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 12px;
+  line-height: 120px;
+  font-size: 30pt;
+  /* color: #9be4e4; */
+  color: #7a69e6;
+}
+
+.freeboard-btn:hover {
+  background-color: #9be4e4;
+  cursor: pointer;
+  color: #fff;
+  transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.buyornot {
+  width: 50%;
+  display: inline-block;
+}
+
+.buyornot-btn {
+  height: 124px;
+  margin-left: 5px;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 12px;
+  line-height: 120px;
+  font-size: 30pt;
+  /* color: #9be4e4; */
+  color: #7a69e6;
+}
+
+.buyornot-btn:hover {
+  background-color: #9be4e4;
+  cursor: pointer;
+  color: #fff;
+  transition: 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
 </style>

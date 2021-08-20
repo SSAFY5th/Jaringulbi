@@ -69,6 +69,7 @@ export default {
 .mychlg-content {
   margin-bottom: 60px;
   padding: 15px 14px 12px 14px;
+  margin-top: 65px;
   position: relative;
   color: #333;
 }
