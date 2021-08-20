@@ -13,7 +13,7 @@
         </div>
         <div class="d-inline-block">
           <p id="post-username">누적 굴비 수</p>
-          <span id="post-title">{{ this.$store.state.user.fish }}</span>
+          <span id="post-title">{{ this.$store.state.user.fish_count }}개</span>
         </div>
       </div>
 
