@@ -21,7 +21,7 @@
 
       <div class="challenge-wrap">
         <!-- MyChallengeList.length -->
-        <div v-if="myChallenge">
+        <div v-if="MyChallengeList">
           <my-challenge-list
             v-for="(challenge, index) in myChallenge"
             :key="index"
