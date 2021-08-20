@@ -74,7 +74,7 @@ export default {
     getFreePostList: function () {
       http.get("board/")
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         this.freePostList = response.data
         // this.username = this.$store.state.user.login_id
       }).catch(err => {

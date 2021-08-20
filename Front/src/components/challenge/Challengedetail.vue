@@ -87,8 +87,8 @@
       <div
         class="participate-btn"
         @click="join"
-        v-if="$store.state.myChallenge[0].status == 1"
       >
+        <!-- v-if="$store.state.myChallenge[0].status == 1" -->
         <p>참가하기</p>
       </div>
     </div>
