@@ -41,6 +41,7 @@ export default {
   top: 0;
   width: 100%;
   max-width: 420px;
+  z-index: 3;
   height: 65px;
   background-color: #fff;
   box-shadow: 0 2px 6px #ddd;
