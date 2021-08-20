@@ -42,22 +42,8 @@ export default {
 </script>
 <style scoped>
 .form-area {
-  padding: 10px 14px 12px 14px;
-}
-#image {
-  width: 100px;
-  height: 100%;
-  border-radius: 100%;
-  margin-bottom: 40px;
-}
-
-.float1 {
-  width: 35%;
-}
-
-.float2 {
-  width: 65%;
-  text-align: left;
+  padding: 12px 14px 12px 14px;
+  border-bottom: solid 1px #eee;
 }
 
 .sign-up-link {
