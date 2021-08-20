@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <div class="mt-5 pt-3">
+      <div class="mt-5 pt-2">
         <!-- <img
           :src="imgLink"
           style="width: 350px; height: 300px"
