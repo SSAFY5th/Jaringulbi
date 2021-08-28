@@ -33,6 +33,56 @@
 
 # ⚙️ Install and Usage
 
+## Font-end
+
+1. 자린굴비 프론트 이미지 받아오기
+
+   ```shell
+   $ docker pull hotoron/jaringulbi-vue-dockerize
+   ```
+
+2. 자린굴비 프론트 도커 실행하기
+
+   ```shell
+   $ docker run -d -p 80:80 --rm --name jaringulbi-vue hotoron/jaringulbi-vue-dockerize
+   ```
+
+   
+
+## Back-end
+
+1. 자린굴비 백엔드 이미지 받아오기
+
+   ``` shell
+   $ docker pull hotoron/jaringulbi-spring-dockerize
+   ```
+
+2. 자린굴비 백엔드 도커 실행하기
+
+   ``` shell
+   $ docker run -d -p 8399:8399 --rm --name jaringulbi-spring hotoron/jaringulbi-spring-dockerize
+   ```
+
+
+
+## Database
+
+1. mysql 이미지 받아오기
+
+   ``` shell
+   $ docker pull mysql
+   ```
+
+2. 자린굴비 DB 도커 실행하기
+
+   ```shell
+   $ docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 --name jaringulbi-mysql mysql
+   ```
+
+3. MySQL 접속해서 `b303.sql` 실행하기 (첨부파일 참조)
+
+4. CSV파일로 더미데이터 집어넣기 (첨부파일 참조)
+
 
 
 # 📚[WIKI](https://lab.ssafy.com/s05-webmobile2-sub2/S05P12B303/-/wikis/home)
