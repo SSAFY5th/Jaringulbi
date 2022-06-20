@@ -33,7 +33,7 @@
 
 ## 🚧아키텍처
 
-![image-20220620212250099](C:\Users\hotoron\AppData\Roaming\Typora\typora-user-images\image-20220620212250099.png)
+![image](https://user-images.githubusercontent.com/26705587/174601765-6cc2e810-3812-4be4-a572-1d086cef65d5.png)
 
 ## 🔨  설치 및 실행방법
 
